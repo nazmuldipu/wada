@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "wada"
+    }
+  },
+  "defaultProject": "wada",
+  "cli": {
+    "analytics": false
+  }
 }
