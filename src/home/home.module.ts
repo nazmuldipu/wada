@@ -1,12 +1,15 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { SharedModule } from 'src/shared/shared.module';
+
+import { FotterComponent } from './components/fotter/fotter.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { TopbarComponent } from './components/topbar/topbar.component';
 import { IndexComponent } from './containers/index/index.component';
-import { HomeComponent } from './home.component';
 import { LoginComponent } from './containers/login/login.component';
 import { RegisterComponent } from './containers/register/register.component';
-import { RouterModule, Routes } from '@angular/router';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { FotterComponent } from './components/fotter/fotter.component';
+import { HomeComponent } from './home.component';
 
 export const ROUTES: Routes = [
   // { path: 'cart', component: CartComponent },
@@ -25,9 +28,10 @@ export const ROUTES: Routes = [
 ];
 
 @NgModule({
-  declarations: [IndexComponent, HomeComponent, LoginComponent, RegisterComponent, NavbarComponent, FotterComponent],
+  declarations: [IndexComponent, HomeComponent, LoginComponent, RegisterComponent, NavbarComponent, FotterComponent, TopbarComponent],
   imports: [
     CommonModule,
+    SharedModule,
     RouterModule.forChild(ROUTES),
   ]
 })

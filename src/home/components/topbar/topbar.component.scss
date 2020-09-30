@@ -1,0 +1,34 @@
+@import "../../../assets/theme.scss";
+
+:host {
+  font-size: 13px;
+  font-family: 'museosans';
+}
+
+a.link {
+  cursor: pointer;
+  padding: 14px 13px;
+  text-decoration: none;
+
+  &.user {
+    color: $web-color;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &.info {
+    text-decoration: underline;
+    color: $primary-text-color;
+
+    &:hover {
+      color: $web-color;
+    }
+  }
+}
+
+.dropdown-menu {
+  min-width: 22rem;
+  font-size: 13px;
+}
