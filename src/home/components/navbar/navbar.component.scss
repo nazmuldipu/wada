@@ -1,1 +1,74 @@
+@import "../../../assets/theme.scss";
 
+
+.logo {
+  height: 50px;
+}
+
+.form-control {
+  border-radius: 4px 0 0 4px;
+}
+
+.btn,
+.input-group-text {
+  border-radius: 0 4px 4px 0;
+}
+
+.form-control {
+  width: 10rem;
+}
+
+.cart .form-control {
+  width: 6rem;
+}
+
+.search-box .form-control {
+  width: 26rem;
+}
+
+.search-box .btn {
+  color: $primary-color-text;
+  background-color: $primary-color;
+
+  & .fa {
+    font-size: 20px;
+  }
+}
+
+.cart-count {
+  font-size: 12px;
+}
+
+.input-group-text {
+  padding: 3px;
+}
+
+.search-icon {
+  height: 30px;
+}
+
+
+// NAVBAR
+.navbar {
+  padding: 0;
+}
+
+.navbar a {
+  font-family: "museosans";
+  padding: 10px 16px;
+  text-decoration: none;
+  color: $primary-text-color;
+
+  &:hover {
+    color: $secondary-text-color;
+  }
+}
+
+.navbar-nav .nav-item.active .nav-link {
+  color: $primary-color-text;
+  background-color: $primary-color-dark;
+
+  &:hover {
+    background-color: $primary-color;
+  }
+}
