@@ -1,0 +1,243 @@
+.main-area {
+  position: relative;
+  height: 100vh;
+  background: #090908;
+  color: #fff;
+}
+
+.left-section {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+  background-size: cover;
+}
+
+@media (max-width: 767px) {
+  .left-section {
+    display: none;
+  }
+}
+
+.right-section {
+  float: right;
+  width: 50%;
+  position: relative;
+  padding: 0 60px;
+}
+
+@media (max-width: 767px) {
+  .right-section {
+    width: 100%;
+    padding: 0 15px;
+  }
+}
+
+.right-section .logo {
+  position: absolute;
+  top: 40px;
+  height: 30px;
+}
+
+.right-section .logo img {
+  height: 100%;
+  width: auto;
+}
+
+.display-table {
+  display: table;
+  height: 100vh;
+  width: 100%;
+}
+
+.display-table-cell {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.right-section .main-content {
+  padding: 40px 40px 40px 0;
+}
+
+@media (max-width: 767px) {
+  .right-section .main-content {
+    padding: 10px 10px 10px 0;
+  }
+
+  .title {
+    font-size: 35px;
+  }
+}
+
+.main-content .title {
+  margin-bottom: 15px;
+}
+
+h1 {
+  font-size: 3.5em;
+  line-height: 1;
+}
+
+b {
+  font-weight: 500;
+}
+
+.main-content .desc {
+  color: #eee;
+}
+
+p {
+  line-height: 1.6;
+  font-size: 1.05em;
+  font-weight: 400;
+  color: #555;
+}
+
+.main-content .email-input-area {
+  margin: 40px 0 20px;
+  position: relative;
+  width: 400px;
+  height: 47px;
+}
+
+@media (max-width: 767px) {
+  .main-content .email-input-area {
+    // margin: 40px 0 20px;
+    // position: relative;
+    width: 100%;
+    // height: 47px;
+  }
+}
+
+.main-content .email-input-area .email-input {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 2px;
+  border: 0;
+  outline: 0;
+  padding: 0 140px 0 25px;
+  transition: all 0.2s;
+  background: #f1f2f3;
+  box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.1);
+  border: 1px solid transparent;
+}
+
+a,
+button {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s;
+  line-height: 1;
+}
+
+button {
+  outline: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.main-content .email-input-area .submit-btn {
+  width: 120px;
+  text-align: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  font-size: 0.9em;
+  outline: 0;
+  border-radius: 0 2px 2px 0;
+  transition: all 0.3s;
+  background: #f84982;
+  color: #fff;
+}
+
+.main-content .post-desc {
+  color: #999;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+ul,
+span,
+li,
+img,
+inpot,
+button {
+  margin: 0;
+  padding: 0;
+}
+
+.right-section .footer-icons {
+  position: absolute;
+  bottom: 30px;
+}
+
+.right-section .footer-icons>li:first-child {
+  margin-right: 10px;
+}
+
+li {
+  list-style: none;
+  display: inline-block;
+}
+
+.right-section .footer-icons>li>a {
+  display: inline-block;
+  font-size: 1.07em;
+  padding: 0 0px;
+}
+
+.right-section .footer-icons>li>a:hover>i {
+  border: 1px solid;
+}
+
+.right-section .footer-icons>li>a>i {
+  display: inline-block;
+  height: 35px;
+  line-height: 33px;
+  transition: all 0.2s;
+  border-radius: 40px;
+  text-align: center;
+  width: 35px;
+}
+
+.right-section .footer-icons>li>a>i[class*="facebook"] {
+  color: #2a61d6;
+  border-color: #2a61d6;
+}
+
+.right-section .footer-icons>li>a>i[class*="twitter"] {
+  color: #3aa4f8;
+  border-color: #3aa4f8;
+}
+
+.right-section .footer-icons>li>a>i[class*="google"] {
+  color: #f43846;
+  border-color: #f43846;
+}
+
+.right-section .footer-icons>li>a>i[class*="instagram"] {
+  color: #8f614a;
+  border-color: #8f614a;
+}
+
+.right-section .footer-icons>li>a>i[class*="pinterest"] {
+  color: #e1c013;
+  border-color: #e1c013;
+}
+
+.company {
+  color: red;
+}

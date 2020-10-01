@@ -10,9 +10,11 @@ import { IndexComponent } from './containers/index/index.component';
 import { LoginComponent } from './containers/login/login.component';
 import { RegisterComponent } from './containers/register/register.component';
 import { HomeComponent } from './home.component';
+import { HomeHeroComponent } from './components/home-hero/home-hero.component';
+import { CommingSoonComponent } from './containers/comming-soon/comming-soon.component';
 
 export const ROUTES: Routes = [
-  // { path: 'cart', component: CartComponent },
+  { path: 'comming', component: CommingSoonComponent },
   // { path: 'orders', component: OrdersComponent },
   {
     path: '',
@@ -28,7 +30,7 @@ export const ROUTES: Routes = [
 ];
 
 @NgModule({
-  declarations: [IndexComponent, HomeComponent, LoginComponent, RegisterComponent, NavbarComponent, FotterComponent, TopbarComponent],
+  declarations: [IndexComponent, HomeComponent, LoginComponent, RegisterComponent, NavbarComponent, FotterComponent, TopbarComponent, HomeHeroComponent, CommingSoonComponent],
   imports: [
     CommonModule,
     SharedModule,
