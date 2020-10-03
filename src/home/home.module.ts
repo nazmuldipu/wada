@@ -12,6 +12,7 @@ import { RegisterComponent } from './containers/register/register.component';
 import { HomeComponent } from './home.component';
 import { HomeHeroComponent } from './components/home-hero/home-hero.component';
 import { CommingSoonComponent } from './containers/comming-soon/comming-soon.component';
+import { CategoriesComponent } from './components/categories/categories.component';
 
 export const ROUTES: Routes = [
   { path: 'comming', component: CommingSoonComponent },
@@ -30,7 +31,7 @@ export const ROUTES: Routes = [
 ];
 
 @NgModule({
-  declarations: [IndexComponent, HomeComponent, LoginComponent, RegisterComponent, NavbarComponent, FotterComponent, TopbarComponent, HomeHeroComponent, CommingSoonComponent],
+  declarations: [IndexComponent, HomeComponent, LoginComponent, RegisterComponent, NavbarComponent, FotterComponent, TopbarComponent, HomeHeroComponent, CommingSoonComponent, CategoriesComponent],
   imports: [
     CommonModule,
     SharedModule,
