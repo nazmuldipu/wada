@@ -1,0 +1,10 @@
+<div class="offer">
+  <img [alt]="offer.slug" src="assets/images/offers/{{offer.slug}}.jpg">
+  <div class="d-flex justify-content-between offer-content">
+    <div class="offer-dialog">{{offer.dialog}}</div>
+    <a class="btn btn-sm btn-success offer-button" routerLink="/">{{offer.button_text}}</a>
+  </div>
+</div>
+<!-- <hr>
+{{offer | json}}
+<hr> -->

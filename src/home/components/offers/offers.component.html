@@ -1,0 +1,8 @@
+<div class="container my-5">
+  <div class="row">
+    <div class="col-12 offer-box" *ngFor="let ofr of offers; let i = index"
+      [ngClass]="{'left': i%2==1, 'right':i%2==0 && i!=0, 'col-md-6':i >= 1}">
+      <offer-box [offer]='ofr'></offer-box>
+    </div>
+  </div>
+</div>

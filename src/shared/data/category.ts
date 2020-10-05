@@ -3,6 +3,7 @@ export const CategoryTree = {
         {
             name: 'Frozen',
             slug: 'frozen',
+            background: '#3497A1',
             sub_category: [
                 {
                     name: 'Bigger Packs', slug: 'bigger-packs', sub_sub_category: []
@@ -51,6 +52,7 @@ export const CategoryTree = {
         {
             name: 'Fresh',
             slug: 'fresh',
+            background: '#068B45',
             sub_category: [
                 {
                     name: 'Fruit, Veg & Salads', slug: 'fruit-veg-&-salads',
@@ -89,6 +91,7 @@ export const CategoryTree = {
         {
             name: 'Drinks',
             slug: 'drinks',
+            background: '#FFAFAF',
             sub_category: [
                 {
                     name: 'Fizzy Drinks', slug: 'fizzy-drinks',
@@ -122,6 +125,61 @@ export const CategoryTree = {
                     ]
                 },
             ]
-        }
+        },
+        {
+            name: 'Household',
+            slug: 'household',
+            background: '#016FB7',
+            sub_category: []
+        },
+        {
+            name: 'Drinks',
+            slug: 'drinks',
+            background: '#505050',
+            sub_category: []
+        },
+        {
+            name: 'Fresh Fruit & Veg Market',
+            slug: 'fresh-fruit-&-veg-market',
+            background: '#cc092f',
+            sub_category: []
+        },
+        {
+            name: 'Offers',
+            slug: 'offers',
+            background: '#3F8C63',
+            sub_category: []
+        },
+        {
+            name: 'Bakery',
+            slug: 'bakery',
+            background: '#F48D44',
+            sub_category: []
+        },
+        {
+            name: 'Luxury',
+            slug: 'luxury',
+            background: '#555555',
+            sub_category: []
+        },
+        {
+            name: 'Big Night In',
+            slug: 'big-night-in',
+            background: '#1f2a5f',
+            sub_category: []
+        },
+        {
+            name: 'Ready Meals',
+            slug: 'ready-meals',
+            background: '#5334a0',
+            sub_category: []
+        },
+        {
+            name: 'Fishmongers',
+            slug: 'fishmongers',
+            background: '#1c8ca6',
+            sub_category: []
+        },
     ]
 }
+

@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./fotter.component.scss']
 })
 export class FotterComponent implements OnInit {
-
   constructor() { }
 
   ngOnInit(): void {

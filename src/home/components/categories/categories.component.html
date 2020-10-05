@@ -6,7 +6,7 @@
     <div class="category-block col-6 col-md-2" *ngFor="let category of categoryTree?.category">
       <a class="category-block-link" href="https://www.iceland.co.uk/frozen"
         onclick="dataLayer.push({event: 'promotionClick',eventCategory: 'Ecommerce',eventAction: 'Promotion Click',eventLabel: 'HP_QuickLink_1'});">
-        <div class="category-block-content" style="background-color:#3497A1">
+        <div class="category-block-content" [style.background-color]="category.background">
           <picture>
             <img alt="Frozen Category" src="assets/images/categories/{{category.slug}}.png">
           </picture>
