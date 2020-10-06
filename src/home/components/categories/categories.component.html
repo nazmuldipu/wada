@@ -4,7 +4,7 @@
 <div class="container">
   <div class="row">
     <div class="category-block col-6 col-md-2" *ngFor="let category of categoryTree?.category">
-      <a class="category-block-link" href="https://www.iceland.co.uk/frozen"
+      <a class="category-block-link" routerLink="/category/{{category.slug}}"
         onclick="dataLayer.push({event: 'promotionClick',eventCategory: 'Ecommerce',eventAction: 'Promotion Click',eventLabel: 'HP_QuickLink_1'});">
         <div class="category-block-content" [style.background-color]="category.background">
           <picture>

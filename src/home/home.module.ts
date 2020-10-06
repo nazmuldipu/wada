@@ -14,6 +14,8 @@ import { HomeHeroComponent } from './components/home-hero/home-hero.component';
 import { CommingSoonComponent } from './containers/comming-soon/comming-soon.component';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { OffersComponent } from './components/offers/offers.component';
+import { CategoryComponent } from './containers/category/category.component';
+import { SpecialOffersComponent } from './containers/special-offers/special-offers.component';
 
 export const ROUTES: Routes = [
   { path: 'comming', component: CommingSoonComponent },
@@ -26,13 +28,15 @@ export const ROUTES: Routes = [
       // { path: 'details/:id', component: DetailsComponent },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
+      { path: 'category/:slug', component: CategoryComponent },
+      { path: 'offers/:slug', component: SpecialOffersComponent },
       { path: '', component: IndexComponent },
     ],
   },
 ];
 
 @NgModule({
-  declarations: [IndexComponent, HomeComponent, LoginComponent, RegisterComponent, NavbarComponent, FotterComponent, TopbarComponent, HomeHeroComponent, CommingSoonComponent, CategoriesComponent, OffersComponent],
+  declarations: [IndexComponent, HomeComponent, LoginComponent, RegisterComponent, NavbarComponent, FotterComponent, TopbarComponent, HomeHeroComponent, CommingSoonComponent, CategoriesComponent, OffersComponent, CategoryComponent, SpecialOffersComponent],
   imports: [
     CommonModule,
     SharedModule,
