@@ -1,0 +1,96 @@
+@import '../../../assets/theme.scss';
+
+.banner-image {
+  width: 100%;
+  height: 140px;
+}
+
+.banner-links {
+  margin-top: -130px;
+  margin-bottom: 120px;
+}
+
+.breadcrumb {
+  background-color: transparent;
+}
+
+.breadcrumb-item a {
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+  font-weight: 200;
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+  content: ">";
+  color: black;
+  font-weight: 300;
+}
+
+.banner-title {
+  padding: 0 20px;
+  text-transform: capitalize;
+  color: $primary-color;
+}
+
+.col-left,
+.col-right {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.col-left {
+  flex: 0 0 220px;
+  max-width: 220px;
+}
+
+.col-right {
+  flex: 0 0 calc(100% - 220px);
+  max-width: calc(100% - 220px);
+}
+
+.filter {
+  &-title {
+    color: $primary-color;
+  }
+}
+
+
+
+.refinement-header {
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.20833;
+  margin: 0;
+  position: relative;
+}
+
+.refinement-header span {
+  z-index: 1;
+  padding-right: 8px;
+  background: white;
+}
+
+.refinement-header:after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: #d8d8d8;
+  position: absolute;
+  z-index: -10;
+  top: calc(50% - 1px);
+}
+
+.sub-category-item {
+  font-size: 14px;
+  cursor: pointer;
+  color: $primary-color-light;
+}
+
+label {
+  font-family: "museosans";
+  color: $secondary-text-color;
+}

@@ -16,6 +16,7 @@ import { CategoriesComponent } from './components/categories/categories.componen
 import { OffersComponent } from './components/offers/offers.component';
 import { CategoryComponent } from './containers/category/category.component';
 import { SpecialOffersComponent } from './containers/special-offers/special-offers.component';
+import { SidebarModule } from 'ng-sidebar';
 
 export const ROUTES: Routes = [
   { path: 'comming', component: CommingSoonComponent },
@@ -40,6 +41,7 @@ export const ROUTES: Routes = [
   imports: [
     CommonModule,
     SharedModule,
+    SidebarModule,
     RouterModule.forChild(ROUTES),
   ]
 })

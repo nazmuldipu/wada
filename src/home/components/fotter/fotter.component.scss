@@ -1,3 +1,6 @@
+@import '../../../assets/theme.scss';
+
+
 .footer {
   background: #fff none repeat scroll 0 0;
   padding-top: 40px;
@@ -121,6 +124,11 @@ input:hover {
   width: 38px;
   transition: all 0.5s ease-out 0s;
   -webkit-transition: all 0.5s ease-out 0s;
+}
+
+.list-social>a:hover {
+  color: white;
+  background-color: $primary-color;
 }
 
 .menu-footer-box ul li {

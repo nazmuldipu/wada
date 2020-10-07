@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '../shared/shared.module'
 import { ServiceModule } from '../service/service.module'
 import { AppComponent } from './app.component';
+import { SidebarModule } from 'ng-sidebar';
 
 export const ROUTES: Routes = [
   // { path: 'test', component: TestComponent },
@@ -26,6 +27,7 @@ export const ROUTES: Routes = [
     BrowserModule,
     SharedModule,
     ServiceModule,
+    SidebarModule.forRoot(),
     RouterModule.forRoot(ROUTES),
   ],
   providers: [],
