@@ -1,10 +1,12 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
-import { SharedModule } from '../shared/shared.module'
-import { ServiceModule } from '../service/service.module'
-import { AppComponent } from './app.component';
 import { SidebarModule } from 'ng-sidebar';
+
+import { ServiceModule } from '../service/service.module';
+import { SharedModule } from '../shared/shared.module';
+import { AppComponent } from './app.component';
 
 export const ROUTES: Routes = [
   // { path: 'test', component: TestComponent },
@@ -25,6 +27,7 @@ export const ROUTES: Routes = [
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     SharedModule,
     ServiceModule,
     SidebarModule.forRoot(),

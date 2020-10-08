@@ -180,6 +180,13 @@ export const CategoryTree = {
             background: '#1c8ca6',
             sub_category: []
         },
+        {
+            name: 'Oil',
+            slug: 'oil',
+            background: '#1c8ca6',
+            image_urls: ['assets/images/category/oil.jpg'],
+            sub_category: [],
+        },
     ]
 }
 

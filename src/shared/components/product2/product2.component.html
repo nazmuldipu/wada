@@ -1,0 +1,17 @@
+<div class="detail-card">
+    <div class="detail-card-image" (click)="onShortDetails()">
+        <img class="active" [src]="thumbUrl + product._id" alt="">
+    </div>
+    <div class="detail-card-info" (click)="onShortDetails()">
+        <h3 class="detail-card-info-title">{{product.name}}</h3>
+        <div class="detail-card-info-size">{{product.size}}</div>
+        <div class="detail-card-info-price">
+            <ins><span>৳{{product.price}}</span></ins>
+            <del *ngIf="product.old_price > 0"><span>৳{{product.old_price}}</span></del>
+        </div>
+    </div>
+    <div class="detail-card-buttons border-top">
+        <a class="details border-right" routerLink="/details/{{product._id}}" target="_blank">Details</a>
+        <div class="cart" (click)="addToCart(product._id)">Add to cart</div>
+    </div>
+</div>

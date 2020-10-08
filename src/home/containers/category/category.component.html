@@ -5,7 +5,16 @@
 
 </div> -->
 <!-- Container for sidebar(s) + page content -->
-
+<!-- <div class="container">
+  <div class="outer">
+    <div class="left"></div>
+    <div class="right"></div>
+    <span>CSS Ribbon Over Background</span>
+  </div>
+  <div class="corner">
+    <div class="cornerRibbon">Corner Ribbon</div>
+  </div>
+</div> -->
 
 <div class="container-fluid">
   <img class="banner-image" src="assets/images/categories/fresh_banner.jpg" alt="Banner s">
@@ -25,13 +34,13 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-left p-0">
+    <div class="col-left ">
       <h5 class="filter-title">Filters</h5>
       <div class="refinement-header">
         <span>Category</span>
       </div>
       <div class="sub-category">
-        <div class="sub-category-item my-2 ml-2" *ngFor="let sc of subCategory">
+        <div class="sub-category-item my-2 ml-2" *ngFor="let sc of categoryNav?.sub_category">
           {{sc.name}}
         </div>
         <!-- {{subCategory | json}} -->
@@ -83,6 +92,22 @@
         <span>Brand</span>
       </div>
     </div>
-    <div class="col-right">Products</div>
+    <div class="col-right">
+      <loading *ngIf="loading"></loading>
+      <div class="row clearfix m-0" *ngIf="!loading && productPage">
+        <div class="col-12 text-center" *ngIf="productPage.docs.length == 0">
+          <i class="fa fa-frown-o"></i> Sorry no product found
+        </div>
+        <div class="col-lg-3 col-md-4 col-6 p-0" *ngFor="let product of productPage?.docs">
+          <product2 [product]="product" [thumbUrl]="prodThumbUrl" (cart)="onAddToCart($event)"
+            (shortDetails)="onShortDetails(editProfileModal, $event)"></product2>
+          <!-- <product1 [product]="product" [imageUrl]="prodImageUrl" [thumbUrl]="prodThumbUrl"
+                (cart)="onAddToCart($event)" (shortDetails)="onShortDetails($event)"></product1> -->
+        </div>
+        <div class="col-12" *ngIf="productPage?.docs?.length">
+          <pagination [page]="productPage" (paginate)="onChangePage($event)"></pagination>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
