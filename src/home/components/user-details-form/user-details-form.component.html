@@ -1,8 +1,5 @@
-<!-- <div class="title">
-    Your Details
-</div> -->
 <div class="form">
-    <form>
+    <form [formGroup]="form" (ngSubmit)="submit()">
         <div class="title">
             Your Details
         </div>
@@ -20,22 +17,52 @@
                 </select>
             </div> -->
             <div class="form-group">
-                <input type="text" class="form-control" id="name" placeholder="Name">
+                <input type="text" class="form-control" id="name" formControlName="name" autocomplete="no"
+                    placeholder="Name">
+                <small class="text-danger" *ngIf="form.controls.name.errors && form.controls.name.touched"> Name
+                    required </small>
             </div>
             <!-- <div class="form-group">
                 <input type="text" class="form-control" id="lastName" placeholder="Last Name">
             </div> -->
             <div class="form-group">
-                <input type="text" class="form-control" id="phoneNumber" placeholder="Contact phone number">
-                <small id="phoneNumberHints" class="form-text text-muted">
+                <input type="text" class="form-control" id="phone" formControlName="phone" autocomplete="no"
+                    placeholder="Phone number" maxlength="11">
+                <small class="text-danger" *ngIf=" form.controls.phone.errors && form.controls.phone.touched ">
+                    <div [hidden]="!form.controls['phone'].errors.required"> Phone number required </div>
+                    <div [hidden]="!form.controls['phone'].errors.pattern"> Phone number format 01934953023
+                    </div>
+                </small>
+                <small id="phone" class="form-text text-muted">
                     We'll use this to contact you about your order
                 </small>
             </div>
             <div class="form-group">
-                <input type="email" class="form-control" id="email" placeholder="Email Address">
+                <input type="email" class="form-control" id="email" formControlName="email" autocomplete="no"
+                    placeholder="Email">
+                <small class="text-danger" *ngIf=" form.controls.email.errors && form.controls.email.touched">
+                    <div [hidden]="!form.controls['email'].errors.required"> Email required </div>
+                    <div [hidden]="!form.controls['email'].errors.email"> Invalid email</div>
+                </small>
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" id="password" placeholder="Password">
+                <div class="input-group mb-1 mb-sm-0">
+                    <input [type]="showPassword ? 'text' : 'password'" id="password" class="form-control"
+                        placeholder="Password" formControlName="password">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" (click)="showPassword = !showPassword">
+                            <i class="fa fa-eye" [ngClass]="showPassword?'fa-eye-slash':'fa-eye'"></i>
+                        </button>
+                    </div>
+                </div>
+                <small class="text-danger" *ngIf="form.controls.password.errors && form.controls.password.touched">
+                    <div [hidden]="!form.controls['password'].errors.required">
+                        Password required
+                    </div>
+                    <div [hidden]="!form.controls['password'].errors.minlength">
+                        Minimum passwor length required 6
+                    </div>
+                </small>
             </div>
         </div>
 
