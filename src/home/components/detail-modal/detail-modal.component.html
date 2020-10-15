@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="col-md-6 col-12">
+        <img class="img-fluid mx-auto mb-2" [src]="imageUrls[current]?.image" alt="">
+        <ng-image-slider #nav [images]="imageUrls" [infinite]="false" [autoSlide]="1" [imagePopup]="false"
+            [imageSize]="{width: 80, height: 80}" (imageClick)="onThumbImageClick($event)" slideImage="1">
+        </ng-image-slider>
+    </div>
+    <div class="col-md-6 col-12">
+        <button type="button" class="close" (click)="onDismiss()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h3 class="" id="editProfileLabel">{{product.name}}</h3>
+        <div class="text-secondary">{{product.size}}</div>
+        <div class="product-price">
+            <ins><span>৳{{product.price}}</span></ins>
+            <del *ngIf="product.old_price > 0" class=""><span>৳{{product.old_price}}</span></del>
+            <span *ngIf="product.old_price > 0" class="p-off">{{discount | number:'1.2-2'}}% Off</span>
+        </div>
+        <div class="product-detail-extralink">
+            <div class="quantityEditor">
+                <button (click)="setQuantity(-1)" class="btn btn-info rounded-0 rounded-left"><i class="fa fa-minus"
+                        aria-hidden="true"></i></button>
+                <div class="QuantityTextContainer">{{cartProduct?.quantity > 0 ? cartProduct?.quantity : 0}}</div>
+                <button (click)="setQuantity(1)" class="btn btn-info rounded-0 rounded-right"><i class="fa fa-plus"
+                        aria-hidden="true"></i></button>
+            </div>
+            <button class="btn ml-2 btn-dark addCartButton" (click)="addToCart()">Buy now</button>
+        </div>
+
+        <p class="desc">{{product?.description}}</p>
+
+    </div>
+</div>
+<div class="d-flex flex-row-reverse bd-highlight">
+    <button type="button" class="btn btn-secondary" (click)="onDismiss()">Close</button>
+</div>

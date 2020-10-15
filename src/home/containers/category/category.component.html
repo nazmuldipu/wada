@@ -31,7 +31,10 @@
     <h2 class="banner-title">{{slug}}</h2>
   </div>
 </div>
-
+<ng-template #productDetailsModal let-modal>
+  <detail-modal [product]="product" [prodImageUrl]="prodImageUrl" [cartProduct]="product_list_cart"
+    (dismiss)="modal.dismiss()" (cart)="onAddToCart($event)"></detail-modal>
+</ng-template>
 <div class="container">
   <div class="row">
     <div class="col-left ">
@@ -100,9 +103,7 @@
         </div>
         <div class="col-lg-3 col-md-4 col-6 p-0" *ngFor="let product of productPage?.docs">
           <product2 [product]="product" [thumbUrl]="prodThumbUrl" (cart)="onAddToCart($event)"
-            (shortDetails)="onShortDetails(editProfileModal, $event)"></product2>
-          <!-- <product1 [product]="product" [imageUrl]="prodImageUrl" [thumbUrl]="prodThumbUrl"
-                (cart)="onAddToCart($event)" (shortDetails)="onShortDetails($event)"></product1> -->
+            (shortDetails)="onShortDetails(productDetailsModal, $event)"></product2>
         </div>
         <div class="col-12" *ngIf="productPage?.docs?.length">
           <pagination [page]="productPage" (paginate)="onChangePage($event)"></pagination>

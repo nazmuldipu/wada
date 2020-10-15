@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProductService } from 'src/service/product.service';
 import { CategoryTree } from 'src/shared/data/category';
-import { ProductPage } from 'src/shared/models/product.model';
+import { Cart, Product_list_cart } from 'src/shared/models/cart.model';
+import { Product, ProductPage } from 'src/shared/models/product.model';
 
 @Component({
   selector: 'app-category',
@@ -14,14 +16,19 @@ export class CategoryComponent implements OnInit {
   sideNav = CategoryTree;
 
   productPage: ProductPage;
-  // subCategory;
+  product: Product;
+  cart: Cart;
+  product_list_cart: Product_list_cart;
+  prodImageUrl;
   prodThumbUrl;
   categoryNav;
   loading = false;
   errorMessage = '';
 
-  constructor(private productService: ProductService, private activeRoute: ActivatedRoute) {
+  constructor(private productService: ProductService, private activeRoute: ActivatedRoute, 
+    private modalService: NgbModal) {
     this.slug = activeRoute.snapshot.params['slug'];
+    this.prodImageUrl = this.productService.productLink + '/image/';
     this.prodThumbUrl = this.productService.productLink + '/thumb/';
   }
 
@@ -45,6 +52,19 @@ export class CategoryComponent implements OnInit {
       this.errorMessage = error;
     }
     this.loading = false;
+  }
+
+  onShortDetails(targetModal, product: Product) {
+    this.product = product;
+    if (this.cart && this.cart.product_list && this.cart.product_list.length > 0) {
+      this.product_list_cart = this.cart.product_list.find(pl => pl.product._id == product._id);
+    }
+    this.modalService.open(targetModal, {
+      centered: true,
+      backdrop: 'static',
+      size: 'xl',
+      scrollable: true
+    });
   }
 
 }
