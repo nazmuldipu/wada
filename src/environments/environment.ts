@@ -6,8 +6,8 @@ export const environment = {
   production: false,
   
   PROTOCOL: 'http',
-  PORT: ':3000',
-  SERVER: '172.104.46.200',
+  PORT: ':8443',
+  SERVER: 'localhost',
 };
 
 /*

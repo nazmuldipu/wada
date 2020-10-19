@@ -3,6 +3,101 @@
 @import '~font-awesome/css/font-awesome.min.css';
 
 @font-face {
+  font-family: "Montserrat";
+  src: url("assets/fonts/Montserrat-Regular.ttf");
+}
+
+@font-face {
   font-family: "museosans";
   src: url("assets/fonts/museosans.ttf");
+}
+
+.container {
+  max-width: 1230px;
+  width: 100%;
+}
+
+// Dashboard component head
+.component-head {
+  background-color: #313947;
+  h3 {
+    padding-bottom: 5px;
+    color: #a4b0bf;
+    font-weight: 400;
+  }
+}
+
+// Set table cell padding
+.table th,
+.table td {
+  padding: 2px;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  text-decoration: none;
+  text-decoration-line: none;
+  text-decoration-style: initial;
+  text-decoration-color: initial;
+  outline: none;
+}
+.img-div {
+  cursor: pointer;
+}
+/* DROP DOWN button*/
+.dropbtn {
+  background-color: transparent;
+  padding: 8px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown img,
+.dropdown span {
+  margin-right: 6px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  padding: 10px;
+  min-width: 130px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  background-color: white;
+  z-index: 999;
+}
+
+.dropdown-content.right-s {
+  right: 0;
+}
+
+.dropdown-content a {
+  color: #666;
+  font-size: 14px;
+  border-bottom: 1px solid white;
+  padding: 4px 12px;
+  text-decoration: none;
+  display: block;
+  // & .fa {
+  //   color: black;
+  // }
+}
+
+.dropdown-content a:hover {
+  background-color: #f40;
+  color: white;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
 }
