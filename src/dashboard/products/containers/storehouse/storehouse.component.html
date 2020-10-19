@@ -1,0 +1,109 @@
+<div class="container-fluid component-head">
+    <h3>Storehouse</h3>
+</div>
+
+<div class="container">
+    <loading *ngIf="loading"></loading>
+    <div class="alert alert-success alert-dismissible show" role="alert" *ngIf="message.length > 0">
+        <strong>Success! </strong> {{ message }}
+        <button type="button" class="close" (click)="onClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="alert alert-danger alert-dismissible show" role="alert" *ngIf="errorMessage.length > 0">
+        <strong>Failed! </strong> {{ errorMessage }}
+        <button type="button" class="close" (click)="onClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="row" *ngIf="!loading">
+        <div [ngClass]="storehouse?'col-md-6':''" class="col-12" *ngIf="!showStorehouseForm">
+            <nav class="navbar navbar-light bg-light border">
+                <a class="navbar-brand">Storehouse List</a>
+                <form class="form-inline">
+                    <input class="form-control mr-sm-2 py-1" type="search" placeholder="Search Storehouse"
+                        aria-label="Search" (keyup)="onSearch($event.target.value)">
+                    <button type="button" class="btn btn-success btn-sm" (click)="onShowStorehouseForm()">
+                        <i class="fa fa-plus"></i> Add Storehouse
+                    </button>
+                </form>
+            </nav>
+            <div class="p-3 border border-top-0 bg-white">
+                <table class="table table-hover table-bordered table-responsive-sm mt-2">
+                    <thead>
+                        <tr>
+                            <th>Sl #</th>
+                            <th>Name</th>
+                            <th class="text-center">Keeper</th>
+                            <th class="text-right">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="storehouses.length > 0">
+                        <tr *ngFor="let sh of storehouses; index as i">
+                            <td>{{i+1}}</td>
+                            <td><a (click)="onDetails(sh._id)" class="text-primary"> {{ sh.name }} </a></td>
+                            <td class="text-center">{{ sh.storekeeper_name }} [{{sh.storekeeper_number}}]</td>
+                            <td class="text-right">
+                                <div class="btn-group rounded" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-light border py-0 px-1"
+                                        (click)="onEdit(sh._id)"><i class="fa fa-pencil"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <pagination *ngIf="storehousePage" [page]="storehousePage" (paginate)="onChangePage($event)"></pagination>
+        </div>
+        <div class="col-md-6 col-12" *ngIf="!showStorehouseForm && storehouse">
+            <h3 class="text-center">{{storehouse.name}}</h3>
+            <table class="table table-striped border">
+                <tbody>
+                    <tr>
+                        <th>Name</th>
+                        <td>{{storehouse.slug}}</td>
+                    </tr>
+                    <tr>
+                        <th>Address</th>
+                        <td>{{storehouse.address}}</td>
+                    </tr>
+                    <tr>
+                        <th>Priority</th>
+                        <td>{{storehouse.priority}}</td>
+                    </tr>
+                    <tr>
+                        <th>Storekeeper</th>
+                        <td>{{storehouse.storekeeper_name}}</td>
+                    </tr>
+                    <tr>
+                        <th>Storekeeper number</th>
+                        <td>{{storehouse.storekeeper_number}}</td>
+                    </tr>
+                    <tr>
+                        <th>Latitude</th>
+                        <td>{{storehouse.latitude}}</td>
+                    </tr>
+                    <tr>
+                        <th>Longitude</th>
+                        <td>{{storehouse.longitude}}</td>
+                    </tr>
+                    <tr>
+                        <th>Description</th>
+                        <td>{{storehouse.description}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="d-flex flex-row-reverse">
+                <button class="btn btn-danger" (click)="onClose()">Close</button>
+            </div>
+        </div>
+        <div class="col-12" *ngIf="showStorehouseForm">
+            <storehouse-form [storehouse]="storehouse" (create)="onCreate($event)" (update)="onUpdate($event)"
+                (cancel)="onStorehouseFormCancel()"></storehouse-form>
+            <!-- <shop-form [shop]="shop" (create)="onCreate($event)" (update)="onUpdate($event)"
+                (cancel)="onShopFormCancel()">
+            </shop-form> -->
+        </div>
+    </div>
+</div>
