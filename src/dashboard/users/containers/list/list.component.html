@@ -1,0 +1,36 @@
+<div class="container-fluid component-head">
+    <h3>Users</h3>
+</div>
+
+<div class="container">
+    <loading *ngIf="loading"></loading>
+    <div class="alert alert-success alert-dismissible show" role="alert" *ngIf="message.length > 0">
+        <strong>Success! </strong> {{ message }}
+        <button type="button" class="close" (click)="onClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="alert alert-danger alert-dismissible show" role="alert" *ngIf="errorMessage.length > 0">
+        <strong>Failed! </strong> {{ errorMessage }}
+        <button type="button" class="close" (click)="onClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="row" *ngIf="!loading">
+        <div class="col-md-6 col-12">
+            <nav class="navbar navbar-light bg-light border">
+                <a class="navbar-brand">User List</a>
+                <button type="button" class="btn btn-success btn-sm" (click)="onShowUserForm()">
+                    + ADD USER
+                </button>
+            </nav>
+            <user-list [users]="users" (edit)="onEdit($event)"></user-list>
+        </div>
+
+        <div class="col-md-6 col-12" *ngIf="showUserForm">
+            <user-form [user]="user" (create)="onCreate($event)" (update)="onUpdate($event)"
+                (cancel)="onUserFormCancel()"></user-form>
+        </div>
+    </div>
+</div>
