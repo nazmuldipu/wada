@@ -76,4 +76,8 @@ export class TopbarComponent implements OnInit {
     this.authService.logout();
   }
 
+  onClickCloseErrorMessage(){
+    this.errorMessage = '';
+  }
+
 }

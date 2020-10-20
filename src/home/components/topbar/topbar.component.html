@@ -8,6 +8,12 @@
       <div ngbDropdownMenu aria-labelledby="loginform">
         <h4 class="text-center text-primary">Log in</h4>
         <p class="px-4 text-center">Sign in to see your favourites, complete your order or manage your account. </p>
+        <div class="alert alert-warning alert-dismissible fade show " role="alert" *ngIf="errorMessage.length>0">
+          {{errorMessage}}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="onClickCloseErrorMessage()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
         <form class="px-4 pb-3" [formGroup]="form" (ngSubmit)="submit()">
           <div class="form-group">
             <!-- <label for="exampleDropdownFormEmail1">Email address</label> -->
