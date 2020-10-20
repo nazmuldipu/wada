@@ -6,6 +6,8 @@ import { RestDataService } from './rest-data.service';
 import { AuthGuardService } from './auth-guard.service';
 import { StorehouseService } from './storehouse.service';
 import { ToastService } from './toast.service';
+import {ProductDetailsService} from './product-details.service';
+import {UtilService} from './util.service';
 
 @NgModule({
   providers: [
@@ -13,9 +15,11 @@ import { ToastService } from './toast.service';
     AuthService,
     CartService,
     ProductService,
+    ProductDetailsService,
     RestDataService,
     StorehouseService,
-    ToastService
+    ToastService,
+    UtilService
   ],
 })
 export class ServiceModule { }

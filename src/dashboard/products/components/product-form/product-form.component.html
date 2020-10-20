@@ -1,0 +1,209 @@
+<nav class="navbar navbar-light bg-light border border-bottom-0">
+    <a class="navbar-brand">{{ exists ? "Update" : "Add" }} Product</a>
+</nav>
+<!-- {{product | json}} -->
+<div class="list-group" *ngIf="!brand">
+    <li class="list-group-item"><strong>Please select a Brand</strong></li>
+    <form #brandSearch="ngForm" class="ml-auto form-inline my-2 my-lg-0" (ngSubmit)="onSearchBrand(brandSearch.value)">
+        <input class="form-control mr-sm-2 py-1" type="search" placeholder="Search Brands" aria-label="Search"
+            name="name" ngModel>
+        <button class="btn btn-sm btn-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+
+    <a class="list-group-item list-group-item-action list-group-item-light py-1 text-dark" *ngFor="let br of brands"
+        (click)="onBrand(br.slug)">{{br.name}}</a>
+</div>
+
+<div class="list-group" *ngIf="brand && !category">
+    <li class="list-group-item"><strong>Please select a Category first</strong></li>
+    <a class="list-group-item list-group-item-action list-group-item-light py-1 text-dark"
+        *ngFor="let cat of categories" (click)="onCategory(cat.slug)">{{cat.name}}</a>
+</div>
+
+<div class="list-group" *ngIf="category && !subCategory && subCategories.length">
+    <li class="list-group-item"><strong>Please select a Sub-Category</strong></li>
+    <a class="list-group-item list-group-item-action list-group-item-light py-1 text-dark"
+        *ngFor="let scat of subCategories" (click)="onSubCategory(scat.slug)">{{scat.name}}</a>
+</div>
+
+<div class="list-group" *ngIf="subCategory && !subSubCategory">
+    <li class="list-group-item"><strong>Please select a Sub-Sub-Category</strong></li>
+    <a class="list-group-item list-group-item-action list-group-item-light py-1 text-dark"
+        *ngFor="let sscat of subSubCategories" (click)="onSubSubCategory(sscat.slug)">{{sscat.name}}</a>
+</div>
+
+
+<form [formGroup]="form" (ngSubmit)="submit()" class="p-3 border bg-white"
+    *ngIf="brand && category && (category.sub_category.length == 0 || subCategory) &&  ((category.sub_category.length == 0 || subCategory) || subCategory.sub_sub_category.length == 0 || subSubCategory)">
+    <div class="form-group row">
+        <label for="brand" class="col-sm-2 col-form-label">Brand</label>
+        <div class="col-sm-8">
+            <label class="form-control" id="brand">{{brand.name}}</label>
+        </div>
+        <div class="col-sm-2">
+            <button class="btn btn-sm btn-warning" (click)="onBrandChange()">Change</button>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="category" class="col-sm-2 col-form-label">Category</label>
+        <div class="col-sm-8">
+            <label class="form-control" id="category">{{category.name}}</label>
+        </div>
+        <div class="col-sm-2">
+            <button class="btn btn-sm btn-warning" (click)="onCategoryChange()">Change</button>
+        </div>
+    </div>
+    <div class="form-group row" *ngIf="subCategory">
+        <label for="category" class="col-sm-2 col-form-label">Sub Category</label>
+        <div class="col-sm-8">
+            <label class="form-control" id="category">{{subCategory?.name}}</label>
+        </div>
+        <div class="col-sm-2">
+            <button class="btn btn-sm btn-warning" (click)="onSubCategoryChange()">Change</button>
+        </div>
+    </div>
+
+    <div class="form-group row" *ngIf="subSubCategory">
+        <label for="category" class="col-sm-2 col-form-label">Sub Sub Category</label>
+        <div class="col-sm-8">
+            <label class="form-control" id="category">{{subSubCategory?.name}}</label>
+        </div>
+        <div class="col-sm-2">
+            <button class="btn btn-sm btn-warning" (click)="onSubSubCategoryChange()">Change</button>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="barcode" class="col-sm-2 col-form-label">Barcode</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="barcode" formControlName="barcode"
+                placeholder="Product barcode" />
+            <small class="text-danger" *ngIf="form.controls.barcode.errors && form.controls.barcode.touched">
+                <div [hidden]="!form.controls['barcode'].errors.required">
+                    Barcode required
+                </div>
+                <div [hidden]="!form.controls['barcode'].errors.minlength">
+                    Minimum Length should be 3
+                </div>
+            </small>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="name" class="col-sm-2 col-form-label">Name</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="name" formControlName="name" placeholder="Product name" />
+            <small class="text-danger" *ngIf="form.controls.name.errors && form.controls.name.touched">
+                <div [hidden]="!form.controls['name'].errors.required">
+                    Name required
+                </div>
+                <div [hidden]="!form.controls['name'].errors.minlength">
+                    Minimum Length should be 3
+                </div>
+            </small>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="size" class="col-sm-2 col-form-label">Size</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="size" formControlName="size" placeholder="Size" />
+            <small class="text-danger" *ngIf="form.controls.size.errors && form.controls.size.touched">
+                Size required
+            </small>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="description" class="col-sm-2 col-form-label">Description</label>
+        <div class="col-sm-10">
+            <textarea class="form-control" id="description" formControlName="description" placeholder="Description"
+                rows="3"> </textarea>
+            <small class="text-danger" *ngIf="form.controls.description.errors && form.controls.description.touched">
+                Description required
+            </small>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="priority" class="col-sm-2 col-form-label">Priority</label>
+        <div class="col-sm-4">
+            <input type="number" class="form-control" id="priority" formControlName="priority" placeholder="Priority" />
+            <small class="text-danger" *ngIf="form.controls.priority.errors && form.controls.priority.touched">
+                <div [hidden]="!form.controls['priority'].errors.required">
+                    Priority required
+                </div>
+                <div [hidden]="!form.controls['priority'].errors.min">
+                    Minimum value should be 0
+                </div>
+            </small>
+        </div>
+        <label for="priority" class="col-sm-2 col-form-label">Point</label>
+        <div class="col-sm-4">
+            <input type="number" class="form-control" id="point" formControlName="point" placeholder="Point" />
+            <small class="text-danger" *ngIf="form.controls.point.errors && form.controls.point.touched">
+                <div [hidden]="!form.controls['point'].errors.required">
+                    Point required
+                </div>
+                <div [hidden]="!form.controls['point'].errors.min">
+                    Minimum value should be 0
+                </div>
+            </small>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="price" class="col-sm-2 col-form-label">Price</label>
+        <div class="col-sm-4">
+            <input type="number" class="form-control" id="price" formControlName="price" placeholder="Price" />
+            <small class="text-danger" *ngIf="form.controls.price.errors && form.controls.price.touched">
+                <div [hidden]="!form.controls['price'].errors.required">
+                    Price required
+                </div>
+                <div [hidden]="!form.controls['price'].errors.min">
+                    Minimum value should be 0
+                </div>
+            </small>
+        </div>
+        <label for="old_price" class="col-sm-2 col-form-label">Old price</label>
+        <div class="col-sm-4">
+            <input type="number" class="form-control" id="old_price" formControlName="old_price"
+                placeholder="Old price" />
+            <small class="text-danger" *ngIf="form.controls.old_price.errors && form.controls.old_price.touched">
+                <div [hidden]="!form.controls['old_price'].errors.required">
+                    Old price required
+                </div>
+                <div [hidden]="!form.controls['old_price'].errors.min">
+                    Minimum value should be 0
+                </div>
+            </small>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="thumb" class="col-sm-2 col-form-label">Thumb</label>
+        <div class="col-sm-10">
+            <input type="file" class="form-control" id="thumb" (change)="uploadThumb($event)">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="image" class="col-sm-2 col-form-label">Image</label>
+        <div class="col-sm-10">
+            <input type="file" class="form-control" id="image" (change)="uploadFile($event)" multiple>
+        </div>
+        <small class="text-danger" *ngIf="errorMessage.length > 0">
+            {{errorMessage}}
+        </small>
+    </div>
+
+    <div class="d-flex justify-content-end">
+        <button type="submit" class="btn btn-primary  mx-1  " [ngClass]="{
+            disabled: form.invalid,
+            'btn-warning': exists,
+            'btn-success': !exists
+          }">
+            {{ exists ? "Update" : "Create" }}
+        </button>
+    </div>
+</form>
+<button class="btn btn-danger btn-sm mx-1" (click)="onClose()">Close</button>
+<button class="btn btn-warning btn-sm mx-1" (click)="onClear()">Clear</button>
+
+<!-- {{form.value | json}} -->
+<!-- <p>product-form works!</p> -->
