@@ -1,0 +1,68 @@
+<nav class="navbar navbar-light bg-light border">
+    <a class="navbar-brand">Inventory Transfer form</a>
+    <a type="button" class="btn btn-success btn-sm" routerLink="/dashboard/inventory">
+        <i class="fa fa-list"></i> INVENTORY LIST
+    </a>
+</nav>
+
+<ng-template #rt let-r="result" let-t="term">
+    <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>
+</ng-template>
+
+<form [formGroup]="form" class="my-3 p-4 shifting-form label1 text-left" (ngSubmit)="submit()">
+
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+            <label for="reference">Inventory Number* </label>
+            <input type="text" class="form-control" id="reference" formControlName="reference"
+                placeholder="Inventory Number " />
+            <small class="text-danger" *ngIf="form.controls.reference.errors && form.controls.reference.touched">
+                Reference required
+            </small>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="inventoryType">Inventory Type *</label>
+            <select class="form-control" id="inventoryType" formControlName="inventoryType">
+                <!-- <option value="" selected> N/A </option> -->
+                <!-- <option value="in"> In </option> -->
+                <option value="transfer"> Transfer </option>
+                <!-- <option value="sample"> Sample </option> -->
+                <!-- <option value="damage"> Damage </option> -->
+            </select>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="source_storehouse">Source Storehouse*</label>
+            <input id="source_storehouse" type="text" class="form-control" [class.is-invalid]="searchFailed"
+                formControlName="from" [ngbTypeahead]="searchStorehouse" [resultTemplate]="rt"
+                [inputFormatter]="storehouseFormatter" placeholder="From Storehouse name or owner number" />
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="storehouse">Destination Storehouse*</label>
+            <input id="storehouse" type="text" class="form-control" [class.is-invalid]="searchFailed"
+                formControlName="storehouse" [ngbTypeahead]="searchStorehouse" [resultTemplate]="rt"
+                [inputFormatter]="storehouseFormatter" placeholder="To Storehouse name or owner number" />
+        </div>
+        <!-- <div class="col-md-6 mb-3">
+            <label for="supplier">Supplier</label>
+            <input id="supplier" type="text" class="form-control" [class.is-invalid]="searchFailed"
+                formControlName="supplier" [ngbTypeahead]="searchUser" [resultTemplate]="rt"
+                [inputFormatter]="userFormatter" placeholder="Supplier name or phone number" />
+        </div> -->
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <inventory-item-form [parent]="form" (removeItem)="onRemoveInventoryItem($event)"></inventory-item-form>
+        </div>
+        <button class="btn btn-sm btn-info" type="button" (click)="pushInventoryItem()">
+            Add Inventory Item
+        </button>
+    </div>
+
+    <div class="d-flex justify-content-end">
+        <button type="submit" class="btn btn-primary" [ngClass]="{ disabled: form.invalid }">
+            Transfer
+        </button>
+    </div>
+
+</form>

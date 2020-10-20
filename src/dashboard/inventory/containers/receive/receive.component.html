@@ -1,0 +1,30 @@
+<div class="container-fluid component-head">
+    <h3>Receive Inventory</h3>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 d-print-none" *ngIf="storehousePage?.docs?.length && !inventoryPage?.docs?.length">
+            <ul class="list-group mb-1">
+                <li class="list-group-item disabled">Please select a <strong> Storehouse from List </strong></li>
+                <li class="list-group-item" *ngFor="let sh of storehousePage.docs" (click)="onSelectStorehouse(sh._id)">
+                    {{sh.name}}[{{sh.storekeeper_number}}]</li>
+            </ul>
+            <pagination [page]="storehousePage" (paginate)="onChangeStorehousePage($event)" [small]="true"></pagination>
+        </div>
+        <div class="col-12 bg-white pb-3" *ngIf="inventoryPage?.docs?.length && !inventory">
+            <inventory-list [inventoryPage]="inventoryPage" (details)="onDetails($event)"></inventory-list>
+            <pagination [page]="inventoryPage" (paginate)="onChangeInventoryPage(storehouse?._id, $event)"
+                [small]="true">
+            </pagination>
+            <button class="btn btn-sm btn-danger d-print-none" (click)="onClose('list')">Close</button>
+        </div>
+        <div class="col-12 bg-white px-0 pb-3" *ngIf="inventory">
+            <inventory-details [inventory]="inventory"></inventory-details>
+            <button class="btn btn-sm btn-danger d-print-none mx-1" (click)="onClose('details')">Close</button>
+            <button class="btn btn-sm btn-success d-print-none mx-1" (click)="onApprove(inventory._id)">Approve</button>
+        </div>
+        <div class="col-9">
+            <loading *ngIf="loading"></loading>
+        </div>
+    </div>
+</div>

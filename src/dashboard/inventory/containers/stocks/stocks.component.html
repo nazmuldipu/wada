@@ -1,0 +1,25 @@
+<div class="container-fluid component-head">
+    <h3>Stocks</h3>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 d-print-none" *ngIf="storehousePage?.docs?.length">
+            <ul class="list-group mb-1">
+                <li class="list-group-item disabled">Please select a <strong> Storehouse from List </strong></li>
+                <li class="list-group-item" *ngFor="let sh of storehousePage.docs" (click)="onSelectStorehouse(sh._id)">
+                    {{sh.name}}[{{sh.storekeeper_number}}]</li>
+            </ul>
+            <pagination [page]="storehousePage" (paginate)="onChangeStorehousePage($event)" [small]="true"></pagination>
+        </div>
+
+        <div class="col-12 col-md-9 bg-white pb-3" *ngIf="productStockPage?.docs?.length && !productStock">
+            <product-stock-list [name]="storehouse.name" [productStockPage]="productStockPage"
+                (details)="onDetails($event)"></product-stock-list>
+            <pagination [page]="productStockPage" (paginate)="onChangeProductStockPage(storehouse?._id, $event)"
+                [small]="false">
+            </pagination>
+            <button class="btn btn-sm btn-danger d-print-none" (click)="onClose('list')">Close</button>
+        </div>
+    </div>
+</div>

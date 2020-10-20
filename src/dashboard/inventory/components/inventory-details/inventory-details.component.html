@@ -1,0 +1,80 @@
+<nav class="navbar navbar-light bg-light border">
+    <a class="navbar-brand">Inventory Details</a>
+    <div>
+        <a routerLink="//dashboard/inventory/add" class="btn btn-success btn-sm mx-1">
+            + ADD Inventory
+        </a>
+        <button class="btn btn-sm btn-primary mx-1" (click)="onPrint()"><i class="fa fa-print"></i> Print</button>
+    </div>
+</nav>
+
+<div class="form-group row m-0 my-1">
+    <div class="col-sm-6 p-0">
+        <label for="createdAt" class="col-auto col-form-label">Ref:</label>
+        <label id="createdAt" class="col-form-label">{{inventory?.reference}}</label>
+    </div>
+    <div class="col-sm-6 p-0">
+        <label for="createdAt" class="col-auto col-form-label">Inventory Type:</label>
+        <label id="createdAt" class="col-form-label">{{inventory?.inventoryType}}</label>
+    </div>
+</div>
+<div class="form-group row border-top m-0 my-1">
+    <div class="col-sm-6 p-0">
+        <label for="createdAt" class="col-auto col-form-label">Updated at: </label>
+        <label id="createdAt" class="col-form-label">{{inventory?.updatedAt | date:'medium'}}</label>
+    </div>
+    <div class="col-sm-6 p-0">
+        <label for="createdBy" class="col-auto col-form-label">Updated by: </label>
+        <label id="createdBy"
+            class="col-form-label">{{inventory?.updatedBy?.name}}[{{inventory?.updatedBy?.phone}}]</label>
+    </div>
+</div>
+<div class="form-group row border-top m-0 my-1">
+    <div class="col-sm-6 p-0">
+        <label for="shop" class="col-auto col-form-label">Storehouse: </label>
+        <label id="shop" class="col-form-label">{{inventory?.storehouse?.name}}</label>
+    </div>
+    <div class="col-sm-6 p-0" *ngIf="inventory?.supplier">
+        <label for="shop" class="col-auto col-form-label">Supplier: </label>
+        <label id="shop" class="col-form-label">{{inventory?.supplier?.name}}[{{inventory?.supplier?.phone}}]</label>
+    </div>
+    <div class="col-sm-6 p-0" *ngIf="inventory?.from">
+        <label for="shop" class="col-auto col-form-label">From Storehouse: </label>
+        <label id="shop" class="col-form-label">{{inventory?.from?.name}}</label>
+    </div>
+</div>
+
+<div class="px-3">
+    <table class="table table-hover table-bordered table-responsive-sm">
+        <thead>
+            <tr>
+                <th>Sl</th>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Purchase Rate</th>
+                <th class="text-right">Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of inventory?.items; index as i">
+                <td>{{i+1}}</td>
+                <td>{{item?.product?.slug}}</td>
+                <td>{{item?.quantity}}</td>
+                <td>{{item?.purchase_price | currency:'BDT':'symbol-narrow'}}</td>
+                <td class="text-right">{{(item?.quantity * item?.purchase_price) | currency:'BDT':'symbol-narrow'}}</td>
+            </tr>
+            <tr>
+                <td colspan="5"></td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td></td>
+                <td><strong> Grand Total</strong></td>
+                <td><strong> {{total?.quantity}} </strong></td>
+                <td></td>
+                <td class="text-right"><strong>{{total?.price | currency:'BDT':'symbol-narrow'}}</strong></td>
+            </tr>
+        </tfoot>
+    </table>
+</div>

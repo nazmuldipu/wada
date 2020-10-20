@@ -1,0 +1,16 @@
+:host {
+  font-size: 14px;
+  font-family: Montserrat, sans-serif;
+  display: block;
+  position: relative;
+  min-height: calc(100% - 57px);
+  background-color: #f2f4f5;
+}
+
+.list-group-item {
+  padding: 9px 24px;
+  &:hover {
+    cursor: pointer;
+    background-color: #ffc247;
+  }
+}

@@ -1,0 +1,31 @@
+<nav class="navbar navbar-light bg-light border">
+    <a class="navbar-brand">Inventory List</a>
+    <a routerLink="/dashboard/inventory/add" class="btn btn-success btn-sm">
+        + ADD Inventory
+    </a>
+</nav>
+<table class="table table-hover table-bordered table-responsive-sm">
+    <thead>
+        <tr>
+            <th>Updated</th>
+            <th>Reference</th>
+            <th>Inventory Type</th>
+            <th>Number of Products</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let inve of inventoryPage.docs">
+            <td>{{inve.updatedAt | date:'medium'}}</td>
+            <td>{{inve?.reference}}</td>
+            <td>{{inve.inventoryType}}</td>
+            <td>{{inve?.items?.length}}</td>
+            <td class="text-right">
+                <div class="btn-group rounded" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-light border py-0 px-1" (click)="onDetails(inve._id)"> <i
+                            class="fa fa-file-text-o"></i></button>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>

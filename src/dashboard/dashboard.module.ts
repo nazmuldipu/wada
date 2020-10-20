@@ -37,10 +37,10 @@ export const ROUTES: Routes = [
         loadChildren: () =>
           import('./users/users.module').then((m) => m.UsersModule),
       },
-      // {
-      //   path: 'inventory',
-      //   loadChildren: () => import('./inventory/inventory.module').then((m) => m.InventoryModule)
-      // }
+      {
+        path: 'inventory',
+        loadChildren: () => import('./inventory/inventory.module').then((m) => m.InventoryModule)
+      }
     ],
   },
 ];

@@ -1,0 +1,44 @@
+<ng-template #rt let-r="result" let-t="term">
+    <ngb-highlight [result]="getProductName(r)" [term]="t"></ngb-highlight>
+</ng-template>
+
+<div [formGroup]="parent">
+    <div formArrayName="items">
+
+        <div *ngFor="let item of parent['controls'].items['controls']; let i = index">
+            <div [formGroupName]="i">
+                <div class="form-row">
+                    <div class="col-1">Item {{i+1}} : </div>
+                    <div class="form-group col-md-3">
+                        <!-- <label for="product">Product</label> -->
+                        <input id="product" type="text" class="form-control" [class.is-invalid]="searchFailed"
+                            formControlName="product" [ngbTypeahead]="searchProduct" [resultTemplate]="rt"
+                            [inputFormatter]="productFormatter" placeholder="Product name or serial number" />
+                    </div>
+                    <div class="form-group col-2">
+                        <!-- <label for="quantity">Quantity</label> -->
+                        <input class="form-control" formControlName="quantity" id="quantity"
+                            placeholder="Quantity {{ i + 1 }}" />
+                    </div>
+                    <div class="form-group col-2">
+                        <input class="form-control" formControlName="purchase_price" id="purchase_price"
+                            (change)="updateTotal()" placeholder="Purchase_price {{ i + 1 }}" />
+                    </div>
+                    <div class="form-group col-1">
+                        <label
+                            class="form-control text-right">{{parent.value.items[i].quantity * parent.value.items[i].purchase_price}}</label>
+                    </div>
+                    <div class="form-group col-auto">
+                        <button class="btn btn-sm btn-danger" (click)="onRemoveItem(i)">Remove</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="offset-md-7 col-md-1"><strong> Total</strong></div>
+            <div class="form-group col-1 pl-0 pr-1 text-right">
+                <label class="form-control text-right"><strong>{{total}}</strong></label>
+            </div>
+        </div>
+    </div>
+</div>
