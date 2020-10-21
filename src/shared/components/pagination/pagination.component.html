@@ -1,0 +1,34 @@
+<div class="pull-right mb-1">
+
+    <div class="select-box sort-bar" *ngIf="!small">
+        <label>Sort By:</label>
+        <select name="sort" [(ngModel)]="pagi.sort" (change)="onSortChange()">
+            <option value="priority">Popular</option>
+            <option value="name">Name</option>
+            <option value="min_price">Price</option>
+        </select>
+        <div class="pagi-bar ml-0">
+            <a class="next-page" (click)="onOrderChange()">
+                <i class="fa " [ngClass]="(pagi.order=='asc')?'fa-sort-amount-asc':'fa-sort-amount-desc'"></i></a>
+        </div>
+    </div>
+
+    <div class="select-box" *ngIf="!small">
+        <label>Show:</label>
+        <select name="limit" [(ngModel)]="pagi.limit" (change)="onLimitChange()">
+            <option value=4 [selected]="page?.limit == 4">4</option>
+            <option value=8 [selected]="page?.limit == 8">8</option>
+            <option value=16 [selected]="page?.limit == 16">16</option>
+            <option value=32 [selected]="page?.limit == 32">32</option>
+            <option value=64 [selected]="page?.limit == 64">64</option>
+        </select>
+    </div>
+    <div class="pagi-bar">
+        <a class="next-page" *ngIf="page?.hasPrevPage" (click)="onPageNumber(page.page - 1)"><i
+                class="fa fa-caret-left"></i></a>
+        <a *ngFor="let item of counter(page?.page, page?.totalPages); let i = index"
+            [class.current-page]="(i+1)==page.page" (click)="onPageNumber(i+1)">{{i+1}}</a>
+        <a class="next-page" *ngIf="page?.hasNextPage" (click)="onPageNumber(page.page + 1)">
+            <i class="fa fa-caret-right"></i></a>
+    </div>
+</div>

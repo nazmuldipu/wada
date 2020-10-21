@@ -55,7 +55,10 @@ export class ProductService {
       }
     });
 
-    formData.delete('_id')
+    formData.delete('_id');
+    formData.delete('thumb');
+    // formData.delete('images');
+
     if (product['images']) {
       formData.delete('images')
       for (var i = 0; i < product['images'].length; i++) {

@@ -7,10 +7,11 @@ import { Product2Component } from './components/product2/product2.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastsComponent } from './components/toasts/toasts.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 
 @NgModule({
-  declarations: [OfferBoxComponent, Product2Component, LoadingComponent, ToastsComponent],
+  declarations: [OfferBoxComponent, Product2Component, LoadingComponent, ToastsComponent, PaginationComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -24,7 +25,8 @@ import { ToastsComponent } from './components/toasts/toasts.component';
     LoadingComponent,
     NgbModule,
     OfferBoxComponent,
-    Product2Component, 
+    PaginationComponent,
+    Product2Component,
     ReactiveFormsModule,
     RouterModule,
     ToastsComponent
