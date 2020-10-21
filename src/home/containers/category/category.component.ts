@@ -22,10 +22,13 @@ export class CategoryComponent implements OnInit {
   prodImageUrl;
   prodThumbUrl;
   categoryNav;
+  sub_category;
+  sub_sub_category;
+
   loading = false;
   errorMessage = '';
 
-  constructor(private productService: ProductService, private activeRoute: ActivatedRoute, 
+  constructor(private productService: ProductService, private activeRoute: ActivatedRoute,
     private modalService: NgbModal) {
     this.slug = activeRoute.snapshot.params['slug'];
     this.prodImageUrl = this.productService.productLink + '/image/';
@@ -54,6 +57,17 @@ export class CategoryComponent implements OnInit {
     this.loading = false;
   }
 
+  async getProductBySubCategory(sub_category_slug: string, page: number = 1, limit: number = 8, sort: string = 'priority', order: string = 'asc') {
+    this.loading = true;
+    try {
+      this.productPage = await this.productService.getBySubCategorySlug(sub_category_slug, page, limit, sort, order).toPromise();
+      // window.scroll(0, 0);
+    } catch (error) {
+      this.errorMessage = error;
+    }
+    this.loading = false;
+  }
+
   onShortDetails(targetModal, product: Product) {
     this.product = product;
     if (this.cart && this.cart.product_list && this.cart.product_list.length > 0) {
@@ -67,4 +81,17 @@ export class CategoryComponent implements OnInit {
     });
   }
 
+  onSubCategoryClick(slug) {
+    // console.log(slug);
+    switch (slug) {
+      case 'all':
+        this.sub_category = null;
+        this.getProductByCategory(this.slug);
+        break;
+      default:
+        this.sub_category = this.categoryNav.sub_category.find(sc => sc.slug == slug);
+        this.getProductBySubCategory(slug);
+        break;
+    }
+  }
 }

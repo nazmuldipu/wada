@@ -17,19 +17,24 @@
 </div> -->
 
 <div class="container-fluid">
-  <img class="banner-image" src="assets/images/categories/fresh_banner.jpg" alt="Banner s">
+  <div class="banner-image">
+    <img [src]="'assets/images/categories/'+slug+'.jpg'" alt="Banner s">
+  </div>
+  <!-- <img class="banner-image" src="assets/images/categories/fresh_banner.jpg" alt="Banner s"> -->
 </div>
 <div class="container">
-  <div class="banner-links">
+  <div class="banner-title">{{categoryNav?.name}}</div>
+  <!-- <div class="banner-links">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-        <!-- <li class="breadcrumb-item"><a href="#">{{slug}}</a></li> -->
-        <li class="breadcrumb-item active" aria-current="page">{{slug}}</li>
+        <li class="breadcrumb-item" [class.active]="sub_category == null" aria-current="page"
+          (click)="onSubCategoryClick('all')"> <a>{{slug}}</a></li>
+        <li class="breadcrumb-item active" aria-current="page" *ngIf="sub_category">{{sub_category.name}}</li>
       </ol>
     </nav>
-    <h2 class="banner-title">{{slug}}</h2>
-  </div>
+  </div> -->
+    <!-- <span class="banner-sub-title" *ngIf="sub_category">- {{sub_category.name}}</span> -->
 </div>
 <ng-template #productDetailsModal let-modal>
   <detail-modal [product]="product" [prodImageUrl]="prodImageUrl" [cartProduct]="product_list_cart"
@@ -43,7 +48,12 @@
         <span>Category</span>
       </div>
       <div class="sub-category">
-        <div class="sub-category-item my-2 ml-2" *ngFor="let sc of categoryNav?.sub_category">
+        <div class="sub-category-item my-2 ml-2" [class.active]="sub_category==null"
+          (click)="onSubCategoryClick('all')">
+          All
+        </div>
+        <div class="sub-category-item my-2 ml-2" [class.active]="sub_category?.slug==sc.slug"
+          *ngFor="let sc of categoryNav?.sub_category" (click)="onSubCategoryClick(sc.slug)">
           {{sc.name}}
         </div>
         <!-- {{subCategory | json}} -->
