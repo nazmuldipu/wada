@@ -20,6 +20,7 @@ import { RegisterComponent } from './containers/register/register.component';
 import { SpecialOffersComponent } from './containers/special-offers/special-offers.component';
 import { HomeComponent } from './home.component';
 import { UserDetailsFormComponent } from './components/user-details-form/user-details-form.component';
+import { DetailsComponent } from './containers/details/details.component';
 
 export const ROUTES: Routes = [
   { path: 'comming', component: CommingSoonComponent },
@@ -30,7 +31,7 @@ export const ROUTES: Routes = [
     component: HomeComponent,
     children: [
       // { path: 'category/:slug', component: CategoryComponent },
-      // { path: 'details/:id', component: DetailsComponent },
+      { path: 'details/:id', component: DetailsComponent },
       { path: 'login', component: LoginComponent },
       { path: 'category/:slug', component: CategoryComponent },
       { path: 'offers/:slug', component: SpecialOffersComponent },
@@ -40,7 +41,7 @@ export const ROUTES: Routes = [
 ];
 
 @NgModule({
-  declarations: [IndexComponent, HomeComponent, LoginComponent, RegisterComponent, NavbarComponent, FotterComponent, TopbarComponent, HomeHeroComponent, CommingSoonComponent, CategoriesComponent, OffersComponent, CategoryComponent, SpecialOffersComponent, DetailModalComponent, UserDetailsFormComponent],
+  declarations: [IndexComponent, HomeComponent, LoginComponent, RegisterComponent, NavbarComponent, FotterComponent, TopbarComponent, HomeHeroComponent, CommingSoonComponent, CategoriesComponent, OffersComponent, CategoryComponent, SpecialOffersComponent, DetailModalComponent, UserDetailsFormComponent, DetailsComponent],
   imports: [
     CommonModule,
     NgImageSliderModule,

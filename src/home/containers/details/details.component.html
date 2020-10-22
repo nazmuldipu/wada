@@ -1,0 +1,93 @@
+<div class="container pt-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb bg-dark text-white">
+            <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Library</li>
+        </ol>
+    </nav>
+
+    <div class="row">
+        <div class="col-md-9 col-12">
+            <div class="product-detail border radius">
+                <div class="row">
+                    <!-- product image and share buttons -->
+                    <div class="col-md-5 col-12">
+                        <div class="product-detail-gallery">
+                            <div class="product-detail-gallery-image">
+                                <img class="img-fluid mx-auto" [src]="imageUrls[current]?.image" alt="">
+                            </div>
+                            <div class="product-detail-gallery-control" *ngIf="imageUrls.length > 0">
+                                <ng-image-slider #nav [images]="imageUrls" [infinite]="false" [autoSlide]="1"
+                                    [imagePopup]="false" [imageSize]="{width: '25%', height: 80}"
+                                    (imageClick)="onThumbImageClick($event)" slideImage="1"></ng-image-slider>
+                            </div>
+                        </div>
+                        <div class="product-detail-social">
+                            <ul class="list-social-detail list-inline-block">
+                                <li><a class="soci-fa soc-tumblr"><i class="fa fa-tumblr" aria-hidden="true"></i></a>
+                                </li>
+                                <li><a class="soci-fa soc-facebook"><i class="fa fa-facebook"
+                                            aria-hidden="true"></i></a></li>
+                                <li><a class="soci-fa soc-twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                </li>
+                                <li><a class="soci-fa soc-print"><i class="fa fa-print" aria-hidden="true"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-md-7 col-12">
+                        <div class="product-detail-info">
+                            <h2 class="product-detail-info-title">{{product?.name}}</h2>
+
+                            <div class="product-detail-rate">
+                                <div class="product-detail-rating" [style.width.%]="product?.rating"></div>
+                            </div>
+
+                            <p class="desc">{{product?.description}}</p>
+
+                            <div class="product-detail-price">
+                                <ins><span>৳ {{product?.price}}</span></ins>
+                            </div>
+
+                            <div class="product-detail-available">
+                                <strong>Availability: </strong>
+                                <span class="in-stock">{{stockQuantity > 0 ? 'In Stock':'Out of Stock'}}</span>
+                            </div>
+
+                            <a class="mail-to-friend" href="#">Email to a Friend</a>
+                            <div class="product-detail-size">
+                                <div class="product-detail-size-title">
+                                    <strong><sup>*</sup>Size:</strong><span
+                                        class="current-size">{{product?.size}}</span>
+                                </div>
+                            </div>
+
+
+                            <div class="product-detail-extralink" *ngIf="stockQuantity > 0">
+                                <div class="quantityEditor">
+                                    <button (click)="setQuantity(-1)" class="btn btn-info rounded-0 rounded-left"><i
+                                            class="fa fa-minus" aria-hidden="true"></i></button>
+                                    <div class="QuantityTextContainer">{{quantity}}</div>
+                                    <button (click)="setQuantity(1)" class="btn btn-info rounded-0 rounded-right"><i
+                                            class="fa fa-plus" aria-hidden="true"></i></button>
+                                </div>
+                                <button class="btn ml-2 btn-dark addCartButton" (click)="addToCart()">Add to
+                                    Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-detail-tab-detal">
+                    <div *ngFor="let item of productDetails?.items">
+                        <details-collapse [item]='item'></details-collapse>
+                    </div>
+                </div>
+            </div>
+            <product-related></product-related>
+        </div>
+        <div class="col-md-3 col-12">
+            <side-adv></side-adv>
+            <best-sellers></best-sellers>
+        </div>
+    </div>
+</div>

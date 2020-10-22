@@ -8,10 +8,13 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastsComponent } from './components/toasts/toasts.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { BestSellersComponent } from './components/best-sellers/best-sellers.component';
+import { SideAdvComponent } from './components/side-adv/side-adv.component';
+import { ProductRelatedComponent } from './components/product-related/product-related.component';
 
 
 @NgModule({
-  declarations: [OfferBoxComponent, Product2Component, LoadingComponent, ToastsComponent, PaginationComponent],
+  declarations: [OfferBoxComponent, Product2Component, LoadingComponent, ToastsComponent, PaginationComponent, BestSellersComponent, SideAdvComponent, ProductRelatedComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -20,6 +23,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     RouterModule,
   ],
   exports: [
+    BestSellersComponent,
     CommonModule,
     FormsModule,
     LoadingComponent,
@@ -27,8 +31,10 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     OfferBoxComponent,
     PaginationComponent,
     Product2Component,
+    ProductRelatedComponent,
     ReactiveFormsModule,
     RouterModule,
+    SideAdvComponent,
     ToastsComponent
   ]
 })

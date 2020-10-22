@@ -69,7 +69,7 @@ export const CategoryTree = {
                 },
                 {
                     name: 'Oil, Honey & Milk',
-                    slug: 'oil-honey-&-milk',
+                    slug: 'oil,-honey-&-milk',
                     image_urls: ['assets/images/category/oil-honey-&-milk.jpg'],
                     sub_sub_category: [
                         // {

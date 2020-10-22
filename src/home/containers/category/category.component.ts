@@ -68,6 +68,14 @@ export class CategoryComponent implements OnInit {
     this.loading = false;
   }
 
+  onChangePage(page) {
+    if (this.sub_category) {
+      this.getProductBySubCategory(this.sub_category.slug, page.pageNumber, page.limit, page.sort, page.order);
+    } else {
+      this.getProductByCategory(this.slug, page.pageNumber, page.limit, page.sort, page.order);
+    }
+  }
+
   onShortDetails(targetModal, product: Product) {
     this.product = product;
     if (this.cart && this.cart.product_list && this.cart.product_list.length > 0) {
