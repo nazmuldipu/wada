@@ -8,7 +8,7 @@
         onclick="dataLayer.push({event: 'promotionClick',eventCategory: 'Ecommerce',eventAction: 'Promotion Click',eventLabel: 'HP_QuickLink_1'});">
         <div class="category-block-content" [style.background-color]="category.background">
           <picture>
-            <img alt="Frozen Category" src="assets/images/categories/{{category.slug}}.png">
+            <img [alt]="category.name" src="assets/images/categories/{{category.slug}}.png">
           </picture>
           <div class="category-block-text">
             <p>
