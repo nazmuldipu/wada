@@ -1,0 +1,43 @@
+.promo {
+  &-text {
+    &-link {
+      cursor: pointer;
+      font-weight: 600;
+    }
+  }
+  &-form {
+    max-height: 0px;
+    overflow-y: hidden;
+    transition: ease-in-out 500ms max-height;
+    &.show {
+      max-height: 200px;
+    }
+  }
+}
+.product {
+  border-bottom: 1px solid #e5e5e5;
+  color: #757575;
+  font-weight: 300;
+  padding: 10px 0;
+  &-image {
+    height: 100px;
+    width: 100px;
+    margin-right: 10px;
+  }
+  &-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: black;
+  }
+  &-quantity {
+    color: #f40;
+    & i {
+      cursor: pointer;
+      //   color: black;
+    }
+  }
+  &-amount {
+    color: black;
+    font-weight: 500;
+  }
+}

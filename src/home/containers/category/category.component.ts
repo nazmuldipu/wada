@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CartService } from 'src/service/cart.service';
 import { ProductService } from 'src/service/product.service';
 import { CategoryTree } from 'src/shared/data/category';
 import { Cart, Product_list_cart } from 'src/shared/models/cart.model';
@@ -29,7 +30,7 @@ export class CategoryComponent implements OnInit {
   errorMessage = '';
 
   constructor(private productService: ProductService, private activeRoute: ActivatedRoute,
-    private modalService: NgbModal) {
+    private cartService: CartService, private modalService: NgbModal) {
     this.slug = activeRoute.snapshot.params['slug'];
     this.prodImageUrl = this.productService.productLink + '/image/';
     this.prodThumbUrl = this.productService.productLink + '/thumb/';
@@ -101,5 +102,16 @@ export class CategoryComponent implements OnInit {
         this.getProductBySubCategory(slug);
         break;
     }
+  }
+
+  async onAddToCart(event) {
+    this.loading = true;
+    try {
+      const resp = await this.cartService.addToCart(event).toPromise();
+      this.cartService._cartSource.next(resp);
+    } catch (error) {
+      this.errorMessage = error;
+    }
+    this.loading = false;
   }
 }

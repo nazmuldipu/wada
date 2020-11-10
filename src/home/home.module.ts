@@ -21,8 +21,13 @@ import { SpecialOffersComponent } from './containers/special-offers/special-offe
 import { HomeComponent } from './home.component';
 import { UserDetailsFormComponent } from './components/user-details-form/user-details-form.component';
 import { DetailsComponent } from './containers/details/details.component';
+import { CartComponent } from './containers/cart/cart.component';
+import { AuthGuardService } from 'src/service/auth-guard.service';
+import { OrdersComponent } from './containers/orders/orders.component';
 
 export const ROUTES: Routes = [
+  { path: 'cart', component: CartComponent, canActivate: [AuthGuardService] },
+  { path: 'orders', component: OrdersComponent, canActivate: [AuthGuardService] },
   { path: 'comming', component: CommingSoonComponent },
   { path: 'register', component: RegisterComponent },
   // { path: 'orders', component: OrdersComponent },
@@ -41,7 +46,26 @@ export const ROUTES: Routes = [
 ];
 
 @NgModule({
-  declarations: [IndexComponent, HomeComponent, LoginComponent, RegisterComponent, NavbarComponent, FotterComponent, TopbarComponent, HomeHeroComponent, CommingSoonComponent, CategoriesComponent, OffersComponent, CategoryComponent, SpecialOffersComponent, DetailModalComponent, UserDetailsFormComponent, DetailsComponent],
+  declarations: [
+    IndexComponent,
+    HomeComponent,
+    LoginComponent,
+    RegisterComponent,
+    NavbarComponent,
+    FotterComponent,
+    TopbarComponent,
+    HomeHeroComponent,
+    CommingSoonComponent,
+    CategoriesComponent,
+    OffersComponent,
+    CategoryComponent,
+    SpecialOffersComponent,
+    DetailModalComponent,
+    UserDetailsFormComponent,
+    DetailsComponent,
+    CartComponent,
+    OrdersComponent
+  ],
   imports: [
     CommonModule,
     NgImageSliderModule,

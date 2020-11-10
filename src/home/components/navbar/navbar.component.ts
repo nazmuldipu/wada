@@ -21,4 +21,8 @@ export class NavbarComponent implements OnInit {
     })
   }
 
+  onCartClick() {
+    console.log('onCartClick')
+  }
+
 }
