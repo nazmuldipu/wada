@@ -30,4 +30,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 [X] if product is out of stock show error message
 [X] Navbar cart info -> onclick navigate to cart page
 [X] Show popular categories at the bottom of the page
-[] Create a seperate login page and make funtional for login
+[X] Create a seperate login page and make funtional for login
+[] Free Delivery Product page
+[] Offers page
+[] New product page
+[] Special Offer page 
