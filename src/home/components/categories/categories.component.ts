@@ -7,11 +7,12 @@ import { CategoryTree } from '../../../shared/data/category';
   styleUrls: ['./categories.component.scss']
 })
 export class CategoriesComponent implements OnInit {
-  categoryTree = CategoryTree;
+  categoryTree;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.categoryTree = CategoryTree;
   }
 
 }

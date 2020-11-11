@@ -3,7 +3,7 @@ export const CategoryTree = {
         {
             name: 'Organic Food',
             slug: 'organic-food',
-            background: '#9734A1',
+            background: '#2ca9ce',
             image_urls: ['assets/images/category/organic-food.jpg'],
             sub_category: [
                 {

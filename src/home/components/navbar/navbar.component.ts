@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CartService } from 'src/service/cart.service';
 import { CategoryTree } from 'src/shared/data/category';
 import { Cart } from 'src/shared/models/cart.model';
@@ -13,7 +14,7 @@ export class NavbarComponent implements OnInit {
   show = false;
   cart: Cart;
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService, private router: Router) { }
 
   ngOnInit(): void {
     this.cartService.cart$.subscribe(data => {
@@ -23,6 +24,7 @@ export class NavbarComponent implements OnInit {
 
   onCartClick() {
     console.log('onCartClick')
+    this.router.navigate(['/cart']);
   }
 
 }

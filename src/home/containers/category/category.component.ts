@@ -31,16 +31,18 @@ export class CategoryComponent implements OnInit {
 
   constructor(private productService: ProductService, private activeRoute: ActivatedRoute,
     private cartService: CartService, private modalService: NgbModal) {
-    this.slug = activeRoute.snapshot.params['slug'];
     this.prodImageUrl = this.productService.productLink + '/image/';
     this.prodThumbUrl = this.productService.productLink + '/thumb/';
   }
 
   ngOnInit(): void {
-    if (this.slug) {
-      this.getCategoryNav(this.slug);
-      this.getProductByCategory(this.slug);
-    }
+    this.activeRoute.params.subscribe(routeParams => {
+      this.slug = routeParams['slug'];
+      if (this.slug) {
+        this.getCategoryNav(this.slug);
+        this.getProductByCategory(this.slug);
+      }
+    });
   }
 
   getCategoryNav(slug) {
@@ -105,6 +107,7 @@ export class CategoryComponent implements OnInit {
   }
 
   async onAddToCart(event) {
+    this.errorMessage = '';
     this.loading = true;
     try {
       const resp = await this.cartService.addToCart(event).toPromise();
