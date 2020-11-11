@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'home-hero',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home-hero.component.scss']
 })
 export class HomeHeroComponent implements OnInit {
+  @Input() isAuthenticated: boolean;
 
   constructor() { }
 

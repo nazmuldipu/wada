@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/service/auth.service';
 
 @Component({
   selector: 'app-index',
@@ -6,8 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./index.component.scss']
 })
 export class IndexComponent implements OnInit {
-
-  constructor() { }
+  isAuthenticated = false;
+  constructor(public authService: AuthService) { }
 
   ngOnInit(): void {
   }

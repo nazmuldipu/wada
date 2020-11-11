@@ -1,0 +1,69 @@
+<div class="register">
+    <div class="register-title">Log in</div>
+    <div class="register-dialog">Sign in to see your favourites, complete your order or manage your account. </div>
+    <div class="container my-md-4 my-1">
+        <div class="row">
+            <div class="offset-md-2 col-md-8">
+                <div class="form-block">
+                    <div class="title">
+                        Your credentials
+                    </div>
+                    <form class="px-md-4 px-2 pb-3" [formGroup]="form" (ngSubmit)="submit()">
+                        <div class="form-group">
+                            <!-- <label for="exampleDropdownFormEmail1">Email address</label> -->
+                            <input type="text" class="form-control" id="phone" formControlName="phone" autocomplete="no"
+                                placeholder="Phone number" maxlength="11">
+                            <small class="text-danger"
+                                *ngIf=" form.controls.phone.errors && form.controls.phone.touched ">
+                                <div [hidden]="!form.controls['phone'].errors.required"> Phone number required </div>
+                                <div [hidden]="!form.controls['phone'].errors.pattern"> Phone number format 01934953023
+                                </div>
+                            </small>
+                        </div>
+                        <div class="form-group">
+                            <!-- <label for="exampleDropdownFormPassword1">Password</label> -->
+                            <div class="input-group mb-1 mb-sm-0">
+                                <input [type]="showPassword ? 'text' : 'password'" id="password" class="form-control"
+                                    placeholder="Password" formControlName="password">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="button"
+                                        (click)="showPassword = !showPassword">
+                                        <i class="fa fa-eye" [ngClass]="showPassword?'fa-eye-slash':'fa-eye'"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <small class="text-danger"
+                                *ngIf="form.controls.password.errors && form.controls.password.touched">
+                                <div [hidden]="!form.controls['password'].errors.required">
+                                    Password required
+                                </div>
+                                <div [hidden]="!form.controls['password'].errors.minlength">
+                                    Minimum passwor length required 6
+                                </div>
+                            </small>
+
+                            <small>
+                                <a routerLink="/password-reset">Lost your password?</a>
+                            </small>
+                        </div>
+                        <!-- <div class="d-flex justify-content-end">
+              <button type="submit" class="btn btn-primary" [class.disabled]="form.invalid">Log in</button>
+            </div> -->
+                        <button type="submit" class="btn btn-block btn-sm btn-primary"
+                            [class.disabled]="form.invalid">Sign
+                            in</button>
+                        <!-- <a href="" class="my-2">Forgot Password?</a> -->
+                    </form>
+                    <div class="dropdown-divider"></div>
+                    <div class="px-md-4 px-2">
+                        <h4 class="text-center text-success">New to wada ? </h4>
+                        <a routerLink="/register" class="btn btn-block btn-sm btn-success">Creat an Account</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+</div>

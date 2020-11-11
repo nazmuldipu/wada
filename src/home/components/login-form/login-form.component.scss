@@ -1,0 +1,57 @@
+@import "../../../assets/theme.scss";
+.home-link {
+  text-decoration: none;
+  color: $primary-text-color;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+.logo {
+  width: 120px;
+}
+.register {
+  background-color: #f3f3f3;
+  min-height: calc(100vh - 65px);
+  text-align: center;
+  &-title {
+    padding: 20px 0 0 0;
+    font-size: 35px;
+    font-weight: 700;
+  }
+  &-dialog {
+    font-weight: 300;
+  }
+}
+.title {
+  background-color: white;
+  padding: 16px 25px;
+  font-size: 20px;
+  // border-bottom: 1px solid $divider-color;
+}
+.form-block {
+  margin-top: 2px;
+  background-color: white;
+  padding: 16px 60px;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  .register {
+    &-title {
+      padding: 5px 0 0 0;
+      font-size: 20px;
+    }
+  }
+  .form-block {
+    margin-top: 2px;
+    background-color: white;
+    padding: 8px 0;
+    margin-bottom: 5px;
+  }
+
+  .title {
+    padding: 8px 10px;
+    font-size: 18px;
+  }
+}

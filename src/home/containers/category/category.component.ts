@@ -117,4 +117,8 @@ export class CategoryComponent implements OnInit {
     }
     this.loading = false;
   }
+
+  onCloseClick(){
+    this.errorMessage = '';
+  }
 }

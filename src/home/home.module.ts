@@ -24,11 +24,13 @@ import { DetailsComponent } from './containers/details/details.component';
 import { CartComponent } from './containers/cart/cart.component';
 import { AuthGuardService } from 'src/service/auth-guard.service';
 import { OrdersComponent } from './containers/orders/orders.component';
+import { LoginFormComponent } from './components/login-form/login-form.component';
 
 export const ROUTES: Routes = [
   { path: 'cart', component: CartComponent, canActivate: [AuthGuardService] },
   { path: 'orders', component: OrdersComponent, canActivate: [AuthGuardService] },
   { path: 'comming', component: CommingSoonComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   // { path: 'orders', component: OrdersComponent },
   {
@@ -37,7 +39,6 @@ export const ROUTES: Routes = [
     children: [
       // { path: 'category/:slug', component: CategoryComponent },
       { path: 'details/:id', component: DetailsComponent },
-      { path: 'login', component: LoginComponent },
       { path: 'category/:slug', component: CategoryComponent },
       { path: 'offers/:slug', component: SpecialOffersComponent },
       { path: '', component: IndexComponent },
@@ -64,7 +65,8 @@ export const ROUTES: Routes = [
     UserDetailsFormComponent,
     DetailsComponent,
     CartComponent,
-    OrdersComponent
+    OrdersComponent,
+    LoginFormComponent
   ],
   imports: [
     CommonModule,
