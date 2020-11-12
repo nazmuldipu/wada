@@ -21,7 +21,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="col-auto pt-2">
       <div class="cart form-inline mt-2 mt-md-0" (click)="onCartClick()">
         <label class="form-control">৳{{cart?.sub_total}}</label>
@@ -52,7 +52,7 @@
             Menu
           </a>
           <div ngbDropdownMenu aria-labelledby="navbarDropdown1" class="dropdown-menu">
-            <a *ngFor="let cat of categoryTree.category" ngbDropdownItem href="#"
+            <a *ngFor="let cat of categoryTree.category" ngbDropdownItem [routerLink]="'/category/'+cat.slug"
               (click)="$event.preventDefault()">{{cat.name}}</a>
           </div>
         </li>
@@ -62,14 +62,14 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/offers">Offers</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link">৳100 Value</a>
-        </li>
+        </li> -->
         <!-- <li class="nav-item">
           <a class="nav-link" href="#">Frozen</a>
         </li> -->
         <li class="nav-item">
-          <a class="nav-link"  routerLink="/new-products">New</a>
+          <a class="nav-link" routerLink="/new-products">New</a>
         </li>
 
       </ul>

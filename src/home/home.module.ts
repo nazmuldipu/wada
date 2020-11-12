@@ -9,7 +9,7 @@ import { SharedModule } from 'src/shared/shared.module';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { DetailModalComponent } from './components/detail-modal/detail-modal.component';
 import { FotterComponent } from './components/fotter/fotter.component';
-import { FreeDeliveryComponent } from './components/free-delivery/free-delivery.component';
+import { FreeDeliveryComponent } from './containers/free-delivery/free-delivery.component';
 import { HomeHeroComponent } from './components/home-hero/home-hero.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { NavbarComponent } from './components/navbar/navbar.component';

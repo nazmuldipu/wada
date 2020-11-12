@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RestDataService } from './rest-data.service';
-import {Product, ProductPage} from '../shared/models/product.model';
+import { Product, ProductPage } from '../shared/models/product.model';
 import { HttpParams } from '@angular/common/http';
 
 @Injectable({
@@ -106,6 +106,11 @@ export class ProductService {
     return this.dataSource.sendRequest('GET', this.productUrl + `/sub_sub_category/${sub_sub_category_slug}`, null, false, params);
   }
 
+  getByFreeDelivery(page: number, limit: number, sort: string, order: string): Observable<ProductPage> {
+    const params = this.generateParam(page, limit, sort, order);
+    return this.dataSource.sendRequest('GET', this.productUrl + `/free-delivery`, null, false, params);
+  }
+
   getByBrandSlug(brand_slug: string, page: number, limit: number, sort: string, order: string): Observable<Product[]> {
     const params = this.generateParam(page, limit, sort, order);
     return this.dataSource.sendRequest('GET', this.productUrl + `/brand/${brand_slug}`, null, false, params);
@@ -119,6 +124,11 @@ export class ProductService {
   togglePublish(id): Observable<any> {
     return this.dataSource.sendRequest('PATCH',
       this.productUrl + `/publish/${id}`, null, true, null);
+  }
+
+  toggleFreeDelivery(id): Observable<any> {
+    return this.dataSource.sendRequest('PATCH',
+      this.productUrl + `/free-delivery/${id}`, null, true, null);
   }
 
   generateParam(page: number, limit: number, sort: string, order: string): HttpParams {

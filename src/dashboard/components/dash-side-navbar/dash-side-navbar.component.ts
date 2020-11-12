@@ -78,6 +78,12 @@ export class DashSideNavbarComponent implements OnInit {
           roles: ['SHOP', 'ADMIN'],
           link: '/dashboard/products/',
         },
+        {
+          name: 'Free Delivery',
+          icon: 'fa-bicycle ',
+          roles: ['SHOP', 'ADMIN'],
+          link: '/dashboard/products/free-delivery',
+        },
       ],
     },
     {
