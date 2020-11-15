@@ -111,6 +111,11 @@ export class ProductService {
     return this.dataSource.sendRequest('GET', this.productUrl + `/free-delivery`, null, false, params);
   }
 
+  getNewProducts(page: number, limit: number, sort: string, order: string): Observable<ProductPage> {
+    const params = this.generateParam(page, limit, sort, order);
+    return this.dataSource.sendRequest('GET', this.productUrl + `/new-product`, null, false, params);
+  }
+
   getByBrandSlug(brand_slug: string, page: number, limit: number, sort: string, order: string): Observable<Product[]> {
     const params = this.generateParam(page, limit, sort, order);
     return this.dataSource.sendRequest('GET', this.productUrl + `/brand/${brand_slug}`, null, false, params);
@@ -129,6 +134,11 @@ export class ProductService {
   toggleFreeDelivery(id): Observable<any> {
     return this.dataSource.sendRequest('PATCH',
       this.productUrl + `/free-delivery/${id}`, null, true, null);
+  }
+
+  toggleNewProducts(id): Observable<any> {
+    return this.dataSource.sendRequest('PATCH',
+      this.productUrl + `/new-product/${id}`, null, true, null);
   }
 
   generateParam(page: number, limit: number, sort: string, order: string): HttpParams {

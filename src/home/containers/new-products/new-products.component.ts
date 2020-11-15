@@ -4,30 +4,30 @@ import { ProductService } from 'src/service/product.service';
 import { ProductPage } from 'src/shared/models/product.model';
 
 @Component({
-  selector: 'app-free-delivery',
-  templateUrl: './free-delivery.component.html',
-  styleUrls: ['./free-delivery.component.scss']
+  selector: 'app-new-products',
+  templateUrl: './new-products.component.html',
+  styleUrls: ['./new-products.component.scss']
 })
-export class FreeDeliveryComponent implements OnInit {
+export class NewProductsComponent implements OnInit {
   productPage: ProductPage;
   loading = false;
   errorMessage = '';
   prodImageUrl;
   prodThumbUrl;
-
+  
   constructor(private productService: ProductService, private cartService: CartService) {
     this.prodImageUrl = this.productService.productLink + '/image/';
     this.prodThumbUrl = this.productService.productLink + '/thumb/';
   }
 
   ngOnInit(): void {
-    this.getProductFreeDelivery();
+    this.getNewProducts();
   }
 
-  async getProductFreeDelivery(page: number = 1, limit: number = 8, sort: string = 'priority', order: string = 'asc') {
+  async getNewProducts(page: number = 1, limit: number = 8, sort: string = 'priority', order: string = 'asc') {
     this.loading = true;
     try {
-      this.productPage = await this.productService.getByFreeDelivery(page, limit, sort, order).toPromise();
+      this.productPage = await this.productService.getNewProducts(page, limit, sort, order).toPromise();
     } catch (error) {
       this.errorMessage = error;
     }
@@ -35,8 +35,9 @@ export class FreeDeliveryComponent implements OnInit {
   }
 
   onChangePage(page) {
-    this.getProductFreeDelivery(page.pageNumber, page.limit, page.sort, page.order);
+    this.getNewProducts(page.pageNumber, page.limit, page.sort, page.order);
   }
+
 
   async onAddToCart(event) {
     this.errorMessage = '';
@@ -50,7 +51,8 @@ export class FreeDeliveryComponent implements OnInit {
     this.loading = false;
   }
 
-  onCloseClick() {
+  onCloseClick(){
     this.errorMessage = '';
   }
+
 }

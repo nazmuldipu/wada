@@ -26,7 +26,7 @@ import { OrdersComponent } from './containers/orders/orders.component';
 import { RegisterComponent } from './containers/register/register.component';
 import { SpecialOffersComponent } from './containers/special-offers/special-offers.component';
 import { HomeComponent } from './home.component';
-import { NewProductsComponent } from './components/new-products/new-products.component';
+import { NewProductsComponent } from './containers/new-products/new-products.component';
 import { FrontSpecialOfferComponent } from './components/front-special-offer/front-special-offer.component';
 
 export const ROUTES: Routes = [

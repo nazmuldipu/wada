@@ -8,15 +8,25 @@ import { StorehouseFormComponent } from './components/storehouse-form/storehouse
 import { FreeDeliveryComponent } from './containers/free-delivery/free-delivery.component';
 import { ProductsComponent } from './containers/products/products.component';
 import { StorehouseComponent } from './containers/storehouse/storehouse.component';
+import { NewProductsComponent } from './containers/new-products/new-products.component';
 
 export const ROUTES: Routes = [
   { path: 'storehouse', component: StorehouseComponent },
   { path: 'free-delivery', component: FreeDeliveryComponent },
+  { path: 'new-products', component: NewProductsComponent },
   { path: '', component: ProductsComponent },
 ];
 
 @NgModule({
-  declarations: [StorehouseComponent, ProductsComponent, StorehouseFormComponent, ProductDetailsFormComponent, ProductFormComponent, FreeDeliveryComponent],
+  declarations: [
+    StorehouseComponent, 
+    ProductsComponent, 
+    StorehouseFormComponent, 
+    ProductDetailsFormComponent, 
+    ProductFormComponent, 
+    FreeDeliveryComponent, 
+    NewProductsComponent
+  ],
   imports: [
     SharedModule, RouterModule.forChild(ROUTES)
   ]
