@@ -32,7 +32,7 @@ export const ROUTES: Routes = [
     SharedModule,
     ServiceModule,
     SidebarModule.forRoot(),
-    RouterModule.forRoot(ROUTES),
+    RouterModule.forRoot(ROUTES, { relativeLinkResolution: 'legacy' }),
   ],
   providers: [],
   bootstrap: [AppComponent]

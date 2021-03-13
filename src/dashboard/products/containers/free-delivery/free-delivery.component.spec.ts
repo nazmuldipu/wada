@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { FreeDeliveryComponent } from './free-delivery.component';
 
@@ -6,7 +6,7 @@ describe('FreeDeliveryComponent', () => {
   let component: FreeDeliveryComponent;
   let fixture: ComponentFixture<FreeDeliveryComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ FreeDeliveryComponent ]
     })
