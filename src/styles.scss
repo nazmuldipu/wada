@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.css';
 @import '~font-awesome/css/font-awesome.min.css';
+@import './assets/theme.scss';
 
 @font-face {
   font-family: "Montserrat";
@@ -100,4 +101,9 @@ a:focus {
 
 .dropdown:hover .dropdown-content {
   display: block;
+}
+
+
+.text-primary {
+  color: $primary-color !important;
 }

@@ -1,0 +1,11 @@
+<div class="form-group">
+    <label *ngIf="showLabel" [for]="fieldId" class="d-none d-sm-block col-form-label col-form-label-sm p-0" >
+        {{label}}<span *ngIf="validator?.required">*</span>
+    </label>
+    <div>
+        <input [type]="type" class="form-control form-control-sm" [id]="fieldId" [formControl]="control"
+            autocomplete="off" [placeholder]="label" [maxlength]="maxlength" [readonly]="readonly"
+            (change)="onValueChange($event)">
+        <form-property-validator [validationErrors]="validationErrors" [name]="label"></form-property-validator>
+    </div>
+</div>
