@@ -1,6 +1,12 @@
 export interface Offer {
-    slug: string;
-    dialog: string,
-    button_text: string,
-    links: string
+  title: string;
+  items: Feature[];
+}
+
+export interface Feature {
+  slug: string;
+  dialog: string;
+  button_text: string;
+  links: string;
+  full_width: boolean;
 }

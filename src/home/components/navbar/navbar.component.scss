@@ -1,8 +1,12 @@
 @import "../../../assets/theme.scss";
 
+.primary-logo{
+  height: 50px;
+  padding: 5px 0;
+}
 
 .logo {
-  height: 50px;
+  height: 40px;
 }
 
 .form-control {
@@ -74,4 +78,11 @@
   &:hover {
     background-color: $primary-color;
   }
+}
+
+.dropdown-menu{
+  padding: 0;
+}
+.dropdown-item{
+  line-height: 1.25;
 }

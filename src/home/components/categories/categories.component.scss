@@ -1,22 +1,3 @@
-.title-line {
-  text-align: center;
-  font-size: 2rem;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-transform: uppercase;
-}
-
-.title-line:after,
-.title-line:before {
-  content: '';
-  width: 150px;
-  height: 2px;
-  background: red;
-  margin: 0 10px;
-}
-
 
 .category-block {
   padding: 0 4px;

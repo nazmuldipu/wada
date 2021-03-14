@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~bootstrap/dist/css/bootstrap.css';
-@import '~font-awesome/css/font-awesome.min.css';
-@import './assets/theme.scss';
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~font-awesome/css/font-awesome.min.css";
+@import "./assets/theme.scss";
 
 @font-face {
   font-family: "Montserrat";
@@ -103,7 +103,25 @@ a:focus {
   display: block;
 }
 
-
 .text-primary {
   color: $primary-color !important;
+}
+
+.title-line {
+  text-align: center;
+  font-size: 2rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+}
+
+.title-line:after,
+.title-line:before {
+  content: "";
+  width: 150px;
+  height: 2px;
+  background: red;
+  margin: 0 10px;
 }
