@@ -1,6 +1,15 @@
 export const LABEL_LIST: object = {
+  barcode: 'Barcode',
+  description: 'Description',
   email: 'Email',
+  image: 'Image',
   name: 'Name',
+  old_price: 'Old Price',
   password: 'Password',
   phone: 'Phone number',
+  point: 'Point',
+  price: 'Price',
+  priority: 'Priority',
+  size: 'Size',
+  thumb: 'Thumb',
 };

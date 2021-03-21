@@ -1,30 +1,19 @@
-import {
-  Component,
-  DoCheck,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, DoCheck, Input, OnInit } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 import { LABEL_LIST } from '../constants/form-labels-list';
 
 @Component({
-  selector: 'form-input',
-  templateUrl: './form-input.component.html',
-  styleUrls: ['./form-input.component.scss'],
+  selector: 'form-textarea',
+  templateUrl: './form-textarea.component.html',
+  styleUrls: ['./form-textarea.component.scss']
 })
-export class FormInputComponent implements OnInit, DoCheck {
+export class FormTextareaComponent implements OnInit, DoCheck {
   @Input() fieldId: string | null = null;
   @Input() control: AbstractControl | null = null;
-  @Input() type: string = 'text';
-  @Input() maxlength: number = null;
-  @Input() readonly: boolean = false;
-  @Input() showLabel: boolean = true;
+  @Input() row:number = 3;
   @Input() col: boolean = true;
-
-  @Output() onChange = new EventEmitter<any>();
-
+  @Input() showLabel:boolean = true;
+  
   label: string = null;
   validator;
   validationErrors: object = null;
@@ -36,14 +25,10 @@ export class FormInputComponent implements OnInit, DoCheck {
   ngDoCheck() {
     if (this.control['validator'])
       this.validator = this.control.validator({} as AbstractControl);
-
+      
     this.validationErrors =
       this.control.touched && this.control.invalid
         ? this.control['errors']
         : null;
-  }
-
-  onValueChange(event) {
-    this.onChange.emit(event);
   }
 }

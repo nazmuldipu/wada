@@ -1,6 +1,6 @@
 export const CategoryTree = {
     category: [
-        {
+        {   _id:'3203290daldj',
             name: 'Organic Food',
             slug: 'organic-food',
             background: '#2ca9ce',
@@ -124,6 +124,7 @@ export const CategoryTree = {
             ]
         },
         {
+            _id:'3203290dald1',
             name: 'Fresh & Vegetables',
             slug: 'fresh-&-vegetables',
             background: '#A19734',
@@ -196,6 +197,7 @@ export const CategoryTree = {
             ]
         },
         {
+            _id:'3203290daldb',
             name: 'Fish & Meat',
             slug: 'fish-&-meat',
             background: '#D1F734',
@@ -253,6 +255,7 @@ export const CategoryTree = {
             ]
         },
         {
+            _id:'3203290daldc',
             name: 'Dry & Seafood',
             slug: 'dry-&-seafood',
             background: '#B40771',
@@ -312,6 +315,7 @@ export const CategoryTree = {
             ]
         },
         {
+            _id:'3203290daldd',
             name: 'Household & Personal Care',
             slug: 'household-&-personal-care',
             background: '#B40771',
@@ -359,6 +363,7 @@ export const CategoryTree = {
             ]
         },
         {
+            _id:'3203290daldn',
             name: 'Frozen Food',
             slug: 'daily-food',
             background: '#3F1FF1',

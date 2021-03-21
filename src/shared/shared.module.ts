@@ -17,10 +17,12 @@ import { FormPropertyValidatorComponent } from './forms/form-property-validator/
 import { FormPasswordComponent } from './forms/form-password/form-password.component';
 import { FormValidatorComponent } from './forms/form-validator/form-validator.component';
 import { BaseFormComponent } from './forms/base-form/base-form.component';
+import { AlertMessagesComponent } from './components/alert-messages/alert-messages.component';
+import { FormTextareaComponent } from './forms/form-textarea/form-textarea.component';
 
 
 @NgModule({
-  declarations: [OfferBoxComponent, Product2Component, LoadingComponent, ToastsComponent, PaginationComponent, BestSellersComponent, SideAdvComponent, ProductRelatedComponent, FormInputComponent, FormPropertyValidatorComponent, FormPasswordComponent, FormValidatorComponent, BaseFormComponent],
+  declarations: [OfferBoxComponent, Product2Component, LoadingComponent, ToastsComponent, PaginationComponent, BestSellersComponent, SideAdvComponent, ProductRelatedComponent, FormInputComponent, FormPropertyValidatorComponent, FormPasswordComponent, FormValidatorComponent, BaseFormComponent, AlertMessagesComponent, FormTextareaComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -29,12 +31,14 @@ import { BaseFormComponent } from './forms/base-form/base-form.component';
     RouterModule,
   ],
   exports: [
+    AlertMessagesComponent,
     BestSellersComponent,
     CommonModule,
     FormInputComponent,
     FormPasswordComponent,
     FormValidatorComponent,
     FormsModule,
+    FormTextareaComponent,
     LoadingComponent,
     NgbModule,
     OfferBoxComponent,

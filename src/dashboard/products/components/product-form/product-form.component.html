@@ -72,108 +72,30 @@
             <button class="btn btn-sm btn-warning" (click)="onSubSubCategoryChange()">Change</button>
         </div>
     </div>
-    <div class="form-group row">
-        <label for="barcode" class="col-sm-2 col-form-label">Barcode</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="barcode" formControlName="barcode"
-                placeholder="Product barcode" />
-            <small class="text-danger" *ngIf="form.controls.barcode.errors && form.controls.barcode.touched">
-                <div [hidden]="!form.controls['barcode'].errors.required">
-                    Barcode required
-                </div>
-                <div [hidden]="!form.controls['barcode'].errors.minlength">
-                    Minimum Length should be 3
-                </div>
-            </small>
-        </div>
-    </div>
 
-    <div class="form-group row">
-        <label for="name" class="col-sm-2 col-form-label">Name</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="name" formControlName="name" placeholder="Product name" />
-            <small class="text-danger" *ngIf="form.controls.name.errors && form.controls.name.touched">
-                <div [hidden]="!form.controls['name'].errors.required">
-                    Name required
-                </div>
-                <div [hidden]="!form.controls['name'].errors.minlength">
-                    Minimum Length should be 3
-                </div>
-            </small>
+    <!-- Form elements -->
+    <form-input [fieldId]="'barcode'" [control]="form.get('barcode')"></form-input>
+    <form-input [fieldId]="'name'" [control]="form.get('name')"></form-input>
+    <form-textarea [fieldId]="'description'" [control]="form.get('description')"></form-textarea>
+    <div class="row">
+        <div class="col-md-6">
+            <form-input [fieldId]="'size'" [control]="form.get('size')"></form-input>
         </div>
     </div>
-    <div class="form-group row">
-        <label for="size" class="col-sm-2 col-form-label">Size</label>
-        <div class="col-sm-4">
-            <input type="text" class="form-control" id="size" formControlName="size" placeholder="Size" />
-            <small class="text-danger" *ngIf="form.controls.size.errors && form.controls.size.touched">
-                Size required
-            </small>
+    <div class="row">
+        <div class="col-md-6">
+            <form-input [fieldId]="'priority'" [control]="form.get('priority')" [type]="'number'"></form-input>
         </div>
-    </div>
-    <div class="form-group row">
-        <label for="description" class="col-sm-2 col-form-label">Description</label>
-        <div class="col-sm-10">
-            <textarea class="form-control" id="description" formControlName="description" placeholder="Description"
-                rows="3"> </textarea>
-            <small class="text-danger" *ngIf="form.controls.description.errors && form.controls.description.touched">
-                Description required
-            </small>
+        <div class="col-md-6">
+            <form-input [fieldId]="'point'" [control]="form.get('point')" [type]="'number'"></form-input>
         </div>
-    </div>
-    <div class="form-group row">
-        <label for="priority" class="col-sm-2 col-form-label">Priority</label>
-        <div class="col-sm-4">
-            <input type="number" class="form-control" id="priority" formControlName="priority" placeholder="Priority" />
-            <small class="text-danger" *ngIf="form.controls.priority.errors && form.controls.priority.touched">
-                <div [hidden]="!form.controls['priority'].errors.required">
-                    Priority required
-                </div>
-                <div [hidden]="!form.controls['priority'].errors.min">
-                    Minimum value should be 0
-                </div>
-            </small>
+        <div class="col-md-6">
+            <form-input [fieldId]="'price'" [control]="form.get('price')" [type]="'number'"></form-input>
         </div>
-        <label for="priority" class="col-sm-2 col-form-label">Point</label>
-        <div class="col-sm-4">
-            <input type="number" class="form-control" id="point" formControlName="point" placeholder="Point" />
-            <small class="text-danger" *ngIf="form.controls.point.errors && form.controls.point.touched">
-                <div [hidden]="!form.controls['point'].errors.required">
-                    Point required
-                </div>
-                <div [hidden]="!form.controls['point'].errors.min">
-                    Minimum value should be 0
-                </div>
-            </small>
+        <div class="col-md-6">
+            <form-input [fieldId]="'old_price'" [control]="form.get('old_price')" [type]="'number'"></form-input>
         </div>
-    </div>
-    <div class="form-group row">
-        <label for="price" class="col-sm-2 col-form-label">Price</label>
-        <div class="col-sm-4">
-            <input type="number" class="form-control" id="price" formControlName="price" placeholder="Price" />
-            <small class="text-danger" *ngIf="form.controls.price.errors && form.controls.price.touched">
-                <div [hidden]="!form.controls['price'].errors.required">
-                    Price required
-                </div>
-                <div [hidden]="!form.controls['price'].errors.min">
-                    Minimum value should be 0
-                </div>
-            </small>
-        </div>
-        <label for="old_price" class="col-sm-2 col-form-label">Old price</label>
-        <div class="col-sm-4">
-            <input type="number" class="form-control" id="old_price" formControlName="old_price"
-                placeholder="Old price" />
-            <small class="text-danger" *ngIf="form.controls.old_price.errors && form.controls.old_price.touched">
-                <div [hidden]="!form.controls['old_price'].errors.required">
-                    Old price required
-                </div>
-                <div [hidden]="!form.controls['old_price'].errors.min">
-                    Minimum value should be 0
-                </div>
-            </small>
-        </div>
-    </div>
+    </div>    
 
     <div class="form-group row">
         <label for="thumb" class="col-sm-2 col-form-label">Thumb</label>
@@ -207,3 +129,4 @@
 
 <!-- {{form.value | json}} -->
 <!-- <p>product-form works!</p> -->
+<!-- I am in line 210 -->

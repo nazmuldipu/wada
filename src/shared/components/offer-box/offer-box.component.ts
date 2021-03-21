@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Offer } from 'src/shared/models/offer.model';
+import { Feature, Offer } from 'src/shared/models/offer.model';
 
 @Component({
   selector: 'offer-box',
@@ -7,7 +7,7 @@ import { Offer } from 'src/shared/models/offer.model';
   styleUrls: ['./offer-box.component.scss']
 })
 export class OfferBoxComponent implements OnInit {
-  @Input() offer: Offer;
+  @Input() offer: Feature;
 
   constructor() { }
 

@@ -1,0 +1,6 @@
+<div class="alert alert-dismissible show" [ngClass]=" type?'alert-' + type:''" role="alert" *ngIf="message.length > 0">
+    <strong>Success! </strong> {{ message }}
+    <button type="button" class="close" (click)="onClose()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>

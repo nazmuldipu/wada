@@ -10,7 +10,7 @@ import { UtilService } from 'src/service/util.service';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss']
+  styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent implements OnInit {
   sideNav = CategoryTree;
@@ -35,24 +35,34 @@ export class ProductsComponent implements OnInit {
     private productService: ProductService,
     private productDetailsService: ProductDetailsService,
     private utilService: UtilService,
-    public toastService: ToastService) {
+    public toastService: ToastService
+  ) {
     this.brands = BrandsObjects;
     this.imageUrl = this.productService.productLink + '/image/';
     this.thumbUrl = this.productService.productLink + '/thumb/';
   }
 
   ngOnInit(): void {
-    this.getAllProducts();
+    // this.getAllProducts();
     this.getAllCategory();
     // this.getAllSubCategory();
-    // this.getAllBrand();
+    this.getAllBrand();
   }
 
-  async getAllProducts(page: number = 1, limit: number = 8, sort: string = 'priority', order: string = 'asc') {
+  async getAllProducts(
+    page: number = 1,
+    limit: number = 8,
+    sort: string = 'priority',
+    order: string = 'asc'
+  ) {
     this.loading = true;
     try {
-      this.productsPage = await this.productService.getAll(page, limit, sort, order).toPromise();
-      this.productsPage.docs.sort(this.utilService.dynamicSortObject('priority'));
+      this.productsPage = await this.productService
+        .getAll(page, limit, sort, order)
+        .toPromise();
+      this.productsPage.docs.sort(
+        this.utilService.dynamicSortObject('priority')
+      );
     } catch (error) {
       this.errorMessage = error;
     }
@@ -74,7 +84,12 @@ export class ProductsComponent implements OnInit {
     // this.loading = false;
   }
 
-  async getAllSubCategory(page: number = 1, limit: number = 8, sort: string = 'priority', order: string = 'asc') {
+  async getAllSubCategory(
+    page: number = 1,
+    limit: number = 8,
+    sort: string = 'priority',
+    order: string = 'asc'
+  ) {
     // this.loading = true;
     // try {
     //   this.subCategories = await this.subCategoryService.getAll(page, limit, sort, order).toPromise();
@@ -85,28 +100,27 @@ export class ProductsComponent implements OnInit {
   }
 
   async onBrandSearch(event) {
-    this.brands = BrandsObjects.filter(item =>
+    this.brands = BrandsObjects.filter((item) =>
       Object.keys(item).some(
-        k =>
+        (k) =>
           item[k] != null &&
-          item[k]
-            .toString()
-            .toLowerCase()
-            .includes(event.toLowerCase())
-      ));
+          item[k].toString().toLowerCase().includes(event.toLowerCase())
+      )
+    );
   }
 
-  // async getAllBrand(page: number = 1, limit: number = 8, sort: string = 'priority', order: string = 'asc') {
-  //   this.loading = true;
-  //   try {
-  //     const value = await this.brandService.getAll(page, limit, sort, order).toPromise();
-  //     this.brands = value.docs;
-  //     // this.brands.sort(this.utilService.dynamicSortObject('priority'));
-  //   } catch (error) {
-  //     this.errorMessage = error;
-  //   }
-  //   this.loading = false;
-  // }
+  async getAllBrand(page: number = 1, limit: number = 8, sort: string = 'priority', order: string = 'asc') {
+    this.brands = BrandsObjects;
+    // this.loading = true;
+    // try {
+    //   const value = await this.brandService.getAll(page, limit, sort, order).toPromise();
+    //   this.brands = value.docs;
+    //   // this.brands.sort(this.utilService.dynamicSortObject('priority'));
+    // } catch (error) {
+    //   this.errorMessage = error;
+    // }
+    // this.loading = false;
+  }
 
   async getProductDetails(product_id: string) {
     this.loading = true;
@@ -114,9 +128,10 @@ export class ProductsComponent implements OnInit {
       const prod = this.productsPage.docs.find((c) => c._id == product_id);
       this.product = Object.assign({}, prod);
 
-      const proDetails = await this.productDetailsService.getProductDetailsByProductId(product_id).toPromise();
+      const proDetails = await this.productDetailsService
+        .getProductDetailsByProductId(product_id)
+        .toPromise();
       this.product.details = proDetails;
-
     } catch (error) {
       console.log(error);
     }
@@ -145,7 +160,9 @@ export class ProductsComponent implements OnInit {
   async onAddProductDetails(event) {
     this.loading = true;
     try {
-      const resp = await this.productDetailsService.add(this.product._id, event).toPromise();
+      const resp = await this.productDetailsService
+        .add(this.product._id, event)
+        .toPromise();
       this.showProductDetailsForm = false;
     } catch (err) {
       this.errorMessage = err;
@@ -156,7 +173,9 @@ export class ProductsComponent implements OnInit {
   async onDeleteDetails(title) {
     this.loading = true;
     try {
-      const resp = await this.productDetailsService.remove(this.product._id, title).toPromise();
+      const resp = await this.productDetailsService
+        .remove(this.product._id, title)
+        .toPromise();
       this.onClose();
     } catch (err) {
       this.errorMessage = err;
@@ -164,6 +183,8 @@ export class ProductsComponent implements OnInit {
     this.loading = false;
     console.log(title);
   }
+
+  
   async onCreate(event) {
     this.loading = true;
     this.errorMessage = '';
@@ -197,15 +218,22 @@ export class ProductsComponent implements OnInit {
   }
 
   async onToggleActive(id, active) {
-    if (confirm('Are you sure to ' + (active ? 'Dectivate' : 'Activate') + ' ?')) {
+    if (
+      confirm('Are you sure to ' + (active ? 'Dectivate' : 'Activate') + ' ?')
+    ) {
       try {
         const res = await this.productService.toggleActive(id).toPromise();
 
         const mesg = res.name + (res.active ? ' Activated' : ' Dectivated');
-        const classname = 'text-light' + (res.approved ? ' bg-primary' : ' bg-danger')
+        const classname =
+          'text-light' + (res.approved ? ' bg-primary' : ' bg-danger');
         this.toastService.show(mesg, { classname, delay: 3000 });
 
-        this.productsPage.docs.splice(this.productsPage.docs.findIndex(s => s._id == id), 1, res);
+        this.productsPage.docs.splice(
+          this.productsPage.docs.findIndex((s) => s._id == id),
+          1,
+          res
+        );
       } catch (err) {
         this.errorMessage = err;
       }
@@ -223,5 +251,4 @@ export class ProductsComponent implements OnInit {
   counter(i: number) {
     return new Array(i);
   }
-
 }

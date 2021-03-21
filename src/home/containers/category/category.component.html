@@ -118,7 +118,7 @@
       </div>
       
       <div class="row clearfix m-0" *ngIf="!loading && productPage">
-        <div class="col-12 text-center" *ngIf="productPage.docs.length == 0">
+        <div class="col-12 text-center" *ngIf="productPage?.docs?.length == 0">
           <i class="fa fa-frown-o"></i> Sorry no product found
         </div>
         <div class="col-lg-3 col-md-4 col-6 p-0" *ngFor="let product of productPage?.docs">
