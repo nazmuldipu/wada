@@ -1,0 +1,50 @@
+<div class="form-head">
+    {{exists?'Update': 'New'}} Sub Sub Category
+</div>
+<ng-container *ngIf="err.length>0">
+    <p class="px-4 text-center text-danger">{{err}}</p>
+</ng-container>
+
+<div class="list-group" *ngIf="!category">
+    <li class="list-group-item"><strong>Please select a Category first</strong></li>
+    <a class="list-group-item list-group-item-action list-group-item-light py-1 text-dark"
+        *ngFor="let cat of categories" (click)="onCategory(cat._id)">{{cat.name}}</a>
+</div>
+
+<div class="list-group" *ngIf="category && !subCategory && subCategories?.length">
+    <li class="list-group-item"><strong>Please select a Sub-Category</strong></li>
+    <a class="list-group-item list-group-item-action list-group-item-light py-1 text-dark"
+        *ngFor="let scat of subCategories" (click)="onSubCategory(scat._id)">{{scat.name}}</a>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="submit()" (mouseleave)="mouseoverShifting = false" class="p-3"
+    *ngIf="category && subCategory">
+
+    <form-object-label [label]="'Category*'" [name]="category.name" (onChange)="category=null; subCategory=null"></form-object-label>
+    <form-object-label [label]="'SubCategory*'" [name]="subCategory.name" (onChange)="subCategory=null">
+    </form-object-label>
+
+    <!-- Form Elements -->
+    <form-input [fieldId]="'name'" [control]="form.get('name')">
+    </form-input>
+    <form-input [fieldId]="'priority'" [control]="form.get('priority')" [type]="'number'">
+    </form-input>
+    <form-file [fieldId]="'images'" [form]="form" [hints]="'Preferred image size is 1024x400 px'"
+        (err)="onError($event)">
+    </form-file>
+
+    <!-- Buttons -->
+    <div class="d-flex flex-row-reverse bd-highlight">
+        <span (mouseenter)="mouseoverShifting = true">
+            <button type="submit" class="btn btn-sm btn-light mx-1" [disabled]="!form.valid">{{exists ?
+                'Update':'Save'}}</button>
+        </span>
+        <button type="button" *ngIf="exists" class="btn btn-sm btn-light mx-1" (click)="onDelete()">Delete</button>
+        <button type="button" class="btn btn-sm btn-light mx-1" (click)="clean()">Clear</button>
+    </div>
+
+    <!-- Form validation error list -->
+    <div *ngIf="mouseoverShifting" class="text-danger">
+        <form-validator [form]="form"></form-validator>
+    </div>
+</form>

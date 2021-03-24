@@ -31,7 +31,7 @@ export class SubCategoriesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getList(new Pagination());
-    this.getCategoryList(new Pagination(1, 1000));
+    this.getCategoryList(new Pagination(1, 1000, 'priority'));
   }
 
   async getCategoryList(pagi: Pagination) {
@@ -107,5 +107,4 @@ export class SubCategoriesComponent implements OnInit {
     this.errorMessage = '';
     this.loading = false;
   }
-
 }

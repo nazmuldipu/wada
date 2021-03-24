@@ -33,7 +33,6 @@ export class CategoryService {
 
   update(id, category: Category): Observable<Category> {
     let fData = this.util.jsonToFromData(category, ['image']);
-    console.log(fData);
     return this.dSrc.sendRequest('PUT', this.url + `/${id}`, fData, true, null);
   }
 
