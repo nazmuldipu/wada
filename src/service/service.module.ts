@@ -13,6 +13,7 @@ import { OrderService } from './order.service';
 import { ProductStockService } from './product-stock.service';
 import { UserService } from './user.service';
 import { BrandService } from './brand.service';
+import { CategoryService } from './category.service';
 
 @NgModule({
   providers: [
@@ -20,6 +21,7 @@ import { BrandService } from './brand.service';
     AuthService,
     BrandService,
     CartService,
+    CategoryService,
     InventoryService,
     OrderService,
     ProductDetailsService,

@@ -8,6 +8,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from 'src/shared/shared.module';
 import { BrandsTableComponent } from './components/brands-table/brands-table.component';
 import { BrandFormComponent } from './components/brand-form/brand-form.component';
+import { CategoryFormComponent } from './components/category-form/category-form.component';
+import { CategoryTableComponent } from './components/category-table/category-table.component';
 
 export const ROUTES: Routes = [
   { path: 'brands', component: BrandsComponent },
@@ -24,6 +26,8 @@ export const ROUTES: Routes = [
     SubSubCategoriesComponent,
     BrandsTableComponent,
     BrandFormComponent,
+    CategoryFormComponent,
+    CategoryTableComponent,
   ],
   imports: [SharedModule, RouterModule.forChild(ROUTES)],
 })

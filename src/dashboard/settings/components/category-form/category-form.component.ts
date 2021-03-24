@@ -3,11 +3,11 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { BaseFormComponent } from 'src/shared/forms/base-form/base-form.component';
 
 @Component({
-  selector: 'brand-form',
-  templateUrl: './brand-form.component.html',
-  styleUrls: ['./brand-form.component.scss'],
+  selector: 'category-form',
+  templateUrl: './category-form.component.html',
+  styleUrls: ['./category-form.component.scss'],
 })
-export class BrandFormComponent extends BaseFormComponent {
+export class CategoryFormComponent extends BaseFormComponent {
   constructor(private fb: FormBuilder) {
     super();
     this.createForm();

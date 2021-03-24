@@ -1,11 +1,31 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UtilService {
+  constructor() {}
 
-  constructor() { }
+  jsonToFromData(object, fileKeys: string[]): FormData {
+    //Change json to FormData
+    var formData = new FormData();
+    Object.keys(object).forEach((key) => {
+      if (object[key] != null) {
+        formData.append(key, object[key]);
+      }
+    });
+
+    for (let k of fileKeys) {
+      formData.delete(k);
+      if (object[k] && object[k].length) {
+        for (var i = 0; i < object[k].length; i++) {
+          formData.append(k, object[k][i]);
+        }
+      }
+    }
+
+    return formData;
+  }
 
   dynamicSortObject(property) {
     let prop = property.split('.');

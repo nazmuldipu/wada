@@ -1,5 +1,5 @@
 <div class="form-head">
-    {{exists?'Update': 'New'}} Brand
+    {{exists?'Update': 'New'}} Category
 </div>
 <ng-container *ngIf="err.length>0">
     <p class="px-4 text-center text-danger">{{err}}</p>
@@ -12,7 +12,8 @@
     </form-input>
     <form-input [fieldId]="'priority'" [control]="form.get('priority')" [type]="'number'">
     </form-input>
-    <form-file [fieldId]="'image'" [form]="form" [hints]="'Preferred image size is 400x400 px'" (err)="onError($event)"></form-file>
+    <form-file [fieldId]="'image'" [form]="form" [hints]="'Preferred image size is 400x400 px'" (err)="onError($event)">
+    </form-file>
 
     <!-- Buttons -->
     <div class="d-flex flex-row-reverse bd-highlight">
