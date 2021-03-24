@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BrandService } from 'src/service/brand.service';
 import { CategoryService } from 'src/service/category.service';
 import { ProductService } from 'src/service/product.service';
-import { SubCateogryService } from 'src/service/sub-cateogry.service';
+import { SubCategoryService } from 'src/service/sub-cateogry.service';
 import { SubSubCategoryService } from 'src/service/sub-sub-category.service';
 import { BrandPage } from 'src/shared/models/brand.model';
 import { CategoryPage } from 'src/shared/models/category.model';
@@ -35,7 +35,7 @@ export class NewProductsComponent implements OnInit {
     private service: ProductService,
     private brandService: BrandService,
     private categoryService: CategoryService,
-    private subCategoryService: SubCateogryService,
+    private subCategoryService: SubCategoryService,
     private subSubCategoryService: SubSubCategoryService,
     private activatedRoute: ActivatedRoute
   ) {

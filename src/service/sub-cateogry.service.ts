@@ -11,7 +11,7 @@ import { Pagination } from 'src/shared/models/pagination.model';
 @Injectable({
   providedIn: 'root',
 })
-export class SubCateogryService {
+export class SubCategoryService {
   url = 'api/sub-categories';
   imageLink: string;
 

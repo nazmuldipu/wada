@@ -52,7 +52,7 @@
             Menu
           </a>
           <div ngbDropdownMenu aria-labelledby="navbarDropdown1" class="dropdown-menu">
-            <a *ngFor="let cat of categoryTree.category" ngbDropdownItem [routerLink]="'/category/'+cat.slug"
+            <a *ngFor="let cat of subCategoryPage?.docs" ngbDropdownItem [routerLink]="'/category/'+cat.slug"
               (click)="$event.preventDefault()">{{cat.name}}</a>
           </div>
         </li>

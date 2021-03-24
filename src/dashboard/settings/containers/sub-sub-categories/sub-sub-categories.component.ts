@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from 'src/service/category.service';
-import { SubCateogryService } from 'src/service/sub-cateogry.service';
+import { SubCategoryService } from 'src/service/sub-cateogry.service';
 import { SubSubCategoryService } from 'src/service/sub-sub-category.service';
 import { CategoryPage } from 'src/shared/models/category.model';
 import { Pagination } from 'src/shared/models/pagination.model';
@@ -27,7 +27,7 @@ export class SubSubCategoriesComponent implements OnInit {
 
   constructor(
     private service: SubSubCategoryService,
-    private subCategoryService: SubCateogryService,
+    private subCategoryService: SubCategoryService,
     private categoryService: CategoryService
   ) {
     this.imageUrl = this.service.imageLink + '/image/';

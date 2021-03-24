@@ -14,7 +14,7 @@ import { ProductStockService } from './product-stock.service';
 import { UserService } from './user.service';
 import { BrandService } from './brand.service';
 import { CategoryService } from './category.service';
-import { SubCateogryService } from './sub-cateogry.service';
+import { SubCategoryService } from './sub-cateogry.service';
 import { SubSubCategoryService } from './sub-sub-category.service';
 
 @NgModule({
@@ -23,7 +23,7 @@ import { SubSubCategoryService } from './sub-sub-category.service';
     BrandService,
     CategoryService,
     RestDataService,
-    SubCateogryService,
+    SubCategoryService,
     SubSubCategoryService,
     UserService,
     UtilService,
