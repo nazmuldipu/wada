@@ -9,6 +9,7 @@ export class NgTableHeadComponent {
   @Input() tableName;
   @Input() columns;
   @Input() sortColumn;
+  
   @Output() onSort = new EventEmitter<any>();
 
   raiseSort(path) {

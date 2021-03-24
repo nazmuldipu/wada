@@ -38,7 +38,7 @@ export class SubCategoriesComponent implements OnInit {
     try {
       this.loading = true;
       this.categoryPage = await this.categoryService.getList(pagi).toPromise();
-      this.loading = false;
+      this.clear();
     } catch (error) {
       this.errorMessage = error.message;
     }
@@ -48,7 +48,7 @@ export class SubCategoriesComponent implements OnInit {
     try {
       this.loading = true;
       this.subCategoryPage = await this.service.getList(pagi).toPromise();
-      this.loading = false;
+      this.clear();
     } catch (error) {
       this.errorMessage = error.message;
     }
@@ -68,7 +68,7 @@ export class SubCategoriesComponent implements OnInit {
       this.loading = true;
       const resp = await this.service.create(subCategory).toPromise();
       this.subCategoryPage.docs.push(resp);
-      this.loading = false;
+      this.clear();
     } catch (err) {
       this.errorMessage = err.message;
     }
@@ -81,7 +81,7 @@ export class SubCategoriesComponent implements OnInit {
         .update(this.subCategory._id, subCategory)
         .toPromise();
       this.getList(new Pagination());
-      this.loading = false;
+      this.clear();
     } catch (err) {
       this.errorMessage = err.message;
     }
@@ -90,11 +90,13 @@ export class SubCategoriesComponent implements OnInit {
   async onDelete(id) {
     if (confirm('Are you sure to delete')) {
       try {
+        this.loading = true;
         const resp = await this.service.delete(id).toPromise();
         const index = this.subCategoryPage.docs.findIndex((f) => f._id === id);
         if (index > -1) {
           this.subCategoryPage.docs.splice(index, 1);
         }
+        this.clear();
       } catch (err) {
         this.errorMessage = err;
       }

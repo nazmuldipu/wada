@@ -3,12 +3,12 @@
 </div>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-7">
             <brands-table [brandPage]="brandPage" [imageUrl]="imageUrl" (edit)="onEdit($event)"
                 (refresh)="refreshData($event)">
             </brands-table>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-5">
             <div class=" border rounded">
                 <brand-form [item]="brand" [err]="errorMessage" (create)="onCreate($event)" (update)="onUpdate($event)"
                     (delete)="onDelete($event)">

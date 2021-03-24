@@ -38,9 +38,12 @@ td.form-head,
 .form-head {
   width: inherit;
   font-size: 20px !important;
-  line-height: 22px;
-  padding: 5px;
+  line-height: 34px;
+  padding: 8px 16px;
+
   background-color: $divider-color;
+  // background-color: #f8f9fa !important;
+
 
   &-link {
     text-decoration: none;

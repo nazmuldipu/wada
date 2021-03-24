@@ -13,7 +13,7 @@ export class SubSubCategoryTableComponent {
   @Output() edit = new EventEmitter<string>();
   @Output() refresh = new EventEmitter<any>();
 
-  tableName = 'Sub Sub Category Table';
+  tableName = 'SubSubCategory Table';
   columns = [
     {
       key: '_id',

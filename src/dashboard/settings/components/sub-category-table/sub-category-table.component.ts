@@ -26,7 +26,7 @@ export class SubCategoryTableComponent {
         };
       },
     },
-    { path: 'category.name', label: 'Category', searchable: true },
+    { path: 'category.name', label: 'Category' },
     { path: 'name', label: 'Name', searchable: true },
     { path: 'priority', label: 'Priority' },
     {

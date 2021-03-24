@@ -28,7 +28,7 @@ export class BrandsComponent implements OnInit {
     try {
       this.loading = true;
       this.brandPage = await this.service.getList(pagi).toPromise();
-      this.loading = false;
+      this.clear();
     } catch (error) {
       this.errorMessage = error.message;
     }
@@ -49,7 +49,7 @@ export class BrandsComponent implements OnInit {
       this.loading = true;
       const resp = await this.service.create(brand).toPromise();
       this.brandPage.docs.push(resp);
-      this.loading = false;
+      this.clear();
     } catch (err) {
       this.errorMessage = err.message;
     }
@@ -61,7 +61,7 @@ export class BrandsComponent implements OnInit {
       this.loading = true;
       const resp = await this.service.update(this.brand._id, brand).toPromise();
       this.getList(new Pagination());
-      this.loading = false;
+      this.clear();
     } catch (err) {
       this.errorMessage = err.message;
     }
@@ -70,11 +70,13 @@ export class BrandsComponent implements OnInit {
   async onDelete(id) {
     if (confirm('Are you sure to delete')) {
       try {
+        this.loading = true;
         const resp = await this.service.delete(id).toPromise();
         const index = this.brandPage.docs.findIndex((f) => f._id === id);
         if (index > -1) {
           this.brandPage.docs.splice(index, 1);
         }
+        this.clear();
       } catch (err) {
         this.errorMessage = err;
       }

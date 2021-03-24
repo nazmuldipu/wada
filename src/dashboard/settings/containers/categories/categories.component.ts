@@ -28,7 +28,7 @@ export class CategoriesComponent implements OnInit {
     try {
       this.loading = true;
       this.categoryPage = await this.service.getList(pagi).toPromise();
-      this.loading = false;
+      this.clear();
     } catch (error) {
       this.errorMessage = error.message;
     }
@@ -49,7 +49,7 @@ export class CategoriesComponent implements OnInit {
       this.loading = true;
       const resp = await this.service.create(category).toPromise();
       this.categoryPage.docs.push(resp);
-      this.loading = false;
+      this.clear();
     } catch (err) {
       this.errorMessage = err.message;
     }
@@ -62,7 +62,7 @@ export class CategoriesComponent implements OnInit {
         .update(this.category._id, category)
         .toPromise();
       this.getList(new Pagination());
-      this.loading = false;
+      this.clear();
     } catch (err) {
       this.errorMessage = err.message;
     }
@@ -71,11 +71,13 @@ export class CategoriesComponent implements OnInit {
   async onDelete(id) {
     if (confirm('Are you sure to delete')) {
       try {
+        this.loading = true;
         const resp = await this.service.delete(id).toPromise();
         const index = this.categoryPage.docs.findIndex((f) => f._id === id);
         if (index > -1) {
           this.categoryPage.docs.splice(index, 1);
         }
+        this.clear();
       } catch (err) {
         this.errorMessage = err;
       }
