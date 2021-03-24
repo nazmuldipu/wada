@@ -34,7 +34,6 @@ export class BrandService {
   update(id, brand: Brand): Observable<Brand> {
     console.log(brand);
     let fData = this.util.jsonToFromData(brand, ['image']);
-    console.log(fData);
     return this.dSrc.sendRequest('PUT', this.url + `/${id}`, fData, true, null);
   }
 

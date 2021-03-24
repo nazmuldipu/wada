@@ -16,8 +16,8 @@ export class NewProductsComponent implements OnInit {
   prodThumbUrl;
   
   constructor(private productService: ProductService, private cartService: CartService) {
-    this.prodImageUrl = this.productService.productLink + '/image/';
-    this.prodThumbUrl = this.productService.productLink + '/thumb/';
+    this.prodImageUrl = this.productService.imageLink + '/image/';
+    this.prodThumbUrl = this.productService.imageLink + '/thumb/';
   }
 
   ngOnInit(): void {

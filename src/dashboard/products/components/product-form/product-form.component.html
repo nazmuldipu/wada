@@ -1,87 +1,46 @@
 <nav class="navbar navbar-light bg-light border border-bottom-0">
     <a class="navbar-brand">{{ exists ? "Update" : "Add" }} Product</a>
 </nav>
-<!-- {{product | json}} -->
-<div class="list-group" *ngIf="!brand">
-    <li class="list-group-item"><strong>Please select a Brand</strong></li>
-    <form #brandSearch="ngForm" class="ml-auto form-inline my-2 my-lg-0" (ngSubmit)="onSearchBrand(brandSearch.value)">
-        <input class="form-control mr-sm-2 py-1" type="search" placeholder="Search Brands" aria-label="Search"
-            name="name" ngModel>
-        <button class="btn btn-sm btn-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
 
-    <a class="list-group-item list-group-item-action list-group-item-light py-1 text-dark" *ngFor="let br of brands"
-        (click)="onBrand(br.slug)">{{br.name}}</a>
+<div class="list-group" *ngIf="!brand">
+    <li class="list-group-item"><strong>Please select a Brand first</strong></li>
+    <a class="list-group-item list-group-item-action list-group-item-light py-1 text-dark" *ngFor="let brand of brands"
+        (click)="onBrand(brand._id)">{{brand.name}}</a>
 </div>
 
 <div class="list-group" *ngIf="brand && !category">
-    <li class="list-group-item"><strong>Please select a Category first</strong></li>
+    <li class="list-group-item"><strong>Please select a Category</strong></li>
     <a class="list-group-item list-group-item-action list-group-item-light py-1 text-dark"
-        *ngFor="let cat of categories" (click)="onCategory(cat.slug)">{{cat.name}}</a>
+        *ngFor="let cat of categories" (click)="onCategory(cat._id)">{{cat.name}}</a>
 </div>
 
-<div class="list-group" *ngIf="category && !subCategory && subCategories.length">
+<div class="list-group" *ngIf="category && !subCategory && subCategories?.length">
     <li class="list-group-item"><strong>Please select a Sub-Category</strong></li>
     <a class="list-group-item list-group-item-action list-group-item-light py-1 text-dark"
-        *ngFor="let scat of subCategories" (click)="onSubCategory(scat.slug)">{{scat.name}}</a>
+        *ngFor="let scat of subCategories" (click)="onSubCategory(scat._id)">{{scat.name}}</a>
 </div>
 
-<div class="list-group" *ngIf="subCategory && !subSubCategory">
+<div class="list-group" *ngIf="subCategory && !subSubCategory && subSubCategories?.length">
     <li class="list-group-item"><strong>Please select a Sub-Sub-Category</strong></li>
     <a class="list-group-item list-group-item-action list-group-item-light py-1 text-dark"
-        *ngFor="let sscat of subSubCategories" (click)="onSubSubCategory(sscat.slug)">{{sscat.name}}</a>
+        *ngFor="let sscat of subSubCategories" (click)="onSubSubCategory(sscat._id)">{{sscat.name}}</a>
 </div>
 
 
-<form [formGroup]="form" (ngSubmit)="submit()" class="p-3 border bg-white"
-    *ngIf="brand && category && (category.sub_category.length == 0 || subCategory) &&  ((category.sub_category.length == 0 || subCategory) || subCategory.sub_sub_category.length == 0 || subSubCategory)">
-    <div class="form-group row">
-        <label for="brand" class="col-sm-2 col-form-label">Brand</label>
-        <div class="col-sm-8">
-            <label class="form-control" id="brand">{{brand.name}}</label>
-        </div>
-        <div class="col-sm-2">
-            <button class="btn btn-sm btn-warning" (click)="onBrandChange()">Change</button>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label for="category" class="col-sm-2 col-form-label">Category</label>
-        <div class="col-sm-8">
-            <label class="form-control" id="category">{{category.name}}</label>
-        </div>
-        <div class="col-sm-2">
-            <button class="btn btn-sm btn-warning" (click)="onCategoryChange()">Change</button>
-        </div>
-    </div>
-    <div class="form-group row" *ngIf="subCategory">
-        <label for="category" class="col-sm-2 col-form-label">Sub Category</label>
-        <div class="col-sm-8">
-            <label class="form-control" id="category">{{subCategory?.name}}</label>
-        </div>
-        <div class="col-sm-2">
-            <button class="btn btn-sm btn-warning" (click)="onSubCategoryChange()">Change</button>
-        </div>
-    </div>
+<form [formGroup]="form" (ngSubmit)="submit()" class="p-3 border bg-white mb-5"
+    *ngIf="brand && category && (subCategories?.length == 0 || subCategory) &&  ((subCategories?.length == 0 || subCategory) || (subSubCategories?.length == 0 || subSubCategory))">
 
-    <div class="form-group row" *ngIf="subSubCategory">
-        <label for="category" class="col-sm-2 col-form-label">Sub Sub Category</label>
-        <div class="col-sm-8">
-            <label class="form-control" id="category">{{subSubCategory?.name}}</label>
-        </div>
-        <div class="col-sm-2">
-            <button class="btn btn-sm btn-warning" (click)="onSubSubCategoryChange()">Change</button>
-        </div>
-    </div>
+    <form-object-label [label]="'Brand*'" [name]="brand.name" (onChange)="onBrandChange()"></form-object-label>
+    <form-object-label [label]="'Category*'" [name]="category.name" (onChange)="onCategoryChange()"></form-object-label>
+    <form-object-label [label]="'SubCategory*'" [name]="subCategory.name" (onChange)="onSubCategoryChange()">
+    </form-object-label>
+    <form-object-label *ngIf="subSubCategory" [label]="'SubSubCategory'" [name]="subSubCategory?.name"
+        (onChange)="onSubSubCategoryChange()"></form-object-label>
 
     <!-- Form elements -->
     <form-input [fieldId]="'barcode'" [control]="form.get('barcode')"></form-input>
     <form-input [fieldId]="'name'" [control]="form.get('name')"></form-input>
     <form-textarea [fieldId]="'description'" [control]="form.get('description')"></form-textarea>
-    <div class="row">
-        <div class="col-md-6">
-            <form-input [fieldId]="'size'" [control]="form.get('size')"></form-input>
-        </div>
-    </div>
     <div class="row">
         <div class="col-md-6">
             <form-input [fieldId]="'priority'" [control]="form.get('priority')" [type]="'number'"></form-input>
@@ -90,43 +49,36 @@
             <form-input [fieldId]="'point'" [control]="form.get('point')" [type]="'number'"></form-input>
         </div>
         <div class="col-md-6">
+            <form-input [fieldId]="'size'" [control]="form.get('size')"></form-input>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
             <form-input [fieldId]="'price'" [control]="form.get('price')" [type]="'number'"></form-input>
         </div>
         <div class="col-md-6">
-            <form-input [fieldId]="'old_price'" [control]="form.get('old_price')" [type]="'number'"></form-input>
-        </div>
-    </div>    
-
-    <div class="form-group row">
-        <label for="thumb" class="col-sm-2 col-form-label">Thumb</label>
-        <div class="col-sm-10">
-            <input type="file" class="form-control" id="thumb" (change)="uploadThumb($event)">
+            <form-input [fieldId]="'mrp'" [control]="form.get('mrp')" [type]="'number'"></form-input>
         </div>
     </div>
+    <form-file [fieldId]="'thumb'" [form]="form" [hints]="'Preferred image size is 400x400 px'" (err)="onError($event)">
+    </form-file>
+    <form-file [fieldId]="'images'" [form]="form" [maxFileCount]="4" [hints]="'Preferred image size is 1024x400 px'"
+        (err)="onError($event)">
+    </form-file>
 
-    <div class="form-group row">
-        <label for="image" class="col-sm-2 col-form-label">Image</label>
-        <div class="col-sm-10">
-            <input type="file" class="form-control" id="image" (change)="uploadFile($event)" multiple>
-        </div>
-        <small class="text-danger" *ngIf="errorMessage.length > 0">
-            {{errorMessage}}
-        </small>
+
+    <!-- Buttons -->
+    <div class="d-flex flex-row-reverse bd-highlight">
+        <span (mouseenter)="mouseoverShifting = true">
+            <button type="submit" class="btn btn-sm btn-light mx-1" [disabled]="!form.valid">{{exists ?
+                'Update':'Save'}}</button>
+        </span>
+        <button type="button" *ngIf="exists" class="btn btn-sm btn-light mx-1" (click)="onDelete()">Delete</button>
+        <button type="button" class="btn btn-sm btn-light mx-1" (click)="clean()">Clear</button>
     </div>
 
-    <div class="d-flex justify-content-end">
-        <button type="submit" class="btn btn-primary  mx-1  " [ngClass]="{
-            disabled: form.invalid,
-            'btn-warning': exists,
-            'btn-success': !exists
-          }">
-            {{ exists ? "Update" : "Create" }}
-        </button>
+    <!-- Form validation error list -->
+    <div *ngIf="mouseoverShifting" class="text-danger">
+        <form-validator [form]="form"></form-validator>
     </div>
 </form>
-<button class="btn btn-danger btn-sm mx-1" (click)="onClose()">Close</button>
-<button class="btn btn-warning btn-sm mx-1" (click)="onClear()">Clear</button>
-
-<!-- {{form.value | json}} -->
-<!-- <p>product-form works!</p> -->
-<!-- I am in line 210 -->

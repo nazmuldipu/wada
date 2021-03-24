@@ -34,7 +34,7 @@ export class DetailsComponent implements OnInit {
   constructor(private productService: ProductService, private productDetailsService: ProductDetailsService,
     private productStockService: ProductStockService, private cartService: CartService, private activeRoute: ActivatedRoute) {
     this.id = activeRoute.snapshot.params['id'];
-    // this.imageUrl = this.productService.productLink + '/image/';
+    // this.imageUrl = this.productService.imageLink + '/image/';
     // this.shopImageUrl = this.shopService.shopLink + '/image/';
   }
 
@@ -52,7 +52,7 @@ export class DetailsComponent implements OnInit {
       this.getProductStock(id);
       this.imageUrls = [];
       for (let i = 0; i < this.product.image_count; i++) {
-        const url = this.productService.productLink + '/image/' + this.product._id + '/' + i;
+        const url = this.productService.imageLink + '/image/' + this.product._id + '/' + i;
         this.imageUrls.push({ image: url, thumbImage: url })
       }
     } catch (error) {

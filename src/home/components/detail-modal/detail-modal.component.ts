@@ -29,8 +29,8 @@ export class DetailModalComponent implements OnChanges {
         const url = this.prodImageUrl + this.product._id + '/' + i;
         this.imageUrls.push({ image: url, thumbImage: url })
       }
-      if (this.product.old_price > 0) {
-        this.discount = (1 - (this.product.price / this.product.old_price)) * 100;
+      if (this.product.mrp > 0) {
+        this.discount = (1 - (this.product.price / this.product.mrp)) * 100;
       }
     }
   }

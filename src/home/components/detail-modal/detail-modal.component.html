@@ -13,8 +13,8 @@
         <div class="text-secondary">{{product.size}}</div>
         <div class="product-price">
             <ins><span>৳{{product.price}}</span></ins>
-            <del *ngIf="product.old_price > 0" class=""><span>৳{{product.old_price}}</span></del>
-            <span *ngIf="product.old_price > 0" class="p-off">{{discount | number:'1.2-2'}}% Off</span>
+            <del *ngIf="product.mrp > 0" class=""><span>৳{{product.mrp}}</span></del>
+            <span *ngIf="product.mrp > 0" class="p-off">{{discount | number:'1.2-2'}}% Off</span>
         </div>
         <div class="product-detail-extralink">
             <div class="quantityEditor">

@@ -9,11 +9,13 @@ import { FreeDeliveryComponent } from './containers/free-delivery/free-delivery.
 import { ProductsComponent } from './containers/products/products.component';
 import { StorehouseComponent } from './containers/storehouse/storehouse.component';
 import { NewProductsComponent } from './containers/new-products/new-products.component';
+import { ProductTableComponent } from './components/product-table/product-table.component';
 
 export const ROUTES: Routes = [
   { path: 'storehouse', component: StorehouseComponent },
   { path: 'free-delivery', component: FreeDeliveryComponent },
   { path: 'new-products', component: NewProductsComponent },
+  { path: 'new-products/:id', component: NewProductsComponent },
   { path: '', component: ProductsComponent },
 ];
 
@@ -25,7 +27,7 @@ export const ROUTES: Routes = [
     ProductDetailsFormComponent, 
     ProductFormComponent, 
     FreeDeliveryComponent, 
-    NewProductsComponent
+    NewProductsComponent, ProductTableComponent
   ],
   imports: [
     SharedModule, RouterModule.forChild(ROUTES)

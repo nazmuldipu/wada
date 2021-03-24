@@ -2,8 +2,18 @@
     <h3>Products</h3>
 </div>
 
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8">
+            <product-table [productPage]="productPage" [thumbUrl]="thumbUrl" (edit)="onEdit($event)"
+                (refresh)="refreshData($event)">
+            </product-table>
+        </div>
+    </div>
+</div>
+
 <!-- Toast service will display here -->
-<app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
+<!-- <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
 
 <div class="container-fluid">
     <loading *ngIf="loading"></loading>
@@ -52,8 +62,6 @@
                             <td class="text-center">{{ product.active?'Active':'Inactive' }}</td>
                             <td class="text-right">
                                 <div class="btn-group mr-2" role="group" aria-label="First group">
-                                    <!-- <button type="button" class="btn btn-light border"
-                                        (click)="onAddDetails(product._id)"> <i class="fa fa-list"></i> </button> -->
                                     <button type="button" class="btn border"
                                         [ngClass]="product.active?'btn-danger':'btn-primary'"
                                         (click)="onToggleActive(product._id, product.active)"> <i class="fa"
@@ -101,7 +109,7 @@
                     </tr>
                     <tr>
                         <td class="pl-2">Old price</td>
-                        <th>{{product.old_price}}</th>
+                        <th>{{product.mrp}}</th>
                     </tr>
                     <tr>
                         <td class="pl-2">Category</td>
@@ -123,7 +131,6 @@
                 </tbody>
             </table>
 
-            <!-- {{ product?.details?.items| json}} -->
             <div *ngFor="let item of product?.details?.items">
                 <div class="row m-0 bg-white py-2">
                     <div class="col ">
@@ -154,4 +161,4 @@
 
 
     </div>
-</div>
+</div> -->

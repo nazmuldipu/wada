@@ -19,7 +19,7 @@ export class CartComponent implements OnInit {
 
   constructor(private cartService: CartService, private productService: ProductService,
     private orderService: OrderService) {
-    this.thumbUrl = this.productService.productLink + '/thumb/';
+    this.thumbUrl = this.productService.imageLink + '/thumb/';
   }
 
   ngOnInit(): void {

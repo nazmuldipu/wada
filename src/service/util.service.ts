@@ -12,7 +12,7 @@ export class UtilService {
     //Change json to FormData
     var formData = new FormData();
     Object.keys(object).forEach((key) => {
-      if (object[key] != null) {
+      if (object[key] != null && object[key]) {
         formData.append(key, object[key]);
       }
     });

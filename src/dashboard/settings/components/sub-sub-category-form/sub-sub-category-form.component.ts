@@ -1,4 +1,11 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  Output,
+  EventEmitter,
+  SimpleChanges,
+} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { BaseFormComponent } from 'src/shared/forms/base-form/base-form.component';
 import { Category } from 'src/shared/models/category.model';
@@ -21,6 +28,16 @@ export class SubSubCategoryFormComponent extends BaseFormComponent {
   constructor(private fb: FormBuilder) {
     super();
     this.createForm();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    super.ngOnChanges(changes);
+    if (changes.item && this.item) {
+      this.onCategory(this.item['category']['_id']);
+    }
+    if (changes.subCategories && this.item && this.item['subCategory']) {
+      this.onSubCategory(this.item['subCategory']['_id']);
+    }
   }
 
   createForm() {

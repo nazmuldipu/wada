@@ -60,6 +60,18 @@ export const SideNavbar = [
     icon: 'fa-tag',
     roles: ['ADMIN', 'SHOP'],
     subnav: [
+      {
+        name: 'New Products',
+        icon: 'fa-plus',
+        roles: ['ADMIN'],
+        link: '/dashboard/products/new-products',
+      },
+      {
+        name: 'Products',
+        icon: 'fa-shopping-bag',
+        roles: ['SHOP', 'ADMIN'],
+        link: '/dashboard/products/',
+      },
       // {
       //   name: 'Brands', icon: 'fa-tags',
       //   roles: ['ADMIN'], link: '/dashboard/products/brands'
@@ -74,12 +86,7 @@ export const SideNavbar = [
       //   name: 'Shops', icon: 'fa-shopping-bag',
       //   roles: ['ADMIN'], link: '/dashboard/products/shops',
       // },
-      {
-        name: 'Products',
-        icon: 'fa-shopping-bag',
-        roles: ['SHOP', 'ADMIN'],
-        link: '/dashboard/products/',
-      },
+
       {
         name: 'Free Delivery',
         icon: 'fa-bicycle',

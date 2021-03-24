@@ -19,8 +19,8 @@ export class FreeDeliveryComponent implements OnInit {
   thumbUrl = '';
 
   constructor(private productService: ProductService, private utilService: UtilService) {
-    this.imageUrl = this.productService.productLink + '/image/';
-    this.thumbUrl = this.productService.productLink + '/thumb/';
+    this.imageUrl = this.productService.imageLink + '/image/';
+    this.thumbUrl = this.productService.imageLink + '/thumb/';
   }
 
   ngOnInit(): void {

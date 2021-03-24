@@ -31,8 +31,8 @@ export class CategoryComponent implements OnInit {
 
   constructor(private productService: ProductService, private activeRoute: ActivatedRoute,
     private cartService: CartService, private modalService: NgbModal) {
-    this.prodImageUrl = this.productService.productLink + '/image/';
-    this.prodThumbUrl = this.productService.productLink + '/thumb/';
+    this.prodImageUrl = this.productService.imageLink + '/image/';
+    this.prodThumbUrl = this.productService.imageLink + '/thumb/';
   }
 
   ngOnInit(): void {
