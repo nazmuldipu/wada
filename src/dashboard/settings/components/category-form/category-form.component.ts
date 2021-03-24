@@ -21,16 +21,16 @@ export class CategoryFormComponent extends BaseFormComponent {
     });
   }
 
-  uploadFile(event) {
-    if (event.target.files.length > 0 && event.target.files.length < 5) {
-      const files = event.target.files;
-      this.form.patchValue({
-        image: files,
-      });
-    } else if (event.target.files.length > 4) {
-      this.err = 'Brand image limit is 4';
-    }
-  }
+  // uploadFile(event) {
+  //   if (event.target.files.length > 0 && event.target.files.length < 5) {
+  //     const files = event.target.files;
+  //     this.form.patchValue({
+  //       image: files,
+  //     });
+  //   } else if (event.target.files.length > 4) {
+  //     this.err = 'Brand image limit is 4';
+  //   }
+  // }
 
   onError(event) {
     this.err = event;

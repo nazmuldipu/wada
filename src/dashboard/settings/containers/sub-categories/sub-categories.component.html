@@ -1,1 +1,20 @@
-<p>sub-categories works!</p>
+<div class="container-fluid component-head">
+    <h3>Sub Categories</h3>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <sub-category-table [subCategoryPage]="subCategoryPage" [imageUrl]="imageUrl" (edit)="onEdit($event)"
+                (refresh)="refreshData($event)">
+            </sub-category-table>
+        </div>
+        <div class="col-md-6">
+            <div class=" border rounded">
+                <sub-category-form [item]="subCategory" [categories]="categoryPage?.docs" [err]="errorMessage" (create)="onCreate($event)"
+                    (update)="onUpdate($event)" (delete)="onDelete($event)">
+                </sub-category-form>
+            </div>
+        </div>
+    </div>
+</div>

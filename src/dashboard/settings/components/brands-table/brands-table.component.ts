@@ -22,7 +22,7 @@ export class BrandsTableComponent {
         return {
           classname: 'table_image img-thumbnail',
           text: 'Edit',
-          url: this.imageUrl,
+          url: this.imageUrl + `${brand._id}`,
           event: { key: 'img', id: brand._id },
         };
       },

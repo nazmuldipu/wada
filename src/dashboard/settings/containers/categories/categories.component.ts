@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from 'src/service/category.service';
 import { Category, CategoryPage } from 'src/shared/models/category.model';
+import { Pagination } from 'src/shared/models/pagination.model';
 
 @Component({
   selector: 'app-categories',
@@ -20,21 +21,13 @@ export class CategoriesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getList();
+    this.getList(new Pagination());
   }
 
-  async getList(
-    page: number = 1,
-    limit: number = 8,
-    sort: string = 'name',
-    order: string = 'asc',
-    param: string = ''
-  ) {
+  async getList(pagi: Pagination) {
     try {
       this.loading = true;
-      this.categoryPage = await this.service
-        .getList(page, limit, sort, order, param)
-        .toPromise();
+      this.categoryPage = await this.service.getList(pagi).toPromise();
       this.loading = false;
     } catch (error) {
       this.errorMessage = error.message;
@@ -42,7 +35,8 @@ export class CategoriesComponent implements OnInit {
   }
 
   refreshData({ page, limit, sort, order, search }) {
-    this.getList(page, limit, sort, order, search);
+    this.getList(new Pagination(page, limit, sort, order, search));
+    // this.getList({ page, limit, sort, order, param: search });
   }
 
   onEdit(event) {
@@ -67,7 +61,7 @@ export class CategoriesComponent implements OnInit {
       const resp = await this.service
         .update(this.category._id, category)
         .toPromise();
-      this.getList();
+      this.getList(new Pagination());
       this.loading = false;
     } catch (err) {
       this.errorMessage = err.message;

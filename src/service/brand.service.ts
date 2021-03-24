@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { RestDataService } from './rest-data.service';
-import { Brand, BrandPage } from 'src/shared/models/brand.model';
 import { Observable } from 'rxjs';
-import { HttpParams } from '@angular/common/http';
+import { Brand, BrandPage } from 'src/shared/models/brand.model';
+import { Pagination } from 'src/shared/models/pagination.model';
+
+import { RestDataService } from './rest-data.service';
 import { UtilService } from './util.service';
 
 @Injectable({
@@ -21,20 +22,8 @@ export class BrandService {
     return this.dSrc.sendRequest('POST', this.url, fData, true, null);
   }
 
-  getList(
-    page: number = 1,
-    limit: number = 8,
-    sort: string = 'name',
-    order: string = 'asc',
-    param: string = ''
-  ): Observable<BrandPage> {
-    let sparam = new HttpParams()
-      .set('page', page.toString())
-      .set('limit', limit.toString())
-      .set('sort', sort)
-      .set('order', order)
-      .set('param', param);
-
+  getList(pagi: Pagination): Observable<BrandPage> {
+    let sparam = this.util.paginationToHttpParam(pagi);
     return this.dSrc.sendRequest('GET', this.url, null, true, sparam);
   }
 

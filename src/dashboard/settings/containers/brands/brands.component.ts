@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BrandService } from 'src/service/brand.service';
 import { Brand, BrandPage } from 'src/shared/models/brand.model';
+import { Pagination } from 'src/shared/models/pagination.model';
 
 @Component({
   selector: 'app-brands',
@@ -20,29 +21,21 @@ export class BrandsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getList();
+    this.getList(new Pagination());
   }
 
-  async getList(
-    page: number = 1,
-    limit: number = 8,
-    sort: string = 'name',
-    order: string = 'asc',
-    param: string = ''
-  ) {
+  async getList(pagi: Pagination) {
     try {
       this.loading = true;
-      this.brandPage = await this.service
-        .getList(page, limit, sort, order, param)
-        .toPromise();
+      this.brandPage = await this.service.getList(pagi).toPromise();
       this.loading = false;
     } catch (error) {
       this.errorMessage = error.message;
     }
   }
-  
+
   refreshData({ page, limit, sort, order, search }) {
-    this.getList(page, limit, sort, order, search);
+    this.getList(new Pagination(page, limit, sort, order, search));
   }
 
   onEdit(event) {
@@ -67,7 +60,7 @@ export class BrandsComponent implements OnInit {
     try {
       this.loading = true;
       const resp = await this.service.update(this.brand._id, brand).toPromise();
-      this.getList();
+      this.getList(new Pagination());
       this.loading = false;
     } catch (err) {
       this.errorMessage = err.message;

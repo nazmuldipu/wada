@@ -14,14 +14,17 @@ import { ProductStockService } from './product-stock.service';
 import { UserService } from './user.service';
 import { BrandService } from './brand.service';
 import { CategoryService } from './category.service';
+import { SubCateogryService } from './sub-cateogry.service';
 
 @NgModule({
   providers: [
-    AuthGuardService,
     AuthService,
     BrandService,
-    CartService,
     CategoryService,
+    SubCateogryService,
+    
+    AuthGuardService,
+    CartService,
     InventoryService,
     OrderService,
     ProductDetailsService,

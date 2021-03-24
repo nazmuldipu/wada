@@ -1,18 +1,27 @@
 <div class="form-head">
-    {{exists?'Update': 'New'}} Category
+    {{exists?'Update': 'New'}} Sub Category
 </div>
 <ng-container *ngIf="err.length>0">
     <p class="px-4 text-center text-danger">{{err}}</p>
 </ng-container>
 
-<form [formGroup]="form" (ngSubmit)="submit()" (mouseleave)="mouseoverShifting = false" class="p-3">
+<div class="list-group" *ngIf="!category">
+    <li class="list-group-item"><strong>Please select a Category first</strong></li>
+    <a class="list-group-item list-group-item-action list-group-item-light py-1 text-dark"
+        *ngFor="let cat of categories" (click)="onCategory(cat._id)">{{cat.name}}</a>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="submit()" (mouseleave)="mouseoverShifting = false" class="p-3" *ngIf="category">
+
+    <form-object-label [label]="'Category*'" [name]="category.name" (onChange)="category=null"></form-object-label>
 
     <!-- Form Elements -->
     <form-input [fieldId]="'name'" [control]="form.get('name')">
     </form-input>
     <form-input [fieldId]="'priority'" [control]="form.get('priority')" [type]="'number'">
     </form-input>
-    <form-file [fieldId]="'image'" [form]="form" [hints]="'Preferred image size is 1024x400 px'" (err)="onError($event)">
+    <form-file [fieldId]="'images'" [form]="form" [hints]="'Preferred image size is 1024x400 px'"
+        (err)="onError($event)">
     </form-file>
 
     <!-- Buttons -->

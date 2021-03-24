@@ -1,19 +1,19 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { CategoryPage } from 'src/shared/models/category.model';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { SubCategoryPage } from 'src/shared/models/sub-category.model';
 
 @Component({
-  selector: 'category-table',
-  templateUrl: './category-table.component.html',
-  styleUrls: ['./category-table.component.scss'],
+  selector: 'sub-category-table',
+  templateUrl: './sub-category-table.component.html',
+  styleUrls: ['./sub-category-table.component.scss'],
 })
-export class CategoryTableComponent {
-  @Input() categoryPage: CategoryPage;
+export class SubCategoryTableComponent {
+  @Input() subCategoryPage: SubCategoryPage;
   @Input() imageUrl: string;
 
   @Output() edit = new EventEmitter<string>();
   @Output() refresh = new EventEmitter<any>();
 
-  tableName = 'Category Table';
+  tableName = 'Sub Category Table';
   columns = [
     {
       key: '_id',
@@ -21,11 +21,12 @@ export class CategoryTableComponent {
       content: (category) => {
         return {
           classname: 'table_image img-thumbnail',
-          url: this.imageUrl + `${category._id}`,
+          url: this.imageUrl + `${category._id}/0/`,
           event: { key: 'img', id: category._id },
         };
       },
     },
+    { path: 'category.name', label: 'Category', searchable: true },
     { path: 'name', label: 'Name', searchable: true },
     { path: 'priority', label: 'Priority' },
     {

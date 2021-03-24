@@ -24,10 +24,11 @@ import { NgTableBodyComponent } from './ngTable/ng-table-body/ng-table-body.comp
 import { NgTableFootComponent } from './ngTable/ng-table-foot/ng-table-foot.component';
 import { NgTableHeadComponent } from './ngTable/ng-table-head/ng-table-head.component';
 import { FormFileComponent } from './forms/form-file/form-file.component';
+import { FormObjectLabelComponent } from './forms/form-object-label/form-object-label.component';
 
 
 @NgModule({
-  declarations: [OfferBoxComponent, Product2Component, LoadingComponent, ToastsComponent, PaginationComponent, BestSellersComponent, SideAdvComponent, ProductRelatedComponent, FormInputComponent, FormPropertyValidatorComponent, FormPasswordComponent, FormValidatorComponent, BaseFormComponent, AlertMessagesComponent, FormTextareaComponent, NgTableComponent, NgTableBodyComponent, NgTableFootComponent, NgTableHeadComponent, FormFileComponent],
+  declarations: [OfferBoxComponent, Product2Component, LoadingComponent, ToastsComponent, PaginationComponent, BestSellersComponent, SideAdvComponent, ProductRelatedComponent, FormInputComponent, FormPropertyValidatorComponent, FormPasswordComponent, FormValidatorComponent, BaseFormComponent, AlertMessagesComponent, FormTextareaComponent, NgTableComponent, NgTableBodyComponent, NgTableFootComponent, NgTableHeadComponent, FormFileComponent, FormObjectLabelComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -41,6 +42,7 @@ import { FormFileComponent } from './forms/form-file/form-file.component';
     CommonModule,
     FormFileComponent,
     FormInputComponent,
+    FormObjectLabelComponent,
     FormPasswordComponent,
     FormValidatorComponent,
     FormsModule,

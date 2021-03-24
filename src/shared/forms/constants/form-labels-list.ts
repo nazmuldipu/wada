@@ -1,5 +1,6 @@
 export const LABEL_LIST: object = {
   barcode: 'Barcode',
+  categoryId: 'Category',
   description: 'Description',
   email: 'Email',
   image: 'Image',

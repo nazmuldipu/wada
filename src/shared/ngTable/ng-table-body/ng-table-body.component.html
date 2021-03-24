@@ -13,7 +13,7 @@
                     [routerLink]="column.content(item).link">{{column.content(item).text}}</a>
 
                 <img *ngSwitchCase="'image'" [class]="column.content(item).classname"
-                    [src]="column.content(item).url + column.content(item).event.id" />
+                    [src]="column.content(item).url" />
                 <!-- <img *ngSwitchCase="'image'" [class]="column.content(item).classname"
                     [src]="column.content(item).url + column.content(item).id " [alt]="product.name + ' image'" /> -->
 

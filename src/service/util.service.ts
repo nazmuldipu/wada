@@ -1,4 +1,6 @@
+import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Pagination } from 'src/shared/models/pagination.model';
 
 @Injectable({
   providedIn: 'root',
@@ -25,6 +27,15 @@ export class UtilService {
     }
 
     return formData;
+  }
+
+  paginationToHttpParam(pagi: Pagination): HttpParams {
+    return new HttpParams()
+      .set('page', pagi.page.toString())
+      .set('limit', pagi.limit.toString())
+      .set('sort', pagi.sort)
+      .set('order', pagi.order)
+      .set('param', pagi.param);
   }
 
   dynamicSortObject(property) {

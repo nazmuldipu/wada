@@ -24,10 +24,10 @@
     <pagination [page]="data.page" [collectionSize]="data.totalDocs" [pageSize]="data.limit" [short]="short"
         (pageChange)="handlePagination($event)">
     </pagination>
-
-    <select class="custom-select" style="width: auto" [ngModel]="data.limit" (ngModelChange)="handlePageSize($event)">
-        <option [ngValue]="4">৪/পেজ</option>
-        <option [ngValue]="8">৮/পেজ</option>
-        <option [ngValue]="16">১৬/পেজ</option>
+    <select class="form-control form-control-sm" style="width: auto" [ngModel]="data.limit"
+        (ngModelChange)="handlePageSize($event)">
+        <option [ngValue]="4">4/Page</option>
+        <option [ngValue]="8">8/Page</option>
+        <option [ngValue]="16">16/Page</option>
     </select>
 </div>

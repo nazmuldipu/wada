@@ -10,6 +10,8 @@ import { BrandsTableComponent } from './components/brands-table/brands-table.com
 import { BrandFormComponent } from './components/brand-form/brand-form.component';
 import { CategoryFormComponent } from './components/category-form/category-form.component';
 import { CategoryTableComponent } from './components/category-table/category-table.component';
+import { SubCategoryFormComponent } from './components/sub-category-form/sub-category-form.component';
+import { SubCategoryTableComponent } from './components/sub-category-table/sub-category-table.component';
 
 export const ROUTES: Routes = [
   { path: 'brands', component: BrandsComponent },
@@ -28,6 +30,8 @@ export const ROUTES: Routes = [
     BrandFormComponent,
     CategoryFormComponent,
     CategoryTableComponent,
+    SubCategoryFormComponent,
+    SubCategoryTableComponent,
   ],
   imports: [SharedModule, RouterModule.forChild(ROUTES)],
 })
