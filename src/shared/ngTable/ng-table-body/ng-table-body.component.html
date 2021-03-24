@@ -1,0 +1,23 @@
+<tr *ngFor="let item of data;let i = index;" key={item._id}>
+    <td *ngFor="let column of columns" [ngClass]="column.className?column.className:''">
+        <ng-container *ngIf="!column?.content; else contentElement">
+            {{renderCell(item, column, i)}}
+        </ng-container>
+        <ng-template #contentElement>
+            <container-element [ngSwitch]="column.type">
+
+                <button *ngSwitchCase="'button'" [class]="column.content(item).classname"
+                    (click)="handleClick(column.content(item).event)">{{column.content(item).text}}</button>
+
+                <a *ngSwitchCase="'link'" [class]="column.content(item).classname"
+                    [routerLink]="column.content(item).link">{{column.content(item).text}}</a>
+
+                <img *ngSwitchCase="'image'" [class]="column.content(item).classname"
+                    [src]="column.content(item).url + column.content(item).event.id" />
+                <!-- <img *ngSwitchCase="'image'" [class]="column.content(item).classname"
+                    [src]="column.content(item).url + column.content(item).id " [alt]="product.name + ' image'" /> -->
+
+            </container-element>
+        </ng-template>
+    </td>
+</tr>

@@ -12,11 +12,13 @@ import { InventoryService } from './inventory.service';
 import { OrderService } from './order.service';
 import { ProductStockService } from './product-stock.service';
 import { UserService } from './user.service';
+import { BrandService } from './brand.service';
 
 @NgModule({
   providers: [
     AuthGuardService,
     AuthService,
+    BrandService,
     CartService,
     InventoryService,
     OrderService,
@@ -27,7 +29,7 @@ import { UserService } from './user.service';
     StorehouseService,
     ToastService,
     UserService,
-    UtilService
+    UtilService,
   ],
 })
-export class ServiceModule { }
+export class ServiceModule {}

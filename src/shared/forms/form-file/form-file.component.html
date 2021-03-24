@@ -1,0 +1,11 @@
+<div class="form-group" [class]="col?'':'row'">
+    <label *ngIf="showLabel" [for]="fieldId" class="d-none d-sm-block col-form-label col-form-label-sm"
+        [class]="col?'p-0':'col-sm-3'">
+        {{label}}
+    </label>
+    <div [class]="col?'':'col-sm-9'">
+        <small id="emailHelp" class="form-text text-muted">{{hints}}</small>
+        <input type="file" class="form-control-file form-control-file-sm" [id]="fieldId" (change)="uploadFile($event)"
+            autocomplete="off" multiple>
+    </div>
+</div>

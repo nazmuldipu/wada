@@ -20,7 +20,7 @@
       <a class="link user" title="Register"><span>Logout</span></a>
     </div>
     <div class="my-2 border-right"></div>
-    <div class="p-2" *ngIf="authService.isAuthenticated()">
+    <div class="p-2" *ngIf="authService.isAdmin()">
       <a class="link user" routerLink="/dashboard" title="Register"><span>Dashboard</span></a>
     </div>
     <div class="p-2" *ngIf="!authService.isAuthenticated()">

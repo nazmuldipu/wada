@@ -23,6 +23,11 @@ export const ROUTES: Routes = [
         component: ChangePasswordComponent,
       },
       {
+        path: 'settings',
+        loadChildren: () =>
+          import('./settings/settings.module').then((m) => m.SettingsModule),
+      },
+      {
         path: 'orders',
         loadChildren: () =>
           import('./orders/orders.module').then((m) => m.OrdersModule),
@@ -39,8 +44,9 @@ export const ROUTES: Routes = [
       },
       {
         path: 'inventory',
-        loadChildren: () => import('./inventory/inventory.module').then((m) => m.InventoryModule)
-      }
+        loadChildren: () =>
+          import('./inventory/inventory.module').then((m) => m.InventoryModule),
+      },
     ],
   },
 ];
@@ -51,12 +57,8 @@ export const ROUTES: Routes = [
     IndexComponent,
     ChangePasswordComponent,
     DashNavbarComponent,
-    DashSideNavbarComponent
+    DashSideNavbarComponent,
   ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    RouterModule.forChild(ROUTES)
-  ]
+  imports: [CommonModule, SharedModule, RouterModule.forChild(ROUTES)],
 })
-export class DashboardModule { }
+export class DashboardModule {}

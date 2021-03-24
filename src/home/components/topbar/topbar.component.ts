@@ -3,42 +3,60 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/service/auth.service';
 import { CartService } from 'src/service/cart.service';
+import { UserService } from 'src/service/user.service';
 
 @Component({
   selector: 'topbar',
   templateUrl: './topbar.component.html',
-  styleUrls: ['./topbar.component.scss']
+  styleUrls: ['./topbar.component.scss'],
 })
 export class TopbarComponent implements OnInit {
   loading = false;
   collapsed = true;
   errorMessage = '';
 
-  constructor(private router: Router,
-    private activeRoute: ActivatedRoute, public authService: AuthService,
-    private cartService: CartService) { }
+  constructor(
+    private router: Router,
+    private activeRoute: ActivatedRoute,
+    private userService: UserService,
+    public authService: AuthService,
+    private cartService: CartService
+  ) {}
 
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void {}
 
-  
-
-  async onLogin(value){
-    console.log(value);
-    this.loading = true;
+  async onLogin(value) {
     try {
-      const resp = await this.authService.authenticate(value.phone, value.password).toPromise();
-      console.log(resp);
-      this.loading = false;
+      this.loading = true;
+      const resp = await this.authService
+        .authenticate(value.phone, value.password)
+        .toPromise();
       localStorage.setItem('token', resp.token);
-      let returnUrl =  this.activeRoute.snapshot.queryParamMap.get('returnUrl') ||'/dashboard';
-      localStorage.setItem('returnUrl', returnUrl);
-      this.cartService.getMyCart();
-      this.router.navigateByUrl(returnUrl);
+
+      const user = await this.userService.getUserProfile().toPromise();
+      this.userService._userSource.next(user);
+      localStorage.setItem('role', user.role);
+
+      if (user.role === 'ADMIN') {
+        this.router.navigateByUrl('/dashboard');
+      } else if (user.role === 'USER') {
+        let returnUrl =
+          this.activeRoute.snapshot.queryParamMap.get('returnUrl') || '/';
+        localStorage.setItem('returnUrl', returnUrl);
+        // this.cartService.getMyCart();
+        this.router.navigateByUrl(returnUrl);
+      }
+
+      this.loading = false;
+      // console.log(resp);
+      // let returnUrl =
+      //   this.activeRoute.snapshot.queryParamMap.get('returnUrl') ||
+      //   '/dashboard';
+      // localStorage.setItem('returnUrl', returnUrl);
+      // // this.cartService.getMyCart();
+      // this.router.navigateByUrl(returnUrl);
     } catch (err) {
-      this.errorMessage = err;
-      console.log(this.errorMessage);
+      this.errorMessage = err.message;
     }
   }
 
@@ -52,7 +70,6 @@ export class TopbarComponent implements OnInit {
     //       if (data) {
     //         this.loading = false;
     //         this.form.reset();
-
     //         localStorage.setItem('token', data.token);
     //         let returnUrl =
     //           this.activeRoute.snapshot.queryParamMap.get('returnUrl') ||
@@ -75,13 +92,12 @@ export class TopbarComponent implements OnInit {
     // }
   }
 
-  onLogout(){
-    console.log('onLogout')
+  onLogout() {
+    console.log('onLogout');
     this.authService.logout();
   }
 
-  onClickCloseErrorMessage(){
+  onClickCloseErrorMessage() {
     this.errorMessage = '';
   }
-
 }

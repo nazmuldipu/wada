@@ -31,7 +31,27 @@
 // Set table cell padding
 .table th,
 .table td {
-  padding: 2px;
+  padding: 2px 7px;
+}
+
+td.form-head,
+.form-head {
+  width: inherit;
+  font-size: 20px !important;
+  line-height: 22px;
+  padding: 5px;
+  background-color: $divider-color;
+
+  &-link {
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 16px;
+  }
+}
+.table_image {
+  height: 60px;
+  width: auto;
+  // border: 1px solid gray;
 }
 
 a {
@@ -124,4 +144,20 @@ a:focus {
   height: 2px;
   background: red;
   margin: 0 10px;
+}
+
+.edit_link {
+  columns: $primary-text-color;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 0 4px;
+  border-radius: 3px;
+  color: $primary-color-light;
+  border: 1px solid gray;
+
+  &:hover {
+    text-decoration: none;
+    background-color: $secondary-text-color;
+    color: $primary-color-text;
+  }
 }

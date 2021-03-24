@@ -5,24 +5,23 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { HttpParams } from '@angular/common/http';
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
   userUrl = 'api/users';
 
-  private _userSource = new BehaviorSubject<User>({} as User);
+  _userSource = new BehaviorSubject<User>({} as User);
   user$ = this._userSource.asObservable();
 
-  constructor(private dataSource: RestDataService) { }
+  constructor(private dSrc: RestDataService) {}
 
   userRegistration(user: User): Observable<User> {
-    return this.dataSource.sendRequest('POST', this.userUrl, user, false, null);
+    return this.dSrc.sendRequest('POST', this.userUrl, user, false, null);
   }
 
   update(id, user): Observable<User> {
-    return this.dataSource.sendRequest(
+    return this.dSrc.sendRequest(
       'PUT',
       this.userUrl + `/${id}`,
       user,
@@ -32,11 +31,11 @@ export class UserService {
   }
 
   getAll(): Observable<User[]> {
-    return this.dataSource.sendRequest('GET', this.userUrl, null, true, null);
+    return this.dSrc.sendRequest('GET', this.userUrl, null, true, null);
   }
 
   get(id): Observable<User> {
-    return this.dataSource.sendRequest(
+    return this.dSrc.sendRequest(
       'GET',
       this.userUrl + `/${id}`,
       null,
@@ -47,27 +46,22 @@ export class UserService {
 
   search(param: string): Observable<User[]> {
     const paramUrl = new HttpParams().set('param', param);
-    return this.dataSource.sendRequest('GET', this.userUrl + '/search', null, false, paramUrl)
+    return this.dSrc.sendRequest(
+      'GET',
+      this.userUrl + '/search',
+      null,
+      false,
+      paramUrl
+    );
   }
 
-  getUserProfile() {
-    this.dataSource
-      .sendRequest('GET', this.userUrl + '/me', null, true, null)
-      .pipe(take(2))
-      .subscribe(
-        (data) => {
-          this._userSource.next(data);
-        },
-        (error) => {
-          console.log('getUserProfile ERROR');
-          console.log(error);
-        }
-      );
+  getUserProfile(): Observable<User> {
+    return this.dSrc.sendRequest('GET', this.userUrl + '/me', null, true, null);   
   }
 
   resetPassword(id, password: string): Observable<any> {
     const value = { password };
-    return this.dataSource.sendRequest(
+    return this.dSrc.sendRequest(
       'PATCH',
       this.userUrl + `/change-password/${id}`,
       value,
@@ -77,6 +71,12 @@ export class UserService {
   }
 
   changePassword(value): Observable<any> {
-    return this.dataSource.sendRequest('PATCH', this.userUrl + `/changePassword`, value, true, null);
+    return this.dSrc.sendRequest(
+      'PATCH',
+      this.userUrl + `/changePassword`,
+      value,
+      true,
+      null
+    );
   }
 }

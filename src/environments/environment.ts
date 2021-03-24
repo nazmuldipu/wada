@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   
   PROTOCOL: 'http',
-  PORT: ':3000',
+  PORT: ':2087',
   SERVER: 'localhost',
 };
 

@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-auto p-0">
-            <dash-side-navbar [expand]="sideNavExpand" [roles]="user?.roles"></dash-side-navbar>
+            <dash-side-navbar [expand]="sideNavExpand" [role]="user?.role"></dash-side-navbar>
         </div>
         <div class="col p-0">
             <dash-navbar (expand)="onSidenavExpand($event)" [user]="user"></dash-navbar>

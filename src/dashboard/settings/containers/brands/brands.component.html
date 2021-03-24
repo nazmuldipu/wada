@@ -1,0 +1,20 @@
+<div class="container-fluid component-head">
+    <h3>Brands</h3>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <brands-table [brandPage]="brandPage" [imageUrl]="imageUrl" (edit)="onEdit($event)"
+                (refresh)="refreshData($event)">
+            </brands-table>
+        </div>
+        <div class="col-md-6">
+            <div class=" border rounded">
+                <brand-form [item]="brand" [err]="errorMessage" (create)="onCreate($event)" (update)="onUpdate($event)"
+                    (delete)="onDelete($event)">
+                </brand-form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- {{brandPage|json}} -->

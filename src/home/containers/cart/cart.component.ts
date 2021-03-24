@@ -72,7 +72,7 @@ export class CartComponent implements OnInit {
     this.loading = true;
     try {
       const resp = await this.orderService.confirmOrder().toPromise();
-      this.cartService.getMyCart();
+      // this.cartService.getMyCart();
       console.log(resp);
     } catch (err) {
       this.errorMessage = err;

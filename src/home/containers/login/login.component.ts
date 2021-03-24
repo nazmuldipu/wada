@@ -24,7 +24,7 @@ export class LoginComponent{
           this.activeRoute.snapshot.queryParamMap.get('returnUrl') ||
           '/';
         localStorage.setItem('returnUrl', returnUrl);
-        this.cartService.getMyCart();
+        // this.cartService.getMyCart();
         // let returnUrl = localStorage.getItem('returnUrl') || '/dashboard';
         this.router.navigateByUrl(returnUrl);
       }

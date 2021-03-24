@@ -19,10 +19,15 @@ import { FormValidatorComponent } from './forms/form-validator/form-validator.co
 import { BaseFormComponent } from './forms/base-form/base-form.component';
 import { AlertMessagesComponent } from './components/alert-messages/alert-messages.component';
 import { FormTextareaComponent } from './forms/form-textarea/form-textarea.component';
+import { NgTableComponent } from './ngTable/ng-table/ng-table.component';
+import { NgTableBodyComponent } from './ngTable/ng-table-body/ng-table-body.component';
+import { NgTableFootComponent } from './ngTable/ng-table-foot/ng-table-foot.component';
+import { NgTableHeadComponent } from './ngTable/ng-table-head/ng-table-head.component';
+import { FormFileComponent } from './forms/form-file/form-file.component';
 
 
 @NgModule({
-  declarations: [OfferBoxComponent, Product2Component, LoadingComponent, ToastsComponent, PaginationComponent, BestSellersComponent, SideAdvComponent, ProductRelatedComponent, FormInputComponent, FormPropertyValidatorComponent, FormPasswordComponent, FormValidatorComponent, BaseFormComponent, AlertMessagesComponent, FormTextareaComponent],
+  declarations: [OfferBoxComponent, Product2Component, LoadingComponent, ToastsComponent, PaginationComponent, BestSellersComponent, SideAdvComponent, ProductRelatedComponent, FormInputComponent, FormPropertyValidatorComponent, FormPasswordComponent, FormValidatorComponent, BaseFormComponent, AlertMessagesComponent, FormTextareaComponent, NgTableComponent, NgTableBodyComponent, NgTableFootComponent, NgTableHeadComponent, FormFileComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -34,6 +39,7 @@ import { FormTextareaComponent } from './forms/form-textarea/form-textarea.compo
     AlertMessagesComponent,
     BestSellersComponent,
     CommonModule,
+    FormFileComponent,
     FormInputComponent,
     FormPasswordComponent,
     FormValidatorComponent,
@@ -41,6 +47,7 @@ import { FormTextareaComponent } from './forms/form-textarea/form-textarea.compo
     FormTextareaComponent,
     LoadingComponent,
     NgbModule,
+    NgTableComponent,
     OfferBoxComponent,
     PaginationComponent,
     Product2Component,
