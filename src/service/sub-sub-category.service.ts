@@ -65,7 +65,7 @@ export class SubSubCategoryService {
       'GET',
       this.url + `/subCategory/${slug}`,
       null,
-      true,
+      false,
       sparam
     );
   }

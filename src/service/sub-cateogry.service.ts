@@ -39,7 +39,7 @@ export class SubCategoryService {
       'GET',
       this.url + `/category/${slug}`,
       null,
-      true,
+      false,
       sparam
     );
   }

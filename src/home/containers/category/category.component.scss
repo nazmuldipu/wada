@@ -6,61 +6,13 @@
 }
 
 .banner-image {
-  // width: 100%;
-  // height: 140px;
-  // overflow: hidden;
   width: 100%;
-  height: 150px;
+  height: 180px;
   overflow: hidden;
-  margin: 5px auto;
+  margin: 10px auto;
   display: flex;
   justify-content: center;
-  // align-items: center;
-  align-items: flex-end;
-  // & img {
-  //   width: 100%;
-  //   position: relative;
-  //   top: 50%;
-  //   transform: translateY(-50%);
-  // }
 }
-
-// .banner-links {
-// margin-top: -130px;
-// margin-bottom: 60px;
-// }
-
-// .breadcrumb {
-//   background-color: white;
-// }
-
-.breadcrumb-item a {
-  cursor: pointer;
-  text-decoration: none;
-  color: black;
-  font-weight: 200;
-}
-
-.breadcrumb-item + .breadcrumb-item::before {
-  content: ">";
-  color: black;
-  font-weight: 300;
-}
-
-.banner-title {
-  // margin-top: -45px;
-  font-size: 30px;
-  padding: 0 10px;
-  text-align: center;
-  text-transform: capitalize;
-  color: $primary-color;
-}
-// .banner-sub-title{
-//   font-size: 20px;
-//   padding: 0 10px;
-//   text-transform: capitalize;
-//   color: $primary-color;
-// }
 
 .col-left,
 .col-right {
@@ -84,51 +36,89 @@
   padding: 0 10px;
 }
 
-.filter {
-  &-title {
-    color: $primary-color;
-  }
-}
+// .banner-links {
+// margin-top: -130px;
+// margin-bottom: 60px;
+// }
 
-.refinement-header {
-  font-size: 18px;
-  font-weight: 300;
-  line-height: 1.20833;
-  margin: 0;
-  z-index: 10;
-  position: relative;
-}
+// .breadcrumb {
+//   background-color: white;
+// }
 
-.refinement-header span {
-  z-index: 10;
-  padding-right: 8px;
-  background: white;
-}
+// .breadcrumb-item a {
+//   cursor: pointer;
+//   text-decoration: none;
+//   color: black;
+//   font-weight: 200;
+// }
 
-.refinement-header:after {
-  content: "";
-  display: block;
-  width: 100%;
-  height: 2px;
-  background: $divider-color;
-  // background: blue;
-  position: absolute;
-  top: calc(50% - 1px);
-  z-index: -1;
-}
+// .breadcrumb-item + .breadcrumb-item::before {
+//   content: ">";
+//   color: black;
+//   font-weight: 300;
+// }
+
+// .banner-title {
+//   // margin-top: -45px;
+//   font-size: 30px;
+//   padding: 0 10px;
+//   text-align: center;
+//   text-transform: capitalize;
+//   color: $primary-color;
+// }
+// // .banner-sub-title{
+// //   font-size: 20px;
+// //   padding: 0 10px;
+// //   text-transform: capitalize;
+// //   color: $primary-color;
+// // }
+
+// .filter {
+//   &-title {
+//     color: $primary-color;
+//   }
+// }
+
+// .refinement-header {
+//   font-size: 18px;
+//   font-weight: 300;
+//   line-height: 1.20833;
+//   margin: 0;
+//   z-index: 10;
+//   position: relative;
+// }
+
+// .refinement-header span {
+//   z-index: 10;
+//   padding-right: 8px;
+//   background: white;
+// }
+
+// .refinement-header:after {
+//   content: "";
+//   display: block;
+//   width: 100%;
+//   height: 2px;
+//   background: $divider-color;
+//   // background: blue;
+//   position: absolute;
+//   top: calc(50% - 1px);
+//   z-index: -1;
+// }
 
 .sub-category-item {
   font-size: 14px;
   cursor: pointer;
   color: $primary-color-light;
 }
+
 .sub-category-item.active {
   color: $primary-color-light;
   font-weight: 600;
   background-color: lightcyan;
 }
 
-label {
-  font-family: "museosans";
-  color: $secondary-text-color;
-}
+// label {
+//   font-family: "museosans";
+//   color: $secondary-text-color;
+// }

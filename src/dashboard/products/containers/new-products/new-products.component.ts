@@ -57,6 +57,7 @@ export class NewProductsComponent implements OnInit {
     try {
       this.loading = true;
       this.product = await this.service.get(id).toPromise();
+      this.product._id = id;
       this.loading = false;
     } catch (err) {}
   }
@@ -127,9 +128,7 @@ export class NewProductsComponent implements OnInit {
   async onUpdate(product: Product) {
     try {
       this.loading = true;
-      const resp = await this.service
-        .update(this.id, product)
-        .toPromise();
+      const resp = await this.service.update(this.id, product).toPromise();
       // this.getList(new Pagination());
       this.loading = false;
     } catch (err) {
@@ -138,6 +137,7 @@ export class NewProductsComponent implements OnInit {
   }
 
   async onDelete(id) {
+    console.log(id);
     if (confirm('Are you sure to delete')) {
       try {
         const resp = await this.service.delete(id).toPromise();

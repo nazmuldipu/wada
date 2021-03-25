@@ -26,9 +26,9 @@
         *ngFor="let sscat of subSubCategories" (click)="onSubSubCategory(sscat._id)">{{sscat.name}}</a>
 </div>
 
-
-<form [formGroup]="form" (ngSubmit)="submit()" class="p-3 border bg-white mb-5"
-    *ngIf="brand && category && (subCategories?.length == 0 || subCategory) &&  ((subCategories?.length == 0 || subCategory) || (subSubCategories?.length == 0 || subSubCategory))">
+<!-- {{form.value | json}} -->
+<form [formGroup]="form" (ngSubmit)="submit()" class="p-3 border bg-white mb-5" (mouseleave)="mouseoverShifting = false"
+    *ngIf="brand && category && subCategories &&  (subSubCategories?.length == 0 || subSubCategory)">
 
     <form-object-label [label]="'Brand*'" [name]="brand.name" (onChange)="onBrandChange()"></form-object-label>
     <form-object-label [label]="'Category*'" [name]="category.name" (onChange)="onCategoryChange()"></form-object-label>

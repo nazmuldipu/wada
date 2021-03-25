@@ -11,6 +11,7 @@ export class ProductTableComponent {
   @Input() thumbUrl: string;
 
   @Output() edit = new EventEmitter<string>();
+  @Output() active = new EventEmitter<string>();
   @Output() refresh = new EventEmitter<any>();
 
   tableName = 'Product Table';
@@ -32,6 +33,19 @@ export class ProductTableComponent {
     { path: 'subSubCategory.name', label: 'SubSubCategory' },
     { path: 'name', label: 'Name', searchable: true },
     { path: 'priority', label: 'Priority' },
+    { path: 'active', label: 'Active' },
+    {
+      key: '_id',
+      type: 'button',
+      content: (product) => {
+        return {
+          classname: 'edit_link',
+          text: product?.active ? 'Deactivate' : 'Activate',
+          link: `#`,
+          event: { key: 'active', id: product._id },
+        };
+      },
+    },
     {
       key: '_id',
       type: 'link',
@@ -57,6 +71,9 @@ export class ProductTableComponent {
     switch (event['key']) {
       case 'edit':
         this.edit.emit(event['id']);
+        break;
+      case 'active':
+        this.active.emit(event['id']);
         break;
     }
   }

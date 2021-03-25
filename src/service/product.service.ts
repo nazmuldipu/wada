@@ -62,34 +62,34 @@ export class ProductService {
       'GET',
       this.url + `/category/${slug}`,
       null,
-      true,
+      false,
       sparam
     );
   }
 
-  bySubCategorySlug(slug:string, pagi: Pagination){
+  bySubCategorySlug(slug: string, pagi: Pagination) {
     let sparam = this.util.paginationToHttpParam(pagi);
     return this.dSrc.sendRequest(
       'GET',
       this.url + `/subCategory/${slug}`,
       null,
-      true,
+      false,
       sparam
     );
   }
 
-  bySubSubCategorySlug(slug:string, pagi: Pagination){
+  bySubSubCategorySlug(slug: string, pagi: Pagination) {
     let sparam = this.util.paginationToHttpParam(pagi);
     return this.dSrc.sendRequest(
       'GET',
       this.url + `/subSubCategory/${slug}`,
       null,
-      true,
+      false,
       sparam
     );
   }
 
-  byBrand(slug:string, pagi: Pagination){
+  byBrand(slug: string, pagi: Pagination) {
     let sparam = this.util.paginationToHttpParam(pagi);
     return this.dSrc.sendRequest(
       'GET',
@@ -100,7 +100,7 @@ export class ProductService {
     );
   }
 
-//----------------------------------------DELETE ---------------------------------------------------
+  //----------------------------------------DELETE ---------------------------------------------------
   getAll(
     page: number,
     limit: number,

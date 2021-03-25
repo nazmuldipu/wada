@@ -16,13 +16,15 @@
   </div>
 </div> -->
 
-<div class="container-fluid">
-  <div class="banner-image">
-    <img [src]="'assets/images/categories/'+slug+'.jpg'" alt="Banner s">
+<div class="container">
+  <div class="row">
+    <div class="col-12 p-0">
+      <img class="banner-image" [src]="bannerUrl">
+    </div>
   </div>
 </div>
 <div class="container">
-  <div class="banner-title">{{categoryNav?.name}}</div>
+  <!-- <div class="banner-title">{{categoryNav?.name}}</div> -->
   <!-- <div class="banner-links">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
@@ -33,7 +35,7 @@
       </ol>
     </nav>
   </div> -->
-    <!-- <span class="banner-sub-title" *ngIf="sub_category">- {{sub_category.name}}</span> -->
+  <!-- <span class="banner-sub-title" *ngIf="sub_category">- {{sub_category.name}}</span> -->
 </div>
 <ng-template #productDetailsModal let-modal>
   <detail-modal [product]="product" [prodImageUrl]="prodImageUrl" [cartProduct]="product_list_cart"
@@ -47,12 +49,12 @@
         <span>Category</span>
       </div>
       <div class="sub-category">
-        <div class="sub-category-item my-2 ml-2" [class.active]="sub_category==null"
+        <div class="sub-category-item my-2 ml-2" [class.active]="selectedSubSubCat==null"
           (click)="onSubCategoryClick('all')">
           All
         </div>
-        <div class="sub-category-item my-2 ml-2" [class.active]="sub_category?.slug==sc.slug"
-          *ngFor="let sc of categoryNav?.sub_category" (click)="onSubCategoryClick(sc.slug)">
+        <div class="sub-category-item my-2 ml-2" [class.active]="selectedSubSubCat?.slug==sc.slug"
+          *ngFor="let sc of subSubCategory" (click)="onSubCategoryClick(sc.slug)">
           {{sc.name}}
         </div>
         <!-- {{subCategory | json}} -->
@@ -116,7 +118,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      
+
       <div class="row clearfix m-0" *ngIf="!loading && productPage">
         <div class="col-12 text-center" *ngIf="productPage?.docs?.length == 0">
           <i class="fa fa-frown-o"></i> Sorry no product found
@@ -125,8 +127,10 @@
           <product2 [product]="product" [thumbUrl]="prodThumbUrl" (cart)="onAddToCart($event)"
             (shortDetails)="onShortDetails(productDetailsModal, $event)"></product2>
         </div>
-        <div class="col-12" *ngIf="productPage?.docs?.length">
-          <pagination [page]="productPage" (paginate)="onChangePage($event)"></pagination>
+        <div class="col-12" *ngIf="productPage?.totalPages > 1">
+          <pagination [page]="productPage.page" [collectionSize]="productPage.totalDocs" [pageSize]="productPage.limit"
+            [short]="short" (pageChange)="handlePagination($event)">
+          </pagination>
         </div>
       </div>
     </div>

@@ -48,4 +48,14 @@ export class ProductsComponent implements OnInit {
   onEdit(event) {
     console.log('onEdit', event);
   }
+
+  async onToogleActive(id) {
+    try {
+      this.loading = true;
+      const resp = await this.service.toggleActive(id).toPromise();
+      const index = this.productPage.docs.findIndex((p) => p._id == id);
+      this.productPage.docs.splice(index, 1, resp);
+      this.loading = false;
+    } catch (err) {}
+  }
 }

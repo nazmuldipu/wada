@@ -120,10 +120,10 @@ export class ProductFormComponent extends BaseFormComponent {
   }
 
   clean() {
-    super.clean();
     this.brand = null;
     this.category = null;
     this.subCategory = null;
     this.subSubCategory = null;
+    super.clean();
   }
 }
