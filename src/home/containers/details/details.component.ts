@@ -11,17 +11,16 @@ import { Product } from 'src/shared/models/product.model';
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
-  styleUrls: ['./details.component.scss']
+  styleUrls: ['./details.component.scss'],
 })
 export class DetailsComponent implements OnInit {
   id;
   current = 0;
 
-
   product: Product;
-  productDetails: ProductDetails;
-  productStocks: ProductStock[] = [];
-  inStock = false;
+  // productDetails: ProductDetails;
+  // productStocks: ProductStock[] = [];
+  // inStock = false;
 
   loading = false;
   imageUrls = [];
@@ -31,8 +30,13 @@ export class DetailsComponent implements OnInit {
   quantity = 1;
   stockQuantity = 0;
 
-  constructor(private productService: ProductService, private productDetailsService: ProductDetailsService,
-    private productStockService: ProductStockService, private cartService: CartService, private activeRoute: ActivatedRoute) {
+  constructor(
+    private productService: ProductService,
+    private productDetailsService: ProductDetailsService,
+    private productStockService: ProductStockService,
+    private cartService: CartService,
+    private activeRoute: ActivatedRoute
+  ) {
     this.id = activeRoute.snapshot.params['id'];
     // this.imageUrl = this.productService.imageLink + '/image/';
     // this.shopImageUrl = this.shopService.shopLink + '/image/';
@@ -48,12 +52,12 @@ export class DetailsComponent implements OnInit {
     this.loading = true;
     try {
       this.product = await this.productService.get(id).toPromise();
-      this.getProductDetails(id);
-      this.getProductStock(id);
+      // this.getProductDetails(id);
+      // this.getProductStock(id);
       this.imageUrls = [];
       for (let i = 0; i < this.product.image_count; i++) {
-        const url = this.productService.imageLink + '/image/' + this.product._id + '/' + i;
-        this.imageUrls.push({ image: url, thumbImage: url })
+        const url = this.productService.imageLink + '/image/' + id + '/' + i;
+        this.imageUrls.push({ image: url, thumbImage: url });
       }
     } catch (error) {
       this.errorMessage = error;
@@ -61,28 +65,32 @@ export class DetailsComponent implements OnInit {
     this.loading = false;
   }
 
-  async getProductDetails(product_id) {
-    this.loading = true;
-    try {
-      this.productDetails = await this.productDetailsService.getProductDetailsByProductId(product_id).toPromise();
-    } catch (error) {
-      this.errorMessage = error;
-    }
-    this.loading = false;
-  }
+  // async getProductDetails(product_id) {
+  //   this.loading = true;
+  //   try {
+  //     this.productDetails = await this.productDetailsService
+  //       .getProductDetailsByProductId(product_id)
+  //       .toPromise();
+  //   } catch (error) {
+  //     this.errorMessage = error;
+  //   }
+  //   this.loading = false;
+  // }
 
-  async getProductStock(product_id) {
-    this.loading = true;
-    try {
-      this.productStocks = await this.productStockService.getProductStockByProductId(product_id).toPromise();
-      for (let stock of this.productStocks) {
-        this.stockQuantity += stock.quantity;
-      }
-    } catch (error) {
-      this.errorMessage = error;
-    }
-    this.loading = false;
-  }
+  // async getProductStock(product_id) {
+  //   this.loading = true;
+  //   try {
+  //     this.productStocks = await this.productStockService
+  //       .getProductStockByProductId(product_id)
+  //       .toPromise();
+  //     for (let stock of this.productStocks) {
+  //       this.stockQuantity += stock.quantity;
+  //     }
+  //   } catch (error) {
+  //     this.errorMessage = error;
+  //   }
+  //   this.loading = false;
+  // }
 
   onThumbImageClick(event) {
     this.current = event;
@@ -98,7 +106,7 @@ export class DetailsComponent implements OnInit {
 
   async addToCart() {
     console.log('Add to cart');
-    const value = { "productId": this.product._id, "quantity": this.quantity }
+    const value = { productId: this.product._id, quantity: this.quantity };
     this.loading = true;
     try {
       const resp = await this.cartService.addToCart(value).toPromise();

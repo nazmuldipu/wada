@@ -2,7 +2,7 @@
     <label for="category" class="d-none d-sm-block col-form-label col-form-label-sm p-0">{{label}}</label>
     <div class="input-group is-invalid">
         <label class="form-control form-control-sm" id="category">{{name}}</label>
-        <div class="input-group-append">
+        <div class="input-group-append" *ngIf="showButton">
             <button class="btn btn-sm btn-outline-secondary" type="button" (click)="handleChange()">Change</button>
         </div>
     </div>

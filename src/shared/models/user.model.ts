@@ -1,9 +1,21 @@
 export interface User {
-    _id: string;
-    name: string;
-    phone: string;
-    email: string;
-    password: string;
-    role: string;
-  }
-  
+  _id: string;
+  name: string;
+  phone: string;
+  email: string;
+  password: string;
+  role: string;
+}
+
+export interface UserPage {
+  docs: User[];
+  hasNextPage: boolean;
+  hasPrevPage: boolean;
+  limit: number;
+  nextPage: number;
+  page: number;
+  pagingCounter: number;
+  prevPage: number;
+  totalDocs: number;
+  totalPages: number;
+}

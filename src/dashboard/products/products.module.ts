@@ -10,9 +10,15 @@ import { ProductsComponent } from './containers/products/products.component';
 import { StorehouseComponent } from './containers/storehouse/storehouse.component';
 import { NewProductsComponent } from './containers/new-products/new-products.component';
 import { ProductTableComponent } from './components/product-table/product-table.component';
+import { WarehouseComponent } from './containers/warehouse/warehouse.component';
+import { WarehouseFormComponent } from './components/warehouse-form/warehouse-form.component';
+import { WarehouseTableComponent } from './components/warehouse-table/warehouse-table.component';
+import { WarehouseAssignFormComponent } from './components/warehouse-assign-form/warehouse-assign-form.component';
+import { WarehouseDetailsComponent } from './components/warehouse-details/warehouse-details.component';
 
 export const ROUTES: Routes = [
   { path: 'storehouse', component: StorehouseComponent },
+  { path: 'warehouse', component: WarehouseComponent },
   { path: 'free-delivery', component: FreeDeliveryComponent },
   { path: 'new-products', component: NewProductsComponent },
   { path: 'new-products/:id', component: NewProductsComponent },
@@ -21,16 +27,20 @@ export const ROUTES: Routes = [
 
 @NgModule({
   declarations: [
-    StorehouseComponent, 
-    ProductsComponent, 
-    StorehouseFormComponent, 
-    ProductDetailsFormComponent, 
-    ProductFormComponent, 
-    FreeDeliveryComponent, 
-    NewProductsComponent, ProductTableComponent
+    StorehouseComponent,
+    ProductsComponent,
+    StorehouseFormComponent,
+    ProductDetailsFormComponent,
+    ProductFormComponent,
+    FreeDeliveryComponent,
+    NewProductsComponent,
+    ProductTableComponent,
+    WarehouseComponent,
+    WarehouseFormComponent,
+    WarehouseTableComponent,
+    WarehouseAssignFormComponent,
+    WarehouseDetailsComponent,
   ],
-  imports: [
-    SharedModule, RouterModule.forChild(ROUTES)
-  ]
+  imports: [SharedModule, RouterModule.forChild(ROUTES)],
 })
-export class ProductsModule { }
+export class ProductsModule {}

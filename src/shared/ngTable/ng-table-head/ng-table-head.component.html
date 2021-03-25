@@ -1,6 +1,26 @@
 <tr>
     <td [attr.colspan]="columns?.length" class="form-head">
-        {{tableName}}
+
+        <div class="d-flex justify-content-between">
+            <div>{{tableName}} </div>
+            <div>
+                <form *ngIf="searchableArray.length>0" class="d-print-none" (ngSubmit)="onSearchSubmit()">
+                    <div class="row">
+                        <div class="col"></div>
+                        <div class="col-auto">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="fa fa-search"></i></div>
+                                </div>
+                                <input type="text" class="form-control form-control-sm" id="search" name="search"
+                                    [(ngModel)]="searchQuery" [placeholder]="getSearchPlaceHolderText()">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
     </td>
 </tr>
 <tr>

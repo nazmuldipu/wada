@@ -1,0 +1,37 @@
+<!-- <nav class="navbar navbar-light bg-light border border-bottom-0">
+    <a class="navbar-brand">Warehouse Details</a>
+</nav> -->
+<div class="form-head"> Warehouse Details
+</div>
+<div class="p-3">
+    <div class="row">
+        <div class="col-md-6">
+            <form-object-label [label]="'Name'" [name]="warehouse?.name" [showButton]="false"></form-object-label>
+        </div>
+        <div class="col-md-6">
+            <form-object-label [label]="'Priority'" [name]="warehouse?.priority" [showButton]="false">
+            </form-object-label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <form-object-label [label]="'Admin name'" [name]="warehouse?.admin?.name" [showButton]="false">
+            </form-object-label>
+        </div>
+        <div class="col-6">
+            <form-object-label [label]="'Admin phone'" [name]="warehouse?.admin?.phone" [showButton]="false">
+            </form-object-label>
+        </div>
+    </div>
+    <form-object-label [label]="'Address'" [name]="warehouse?.address" [showButton]="false"></form-object-label>
+    <div class="row">
+        <div class="col-6">
+            <form-object-label [label]="'Latitude'" [name]="warehouse?.latitude" [showButton]="false">
+            </form-object-label>
+        </div>
+        <div class="col-6">
+            <form-object-label [label]="'longitude'" [name]="warehouse?.longitude" [showButton]="false">
+            </form-object-label>
+        </div>
+    </div>
+</div>

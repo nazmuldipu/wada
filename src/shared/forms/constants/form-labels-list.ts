@@ -1,10 +1,13 @@
 export const LABEL_LIST: object = {
+  address: 'Address',
   barcode: 'Barcode',
   categoryId: 'Category',
   description: 'Description',
   email: 'Email',
   image: 'Image',
   images: 'Imags',
+  latitude: 'Latitude',
+  longitude: 'Longitude',
   mrp: 'Retail Price',
   name: 'Name',
   password: 'Password',
@@ -14,4 +17,5 @@ export const LABEL_LIST: object = {
   priority: 'Priority',
   size: 'Size',
   thumb: 'Thumb',
+  userId: 'User',
 };

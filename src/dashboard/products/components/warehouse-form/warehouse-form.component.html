@@ -1,0 +1,36 @@
+<div class="form-head">
+    {{exists?'Update': 'New'}} Warehouse
+</div>
+<ng-container *ngIf="err.length>0">
+    <p class="px-4 text-center text-danger">{{err}}</p>
+</ng-container>
+
+<form [formGroup]="form" (ngSubmit)="submit()" (mouseleave)="mouseoverShifting = false" class="p-3">
+
+    <!-- Form Elements -->
+    <form-input [fieldId]="'name'" [control]="form.get('name')">
+    </form-input>
+    <form-input [fieldId]="'priority'" [control]="form.get('priority')" [type]="'number'">
+    </form-input>
+    <form-input [fieldId]="'latitude'" [control]="form.get('latitude')" [type]="'number'">
+    </form-input>
+    <form-input [fieldId]="'longitude'" [control]="form.get('longitude')" [type]="'number'">
+    </form-input>
+    <form-textarea [fieldId]="'address'" [control]="form.get('address')"></form-textarea>
+
+
+    <!-- Buttons -->
+    <div class="d-flex flex-row-reverse bd-highlight">
+        <span (mouseenter)="mouseoverShifting = true">
+            <button type="submit" class="btn btn-sm btn-light mx-1" [disabled]="!form.valid">{{exists ?
+                'Update':'Save'}}</button>
+        </span>
+        <button type="button" *ngIf="exists" class="btn btn-sm btn-light mx-1" (click)="onDelete()">Delete</button>
+        <button type="button" class="btn btn-sm btn-light mx-1" (click)="clean()">Clear</button>
+    </div>
+
+    <!-- Form validation error list -->
+    <div *ngIf="mouseoverShifting" class="text-danger">
+        <form-validator [form]="form"></form-validator>
+    </div>
+</form>

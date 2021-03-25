@@ -31,16 +31,16 @@ export class NgTableComponent implements OnChanges {
     if (changes.data && this.data != null) {
       this.calculateColumnTotal();
     }
-    if (changes.columns && this.columns != null) {
-      this.columns.forEach((element) => {
-        if (element.searchable) {
-          this.searchableArray.push({
-            path: element.path,
-            label: element.label,
-          });
-        }
-      });
-    }
+    // if (changes.columns && this.columns != null) {
+    //   this.columns.forEach((element) => {
+    //     if (element.searchable) {
+    //       this.searchableArray.push({
+    //         path: element.path,
+    //         label: element.label,
+    //       });
+    //     }
+    //   });
+    // }
   }
 
   handleSort(event) {
@@ -84,14 +84,14 @@ export class NgTableComponent implements OnChanges {
     this.total = [...total];
   }
 
-  getSearchPlaceHolderText() {
-    let text = '';
-    for (let i = 0; i < this.searchableArray.length; i++) {
-      text += this.searchableArray[i].label;
-      if (i != this.searchableArray.length - 1) {
-        text += '/';
-      }
-    }
-    return text;
-  }
+  // getSearchPlaceHolderText() {
+  //   let text = '';
+  //   for (let i = 0; i < this.searchableArray.length; i++) {
+  //     text += this.searchableArray[i].label;
+  //     if (i != this.searchableArray.length - 1) {
+  //       text += '/';
+  //     }
+  //   }
+  //   return text;
+  // }
 }

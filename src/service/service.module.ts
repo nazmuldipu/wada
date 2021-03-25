@@ -16,6 +16,7 @@ import { BrandService } from './brand.service';
 import { CategoryService } from './category.service';
 import { SubCategoryService } from './sub-cateogry.service';
 import { SubSubCategoryService } from './sub-sub-category.service';
+import { WarehouseService } from './warehouse.service';
 
 @NgModule({
   providers: [
@@ -27,6 +28,7 @@ import { SubSubCategoryService } from './sub-sub-category.service';
     SubSubCategoryService,
     UserService,
     UtilService,
+    WarehouseService,
 
     AuthGuardService,
     CartService,
@@ -35,7 +37,6 @@ import { SubSubCategoryService } from './sub-sub-category.service';
     ProductDetailsService,
     ProductStockService,
     ProductService,
-    StorehouseService,
     ToastService,
   ],
 })

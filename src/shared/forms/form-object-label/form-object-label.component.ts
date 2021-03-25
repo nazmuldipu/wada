@@ -8,6 +8,7 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 export class FormObjectLabelComponent {
   @Input() label: string;
   @Input() name: string;
+  @Input() showButton: boolean = true;
 
   @Output() onChange = new EventEmitter<any>();
 

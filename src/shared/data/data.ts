@@ -72,10 +72,12 @@ export const SideNavbar = [
         roles: ['SHOP', 'ADMIN'],
         link: '/dashboard/products/',
       },
-      // {
-      //   name: 'Brands', icon: 'fa-tags',
-      //   roles: ['ADMIN'], link: '/dashboard/products/brands'
-      // },
+      {
+        name: 'Warehouse',
+        icon: 'fa-shield',
+        roles: ['ADMIN'],
+        link: '/dashboard/products/warehouse',
+      },
       {
         name: 'Storehouse',
         icon: 'fa-shield',
@@ -92,12 +94,6 @@ export const SideNavbar = [
         icon: 'fa-bicycle',
         roles: ['SHOP', 'ADMIN'],
         link: '/dashboard/products/free-delivery',
-      },
-      {
-        name: 'New Products',
-        icon: 'fa-file-text-o',
-        roles: ['SHOP', 'ADMIN'],
-        link: '/dashboard/products/new-products',
       },
     ],
   },

@@ -1,0 +1,27 @@
+<div class="container-fluid component-head">
+    <h3>Warehouse</h3>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-5" *ngIf="mode=='edit'">
+            <div class=" border rounded">
+                <warehouse-form [item]="warehouse" [err]="errorMessage" (create)="onCreate($event)"
+                    (update)="onUpdate($event)" (delete)="onDelete($event)"></warehouse-form>
+            </div>
+        </div>
+        <div class="col-md-5" *ngIf="mode=='assign'">
+            <div class=" border rounded">
+                <warehouse-assign-form [item]="warehouse" (create)="handleAssign($event)"></warehouse-assign-form>
+            </div>
+        </div>
+        <div class="col-md-5" *ngIf="mode=='details'">
+            <div class=" border rounded">
+                <warehouse-details [warehouse]="warehouse"></warehouse-details>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <warehouse-table [warehousePage]="warehousePage" (details)="onDetails($event)" (assign)="onAssign($event)"
+                (edit)="onEdit($event)" (refresh)="refreshData($event)"></warehouse-table>
+        </div>
+    </div>
+</div>

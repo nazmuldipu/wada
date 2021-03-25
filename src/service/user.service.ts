@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { RestDataService } from './rest-data.service';
-import { User } from 'src/shared/models/user.model';
+import { User, UserPage } from 'src/shared/models/user.model';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { HttpParams } from '@angular/common/http';
+import { Pagination } from 'src/shared/models/pagination.model';
+import { UtilService } from './util.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,10 +16,15 @@ export class UserService {
   _userSource = new BehaviorSubject<User>({} as User);
   user$ = this._userSource.asObservable();
 
-  constructor(private dSrc: RestDataService) {}
+  constructor(private dSrc: RestDataService, private util: UtilService) {}
 
   userRegistration(user: User): Observable<User> {
     return this.dSrc.sendRequest('POST', this.userUrl, user, false, null);
+  }
+
+  getList(pagi: Pagination): Observable<UserPage> {
+    let sparam = this.util.paginationToHttpParam(pagi);
+    return this.dSrc.sendRequest('GET', this.userUrl, null, true, sparam);
   }
 
   update(id, user): Observable<User> {
@@ -56,7 +63,7 @@ export class UserService {
   }
 
   getUserProfile(): Observable<User> {
-    return this.dSrc.sendRequest('GET', this.userUrl + '/me', null, true, null);   
+    return this.dSrc.sendRequest('GET', this.userUrl + '/me', null, true, null);
   }
 
   resetPassword(id, password: string): Observable<any> {
