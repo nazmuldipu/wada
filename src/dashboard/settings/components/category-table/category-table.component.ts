@@ -20,7 +20,7 @@ export class CategoryTableComponent {
       type: 'image',
       content: (category) => {
         return {
-          classname: 'table_image img-thumbnail',
+          classname: 'table_image',
           url: this.imageUrl + `${category._id}`,
           event: { key: 'img', id: category._id },
         };

@@ -21,7 +21,7 @@ export class ProductTableComponent {
       type: 'image',
       content: (product) => {
         return {
-          classname: 'table_image img-thumbnail',
+          classname: 'table_image',
           url: this.thumbUrl + `${product._id}`,
           event: { key: 'img', id: product._id },
         };

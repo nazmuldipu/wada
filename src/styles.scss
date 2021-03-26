@@ -37,12 +37,13 @@
 td.form-head,
 .form-head {
   width: inherit;
-  font-size: 20px !important;
+  font-size: 1.25rem !important;
+  font-weight: 500;
   line-height: 34px;
   padding: 8px 16px;
 
-  background-color: $divider-color;
-  // background-color: #f8f9fa !important;
+  // background-color: $divider-color;
+  background-color: #f8f9fa !important;
 
 
   &-link {
@@ -53,7 +54,7 @@ td.form-head,
 }
 .table_image {
   width: auto;
-  max-height: 60px;
+  height: 30px;
   max-width: 100px;
   // border: 1px solid gray;
 }
@@ -151,12 +152,11 @@ a:focus {
 }
 
 .edit_link {
-  columns: $primary-text-color;
+  color: $primary-text-color;
   text-decoration: none;
   cursor: pointer;
   padding: 0 4px;
   border-radius: 3px;
-  color: $primary-color-light;
   border: 1px solid gray;
 
   &:hover {

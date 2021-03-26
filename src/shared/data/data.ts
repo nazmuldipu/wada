@@ -78,12 +78,12 @@ export const SideNavbar = [
         roles: ['ADMIN'],
         link: '/dashboard/products/warehouse',
       },
-      {
-        name: 'Storehouse',
-        icon: 'fa-shield',
-        roles: ['ADMIN'],
-        link: '/dashboard/products/storehouse',
-      },
+      // {
+      //   name: 'Storehouse',
+      //   icon: 'fa-shield',
+      //   roles: ['ADMIN'],
+      //   link: '/dashboard/products/storehouse',
+      // },
       // {
       //   name: 'Shops', icon: 'fa-shopping-bag',
       //   roles: ['ADMIN'], link: '/dashboard/products/shops',

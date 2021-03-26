@@ -20,7 +20,7 @@ export class BrandsTableComponent {
       type: 'image',
       content: (brand) => {
         return {
-          classname: 'table_image img-thumbnail',
+          classname: 'table_image',
           text: 'Edit',
           url: this.imageUrl + `${brand._id}`,
           event: { key: 'img', id: brand._id },
