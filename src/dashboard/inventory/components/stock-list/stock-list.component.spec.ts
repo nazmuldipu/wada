@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { ProductStockListComponent } from './product-stock-list.component';
+import { ProductStockListComponent } from './stock-list.component';
 
 describe('ProductStockListComponent', () => {
   let component: ProductStockListComponent;

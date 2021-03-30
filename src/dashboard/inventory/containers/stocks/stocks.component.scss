@@ -14,3 +14,12 @@
     background-color: #ffc247;
   }
 }
+
+.col {
+  padding: 20px 20px;
+}
+@media print {
+  .col {
+    padding: 50px;
+  } 
+}

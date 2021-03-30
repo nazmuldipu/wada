@@ -36,7 +36,6 @@ export class CategoriesComponent implements OnInit {
 
   refreshData({ page, limit, sort, order, search }) {
     this.getList(new Pagination(page, limit, sort, order, search));
-    // this.getList({ page, limit, sort, order, param: search });
   }
 
   onEdit(event) {

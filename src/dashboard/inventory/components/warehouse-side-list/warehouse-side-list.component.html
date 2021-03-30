@@ -1,0 +1,7 @@
+<ul class="list-group mb-1">
+    <li class="list-group-item disabled">Please select a <strong> Warehouse </strong> from list below</li>
+    <li class="list-group-item" *ngFor="let warehouse of warehousePage?.docs" (click)="onSelectWarehouse(warehouse)">
+        {{warehouse.name}} [{{warehouse?.admin?.phone}}]</li>
+</ul>
+<pagination *ngIf="warehousePage?.totalPages > 1" [page]="warehousePage" (paginate)="refreshWarehouseData($event)"
+    [short]="true"></pagination>

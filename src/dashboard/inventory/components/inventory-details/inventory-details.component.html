@@ -2,13 +2,13 @@
     <a class="navbar-brand">Inventory Details</a>
     <div>
         <a routerLink="//dashboard/inventory/add" class="btn btn-success btn-sm mx-1">
-            + ADD Inventory
+            <i class="fa fa-plus"></i> ADD Inventory
         </a>
         <button class="btn btn-sm btn-primary mx-1" (click)="onPrint()"><i class="fa fa-print"></i> Print</button>
     </div>
 </nav>
 
-<div class="form-group row m-0 my-1">
+<div class="form-group row m-0 border">
     <div class="col-sm-6 p-0">
         <label for="createdAt" class="col-auto col-form-label">Ref:</label>
         <label id="createdAt" class="col-form-label">{{inventory?.reference}}</label>
@@ -18,7 +18,7 @@
         <label id="createdAt" class="col-form-label">{{inventory?.inventoryType}}</label>
     </div>
 </div>
-<div class="form-group row border-top m-0 my-1">
+<div class="form-group row border border-top-0 m-0">
     <div class="col-sm-6 p-0">
         <label for="createdAt" class="col-auto col-form-label">Updated at: </label>
         <label id="createdAt" class="col-form-label">{{inventory?.updatedAt | date:'medium'}}</label>
@@ -29,7 +29,7 @@
             class="col-form-label">{{inventory?.updatedBy?.name}}[{{inventory?.updatedBy?.phone}}]</label>
     </div>
 </div>
-<div class="form-group row border-top m-0 my-1">
+<div class="form-group row border border-top-0 m-0 mb-3">
     <div class="col-sm-6 p-0">
         <label for="shop" class="col-auto col-form-label">Storehouse: </label>
         <label id="shop" class="col-form-label">{{inventory?.warehouse?.name}}</label>
@@ -44,7 +44,7 @@
     </div>
 </div>
 
-<div class="px-3">
+<!-- <div class="px-3"> -->
     <table class="table table-hover table-bordered table-responsive-sm">
         <thead>
             <tr>
@@ -77,4 +77,4 @@
             </tr>
         </tfoot>
     </table>
-</div>
+<!-- </div> -->

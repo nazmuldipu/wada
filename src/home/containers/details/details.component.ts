@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CartService } from 'src/service/cart.service';
 import { ProductDetailsService } from 'src/service/product-details.service';
-import { ProductStockService } from 'src/service/product-stock.service';
+import { StockService } from 'src/service/stock.service';
 import { ProductService } from 'src/service/product.service';
 import { ProductDetails } from 'src/shared/models/product-details.model';
-import { ProductStock } from 'src/shared/models/product-stock.model';
+import { Stock } from 'src/shared/models/stock.model';
 import { Product } from 'src/shared/models/product.model';
 
 @Component({
@@ -19,7 +19,7 @@ export class DetailsComponent implements OnInit {
 
   product: Product;
   // productDetails: ProductDetails;
-  // productStocks: ProductStock[] = [];
+  // productStocks: Stock[] = [];
   // inStock = false;
 
   loading = false;
@@ -33,7 +33,7 @@ export class DetailsComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private productDetailsService: ProductDetailsService,
-    private productStockService: ProductStockService,
+    private productStockService: StockService,
     private cartService: CartService,
     private activeRoute: ActivatedRoute
   ) {

@@ -3,6 +3,8 @@ import { RestDataService } from './rest-data.service';
 import { Inventory, InventoryPage } from 'src/shared/models/inventory.model';
 import { Observable } from 'rxjs/internal/Observable';
 import { HttpParams } from '@angular/common/http';
+import { Pagination } from 'src/shared/models/pagination.model';
+import { UtilService } from 'src/service/util.service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,12 +12,25 @@ import { HttpParams } from '@angular/common/http';
 export class InventoryService {
   url = 'api/inventories';
 
-  constructor(private dSrc: RestDataService) {}
+  constructor(private dSrc: RestDataService, private util: UtilService) {}
 
   create(inventory: Inventory): Observable<Inventory> {
     return this.dSrc.sendRequest('POST', this.url, inventory, true, null);
   }
 
+  byWarehouseId(wid: string, pagi: Pagination): Observable<InventoryPage> {
+    let sparam = this.util.paginationToHttpParam(pagi);
+
+    return this.dSrc.sendRequest(
+      'GET',
+      this.url + `/warehouse/${wid}`,
+      null,
+      true,
+      sparam
+    );
+  }
+
+  
   transfer(inventory: Inventory): Observable<Inventory> {
     // const items = [];
     // for (let i = 0; i < event.items.length; i++) {
@@ -73,23 +88,6 @@ export class InventoryService {
 
   getInventory(id: string): Observable<Inventory> {
     return this.dSrc.sendRequest('GET', this.url + `/${id}`, null, true, null);
-  }
-
-  getInventoryByStorehouse(
-    storehouseId: string,
-    page: number,
-    limit: number,
-    sort: string,
-    order: string
-  ): Observable<InventoryPage> {
-    const params = this.generateParam(page, limit, sort, order);
-    return this.dSrc.sendRequest(
-      'GET',
-      this.url + `/storehouse/${storehouseId}`,
-      null,
-      true,
-      params
-    );
   }
 
   generateParam(

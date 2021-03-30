@@ -103,22 +103,22 @@ export const SideNavbar = [
     roles: ['ADMIN', 'SHOP'],
     subnav: [
       { name: 'Add', icon: 'fa-plus', link: '/dashboard/inventory/add' },
-      {
-        name: 'Transfer',
-        icon: 'fa-exchange',
-        link: '/dashboard/inventory/transfer',
-      },
-      {
-        name: 'Recieve',
-        icon: 'fa-check',
-        link: '/dashboard/inventory/receive',
-      },
-      {
-        name: 'Convert',
-        icon: 'fa-chrome',
-        link: '/dashboard/inventory/convert',
-      },
       { name: 'List', icon: 'fa-list', link: '/dashboard/inventory' },
+      // {
+      //   name: 'Transfer',
+      //   icon: 'fa-exchange',
+      //   link: '/dashboard/inventory/transfer',
+      // },
+      // {
+      //   name: 'Recieve',
+      //   icon: 'fa-check',
+      //   link: '/dashboard/inventory/receive',
+      // },
+      // {
+      //   name: 'Convert',
+      //   icon: 'fa-chrome',
+      //   link: '/dashboard/inventory/convert',
+      // },
       {
         name: 'Stocks',
         icon: 'fa-bar-chart',

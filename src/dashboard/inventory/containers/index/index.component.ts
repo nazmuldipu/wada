@@ -1,17 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { InventoryService } from 'src/service/inventory.service';
-import { StorehouseService } from 'src/service/storehouse.service';
 import { Inventory, InventoryPage } from 'src/shared/models/inventory.model';
-import { Storehouse, StorehousePage } from 'src/shared/models/storehouse.model';
+import { Pagination } from 'src/shared/models/pagination.model';
+import { Warehouse } from 'src/shared/models/warehouse.model';
 
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
-  styleUrls: ['./index.component.scss']
+  styleUrls: ['./index.component.scss'],
 })
-export class IndexComponent implements OnInit {
-  storehouse: Storehouse;
-  storehousePage: StorehousePage;
+export class IndexComponent {
+  warehouse: Warehouse;
   inventory: Inventory;
   inventoryPage: InventoryPage;
 
@@ -19,55 +18,36 @@ export class IndexComponent implements OnInit {
   message = '';
   errorMessage = '';
 
-  constructor(private storehouseService: StorehouseService, private inventoryService: InventoryService) { }
+  constructor(
+    private service: InventoryService,
+  ) {}
 
-  ngOnInit(): void {
-    this.getAllStorehouse();
+  onWarehouseSelect(warehouse: Warehouse) {
+    this.warehouse = warehouse;
+    this.getInventoryByWarehouseId(warehouse._id, new Pagination());
   }
 
-  async getAllStorehouse(page: number = 1, limit: number = 8, sort: string = 'priority', order: string = 'asc') {
+  async getInventoryByWarehouseId(warehouseId, pagi: Pagination) {
     this.loading = true;
     try {
-      this.storehousePage = await this.storehouseService.getAll(page, limit, sort, order).toPromise();
+      this.inventoryPage = await this.service
+        .byWarehouseId(warehouseId, pagi)
+        .toPromise();
     } catch (error) {
       this.errorMessage = error;
     }
     this.loading = false;
   }
 
-  async getInventoryByStorehouseId(storehouseId, page: number = 1, limit: number = 8, sort: string = 'priority', order: string = 'asc') {
-    this.loading = true;
-    try {
-      console.log(storehouseId);
-      this.inventoryPage = await this.inventoryService.getInventoryByStorehouse(storehouseId, page, limit, sort, order).toPromise();
-    } catch (error) {
-      this.errorMessage = error;
-    }
-    this.loading = false;
-  }
-
-  onChangeStorehousePage(page) {
-    this.getAllStorehouse(page.pageNumber, page.limit, page.sort, page.order)
+  refreshInventoryData(wid, { page, limit, sort, order, search }) {
+    this.getInventoryByWarehouseId(
+      wid,
+      new Pagination(page, limit, sort, order, search)
+    );
   }
 
   onDetails(id) {
-    const value = this.inventoryPage.docs.find((iv) => iv._id == id);
-    this.inventory = Object.assign({}, value);
-  }
-
-  onEdit(id) {
-    // const value = this.inventoryPage.docs.find((iv) => iv._id == id);
-    // this.inventory = Object.assign({}, value);
-  }
-
-  onChangeInventoryPage(storehouseId, page) {
-    this.getInventoryByStorehouseId(storehouseId, page.pageNumber, page.limit, page.sort, page.order)
-  }
-
-  onSelectStorehouse(id) {
-    const value = this.storehousePage.docs.find((s) => s._id == id);
-    this.storehouse = Object.assign({}, value);
-    this.getInventoryByStorehouseId(id);
+    this.inventory = this.inventoryPage.docs.find((iv) => iv._id == id);
   }
 
   onClose(value) {
@@ -77,9 +57,8 @@ export class IndexComponent implements OnInit {
         break;
       case 'list':
         this.inventoryPage = null;
-        this.storehouse = null;
+        this.warehouse = null;
         break;
     }
   }
-
 }

@@ -1,25 +1,20 @@
-<div class="container-fluid component-head">
+<div class="container-fluid component-head d-print-none">
     <h3>Stocks</h3>
 </div>
 
 <div class="container">
     <div class="row">
-        <div class="col-md-3 d-print-none" *ngIf="storehousePage?.docs?.length">
-            <ul class="list-group mb-1">
-                <li class="list-group-item disabled">Please select a <strong> Storehouse from List </strong></li>
-                <li class="list-group-item" *ngFor="let sh of storehousePage.docs" (click)="onSelectStorehouse(sh._id)">
-                    {{sh.name}}[{{sh.storekeeper_number}}]</li>
-            </ul>
-            <pagination [page]="storehousePage" (paginate)="onChangeStorehousePage($event)" [small]="true"></pagination>
+        <div class="col-md-3 d-print-none">
+            <warehouse-side-list (select)="onWarehouseSelect($event)"></warehouse-side-list>
         </div>
 
-        <div class="col-12 col-md-9 bg-white pb-3" *ngIf="productStockPage?.docs?.length && !productStock">
-            <product-stock-list [name]="storehouse.name" [productStockPage]="productStockPage"
-                (details)="onDetails($event)"></product-stock-list>
-            <pagination [page]="productStockPage" (paginate)="onChangeProductStockPage(storehouse?._id, $event)"
-                [small]="false">
-            </pagination>
-            <button class="btn btn-sm btn-danger d-print-none" (click)="onClose('list')">Close</button>
+        <div class="col bg-white" *ngIf="stockPage?.docs?.length">
+            <stock-list [name]="warehouse?.name" [stockPage]="stockPage" (refresh)="onRefresh(warehouse?._id, $event)">
+            </stock-list>
+            <div class="d-flex flex-row-reverse bd-highlight">
+                <button class="btn btn-sm btn-danger d-print-none mx-1" (click)="onClose()"><i class="fa fa-times"></i> Close</button>
+                <button class="btn btn-sm btn-primary d-print-none mx-1" (click)="onPrint()"><i class="fa fa-print"></i> Print</button>
+            </div>
         </div>
     </div>
 </div>

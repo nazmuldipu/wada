@@ -1,79 +1,56 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductStockService } from 'src/service/product-stock.service';
-import { StorehouseService } from 'src/service/storehouse.service';
-import { Storehouse, StorehousePage } from 'src/shared/models/storehouse.model';
-import { ProductStock, ProductStockPage } from 'src/shared/models/product-stock.model';
+import { StockService } from 'src/service/stock.service';
+import { WarehouseService } from 'src/service/warehouse.service';
+import { Warehouse, WarehousePage } from 'src/shared/models/warehouse.model';
+import { Stock, StockPage } from 'src/shared/models/stock.model';
+import { Pagination } from 'src/shared/models/pagination.model';
 
 @Component({
   selector: 'app-stocks',
   templateUrl: './stocks.component.html',
-  styleUrls: ['./stocks.component.scss']
+  styleUrls: ['./stocks.component.scss'],
 })
 export class StocksComponent implements OnInit {
-  storehouse: Storehouse;
-  storehousePage: StorehousePage;
-  productStock: ProductStock;
-  productStockPage: ProductStockPage;
+  warehouse: Warehouse;
+  stock: Stock;
+  stockPage: StockPage;
 
   loading = false;
   message = '';
   errorMessage = '';
 
-  constructor(private storehouseService: StorehouseService, private productStockService: ProductStockService) { }
+  constructor(private service: StockService) {}
 
-  ngOnInit(): void {
-    this.getAllStorehouse();
+  ngOnInit(): void {}
+
+  onWarehouseSelect(warehouse: Warehouse) {
+    this.warehouse = warehouse;
+    console.log(this.warehouse);
+    this.getProductStockbyWarehouseId(warehouse._id, new Pagination());
   }
 
-  async getAllStorehouse(page: number = 1, limit: number = 8, sort: string = 'priority', order: string = 'asc') {
+  async getProductStockbyWarehouseId(wid, pagi: Pagination) {
     this.loading = true;
     try {
-      this.storehousePage = await this.storehouseService.getAll(page, limit, sort, order).toPromise();
+      this.stockPage = await this.service.byWarehouseId(wid, pagi).toPromise();
     } catch (error) {
       this.errorMessage = error;
     }
     this.loading = false;
   }
-
-  onChangeStorehousePage(page) {
-    this.getAllStorehouse(page.pageNumber, page.limit, page.sort, page.order)
+  onRefresh(wid, { page, limit, sort, order, search }) {
+    this.getProductStockbyWarehouseId(
+      wid,
+      new Pagination(page, limit, sort, order, search)
+    );
   }
 
-
-  onSelectStorehouse(id) {
-    const value = this.storehousePage.docs.find((s) => s._id == id);
-    this.storehouse = Object.assign({}, value);
-    this.getProductStockbyStorehouseId(id);
+  onClose() {
+    this.stockPage = null;
+    this.warehouse = null;
   }
 
-  async getProductStockbyStorehouseId(id: string, page: number = 1, limit: number = 8, sort: string = 'priority', order: string = 'asc') {
-    this.loading = true;
-    try {
-      this.productStockPage = await this.productStockService.getProductStockByStorehouseId(id).toPromise();
-    } catch (error) {
-      this.errorMessage = error;
-    }
-    this.loading = false;
+  onPrint() {
+    (window as any).print();
   }
-
-  onChangeProductStockPage(id, page) {
-    this.getProductStockbyStorehouseId(id, page.pageNumber, page.limit, page.sort, page.order)
-  }
-
-  onDetails(id) {
-
-  }
-
-  onClose(value) {
-    switch (value) {
-      case 'details':
-        this.productStock = null;
-        break;
-      case 'list':
-        this.productStockPage = null;
-        this.storehouse = null;
-        break;
-    }
-  }
-
 }
