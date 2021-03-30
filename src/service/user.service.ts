@@ -11,7 +11,7 @@ import { UtilService } from './util.service';
   providedIn: 'root',
 })
 export class UserService {
-  userUrl = 'api/users';
+  url = 'api/users';
 
   _userSource = new BehaviorSubject<User>({} as User);
   user$ = this._userSource.asObservable();
@@ -19,43 +19,31 @@ export class UserService {
   constructor(private dSrc: RestDataService, private util: UtilService) {}
 
   userRegistration(user: User): Observable<User> {
-    return this.dSrc.sendRequest('POST', this.userUrl, user, false, null);
+    return this.dSrc.sendRequest('POST', this.url, user, false, null);
   }
 
   getList(pagi: Pagination): Observable<UserPage> {
     let sparam = this.util.paginationToHttpParam(pagi);
-    return this.dSrc.sendRequest('GET', this.userUrl, null, true, sparam);
+    return this.dSrc.sendRequest('GET', this.url, null, true, sparam);
   }
 
   update(id, user): Observable<User> {
-    return this.dSrc.sendRequest(
-      'PUT',
-      this.userUrl + `/${id}`,
-      user,
-      true,
-      null
-    );
+    return this.dSrc.sendRequest('PUT', this.url + `/${id}`, user, true, null);
   }
 
   getAll(): Observable<User[]> {
-    return this.dSrc.sendRequest('GET', this.userUrl, null, true, null);
+    return this.dSrc.sendRequest('GET', this.url, null, true, null);
   }
 
   get(id): Observable<User> {
-    return this.dSrc.sendRequest(
-      'GET',
-      this.userUrl + `/${id}`,
-      null,
-      true,
-      null
-    );
+    return this.dSrc.sendRequest('GET', this.url + `/${id}`, null, true, null);
   }
 
   search(param: string): Observable<User[]> {
     const paramUrl = new HttpParams().set('param', param);
     return this.dSrc.sendRequest(
       'GET',
-      this.userUrl + '/search',
+      this.url + '/search',
       null,
       false,
       paramUrl
@@ -63,14 +51,14 @@ export class UserService {
   }
 
   getUserProfile(): Observable<User> {
-    return this.dSrc.sendRequest('GET', this.userUrl + '/me', null, true, null);
+    return this.dSrc.sendRequest('GET', this.url + '/me', null, true, null);
   }
 
   resetPassword(id, password: string): Observable<any> {
     const value = { password };
     return this.dSrc.sendRequest(
       'PATCH',
-      this.userUrl + `/change-password/${id}`,
+      this.url + `/change-password/${id}`,
       value,
       true,
       null
@@ -80,7 +68,7 @@ export class UserService {
   changePassword(value): Observable<any> {
     return this.dSrc.sendRequest(
       'PATCH',
-      this.userUrl + `/changePassword`,
+      this.url + `/changePassword`,
       value,
       true,
       null

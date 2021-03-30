@@ -1,61 +1,52 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/service/user.service';
-import { User } from 'src/shared/models/user.model';
+import { User, UserPage } from 'src/shared/models/user.model';
+import { Pagination } from 'src/shared/models/pagination.model';
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+  styleUrls: ['./list.component.scss'],
 })
 export class ListComponent implements OnInit {
-
   user: User;
-  users: User[] = [];
+  userPage: UserPage;
+
+  loading = false;
   message = '';
   errorMessage = '';
 
-  loading = false;
-  showUserForm = false;
-
-  constructor(private userService: UserService) { }
+  constructor(private service: UserService) {}
 
   ngOnInit(): void {
-    this.getAllUser();
+    this.getUserList(new Pagination());
   }
 
-  async getAllUser() {
+  async getUserList(pagi: Pagination) {
     this.loading = true;
     try {
-      this.users = await this.userService.getAll().toPromise();
+      this.userPage = await this.service.getList(pagi).toPromise();
     } catch (error) {
       this.errorMessage = error;
     }
     this.loading = false;
   }
 
-  onShowUserForm() {
-    this.showUserForm = true;
-  }
-
-  onUserFormCancel() {
-    this.onClose();
+  refreshData({ page, limit, sort, order, search }) {
+    this.getUserList(new Pagination(page, limit, sort, order, search));
   }
 
   onEdit(id) {
-    const value = this.users.find((u) => u._id == id);
-    this.user = Object.assign({}, value);
-    this.showUserForm = true;
+    this.user = this.userPage.docs.find((u) => u._id == id);
   }
 
   async onCreate(user: User) {
     this.loading = true;
-    this.errorMessage = '';
-    this.message = '';
     try {
-      const resp = await this.userService.userRegistration(user).toPromise();
-      this.message = 'Category created';
-      this.users.push(resp);
-      this.showUserForm = false;
+      const resp = await this.service.userRegistration(user).toPromise();
+      this.onClose();
+      this.message = 'User created';
+      this.userPage.docs.push(resp);
     } catch (error) {
       this.errorMessage = error;
     }
@@ -64,16 +55,12 @@ export class ListComponent implements OnInit {
 
   async onUpdate(user: User) {
     this.loading = true;
-    this.errorMessage = '';
-    this.message = '';
     const uid = this.user._id;
     try {
-      const resp = await this.userService.update(uid, user).toPromise();
+      const resp = await this.service.update(uid, user).toPromise();
+      this.onClose();
       this.message = 'User updated';
-      this.user = null;
-      this.showUserForm = false;
-      this.user = null;
-      this.getAllUser();
+      this.getUserList(new Pagination());
     } catch (err) {
       this.errorMessage = err;
     }
@@ -82,7 +69,6 @@ export class ListComponent implements OnInit {
 
   onClose() {
     this.user = null;
-    this.showUserForm = false;
     this.loading = false;
     this.message = '';
     this.errorMessage = '';

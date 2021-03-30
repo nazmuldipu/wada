@@ -1,36 +1,17 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { User } from 'src/shared/models/user.model';
+import { Component, SimpleChanges } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { BaseFormComponent } from 'src/shared/forms/base-form/base-form.component';
+import { PHONE_NUMBER_PATTERN } from 'src/shared/forms/constants/validation-pattern-list';
 
 @Component({
   selector: 'user-form',
   templateUrl: './user-form.component.html',
-  styleUrls: ['./user-form.component.scss']
+  styleUrls: ['./user-form.component.scss'],
 })
-export class UserFormComponent implements OnChanges {
-  @Input() user: User;
-
-  @Output() create = new EventEmitter<User>();
-  @Output() update = new EventEmitter<User>();
-  @Output() cancel = new EventEmitter<Boolean>();
-
-  form: FormGroup;
-
-  exists = false;
-  showPassword = false;
-
+export class UserFormComponent extends BaseFormComponent {
   constructor(private fb: FormBuilder) {
+    super();
     this.createForm();
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (this.user && this.user._id) {
-      this.exists = true;
-      const value = {
-        ...this.user,
-      };
-      this.form.patchValue(value);
-    }
   }
 
   createForm() {
@@ -39,29 +20,9 @@ export class UserFormComponent implements OnChanges {
       email: ['', [Validators.required, Validators.email]],
       phone: [
         '',
-        [
-          Validators.required,
-          Validators.pattern('^01[3-9][ ]?[0-9]{2}[ ]?[0-9]{3}[ ]?[0-9]{3}$'),
-        ],
+        [Validators.required, Validators.pattern(PHONE_NUMBER_PATTERN)],
       ],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
-
-  submit() {
-    if (this.form.valid) {
-      if (this.exists) {
-        this.update.emit(this.form.value);
-      } else {
-        this.create.emit(this.form.value);
-      }
-      this.exists = false;
-      this.form.reset();
-    }
-  }
-
-  onCancel() {
-    this.cancel.emit(true);
-  }
 }
-

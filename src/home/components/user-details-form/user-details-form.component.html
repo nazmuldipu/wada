@@ -4,27 +4,14 @@
             Your Details
         </div>
         <div class="form-block">
-            <!-- <div class="form-group col-md-6 p-0">
-                <label for="inputState">Title</label>
-                <select id="inputState" class="form-control">
-                    <option selected>Choose...</option>
-                    <option>Mr</option>
-                    <option>Mrs</option>
-                    <option>Miss</option>
-                    <option>Ms</option>
-                    <option>Mr</option>
-                    <option>Dr</option>
-                </select>
-            </div> -->
+            
             <div class="form-group">
                 <input type="text" class="form-control" id="name" formControlName="name" autocomplete="no"
                     placeholder="Name">
                 <small class="text-danger" *ngIf="form.controls.name.errors && form.controls.name.touched"> Name
                     required </small>
             </div>
-            <!-- <div class="form-group">
-                <input type="text" class="form-control" id="lastName" placeholder="Last Name">
-            </div> -->
+            
             <div class="form-group">
                 <input type="text" class="form-control" id="phone" formControlName="phone" autocomplete="no"
                     placeholder="Phone number" maxlength="11">
@@ -65,39 +52,6 @@
                 </small>
             </div>
         </div>
-
-        <!-- <div class="title">
-            Your Address
-        </div>
-        <div class="form-block">
-            <div class="form-group">
-                <input type="text" class="form-control" id="postCode" placeholder="Enter your postcode">
-            </div>
-        </div> -->
-
-        <!-- <div class="title">
-            Account Details
-        </div>
-        <div class="form-block">
-
-        </div>
-
-        <div class="title">
-            Marketing Communications
-        </div>
-        <div class="form-block">
-            <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Wada are going fast and are in high demand
-                    for all grocers, keep me updated on when slots become available.</label>
-            </div>
-        </div> -->
-        <div class="form-block">
-            <button type="submit" class="btn btn-sm btn-success btn-block">Create Account</button>
-        </div>
-
-        <!-- <div class="title">
-
-        </div> -->
+       
     </form>
 </div>

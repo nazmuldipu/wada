@@ -1,79 +1,25 @@
-<nav class="navbar navbar-light bg-light border border-bottom-0">
-    <a class="navbar-brand">{{ exists ? "Update" : "Add" }} User</a>
-</nav>
-<form [formGroup]="form" (ngSubmit)="submit()" class="p-3 border">
-    <div class="form-group row">
-        <label for="name" class="col-sm-2 col-form-label">Name</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="name" formControlName="name" autocomplete="no"
-                placeholder="Name" />
-            <small class="text-danger" *ngIf="form.controls.name.errors && form.controls.name.touched">
-                Name required
-            </small>
-        </div>
+<div class="form-head border border-bottom-0">
+    {{exists?'Update': 'New'}} User
+</div>
+
+<form [formGroup]="form" (ngSubmit)="submit()" (mouseleave)="mouseoverShifting = false" class="p-3 border">
+    <!-- Form Elements -->
+    <form-input [fieldId]="'name'" [control]="form.get('name')"></form-input>
+    <form-input [fieldId]="'email'" [control]="form.get('email')"></form-input>
+    <form-input [fieldId]="'phone'" [control]="form.get('phone')"></form-input>
+    <form-password [fieldId]="'password'" [control]="form.get('password')"></form-password>
+
+    <!-- Buttons -->
+    <div class="d-flex flex-row-reverse bd-highlight">
+        <span (mouseenter)="mouseoverShifting = true">
+            <button type="submit" class="btn btn-sm btn-light mx-1" [disabled]="!form.valid">{{exists ?
+                'Update':'Save'}}</button>
+        </span>
+        <button type="button" class="btn btn-sm btn-light mx-1" (click)="clean()">Clear</button>
     </div>
 
-    <div class="form-group row">
-        <label for="email" class="col-sm-2 col-form-label">Email</label>
-        <div class="col-sm-10">
-            <input type="email" class="form-control" id="email" formControlName="email" autocomplete="no"
-                placeholder="Email" />
-            <small class="text-danger" *ngIf="form.controls.email.errors && form.controls.email.touched">
-                <div [hidden]="!form.controls['email'].errors.required">
-                    Email required
-                </div>
-                <div [hidden]="!form.controls['email'].errors.email">Invalid email</div>
-            </small>
-        </div>
-    </div>
-
-    <div class="form-group row">
-        <label for="phone" class="col-sm-2 col-form-label">Phone</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="phone" formControlName="phone" autocomplete="no"
-                placeholder="Phone number" maxlength="11" />
-            <small class="text-danger" *ngIf="form.controls.phone.errors && form.controls.phone.touched">
-                <div [hidden]="!form.controls['phone'].errors.required">
-                    Phone number required
-                </div>
-                <div [hidden]="!form.controls['phone'].errors.pattern">
-                    Phone number format 01934953023
-                </div>
-            </small>
-        </div>
-    </div>
-
-    <div class="form-group row">
-        <label for="password" class="col-sm-2 col-form-label">Password</label>
-        <div class="col-sm-10">
-            <div class="input-group mb-1 mb-sm-0">
-                <input [type]="showPassword ? 'text' : 'password'" id="password" class="form-control"
-                    placeholder="Password" formControlName="password" />
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" (click)="showPassword = !showPassword">
-                        <i class="fa fa-eye" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
-                    </button>
-                </div>
-            </div>
-            <small class="text-danger" *ngIf="form.controls.password.errors && form.controls.password.touched">
-                <div [hidden]="!form.controls['password'].errors.required">
-                    Password required
-                </div>
-                <div [hidden]="!form.controls['password'].errors.minlength">
-                    Minimum passwor length required 6
-                </div>
-            </small>
-        </div>
-    </div>
-
-    <div class="d-flex justify-content-end">
-        <button type="submit" class="btn btn-primary mx-1" [ngClass]="{
-          disabled: form.invalid,
-          'btn-warning': exists,
-          'btn-success': !exists
-        }">
-            {{ exists ? "Update" : "Create" }}
-        </button>
-        <button class="btn btn-danger mx-1" (click)="onCancel()">Cancel</button>
+    <!-- Form validation error list -->
+    <div *ngIf="mouseoverShifting" class="text-danger">
+        <form-validator [form]="form"></form-validator>
     </div>
 </form>

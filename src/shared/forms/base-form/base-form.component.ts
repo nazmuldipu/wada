@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -8,7 +15,7 @@ import { FormGroup } from '@angular/forms';
 })
 export class BaseFormComponent implements OnChanges {
   @Input() item: any;
-  @Input() err:string = '';
+  @Input() err: string = '';
 
   @Output() create = new EventEmitter<any>();
   @Output() update = new EventEmitter<any>();

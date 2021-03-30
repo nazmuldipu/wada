@@ -18,19 +18,12 @@
     </div>
 
     <div class="row" *ngIf="!loading">
-        <div class="col-md-6 col-12">
-            <nav class="navbar navbar-light bg-light border">
-                <a class="navbar-brand">User List</a>
-                <button type="button" class="btn btn-success btn-sm" (click)="onShowUserForm()">
-                    + ADD USER
-                </button>
-            </nav>
-            <user-list [users]="users" (edit)="onEdit($event)"></user-list>
+        <div class="col-md-7 col-12">
+            <user-list [userPage]="userPage" (edit)="onEdit($event)" (refresh)="refreshData($event)"></user-list>
         </div>
 
-        <div class="col-md-6 col-12" *ngIf="showUserForm">
-            <user-form [user]="user" (create)="onCreate($event)" (update)="onUpdate($event)"
-                (cancel)="onUserFormCancel()"></user-form>
+        <div class="col-md-5 col-12">
+            <user-form [item]="user" (create)="onCreate($event)" (update)="onUpdate($event)"></user-form>
         </div>
     </div>
 </div>

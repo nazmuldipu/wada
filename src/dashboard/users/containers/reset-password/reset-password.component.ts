@@ -1,55 +1,53 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/service/user.service';
-import { User } from 'src/shared/models/user.model';
+import { Pagination } from 'src/shared/models/pagination.model';
+import { User, UserPage } from 'src/shared/models/user.model';
 
 @Component({
   selector: 'app-reset-password',
   templateUrl: './reset-password.component.html',
-  styleUrls: ['./reset-password.component.scss']
+  styleUrls: ['./reset-password.component.scss'],
 })
 export class ResetPasswordComponent implements OnInit {
   user: User;
-  users: User[] = [];
-  imageUrl = '';
+  userPage: UserPage;
+
+  loading = false;
   message = '';
   errorMessage = '';
 
-  loading = false;
-  showPasswordForm = false;
-
-  constructor(private userService: UserService) { }
+  constructor(private service: UserService) {}
 
   ngOnInit(): void {
-    this.getAllUser();
+    this.getUserList(new Pagination());
   }
 
-  async getAllUser() {
+  async getUserList(pagi: Pagination) {
     this.loading = true;
     try {
-      this.users = await this.userService.getAll().toPromise();
+      this.userPage = await this.service.getList(pagi).toPromise();
     } catch (error) {
       this.errorMessage = error;
     }
     this.loading = false;
   }
 
-  onEdit(id) {
-    const value = this.users.find((u) => u._id == id);
-    this.user = Object.assign({}, value);
-    this.showPasswordForm = true;
-    console.log(this.user, this.showPasswordForm);
+  refreshData({ page, limit, sort, order, search }) {
+    this.getUserList(new Pagination(page, limit, sort, order, search));
   }
 
-  async onPasswordChange(password: string) {
+  onEdit(id) {
+    this.user = this.userPage.docs.find((u) => u._id == id);
+  }
+
+  async onPasswordChange(value) {
     this.loading = true;
     try {
-      const resp = await this.userService.resetPassword(
-        this.user._id,
-        password
-      ).toPromise();
+      const resp = await this.service
+        .resetPassword(this.user._id, value.password)
+        .toPromise();
       console.log(resp);
       this.message = 'Password changed';
-      this.showPasswordForm = false;
     } catch (error) {
       this.errorMessage = error;
     }
@@ -58,7 +56,6 @@ export class ResetPasswordComponent implements OnInit {
 
   onClose() {
     this.user = null;
-    this.showPasswordForm = false;
     this.loading = false;
     this.message = '';
     this.errorMessage = '';
