@@ -25,10 +25,33 @@ import { NgTableFootComponent } from './ngTable/ng-table-foot/ng-table-foot.comp
 import { NgTableHeadComponent } from './ngTable/ng-table-head/ng-table-head.component';
 import { FormFileComponent } from './forms/form-file/form-file.component';
 import { FormObjectLabelComponent } from './forms/form-object-label/form-object-label.component';
-
+import { FormSelectComponent } from './forms/form-select/form-select.component';
 
 @NgModule({
-  declarations: [OfferBoxComponent, Product2Component, LoadingComponent, ToastsComponent, PaginationComponent, BestSellersComponent, SideAdvComponent, ProductRelatedComponent, FormInputComponent, FormPropertyValidatorComponent, FormPasswordComponent, FormValidatorComponent, BaseFormComponent, AlertMessagesComponent, FormTextareaComponent, NgTableComponent, NgTableBodyComponent, NgTableFootComponent, NgTableHeadComponent, FormFileComponent, FormObjectLabelComponent],
+  declarations: [
+    OfferBoxComponent,
+    Product2Component,
+    LoadingComponent,
+    ToastsComponent,
+    PaginationComponent,
+    BestSellersComponent,
+    SideAdvComponent,
+    ProductRelatedComponent,
+    FormInputComponent,
+    FormPropertyValidatorComponent,
+    FormPasswordComponent,
+    FormValidatorComponent,
+    BaseFormComponent,
+    AlertMessagesComponent,
+    FormTextareaComponent,
+    NgTableComponent,
+    NgTableBodyComponent,
+    NgTableFootComponent,
+    NgTableHeadComponent,
+    FormFileComponent,
+    FormObjectLabelComponent,
+    FormSelectComponent,
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -44,6 +67,7 @@ import { FormObjectLabelComponent } from './forms/form-object-label/form-object-
     FormInputComponent,
     FormObjectLabelComponent,
     FormPasswordComponent,
+    FormSelectComponent,
     FormValidatorComponent,
     FormsModule,
     FormTextareaComponent,
@@ -57,7 +81,7 @@ import { FormObjectLabelComponent } from './forms/form-object-label/form-object-
     ReactiveFormsModule,
     RouterModule,
     SideAdvComponent,
-    ToastsComponent
-  ]
+    ToastsComponent,
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}

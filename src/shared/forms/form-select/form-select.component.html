@@ -1,0 +1,15 @@
+<div class="form-group" [class]="col?'':'row'">
+    <label *ngIf="showLabel" [for]="fieldId" class="d-none d-sm-block col-form-label col-form-label-sm"
+        [class]="col?'p-0':'col-sm-3'">
+        {{label}}<span *ngIf="validator?.required">*</span>
+    </label>
+    <div [class]="col?'':'col-sm-9'">
+        <select class="form-control form-control-sm" [id]="fieldId" [formControl]="control" (change)="onChange($event)">
+            <option value="">Select a {{label}}</option>
+            <option *ngFor="let opt of options" [value]="opt._id">
+                {{ opt.name }}
+            </option>
+        </select>
+        <form-property-validator [validationErrors]="validationErrors" [name]="label"></form-property-validator>
+    </div>
+</div>

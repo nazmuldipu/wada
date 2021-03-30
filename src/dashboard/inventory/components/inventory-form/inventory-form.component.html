@@ -1,66 +1,70 @@
-<nav class="navbar navbar-light bg-light border">
-    <a class="navbar-brand">Inventory Form</a>
-    <a type="button" class="btn btn-success btn-sm" routerLink="/dashboard/inventory">
-        <i class="fa fa-list"></i> INVENTORY LIST
-    </a>
-</nav>
-
-<ng-template #rt let-r="result" let-t="term">
-    <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>
-</ng-template>
-
-<form [formGroup]="form" class="my-3 p-4 shifting-form label1 text-left" (ngSubmit)="submit()">
-
-    <div class="form-row">
-        <div class="col-md-6 mb-3">
-            <label for="reference">Inventory Number* </label>
-            <input type="text" class="form-control" id="reference" formControlName="reference"
-                placeholder="Inventory Number " />
-            <small class="text-danger" *ngIf="form.controls.reference.errors && form.controls.reference.touched">
-                Reference required
-            </small>
+<div class="border">
+    <div class="navbar navbar-light bg-light">
+        <div class="form-head">
+            {{exists?'Update': 'New'}} Inventory
         </div>
-        <div class="col-md-6 mb-3">
-            <label for="inventoryType">Inventory Type *</label>
-            <select class="form-control" id="inventoryType" formControlName="inventoryType">
-                <option value="" selected> N/A </option>
-                <option value="in"> In </option>
-                <option value="transfer"> Transfer </option>
-                <option value="sample"> Sample </option>
-                <option value="damage"> Damage </option>
-            </select>
-        </div>
-        <div class="col-md-6 mb-3">
-            <label for="storehouse">Storehouse</label>
-            <input id="storehouse" type="text" class="form-control" [class.is-invalid]="searchFailed"
-                formControlName="storehouse" [ngbTypeahead]="searchStorehouse" [resultTemplate]="rt"
-                [inputFormatter]="storehouseFormatter" placeholder="Shop name or owner number" />
-        </div>
-        <div class="col-md-6 mb-3">
-            <label for="supplier">Supplier</label>
-            <input id="supplier" type="text" class="form-control" [class.is-invalid]="searchFailed"
-                formControlName="supplier" [ngbTypeahead]="searchUser" [resultTemplate]="rt"
-                [inputFormatter]="userFormatter" placeholder="Supplier name or phone number" />
-        </div>
+        <a type="button" class="btn btn-primary btn-sm" routerLink="/dashboard/inventory">
+            <i class="fa fa-list"></i> Inventory List
+        </a>
     </div>
 
-    <div class="row">
-        <div class="col-md-12">
-            <inventory-item-form [parent]="form" (removeItem)="onRemoveInventoryItem($event)"></inventory-item-form>
+    <form [formGroup]="form" class="p-3" (ngSubmit)="submit()" (mouseleave)="mouseoverShifting = false">
+
+        <div class="form-row">
+            <div class="col-md-6">
+                <form-input [fieldId]="'reference'" [control]="form.get('reference')"></form-input>
+            </div>
+            <div class="col-md-6">
+                <form-select [fieldId]="'inventoryType'" [control]="form.get('inventoryType')"
+                    [options]="inventoryTypes">
+                </form-select>
+            </div>
+
+            <!-- Search Warehouse -->
+            <div class="col-md-6">
+                <label for="warehouse" class="d-none d-sm-block col-form-label col-form-label-sm p-0">Warehouse*</label>
+                <input id="warehouse" type="text" class="form-control form-control-sm" formControlName="warehouse"
+                    [ngbTypeahead]="searchWarehouse" [resultFormatter]="warehouseFormatter"
+                    [inputFormatter]="warehouseFormatter" [editable]='false' placeholder="Warehouse name" />
+                <small class="form-text text-danger"
+                    *ngIf="form.controls.warehouse.errors && form.controls.warehouse.touched">Warehouse
+                    Required</small>
+            </div>
+
+            <!-- Search Supplier -->
+            <div class="col-md-6">
+                <label for="supplier" class="d-none d-sm-block col-form-label col-form-label-sm p-0">Supplier*</label>
+                <input id="supplier" type="text" class="form-control form-control-sm" [ngbTypeahead]="searchUser"
+                    formControlName="supplier" [resultFormatter]="userFormatter" [inputFormatter]="userFormatter"
+                    [editable]='false' placeholder="Supplier name / phone" />
+                <small class="form-text text-danger"
+                    *ngIf="form.controls.supplier.errors && form.controls.supplier.touched">Supplier
+                    Required</small>
+            </div>
         </div>
-        <button class="btn btn-sm btn-info" type="button" (click)="pushInventoryItem()">
-            Add Inventory Item
-        </button>
-    </div>
 
-    <div class="d-flex justify-content-end">
-        <button type="submit" class="btn btn-primary" [ngClass]="{
-            disabled: form.invalid,
-            'btn-warning': exists,
-            'btn-success': !exists
-          }">
-            {{ exists ? "Update" : "Create" }}
-        </button>
-    </div>
+        <div class="row">
+            <div class="col-md-12 my-3">
+                <inventory-item-form [parent]="form" (removeItem)="onRemoveInventoryItem($event)"></inventory-item-form>
+                <button class="btn btn-sm btn-info" type="button" (click)="pushInventoryItem()">
+                    <i class="fa fa-plus"></i> Add Item
+                </button>
+            </div>
+        </div>
 
-</form>
+        <!-- Buttons -->
+        <div class="d-flex flex-row-reverse bd-highlight">
+            <span (mouseenter)="mouseoverShifting = true">
+                <button type="submit" class="btn btn-sm btn-light mx-1" [disabled]="!form.valid">{{exists ?
+                    'Update':'Save'}}</button>
+            </span>
+            <button type="button" class="btn btn-sm btn-light mx-1" (click)="clean()">Clear</button>
+        </div>
+
+        <!-- Form validation error list -->
+        <div *ngIf="mouseoverShifting" class="text-danger">
+            <form-validator [form]="form"></form-validator>
+        </div>
+
+    </form>
+</div>

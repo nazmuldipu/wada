@@ -9,8 +9,8 @@
     <form-object-label [label]="'Warehouse*'" [name]="item?.name" [showButton]="false"></form-object-label>
 
     <div class="form-group">
-        <label for="sr_no" class="d-none d-sm-block col-form-label col-form-label-sm p-0">User*</label>
-        <input id="sr_no" type="text" class="form-control form-control-sm" [ngbTypeahead]="searchUser"
+        <label for="userId" class="d-none d-sm-block col-form-label col-form-label-sm p-0">User*</label>
+        <input id="userId" type="text" class="form-control form-control-sm" [ngbTypeahead]="searchUser"
             [resultFormatter]="formatter" [inputFormatter]="formatter" [editable]='false'
             (selectItem)="onSelectUser($event)" />
         <small class="form-text text-danger" *ngIf="form.controls.userId.errors && form.controls.userId.touched">userId

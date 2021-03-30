@@ -89,12 +89,12 @@ export const SideNavbar = [
       //   roles: ['ADMIN'], link: '/dashboard/products/shops',
       // },
 
-      {
-        name: 'Free Delivery',
-        icon: 'fa-bicycle',
-        roles: ['SHOP', 'ADMIN'],
-        link: '/dashboard/products/free-delivery',
-      },
+      // {
+      //   name: 'Free Delivery',
+      //   icon: 'fa-bicycle',
+      //   roles: ['SHOP', 'ADMIN'],
+      //   link: '/dashboard/products/free-delivery',
+      // },
     ],
   },
   {
@@ -163,4 +163,11 @@ export const SideNavbar = [
     roles: ['USER'],
     subCagegories: [],
   },
+];
+
+export const InventoryTypes = [
+  { _id: 'in', name: 'In' },
+  { _id: 'transfer', name: 'Transfer' },
+  { _id: 'sample', name: 'Sample' },
+  { _id: 'damage', name: 'Damage' },
 ];

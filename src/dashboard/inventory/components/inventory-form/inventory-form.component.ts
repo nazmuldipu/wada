@@ -1,95 +1,94 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { Observable, of } from 'rxjs';
-import { catchError, debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs/operators';
-import { StorehouseService } from 'src/service/storehouse.service';
+import {
+  catchError,
+  debounceTime,
+  distinctUntilChanged,
+  map,
+  switchMap,
+} from 'rxjs/operators';
 import { UserService } from 'src/service/user.service';
-import { Inventory } from 'src/shared/models/inventory.model';
+import { WarehouseService } from 'src/service/warehouse.service';
+import { InventoryTypes } from 'src/shared/data/data';
+import { BaseFormComponent } from 'src/shared/forms/base-form/base-form.component';
+import { Pagination } from 'src/shared/models/pagination.model';
+import { User } from 'src/shared/models/user.model';
 
 @Component({
   selector: 'inventory-form',
   templateUrl: './inventory-form.component.html',
-  styleUrls: ['./inventory-form.component.scss']
+  styleUrls: ['./inventory-form.component.scss'],
 })
-export class InventoryFormComponent implements OnChanges {
-  @Input() inventory: Inventory
+export class InventoryFormComponent extends BaseFormComponent {
+  inventoryTypes = InventoryTypes;
 
-  @Output() create = new EventEmitter<Inventory>();
-
-  form: FormGroup;
-  exists = false;
-  mouseoverShifting = false;
-
-  searching = false;
-  searchFailed = false;
-
-  searchStorehouse = (text$: Observable<string>) =>
+  searchWarehouse = (text$: Observable<string>) =>
     text$.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      tap(() => this.searching = true),
-      switchMap(term =>
-        this.storehouseService.search(term).pipe(
-          tap((data) => {
-            this.searchFailed = false;
-            data
-          }),
-          catchError(() => {
-            this.searchFailed = true;
-            return of([]);
-          }))
-      ),
-      tap(() => this.searching = false)
-    )
+      switchMap((term) => {
+        if (term.length < 3) return [];
+        return this.warehouseService
+          .getList(new Pagination(1, 10, 'name', 'asc', term))
+          .pipe(
+            catchError(() => {
+              return of([]);
+            })
+          );
+      }),
+      map((p) => (p ? p['docs'] : []))
+    );
 
   searchUser = (text$: Observable<string>) =>
     text$.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      tap(() => this.searching = true),
-      switchMap(term =>
-        this.userService.search(term).pipe(
-          tap((data) => {
-            this.searchFailed = false;
-            data
-          }),
-          catchError(() => {
-            this.searchFailed = true;
-            return of([]);
-          }))
-      ),
-      tap(() => this.searching = false)
-    )
+      switchMap((term) => {
+        if (term.length < 3) return [];
+        return this.userService
+          .getList(new Pagination(1, 10, 'name', 'asc', term))
+          .pipe(
+            catchError(() => {
+              return of([]);
+            })
+          );
+      }),
+      map((p) => (p ? p['docs'] : []))
+    );
 
+  warehouseFormatter = (x) => {
+    if (x) return `${x.name} [${x.admin.name}]`;
+  };
 
+  userFormatter = (user: User) => {
+    if (user) return `${user.name}  [${user.phone}]`;
+  };
 
-  storehouseFormatter = (x) => {
-    if (x)
-      return `${x.name} [${x.storekeeper_number}]`;
-  }
-
-  userFormatter = (x) => {
-    if (x)
-      return `${x.name} [${x.phone}]`;
-  }
-
-  constructor(private fb: FormBuilder, private storehouseService: StorehouseService, private userService: UserService) {
+  constructor(
+    private fb: FormBuilder,
+    private warehouseService: WarehouseService,
+    private userService: UserService
+  ) {
+    super();
     this.createForm();
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes && this.inventory) {
-
-    }
   }
 
   createForm() {
     this.form = this.fb.group({
-      inventoryType: ['', Validators.required],
       reference: ['', Validators.required],
-      storehouse: ['', Validators.required],
+      inventoryType: ['in', Validators.required],
+      warehouse: ['', Validators.required],
       supplier: ['', Validators.required],
-      items: this.fb.array([this.createInventoryItem()])
+      items: this.fb.array([this.createInventoryItem()]),
+    });
+  }
+
+  createInventoryItem() {
+    return this.fb.group({
+      product: ['', Validators.required],
+      quantity: [1, Validators.required],
+      purchase_price: [0, Validators.required],
     });
   }
 
@@ -98,24 +97,15 @@ export class InventoryFormComponent implements OnChanges {
     control.push(this.createInventoryItem());
   }
 
-  createInventoryItem() {
-    return this.fb.group({
-      product: ['', Validators.required],
-      quantity: ['', Validators.required],
-      purchase_price: ['', Validators.required],
-    });
-  }
-
   onRemoveInventoryItem(event) {
     const control = <FormArray>this.form.get('items');
     control.removeAt(event);
   }
 
-  submit() {
-    if (this.form.valid) {
-      this.create.emit(this.form.value);
-    }
+  clean() {
+    const control = <FormArray>this.form.get('items');
+    control.clear();
+    super.clean();
+    this.pushInventoryItem();
   }
-
 }
-

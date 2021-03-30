@@ -14,21 +14,41 @@ export class AddComponent implements OnInit {
   message = '';
   errorMessage = '';
 
-  constructor(private inventoryService: InventoryService) {}
+  constructor(private service: InventoryService) {}
 
   ngOnInit(): void {}
 
-  async onCreateInventory(event: Inventory) {
-    this.loading = true;
-    this.errorMessage = '';
-    this.message = '';
+  async onCreateInventory(inventory: Inventory) {
+    const value = this.inventoryObjectToSend(inventory);
     try {
-      const resp = await this.inventoryService.create(event).toPromise();
-      this.message = 'Inventory added';
-    } catch (error) {
-      this.errorMessage = error;
+      this.loading = true;
+      const resp = await this.service.create(value).toPromise();
+      console.log(resp);
+      this.loading = false;
+    } catch (err) {
+      console.log(err);
+      this.errorMessage = err;
     }
-    this.loading = false;
+  }
+
+  //Convert Inventory object to send server
+  inventoryObjectToSend(inventory: Inventory): any {
+    const value = {
+      inventoryType: inventory.inventoryType,
+      reference: inventory.reference,
+      warehouseId: inventory.warehouse._id,
+      supplierId: inventory.supplier._id,
+      items: [],
+    };
+    for (let item of inventory.items) {
+      const prod = {
+        productId: item.product._id,
+        quantity: item.quantity,
+        purchase_price: item.purchase_price,
+      };
+      value.items.push(prod);
+    }
+    return value;
   }
 
   onClose() {

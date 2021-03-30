@@ -25,7 +25,7 @@ export class WarehouseAssignFormComponent extends BaseFormComponent {
       distinctUntilChanged(),
       switchMap((term) => {
         if (term.length < 3) return [];
-        return this.userSerivce.getList(new Pagination(1, 10)).pipe(
+        return this.userService.getList(new Pagination(1, 10)).pipe(
           catchError(() => {
             return of([]);
           })
@@ -38,7 +38,7 @@ export class WarehouseAssignFormComponent extends BaseFormComponent {
     if (user) return user.name + '[' + user.phone + ']';
   };
 
-  constructor(private fb: FormBuilder, private userSerivce: UserService) {
+  constructor(private fb: FormBuilder, private userService: UserService) {
     super();
     this.createForm();
   }

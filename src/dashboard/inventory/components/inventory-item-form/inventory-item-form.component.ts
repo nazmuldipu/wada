@@ -1,61 +1,55 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormGroup } from '@angular/forms';
 import { Observable, of } from 'rxjs';
-import { catchError, debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs/operators';
+import { catchError, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs/operators';
 import { ProductService } from 'src/service/product.service';
+import { Pagination } from 'src/shared/models/pagination.model';
 
 @Component({
   selector: 'inventory-item-form',
   templateUrl: './inventory-item-form.component.html',
-  styleUrls: ['./inventory-item-form.component.scss']
+  styleUrls: ['./inventory-item-form.component.scss'],
 })
 export class InventoryItemFormComponent implements OnInit {
   @Input() parent: FormGroup;
 
   @Output() removeItem = new EventEmitter<any>();
 
-  searching = false;
-  searchFailed = false;
   total = 0;
 
-  constructor(private productService: ProductService, private fb: FormBuilder) { }
+  constructor(private productService: ProductService) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   searchProduct = (text$: Observable<string>) =>
     text$.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      tap(() => this.searching = true),
-      switchMap(term =>
-        this.productService.search(term).pipe(
-          tap((data) => {
-            this.searchFailed = false;
-            data
-          }),
-          catchError(() => {
-            this.searchFailed = true;
-            return of([]);
-          }))
-      ),
-      tap(() => this.searching = false)
-    )
+      switchMap((term) => {
+        if (term.length < 3) return [];
+        return this.productService
+          .getList(new Pagination(1, 10, 'name', 'asc', term))
+          .pipe(
+            catchError(() => {
+              return of([]);
+            })
+          );
+      }),
+      map((p) => (p ? p['docs'] : []))
+    );
 
   productFormatter = (x) => {
-    if (x)
-      return `${x.name} [S: ${x.size}] [P: ${x.price}]`;
-  }
+    if (x) return `${x.name} [S: ${x.size}] [P: ${x.price}]`;
+  };
 
   getProductName(x) {
-    if (x)
-      return `${x.name} [S: ${x.size}] [P: ${x.price}]`;
+    if (x) return `${x.name} [S: ${x.size}] [P: ${x.price}]`;
   }
 
   onRemoveItem(i) {
     this.removeItem.emit(i);
   }
-
+  
   updateTotal() {
     const control = <FormArray>this.parent.get('items');
     let t = 0;
