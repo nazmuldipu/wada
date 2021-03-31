@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { SubCategoryService } from 'src/service/sub-cateogry.service';
-import { Pagination } from 'src/shared/models/pagination.model';
+import { Pagination } from 'src/models/pagination.model';
 import {
   SubCategory,
   SubCategoryPage,
-} from 'src/shared/models/sub-category.model';
-import { CategoryPage } from 'src/shared/models/category.model';
+} from 'src/models/sub-category.model';
+import { CategoryPage } from 'src/models/category.model';
 import { CategoryService } from 'src/service/category.service';
 
 @Component({

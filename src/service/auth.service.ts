@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { User } from 'src/shared/models/user.model';
+import { User } from 'src/models/user.model';
 import { RestDataService } from './rest-data.service';
 
 @Injectable({

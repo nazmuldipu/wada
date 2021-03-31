@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { WarehousePage } from 'src/shared/models/warehouse.model';
+import { WarehousePage } from 'src/models/warehouse.model';
 
 @Component({
   selector: 'warehouse-table',

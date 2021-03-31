@@ -5,7 +5,7 @@ import {
   Input,
   Output,
 } from '@angular/core';
-import { InventoryPage } from 'src/shared/models/inventory.model';
+import { InventoryPage } from 'src/models/inventory.model';
 
 @Component({
   selector: 'inventory-list',

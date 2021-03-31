@@ -8,8 +8,8 @@ import {
 } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { BaseFormComponent } from 'src/shared/forms/base-form/base-form.component';
-import { Category } from 'src/shared/models/category.model';
-import { SubCategory } from 'src/shared/models/sub-category.model';
+import { Category } from 'src/models/category.model';
+import { SubCategory } from 'src/models/sub-category.model';
 
 @Component({
   selector: 'sub-sub-category-form',

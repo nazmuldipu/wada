@@ -5,8 +5,8 @@ import { UtilService } from './util.service';
 import {
   SubCategory,
   SubCategoryPage,
-} from './../shared/models/sub-category.model';
-import { Pagination } from 'src/shared/models/pagination.model';
+} from '../models/sub-category.model';
+import { Pagination } from 'src/models/pagination.model';
 
 @Injectable({
   providedIn: 'root',

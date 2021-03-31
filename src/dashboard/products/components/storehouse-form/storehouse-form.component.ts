@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Storehouse } from 'src/shared/models/storehouse.model';
+import { Storehouse } from 'src/models/storehouse.model';
 
 @Component({
   selector: 'storehouse-form',

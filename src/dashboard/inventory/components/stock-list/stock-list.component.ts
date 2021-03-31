@@ -5,7 +5,7 @@ import {
   Input,
   Output,
 } from '@angular/core';
-import { StockPage } from 'src/shared/models/stock.model';
+import { StockPage } from 'src/models/stock.model';
 
 @Component({
   selector: 'stock-list',

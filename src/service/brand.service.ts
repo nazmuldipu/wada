@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Brand, BrandPage } from 'src/shared/models/brand.model';
-import { Pagination } from 'src/shared/models/pagination.model';
+import { Brand, BrandPage } from 'src/models/brand.model';
+import { Pagination } from 'src/models/pagination.model';
 
 import { RestDataService } from './rest-data.service';
 import { UtilService } from './util.service';

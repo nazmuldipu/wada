@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { SubCategoryPage } from 'src/shared/models/sub-category.model';
+import { SubCategoryPage } from 'src/models/sub-category.model';
 
 @Component({
   selector: 'sub-category-table',

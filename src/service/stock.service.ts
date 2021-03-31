@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { RestDataService } from './rest-data.service';
-import { Stock, StockPage } from 'src/shared/models/stock.model';
+import { Stock, StockPage } from 'src/models/stock.model';
 import { Observable } from 'rxjs/internal/Observable';
-import { Pagination } from 'src/shared/models/pagination.model';
+import { Pagination } from 'src/models/pagination.model';
 import { UtilService } from './util.service';
 
 @Injectable({

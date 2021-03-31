@@ -4,9 +4,9 @@ import { CartService } from 'src/service/cart.service';
 import { ProductDetailsService } from 'src/service/product-details.service';
 import { StockService } from 'src/service/stock.service';
 import { ProductService } from 'src/service/product.service';
-import { ProductDetails } from 'src/shared/models/product-details.model';
-import { Stock } from 'src/shared/models/stock.model';
-import { Product } from 'src/shared/models/product.model';
+import { ProductDetails } from 'src/models/product-details.model';
+import { Stock } from 'src/models/stock.model';
+import { Product } from 'src/models/product.model';
 
 @Component({
   selector: 'app-details',

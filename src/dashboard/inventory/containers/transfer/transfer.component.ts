@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Inventory } from 'src/shared/models/inventory.model';
+import { Inventory } from 'src/models/inventory.model';
 import { InventoryService } from 'src/service/inventory.service';
 
 @Component({

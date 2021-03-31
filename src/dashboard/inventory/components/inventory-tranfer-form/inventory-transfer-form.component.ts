@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Inventory } from 'src/shared/models/inventory.model';
+import { Inventory } from 'src/models/inventory.model';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { debounceTime, distinctUntilChanged, tap, switchMap, catchError } from 'rxjs/operators';

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { StorehouseService } from 'src/service/storehouse.service';
 import { InventoryService } from 'src/service/inventory.service';
-import { InventoryPage, Inventory } from 'src/shared/models/inventory.model';
-import { Storehouse, StorehousePage } from 'src/shared/models/storehouse.model';
+import { InventoryPage, Inventory } from 'src/models/inventory.model';
+import { Storehouse, StorehousePage } from 'src/models/storehouse.model';
 
 @Component({
   selector: 'app-receive',

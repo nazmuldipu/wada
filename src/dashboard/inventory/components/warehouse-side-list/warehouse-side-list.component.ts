@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { WarehouseService } from 'src/service/warehouse.service';
-import { Pagination } from 'src/shared/models/pagination.model';
-import { Warehouse, WarehousePage } from 'src/shared/models/warehouse.model';
+import { Pagination } from 'src/models/pagination.model';
+import { Warehouse, WarehousePage } from 'src/models/warehouse.model';
 
 @Component({
   selector: 'warehouse-side-list',

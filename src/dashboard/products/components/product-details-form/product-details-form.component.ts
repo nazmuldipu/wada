@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ProductDetails } from 'src/shared/models/product-details.model';
+import { ProductDetails } from 'src/models/product-details.model';
 
 @Component({
   selector: 'product-details-form',

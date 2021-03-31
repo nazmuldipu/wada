@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { User } from 'src/shared/models/user.model';
+import { User } from 'src/models/user.model';
 
 @Component({
   selector: 'user-details-form',

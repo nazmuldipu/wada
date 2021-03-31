@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Order, OrderPage } from 'src/shared/models/order.model';
+import { Order, OrderPage } from 'src/models/order.model';
 import { RestDataService } from './rest-data.service';
 
 @Injectable({

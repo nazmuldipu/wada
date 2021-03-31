@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
-import { Product } from 'src/shared/models/product.model';
-import { Product_list_cart } from 'src/shared/models/cart.model';
+import { Product } from 'src/models/product.model';
+import { Product_list_cart } from 'src/models/cart.model';
 
 @Component({
   selector: 'detail-modal',

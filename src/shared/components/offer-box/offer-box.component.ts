@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Feature, Offer } from 'src/shared/models/offer.model';
+import { Feature, Offer } from 'src/models/offer.model';
 
 @Component({
   selector: 'offer-box',

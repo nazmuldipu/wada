@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { CategoryService } from 'src/service/category.service';
 import { SubCategoryService } from 'src/service/sub-cateogry.service';
 import { SubSubCategoryService } from 'src/service/sub-sub-category.service';
-import { CategoryPage } from 'src/shared/models/category.model';
-import { Pagination } from 'src/shared/models/pagination.model';
-import { SubCategoryPage } from 'src/shared/models/sub-category.model';
+import { CategoryPage } from 'src/models/category.model';
+import { Pagination } from 'src/models/pagination.model';
+import { SubCategoryPage } from 'src/models/sub-category.model';
 import {
   SubSubCategory,
   SubSubCategoryPage,
-} from 'src/shared/models/sub-sub-category.model';
+} from 'src/models/sub-sub-category.model';
 
 @Component({
   selector: 'app-sub-sub-categories',

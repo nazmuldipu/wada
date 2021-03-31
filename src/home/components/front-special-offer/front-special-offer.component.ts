@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Offers } from 'src/shared/data/offers';
-import { Offer } from 'src/shared/models/offer.model';
+import { Offer } from 'src/models/offer.model';
 
 @Component({
   selector: 'front-special-offer',

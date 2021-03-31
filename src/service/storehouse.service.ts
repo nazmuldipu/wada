@@ -1,7 +1,7 @@
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Storehouse, StorehousePage } from 'src/shared/models/storehouse.model';
+import { Storehouse, StorehousePage } from 'src/models/storehouse.model';
 import { RestDataService } from './rest-data.service';
 
 @Injectable({

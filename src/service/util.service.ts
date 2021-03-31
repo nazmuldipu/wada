@@ -1,6 +1,6 @@
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Pagination } from 'src/shared/models/pagination.model';
+import { Pagination } from 'src/models/pagination.model';
 
 @Injectable({
   providedIn: 'root',

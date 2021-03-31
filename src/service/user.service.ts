@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { RestDataService } from './rest-data.service';
-import { User, UserPage } from 'src/shared/models/user.model';
+import { User, UserPage } from 'src/models/user.model';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { HttpParams } from '@angular/common/http';
-import { Pagination } from 'src/shared/models/pagination.model';
+import { Pagination } from 'src/models/pagination.model';
 import { UtilService } from './util.service';
 
 @Injectable({

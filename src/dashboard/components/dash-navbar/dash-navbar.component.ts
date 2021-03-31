@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AuthService } from 'src/service/auth.service';
 import { CartService } from 'src/service/cart.service';
-import { User } from 'src/shared/models/user.model';
+import { User } from 'src/models/user.model';
 
 @Component({
   selector: 'dash-navbar',

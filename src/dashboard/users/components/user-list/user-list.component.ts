@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { UserPage } from 'src/shared/models/user.model';
+import { UserPage } from 'src/models/user.model';
 
 @Component({
   selector: 'user-list',

@@ -12,8 +12,8 @@ import { UserService } from 'src/service/user.service';
 import { WarehouseService } from 'src/service/warehouse.service';
 import { InventoryTypes } from 'src/shared/data/data';
 import { BaseFormComponent } from 'src/shared/forms/base-form/base-form.component';
-import { Pagination } from 'src/shared/models/pagination.model';
-import { User } from 'src/shared/models/user.model';
+import { Pagination } from 'src/models/pagination.model';
+import { User } from 'src/models/user.model';
 
 @Component({
   selector: 'inventory-form',

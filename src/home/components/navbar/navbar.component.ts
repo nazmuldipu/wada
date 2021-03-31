@@ -3,9 +3,9 @@ import { Router } from '@angular/router';
 import { CartService } from 'src/service/cart.service';
 import { SubCategoryService } from 'src/service/sub-cateogry.service';
 import { CategoryTree } from 'src/shared/data/category';
-import { Cart } from 'src/shared/models/cart.model';
-import { Pagination } from 'src/shared/models/pagination.model';
-import { SubCategoryPage } from 'src/shared/models/sub-category.model';
+import { Cart } from 'src/models/cart.model';
+import { Pagination } from 'src/models/pagination.model';
+import { SubCategoryPage } from 'src/models/sub-category.model';
 
 @Component({
   selector: 'navbar',

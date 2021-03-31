@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { CategoryPage } from 'src/shared/models/category.model';
+import { CategoryPage } from 'src/models/category.model';
 
 @Component({
   selector: 'category-table',

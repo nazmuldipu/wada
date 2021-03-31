@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ProductPage } from 'src/shared/models/product.model';
+import { ProductPage } from 'src/models/product.model';
 
 @Component({
   selector: 'product-table',

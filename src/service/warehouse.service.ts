@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { RestDataService } from './rest-data.service';
 import { UtilService } from './util.service';
-import { Warehouse, WarehousePage } from 'src/shared/models/warehouse.model';
+import { Warehouse, WarehousePage } from 'src/models/warehouse.model';
 import { Observable } from 'rxjs';
-import { Pagination } from 'src/shared/models/pagination.model';
+import { Pagination } from 'src/models/pagination.model';
 
 @Injectable({
   providedIn: 'root',

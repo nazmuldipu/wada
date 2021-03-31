@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { BrandPage } from 'src/shared/models/brand.model';
+import { BrandPage } from 'src/models/brand.model';
 
 @Component({
   selector: 'brands-table',

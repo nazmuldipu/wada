@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { InventoryService } from 'src/service/inventory.service';
-import { Inventory, InventoryPage } from 'src/shared/models/inventory.model';
-import { Pagination } from 'src/shared/models/pagination.model';
-import { Warehouse } from 'src/shared/models/warehouse.model';
+import { Inventory, InventoryPage } from 'src/models/inventory.model';
+import { Pagination } from 'src/models/pagination.model';
+import { Warehouse } from 'src/models/warehouse.model';
 
 @Component({
   selector: 'app-index',

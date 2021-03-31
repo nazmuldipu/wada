@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BaseFormComponent } from 'src/shared/forms/base-form/base-form.component';
-import { Brand } from 'src/shared/models/brand.model';
-import { Category } from 'src/shared/models/category.model';
-import { SubCategory } from 'src/shared/models/sub-category.model';
-import { SubSubCategory } from 'src/shared/models/sub-sub-category.model';
+import { Brand } from 'src/models/brand.model';
+import { Category } from 'src/models/category.model';
+import { SubCategory } from 'src/models/sub-category.model';
+import { SubSubCategory } from 'src/models/sub-sub-category.model';
 
 @Component({
   selector: 'product-form',

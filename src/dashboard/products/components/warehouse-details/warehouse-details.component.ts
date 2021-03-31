@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Warehouse } from 'src/shared/models/warehouse.model';
+import { Warehouse } from 'src/models/warehouse.model';
 
 @Component({
   selector: 'warehouse-details',

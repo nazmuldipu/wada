@@ -9,8 +9,8 @@ import {
   switchMap,
 } from 'rxjs/operators';
 import { BaseFormComponent } from 'src/shared/forms/base-form/base-form.component';
-import { Pagination } from 'src/shared/models/pagination.model';
-import { User } from 'src/shared/models/user.model';
+import { Pagination } from 'src/models/pagination.model';
+import { User } from 'src/models/user.model';
 import { UserService } from '../../../../service/user.service';
 
 @Component({

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { RestDataService } from './rest-data.service';
-import { Inventory, InventoryPage } from 'src/shared/models/inventory.model';
+import { Inventory, InventoryPage } from 'src/models/inventory.model';
 import { Observable } from 'rxjs/internal/Observable';
 import { HttpParams } from '@angular/common/http';
-import { Pagination } from 'src/shared/models/pagination.model';
+import { Pagination } from 'src/models/pagination.model';
 import { UtilService } from 'src/service/util.service';
 
 @Injectable({

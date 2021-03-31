@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from 'src/service/category.service';
-import { Category, CategoryPage } from 'src/shared/models/category.model';
-import { Pagination } from 'src/shared/models/pagination.model';
+import { Category, CategoryPage } from 'src/models/category.model';
+import { Pagination } from 'src/models/pagination.model';
 
 @Component({
   selector: 'app-categories',

@@ -3,7 +3,7 @@ import { FormArray, FormGroup } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs/operators';
 import { ProductService } from 'src/service/product.service';
-import { Pagination } from 'src/shared/models/pagination.model';
+import { Pagination } from 'src/models/pagination.model';
 
 @Component({
   selector: 'inventory-item-form',

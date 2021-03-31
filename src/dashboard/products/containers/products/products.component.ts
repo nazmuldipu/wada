@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/service/product.service';
 import { ToastService } from 'src/service/toast.service';
 import { CategoryTree } from 'src/shared/data/category';
-import { Product, ProductPage } from 'src/shared/models/product.model';
+import { Product, ProductPage } from 'src/models/product.model';
 import { BrandsObjects } from 'src/shared/data/brands';
 import { ProductDetailsService } from 'src/service/product-details.service';
 import { UtilService } from 'src/service/util.service';
-import { Pagination } from 'src/shared/models/pagination.model';
+import { Pagination } from 'src/models/pagination.model';
 
 @Component({
   selector: 'app-products',

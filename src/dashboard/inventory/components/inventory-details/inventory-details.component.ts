@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { Inventory } from 'src/shared/models/inventory.model';
+import { Inventory } from 'src/models/inventory.model';
 
 @Component({
   selector: 'inventory-details',

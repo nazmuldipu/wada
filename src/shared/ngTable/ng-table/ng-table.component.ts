@@ -6,7 +6,7 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { PageInfo } from 'src/shared/models/page-info.model';
+import { PageInfo } from 'src/models/page-info.model';
 
 @Component({
   selector: 'ng-table',

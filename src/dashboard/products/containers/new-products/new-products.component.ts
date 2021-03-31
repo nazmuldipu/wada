@@ -5,12 +5,12 @@ import { CategoryService } from 'src/service/category.service';
 import { ProductService } from 'src/service/product.service';
 import { SubCategoryService } from 'src/service/sub-cateogry.service';
 import { SubSubCategoryService } from 'src/service/sub-sub-category.service';
-import { BrandPage } from 'src/shared/models/brand.model';
-import { CategoryPage } from 'src/shared/models/category.model';
-import { Pagination } from 'src/shared/models/pagination.model';
-import { Product, ProductPage } from 'src/shared/models/product.model';
-import { SubCategoryPage } from 'src/shared/models/sub-category.model';
-import { SubSubCategoryPage } from 'src/shared/models/sub-sub-category.model';
+import { BrandPage } from 'src/models/brand.model';
+import { CategoryPage } from 'src/models/category.model';
+import { Pagination } from 'src/models/pagination.model';
+import { Product, ProductPage } from 'src/models/product.model';
+import { SubCategoryPage } from 'src/models/sub-category.model';
+import { SubSubCategoryPage } from 'src/models/sub-sub-category.model';
 
 @Component({
   selector: 'app-new-products',

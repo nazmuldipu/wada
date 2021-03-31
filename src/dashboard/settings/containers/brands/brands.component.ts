@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BrandService } from 'src/service/brand.service';
-import { Brand, BrandPage } from 'src/shared/models/brand.model';
-import { Pagination } from 'src/shared/models/pagination.model';
+import { Brand, BrandPage } from 'src/models/brand.model';
+import { Pagination } from 'src/models/pagination.model';
 
 @Component({
   selector: 'app-brands',

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { Cart } from 'src/shared/models/cart.model';
+import { Cart } from 'src/models/cart.model';
 import { AuthService } from './auth.service';
 import { RestDataService } from './rest-data.service';
 

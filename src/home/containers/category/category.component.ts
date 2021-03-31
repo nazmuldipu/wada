@@ -6,10 +6,10 @@ import { ProductService } from 'src/service/product.service';
 import { SubCategoryService } from 'src/service/sub-cateogry.service';
 import { SubSubCategoryService } from 'src/service/sub-sub-category.service';
 import { CategoryTree } from 'src/shared/data/category';
-import { Cart, Product_list_cart } from 'src/shared/models/cart.model';
-import { Pagination } from 'src/shared/models/pagination.model';
-import { Product, ProductPage } from 'src/shared/models/product.model';
-import { SubSubCategory } from 'src/shared/models/sub-sub-category.model';
+import { Cart, Product_list_cart } from 'src/models/cart.model';
+import { Pagination } from 'src/models/pagination.model';
+import { Product, ProductPage } from 'src/models/product.model';
+import { SubSubCategory } from 'src/models/sub-sub-category.model';
 
 @Component({
   selector: 'app-category',

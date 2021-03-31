@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ProductDetails } from 'src/shared/models/product-details.model';
+import { ProductDetails } from 'src/models/product-details.model';
 import { RestDataService } from './rest-data.service';
 
 @Injectable({

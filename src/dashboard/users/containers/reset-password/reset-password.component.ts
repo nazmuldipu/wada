@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/service/user.service';
-import { Pagination } from 'src/shared/models/pagination.model';
-import { User, UserPage } from 'src/shared/models/user.model';
+import { Pagination } from 'src/models/pagination.model';
+import { User, UserPage } from 'src/models/user.model';
 
 @Component({
   selector: 'app-reset-password',

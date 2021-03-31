@@ -4,9 +4,9 @@ import { UtilService } from './util.service';
 import {
   SubSubCategory,
   SubSubCategoryPage,
-} from 'src/shared/models/sub-sub-category.model';
+} from 'src/models/sub-sub-category.model';
 import { Observable } from 'rxjs';
-import { Pagination } from 'src/shared/models/pagination.model';
+import { Pagination } from 'src/models/pagination.model';
 
 @Injectable({
   providedIn: 'root',

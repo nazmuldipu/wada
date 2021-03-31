@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { StockService } from 'src/service/stock.service';
 import { WarehouseService } from 'src/service/warehouse.service';
-import { Warehouse, WarehousePage } from 'src/shared/models/warehouse.model';
-import { Stock, StockPage } from 'src/shared/models/stock.model';
-import { Pagination } from 'src/shared/models/pagination.model';
+import { Warehouse, WarehousePage } from 'src/models/warehouse.model';
+import { Stock, StockPage } from 'src/models/stock.model';
+import { Pagination } from 'src/models/pagination.model';
 
 @Component({
   selector: 'app-stocks',
