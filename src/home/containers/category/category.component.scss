@@ -9,6 +9,38 @@
   background-color: #f2f4f5;
 }
 
+.cart-item {
+  position: fixed;
+  top: calc(110px + 30%);
+  right: 0;
+  z-index: 2000;
+  cursor: pointer;
+  width: 75px;
+  height: 75px;
+  // background: #f5fceb;
+  background: #ffd300;
+  box-shadow: 0 0 16px -1px rgb(0 0 0 / 75%);
+  transition: 0.1s ease-in-out;
+
+  .cart-icon {
+    display: block;
+    width: 24px;
+    margin: auto;
+    padding: 3px;
+  }
+  .cart-count {
+    padding-top: 5px;
+    display: block;
+    text-align: center;
+    font-size: 14px;
+  }
+  .cart-amount {
+    margin-top: 4px;
+    background-color: #c3161c;
+    text-align: center;
+    color: #ffd300;
+  }
+}
 
 // :host {
 //   display: block;

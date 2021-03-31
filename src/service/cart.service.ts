@@ -16,8 +16,8 @@ export class CartService {
   cart$ = this._cartSource.asObservable();
 
   constructor(private dataSource: RestDataService, public auth: AuthService, private router: Router) {
-    // if (this.auth.isAuthenticated())
-      // this.getMyCart();
+    if (this.auth.isAuthenticated())
+      this.getMyCart();
   }
 
   addToCart(cart): Observable<Cart> {
@@ -27,20 +27,18 @@ export class CartService {
       this.router.navigate(['/login'], { queryParams: { returnUrl: this.router.url } });
   }
 
-  // getMyCart() {
-  //   this.dataSource.sendRequest('GET', this.cartUrl + '/my', null, true, null)
-  //     .subscribe(
-  //       (data) => {
-  //         this._cartSource.next(data);
-  //       },
-  //       (error) => {
-  //         console.log('get Cart ERROR');
-  //         console.log(error);
-  //       }
-  //     );
-  // }
-
   getCart(): Observable<Cart> {
     return this.dataSource.sendRequest('GET', this.cartUrl + '/my', null, true, null);
   }
+
+  async getMyCart() {
+    try {
+      const resp = await this.dataSource.sendRequest('GET', this.cartUrl + '/my', null, true, null).toPromise();
+      this._cartSource.next(resp);
+    } catch (err) {
+      console.log('get Cart ERROR');
+      console.log(err);
+    }
+  }
+
 }

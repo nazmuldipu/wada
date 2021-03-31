@@ -1,20 +1,3 @@
-<!-- <div class="container-fluid">
-  <div class="banner">
-    <img src="assets/images/categories/fresh_banner.jpg" alt="Banner s">
-  </div>
-
-</div> -->
-<!-- Container for sidebar(s) + page content -->
-<!-- <div class="container">
-  <div class="outer">
-    <div class="left"></div>
-    <div class="right"></div>
-    <span>CSS Ribbon Over Background</span>
-  </div>
-  <div class="corner">
-    <div class="cornerRibbon">Corner Ribbon</div>
-  </div>
-</div> -->
 <div class="container">
   <div class="row">
     <div class="col-12 p-0">
@@ -23,6 +6,18 @@
   </div>
 </div>
 
+<ng-template #productDetailsModal let-modal>
+  <detail-modal [product]="product" [prodImageUrl]="prodImageUrl" [cartProduct]="product_list_cart"
+    (dismiss)="modal.dismiss()" (cart)="onAddToCart($event)"></detail-modal>
+</ng-template>
+
+<div class="cart-item" (click)="onCartClick()">
+  <div class="itemCount">
+    <img class="cart-icon" src="assets/images/svgs/cart2.svg" alt="" />
+    <span class="cart-count">{{cart?.product_list?.length}} ITEMS</span>
+  </div>
+  <div class="cart-amount">৳ {{cart?.total}}</div>
+</div>
 
 <div class="container">
   <div class="row">

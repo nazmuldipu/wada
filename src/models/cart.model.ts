@@ -1,28 +1,26 @@
 export interface Cart {
     product_list: Product_list_cart[];
-    poll: number;
-    sub_total: number;
-    total_discount: number;
-    total_tax: number;
-    shipping_charge: number;
     total: number;
+    createdBy: User;
     updatedBy: User;
+    createdAt: Date;
+    updatedAt: Date;
 }
 
 export interface Product_list_cart {
     product: Product;
     quantity: number;
     rate: number;
-    commission: number;
-    amount: number;
     discounts: Discount[];
-    taxes: Tax[];
+    amount: number;
 }
 
 interface Product {
     _id: string,
+    barcode: string,
     name: string,
     slug: string
+    size: string
 }
 
 interface Discount {
@@ -36,6 +34,7 @@ interface Tax {
 }
 
 interface User {
+    _id: string;
     name: string;
     phone: string;
 }
