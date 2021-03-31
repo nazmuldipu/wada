@@ -53,6 +53,11 @@ export class CategoryComponent implements OnInit {
     // console.log(this.anchor);
     this.activeRoute.params.subscribe((params) => {
       let slug = params['slug'];
+      if (this.slug && this.slug != slug) {
+        this.productList = [];
+        this.subSubCategory = null;
+        this.getProductBySubCategory(slug, new Pagination);
+      }
       if (slug) {
         this.slug = slug;
         this.mode = { type: 'all', slug };
