@@ -26,6 +26,7 @@ import { NgTableHeadComponent } from './ngTable/ng-table-head/ng-table-head.comp
 import { FormFileComponent } from './forms/form-file/form-file.component';
 import { FormObjectLabelComponent } from './forms/form-object-label/form-object-label.component';
 import { FormSelectComponent } from './forms/form-select/form-select.component';
+import { InfiniteScrollComponent } from './components/infinite-scroll/infinite-scroll.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { FormSelectComponent } from './forms/form-select/form-select.component';
     FormFileComponent,
     FormObjectLabelComponent,
     FormSelectComponent,
+    InfiniteScrollComponent,
   ],
   imports: [
     CommonModule,
@@ -71,6 +73,7 @@ import { FormSelectComponent } from './forms/form-select/form-select.component';
     FormValidatorComponent,
     FormsModule,
     FormTextareaComponent,
+    InfiniteScrollComponent,
     LoadingComponent,
     NgbModule,
     NgTableComponent,

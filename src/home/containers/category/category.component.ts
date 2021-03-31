@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CartService } from 'src/service/cart.service';
@@ -18,25 +18,24 @@ import { SubSubCategory } from 'src/models/sub-sub-category.model';
 })
 export class CategoryComponent implements OnInit {
   slug;
-  sideNav = CategoryTree;
-
-  product: Product;
-  cart: Cart;
-  product_list_cart: Product_list_cart;
-  prodImageUrl;
-  prodThumbUrl;
-  categoryNav;
-  sub_category;
-
-  mode = { type: 'all', slug: '' };
+  mode;
   productPage: ProductPage;
-  subSubCategory: SubSubCategory[];
-  selectedSubSubCat: SubSubCategory;
+  productList: Product[] = [];
+  subSubCategory: SubSubCategory;
+  subSubCategories: SubSubCategory[];
 
+  bannerUrl;
+  prodThumbUrl;
   loading = false;
-  bannerUrl = '';
   errorMessage = '';
 
+  // cart: Cart;
+  // product_list_cart: Product_list_cart;
+  // prodImageUrl;
+  // categoryNav;
+  // sub_category;
+
+  @ViewChild('anchor', { static: false }) anchor: ElementRef<HTMLElement>;
   constructor(
     private subSubCategoryService: SubSubCategoryService,
     private subCategoryService: SubCategoryService,
@@ -45,47 +44,69 @@ export class CategoryComponent implements OnInit {
     private cartService: CartService,
     private modalService: NgbModal
   ) {
-    this.prodImageUrl = this.productService.imageLink + '/image/';
+    // this.prodImageUrl = this.productService.imageLink + '/image/';
     this.prodThumbUrl = this.productService.imageLink + '/thumb/';
+    window.scroll(0, 0);
   }
 
   ngOnInit(): void {
-    this.activeRoute.params.subscribe((routeParams) => {
-      this.slug = routeParams['slug'];
-      if (this.slug) {
-        this.mode = { type: 'all', slug: this.slug };
+    // console.log(this.anchor);
+    this.activeRoute.params.subscribe((params) => {
+      let slug = params['slug'];
+      if (slug) {
+        this.slug = slug;
+        this.mode = { type: 'all', slug };
         this.bannerUrl =
-          this.subCategoryService.imageLink + '/image-slug/' + this.slug;
-        this.getSubSubCategory(this.slug);
-        this.getProductBySubCategory(this.slug, new Pagination());
+          this.subCategoryService.imageLink + '/image-slug/' + this.slug; //TODO_FUTURE: this will load from category service
+
+        this.getSubSubCategoryList(this.slug);
       }
     });
   }
 
-  async getSubSubCategory(slug: string) {
+  async getSubSubCategoryList(slug: string) {
     try {
       this.loading = true;
       const { docs } = await this.subSubCategoryService
         .bySubCategorySlug(slug, new Pagination(1, 100))
         .toPromise();
-      this.subSubCategory = docs;
+      this.subSubCategories = docs;
       this.loading = false;
     } catch (error) {
       this.errorMessage = error.message;
     }
   }
 
+  onSubSubCategoryClick(slug) {
+    this.productList = [];
+    switch (slug) {
+      case 'all':
+        this.subSubCategory = null;
+        this.mode = { type: 'all', slug: this.slug };
+        this.getProductBySubCategory(this.slug, new Pagination());
+        break;
+      default:
+        this.mode = { type: 'custom', slug: slug };
+        this.subSubCategory = this.subSubCategories.find(
+          (sc) => sc.slug == slug
+        );
+        this.getProductBySubSubCategory(slug, new Pagination());
+        break;
+    }
+  }
+
   async getProductBySubCategory(slug: string, pagi: Pagination) {
-    this.loading = true;
     try {
+      this.loading = true;
       this.productPage = await this.productService
         .bySubCategorySlug(slug, pagi)
         .toPromise();
+      this.productList.push(...this.productPage.docs);
 
       //update banner image
       this.bannerUrl =
         this.subCategoryService.imageLink + '/image-slug/' + this.slug;
-      window.scroll(0, 0);
+      // window.scroll(0, 0);
     } catch (error) {
       this.errorMessage = error;
     }
@@ -98,34 +119,19 @@ export class CategoryComponent implements OnInit {
       this.productPage = await this.productService
         .bySubSubCategorySlug(slug, pagi)
         .toPromise();
+      this.productList.push(...this.productPage.docs);
 
       //Update banner image
       this.bannerUrl =
         this.subSubCategoryService.imageLink +
         '/image/' +
-        this.selectedSubSubCat._id + '/0';
+        this.subSubCategory._id +
+        '/0';
       window.scroll(100, 0);
     } catch (error) {
       this.errorMessage = error;
     }
     this.loading = false;
-  }
-
-  onSubCategoryClick(slug) {
-    switch (slug) {
-      case 'all':
-        this.selectedSubSubCat = null;
-        this.mode = { type: 'all', slug: this.slug };
-        this.getProductBySubCategory(this.slug, new Pagination());
-        break;
-      default:
-        this.mode = { type: 'custom', slug: slug };
-        this.selectedSubSubCat = this.subSubCategory.find(
-          (sc) => sc.slug == slug
-        );
-        this.getProductBySubSubCategory(slug, new Pagination());
-        break;
-    }
   }
 
   handlePagination(event) {
@@ -138,54 +144,61 @@ export class CategoryComponent implements OnInit {
         break;
     }
   }
+  onScroll() {
+    if (!this.productPage) {
+      this.getProductBySubCategory(this.slug, new Pagination());
+    } else if (this.productPage.nextPage) {
+      this.handlePagination(this.productPage.nextPage);
+    }
+  }
   //----------------------------------------------deletable ---------------------------
-  onChangePage(page) {
-    if (this.sub_category) {
-      this.getProductBySubCategory(this.sub_category.slug, new Pagination());
-    }
-    //else {
-    //   this.getProductByCategory(
-    //     this.slug,
-    //     page.pageNumber,
-    //     page.limit,
-    //     page.sort,
-    //     page.order
-    //   );
-    // }
-  }
+  // onChangePage(page) {
+  //   if (this.sub_category) {
+  //     this.getProductBySubCategory(this.sub_category.slug, new Pagination());
+  //   }
+  //   //else {
+  //   //   this.getProductByCategory(
+  //   //     this.slug,
+  //   //     page.pageNumber,
+  //   //     page.limit,
+  //   //     page.sort,
+  //   //     page.order
+  //   //   );
+  //   // }
+  // }
 
-  onShortDetails(targetModal, product: Product) {
-    this.product = product;
-    if (
-      this.cart &&
-      this.cart.product_list &&
-      this.cart.product_list.length > 0
-    ) {
-      this.product_list_cart = this.cart.product_list.find(
-        (pl) => pl.product._id == product._id
-      );
-    }
-    this.modalService.open(targetModal, {
-      centered: true,
-      backdrop: 'static',
-      size: 'xl',
-      scrollable: true,
-    });
-  }
+  // onShortDetails(targetModal, product: Product) {
+  //   this.product = product;
+  //   if (
+  //     this.cart &&
+  //     this.cart.product_list &&
+  //     this.cart.product_list.length > 0
+  //   ) {
+  //     this.product_list_cart = this.cart.product_list.find(
+  //       (pl) => pl.product._id == product._id
+  //     );
+  //   }
+  //   this.modalService.open(targetModal, {
+  //     centered: true,
+  //     backdrop: 'static',
+  //     size: 'xl',
+  //     scrollable: true,
+  //   });
+  // }
 
-  async onAddToCart(event) {
-    this.errorMessage = '';
-    this.loading = true;
-    try {
-      const resp = await this.cartService.addToCart(event).toPromise();
-      this.cartService._cartSource.next(resp);
-    } catch (error) {
-      this.errorMessage = error;
-    }
-    this.loading = false;
-  }
+  // async onAddToCart(event) {
+  //   this.errorMessage = '';
+  //   this.loading = true;
+  //   try {
+  //     const resp = await this.cartService.addToCart(event).toPromise();
+  //     this.cartService._cartSource.next(resp);
+  //   } catch (error) {
+  //     this.errorMessage = error;
+  //   }
+  //   this.loading = false;
+  // }
 
-  onCloseClick() {
-    this.errorMessage = '';
-  }
+  // onCloseClick() {
+  //   this.errorMessage = '';
+  // }
 }
