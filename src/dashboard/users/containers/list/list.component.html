@@ -23,7 +23,9 @@
         </div>
 
         <div class="col-md-5 col-12">
-            <user-form [item]="user" (create)="onCreate($event)" (update)="onUpdate($event)"></user-form>
+            <div class=" border rounded bg-white">
+                <user-form [item]="user" (create)="onCreate($event)" (update)="onUpdate($event)"></user-form>
+            </div>
         </div>
     </div>
 </div>

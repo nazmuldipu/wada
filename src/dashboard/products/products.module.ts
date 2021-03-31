@@ -13,10 +13,6 @@ import { NewProductsComponent } from './containers/new-products/new-products.com
 import { ProductsComponent } from './containers/products/products.component';
 import { WarehouseComponent } from './containers/warehouse/warehouse.component';
 
-// import { StorehouseFormComponent } from './components/storehouse-form/storehouse-form.component';
-// import { StorehouseComponent } from './containers/storehouse/storehouse.component';
-// import { FreeDeliveryComponent } from './containers/free-delivery/free-delivery.component';
-
 export const ROUTES: Routes = [
   // { path: 'storehouse', component: StorehouseComponent },
   // { path: 'free-delivery', component: FreeDeliveryComponent },
@@ -28,9 +24,6 @@ export const ROUTES: Routes = [
 
 @NgModule({
   declarations: [
-    // StorehouseComponent,
-    // StorehouseFormComponent,
-    // FreeDeliveryComponent,
     ProductsComponent,
     ProductDetailsFormComponent,
     ProductFormComponent,

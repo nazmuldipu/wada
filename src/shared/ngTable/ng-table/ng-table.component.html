@@ -1,18 +1,3 @@
-<!-- <form *ngIf="searchableArray.length>0" class="d-print-none" (ngSubmit)="onSearchSubmit()">
-    <div class="row">
-        <div class="col"></div>
-        <div class="col-auto">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <div class="input-group-text"><i class="fa fa-filter"></i></div>
-                </div>
-                <input type="text" class="form-control form-control-sm" id="search" name="search"
-                    [(ngModel)]="searchQuery" [placeholder]="getSearchPlaceHolderText()">
-            </div>
-        </div>
-    </div>
-</form> -->
-
 <table class="table table-hover table-bordered mt-2 text-secondary table-responsive-sm table-sm bg-white">
     <thead NgTableHeader [columns]="columns" [tableName]="tableName" [sortColumn]="sortColumn"
         (onSort)="handleSort($event)"></thead>
