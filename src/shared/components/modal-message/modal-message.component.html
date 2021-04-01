@@ -1,0 +1,36 @@
+<!-- <div class="modal-header justify-content-center">
+    <i class="fa fa-times"></i>
+</div>
+<div class="modal-body">
+    <p>{{message.message}}</p>
+    <p>{{message | json}}</p>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+</div> -->
+
+<div id="myModal" class="modal fade show" aria-modal="true" style="display: block;">
+    <div class="modal-dialog modal-confirm">
+        <div class="modal-content">
+            <div class="modal-header justify-content-center" [ngClass]="message.type">
+                <div class="icon-box">
+                    <i class="fa" [ngClass]="getIconClass()"></i>
+                    <!-- <i class="fa fa-times"></i> -->
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body text-center">
+                <h4>{{getMessageText()}}</h4>
+                <p>{{message.message}}</p>
+                <button class="btn btn-sm mx-1" *ngFor="let butt of message.buttons"
+                    [ngClass]="butt.type" (click)="onButtonClick(butt.key)">{{butt.text}}</button>
+                <button class="btn btn-sm btn-danger" ngbAutofocus data-dismiss="modal"
+                    (click)="activeModal.dismiss('Close click')">Close</button>
+            </div>
+            <!-- <div class="modal-footer">
+                <a href="#" class="btn btn-info" data-dismiss="modal">Cancel</a>
+                <a href="#" class="btn btn-danger">Close</a>
+            </div> -->
+        </div>
+    </div>
+</div>

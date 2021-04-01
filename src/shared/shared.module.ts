@@ -27,6 +27,7 @@ import { FormFileComponent } from './forms/form-file/form-file.component';
 import { FormObjectLabelComponent } from './forms/form-object-label/form-object-label.component';
 import { FormSelectComponent } from './forms/form-select/form-select.component';
 import { InfiniteScrollComponent } from './components/infinite-scroll/infinite-scroll.component';
+import { ModalMessageComponent } from './components/modal-message/modal-message.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { InfiniteScrollComponent } from './components/infinite-scroll/infinite-s
     FormObjectLabelComponent,
     FormSelectComponent,
     InfiniteScrollComponent,
+    ModalMessageComponent,
   ],
   imports: [
     CommonModule,

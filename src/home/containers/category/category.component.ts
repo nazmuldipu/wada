@@ -9,6 +9,7 @@ import { CartService } from 'src/service/cart.service';
 import { ProductService } from 'src/service/product.service';
 import { SubCategoryService } from 'src/service/sub-cateogry.service';
 import { SubSubCategoryService } from 'src/service/sub-sub-category.service';
+import { ModalMessageComponent } from 'src/shared/components/modal-message/modal-message.component';
 
 @Component({
   selector: 'app-category',
@@ -165,6 +166,7 @@ export class CategoryComponent implements OnInit {
   //----------------------------------------------deletable ---------------------------
 
   onShortDetails(targetModal, product: Product) {
+    console.log(targetModal)
     this.product = product;
     if (
       this.cart &&
@@ -191,9 +193,22 @@ export class CategoryComponent implements OnInit {
       console.log(resp);
       this.cartService._cartSource.next(resp);
     } catch (error) {
-      this.errorMessage = error;
+      this.stockRequestModal(event, error);
     }
     this.loading = false;
+  }
+
+  stockRequestModal(event, error) {
+    const modalRef = this.modalService.open(ModalMessageComponent);
+    modalRef.componentInstance.message = { message: error.message, type: 'danger', buttons: [{ key: 'request', text: 'Request for stock', type: 'btn-info' }] };
+    modalRef.componentInstance.btnEvent.subscribe(($e) => {
+      console.log($e);
+      console.log(event.productId);
+      //TODO: request for stock heres
+      modalRef.close();
+      const modalRef2 = this.modalService.open(ModalMessageComponent);
+      modalRef2.componentInstance.message = { message: 'Your request has been successfully submitted', type: 'success', buttons: [] };
+    })
   }
 
   onCartClick() {
