@@ -171,3 +171,24 @@ export const InventoryTypes = [
   { _id: 'sample', name: 'Sample' },
   { _id: 'damage', name: 'Damage' },
 ];
+
+export const CompanyInfo = {
+  name: 'Wada Bangladesh Limited',
+  address1: '32/1, Mipur Road, Khan Plaze (3rd Floor), Science Lab',
+  address2: 'Dhanmondi, Dhaka-1205',
+  email: 'support@wada.com.bd',
+  mobile: '+88 01730 785675',
+  site: 'Wada.com.bd',
+  web: 'www.wada.com.bd',
+  phones: '01730785675-9',
+  facebook: 'www.facebook.com',
+  linkdin: 'www.linkedin.com',
+  instagram: 'https://www.instagram.com/',
+  youtube: 'https://www.youtube.com/'
+};
+
+export const PaymentMethods = [
+  { name: 'cod', text: 'Cash On Delivery', img: 'assets/images/paymets/cashOnDelivery.png' },
+  { name: 'bkash', text: 'BKash', img: 'assets/images/paymets/bkash.png' },
+  { name: 'aamarpay', text: 'AamarPay', img: 'assets/images/paymets/aamarpay.png' },
+];

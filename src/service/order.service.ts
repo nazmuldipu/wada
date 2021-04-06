@@ -1,26 +1,38 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Order, OrderPage } from 'src/models/order.model';
+import { Pagination } from 'src/models/pagination.model';
 import { RestDataService } from './rest-data.service';
+import { UtilService } from './util.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
-  orderUrl = 'api/orders';
+  url = 'api/orders';
 
-  constructor(private dataSource: RestDataService) { }
+  constructor(private dSrc: RestDataService, private util: UtilService) { }
 
-  createOrder(order: Order): Observable<Order> {
-    return this.dataSource.sendRequest('POST', this.orderUrl, order, true, null);
+  confirmOrder(address): Observable<Order> {
+    return this.dSrc.sendRequest('PATCH', this.url, address, true, null);
   }
 
-  confirmOrder(): Observable<Order> {
-    return this.dataSource.sendRequest('POST', this.orderUrl + '/confirm', null, true, null);
+  getOrder(id: string): Observable<Order> {
+    return this.dSrc.sendRequest('GET', this.url + `/${id}`, null, true, null);
   }
 
-  getMyOrders(): Observable<OrderPage> {
-    return this.dataSource.sendRequest('GET', this.orderUrl + '/my', null, true, null);
+  getMyOrders(pagi: Pagination): Observable<OrderPage> {
+    const sparam = this.util.paginationToHttpParam(pagi);
+    return this.dSrc.sendRequest('GET', this.url + '/my', null, true, sparam);
+  }
+
+  getOrderList(pagi: Pagination): Observable<OrderPage> {
+    const sparam = this.util.paginationToHttpParam(pagi);
+    return this.dSrc.sendRequest('GET', this.url + '/my', null, true, sparam);
+  }
+
+  cancelOrer(id: string): Observable<Order> {
+    return this.dSrc.sendRequest('DELETE', this.url + `/${id}`, null, true, null);
   }
 
 }

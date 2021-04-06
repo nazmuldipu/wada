@@ -14,7 +14,7 @@ export class NewProductsComponent implements OnInit {
   errorMessage = '';
   prodImageUrl;
   prodThumbUrl;
-  
+
   constructor(private productService: ProductService, private cartService: CartService) {
     this.prodImageUrl = this.productService.imageLink + '/image/';
     this.prodThumbUrl = this.productService.imageLink + '/thumb/';
@@ -24,7 +24,7 @@ export class NewProductsComponent implements OnInit {
     this.getNewProducts();
   }
 
-  async getNewProducts(page: number = 1, limit: number = 8, sort: string = 'priority', order: string = 'asc') {
+  async getNewProducts(page: number = 1, limit: number = 8, sort: string = 'priority', order: string = 'asc'): Promise<void> {
     this.loading = true;
     try {
       this.productPage = await this.productService.getNewProducts(page, limit, sort, order).toPromise();
@@ -34,24 +34,24 @@ export class NewProductsComponent implements OnInit {
     this.loading = false;
   }
 
-  onChangePage(page) {
+  onChangePage(page): void {
     this.getNewProducts(page.pageNumber, page.limit, page.sort, page.order);
   }
 
 
-  async onAddToCart(event) {
+  async onAddToCart(event): Promise<void> {
     this.errorMessage = '';
     this.loading = true;
     try {
       const resp = await this.cartService.addToCart(event).toPromise();
-      this.cartService._cartSource.next(resp);
+      this.cartService.cartSource.next(resp);
     } catch (error) {
       this.errorMessage = error;
     }
     this.loading = false;
   }
 
-  onCloseClick(){
+  onCloseClick(): void {
     this.errorMessage = '';
   }
 

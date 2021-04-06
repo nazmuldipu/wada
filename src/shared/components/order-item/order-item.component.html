@@ -1,0 +1,29 @@
+<div class="order-item rounded-sm">
+    <div class="order-item-summary">
+        <div class="left-order-info">
+            <div class="order-status">
+                <div class="status-block">
+                    <span class="badge p-2" [ngClass]="getStatusClass(order.orderStatus)">{{order?.orderStatus}}</span>
+                </div>
+            </div>
+            <div class="order-id"><span>Order</span><span
+                    class="the-id"><span>#</span><span>{{order?.orderNumber}}</span></span>
+            </div>
+            <div class="total-price"><span class="px-1">৳</span><strong class="px-1">154</strong></div>
+        </div>
+        <div class="right-order-actions text-center">
+            <div class="rating-star">
+                <!-- <ngb-rating [rate]="3.5"></ngb-rating> -->
+                <ngb-rating [(rate)]="currentRate" [starTemplate]="t" [readonly]="true" [max]="5"></ngb-rating>
+            </div>
+            <div class="order-date"><small> {{order.createdAt | date:'M/d/yy'}} </small></div>
+            <div class="order-time"><small>{{order.createdAt | date:'h:mm a'}}</small></div>
+        </div>
+    </div>
+</div>
+
+<ng-template #t let-fill="fill">
+    <span class="star" [class.full]="fill === 100">
+        <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+    </span>
+</ng-template>

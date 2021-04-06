@@ -23,7 +23,7 @@ export class DashboardComponent implements OnInit {
     console.log('Load profile from dashboard');
     try {
       const user = await this.userService.getUserProfile().toPromise();
-      this.userService._userSource.next(user);
+      this.userService.userSource.next(user);
     } catch (error) {
       console.log(error.message);
     }

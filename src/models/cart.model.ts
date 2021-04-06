@@ -1,5 +1,5 @@
 export interface Cart {
-    product_list: Product_list_cart[];
+    product_list: ProductListCart[];
     total: number;
     createdBy: User;
     updatedBy: User;
@@ -7,7 +7,7 @@ export interface Cart {
     updatedAt: Date;
 }
 
-export interface Product_list_cart {
+export interface ProductListCart {
     product: Product;
     quantity: number;
     rate: number;
@@ -16,11 +16,11 @@ export interface Product_list_cart {
 }
 
 interface Product {
-    _id: string,
-    barcode: string,
-    name: string,
-    slug: string
-    size: string
+    _id: string;
+    barcode: string;
+    name: string;
+    slug: string;
+    size: string;
 }
 
 interface Discount {

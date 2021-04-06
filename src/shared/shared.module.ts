@@ -28,6 +28,8 @@ import { FormObjectLabelComponent } from './forms/form-object-label/form-object-
 import { FormSelectComponent } from './forms/form-select/form-select.component';
 import { InfiniteScrollComponent } from './components/infinite-scroll/infinite-scroll.component';
 import { ModalMessageComponent } from './components/modal-message/modal-message.component';
+import { OrderItemComponent } from './components/order-item/order-item.component';
+import { OrderDetailsComponent } from './components/order-details/order-details.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +57,8 @@ import { ModalMessageComponent } from './components/modal-message/modal-message.
     FormSelectComponent,
     InfiniteScrollComponent,
     ModalMessageComponent,
+    OrderItemComponent,
+    OrderDetailsComponent,
   ],
   imports: [
     CommonModule,
@@ -80,6 +84,8 @@ import { ModalMessageComponent } from './components/modal-message/modal-message.
     NgbModule,
     NgTableComponent,
     OfferBoxComponent,
+    OrderItemComponent,
+    OrderDetailsComponent,
     PaginationComponent,
     Product2Component,
     ProductRelatedComponent,
@@ -89,4 +95,4 @@ import { ModalMessageComponent } from './components/modal-message/modal-message.
     ToastsComponent,
   ],
 })
-export class SharedModule {}
+export class SharedModule { }

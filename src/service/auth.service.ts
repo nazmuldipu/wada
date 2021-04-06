@@ -10,7 +10,7 @@ import { RestDataService } from './rest-data.service';
 export class AuthService {
   public user: User;
 
-  constructor(private datasource: RestDataService, private router: Router) {}
+  constructor(private datasource: RestDataService, private router: Router) { }
 
   authenticate(phone: string, password: string): Observable<any> {
     return this.datasource.obtainToken(phone, password);
@@ -31,7 +31,7 @@ export class AuthService {
     return role === 'USER';
   }
 
-  logout() {
+  logout(): void {
     localStorage.clear();
     this.router.navigateByUrl('/');
   }

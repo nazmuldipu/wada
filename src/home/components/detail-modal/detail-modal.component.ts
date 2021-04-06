@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { Product } from 'src/models/product.model';
-import { Product_list_cart } from 'src/models/cart.model';
+import { ProductListCart } from 'src/models/cart.model';
 
 @Component({
   selector: 'detail-modal',
@@ -11,7 +11,7 @@ export class DetailModalComponent implements OnChanges {
 
   @Input() product: Product;
   @Input() prodImageUrl: string;
-  @Input() cartProduct: Product_list_cart;
+  @Input() cartProduct: ProductListCart;
 
   @Output() dismiss = new EventEmitter<any>();
   @Output() cart = new EventEmitter<any>();
@@ -35,22 +35,23 @@ export class DetailModalComponent implements OnChanges {
     }
   }
 
-  onDismiss() {
+  onDismiss(): void {
     this.dismiss.emit(true);
   }
 
-  onThumbImageClick(event) {
+  onThumbImageClick(event): void {
     this.current = event;
   }
 
-  setQuantity(num) {
-    const value = { "productId": this.product._id, "quantity": num };
+  setQuantity(num): void {
+    const value = { productId: this.product._id, quantity: num };
     this.cart.emit(value);
   }
 
-  addToCart() {
-    if (!this.cartProduct || !this.cartProduct.quantity || this.cartProduct.quantity == 0)
-      this.cart.emit({ "productId": this.product._id, "quantity": 1 });
+  addToCart(): void {
+    if (!this.cartProduct || !this.cartProduct.quantity || this.cartProduct.quantity === 0) {
+      this.cart.emit({ productId: this.product._id, quantity: 1 });
+    }
 
     this.dismiss.emit(true);
   }

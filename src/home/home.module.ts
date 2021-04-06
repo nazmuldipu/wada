@@ -28,10 +28,10 @@ import { SpecialOffersComponent } from './containers/special-offers/special-offe
 import { HomeComponent } from './home.component';
 import { NewProductsComponent } from './containers/new-products/new-products.component';
 import { FrontSpecialOfferComponent } from './components/front-special-offer/front-special-offer.component';
+import { OrderDetailsComponent } from './containers/order-details/order-details.component';
+import { AddressFormComponent } from './components/address-form/address-form.component';
 
 export const ROUTES: Routes = [
-  { path: 'cart', component: CartComponent, canActivate: [AuthGuardService] },
-  { path: 'orders', component: OrdersComponent, canActivate: [AuthGuardService] },
   { path: 'comming', component: CommingSoonComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
@@ -41,12 +41,15 @@ export const ROUTES: Routes = [
     component: HomeComponent,
     children: [
       // { path: 'category/:slug', component: CategoryComponent },
+      { path: 'cart', component: CartComponent, canActivate: [AuthGuardService] },
+      { path: 'orders', component: OrdersComponent, canActivate: [AuthGuardService] },
+      { path: 'order-detail', component: OrderDetailsComponent},
       { path: 'details/:id', component: DetailsComponent },
       { path: 'category/:slug', component: CategoryComponent },
-      { path: 'free-delivery-products', component: FreeDeliveryComponent},
+      { path: 'free-delivery-products', component: FreeDeliveryComponent },
       { path: 'offers', component: OffersComponent },
       { path: 'spical-offers/:slug', component: SpecialOffersComponent },
-      { path: 'new-products', component: NewProductsComponent},
+      { path: 'new-products', component: NewProductsComponent },
       { path: '', component: IndexComponent },
     ],
   },
@@ -75,7 +78,9 @@ export const ROUTES: Routes = [
     LoginFormComponent,
     FreeDeliveryComponent,
     NewProductsComponent,
-    FrontSpecialOfferComponent
+    FrontSpecialOfferComponent,
+    OrderDetailsComponent,
+    AddressFormComponent
   ],
   imports: [
     CommonModule,

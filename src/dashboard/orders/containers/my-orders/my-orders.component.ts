@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OrderService } from 'src/service/order.service';
 import { ProductService } from 'src/service/product.service';
 import { Order, OrderPage } from 'src/models/order.model';
+import { Pagination } from 'src/models/pagination.model';
 
 @Component({
   selector: 'app-my-orders',
@@ -21,13 +22,13 @@ export class MyOrdersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getMyOrders();
+    this.myOrders();
   }
 
-  async getMyOrders() {
+  async myOrders(): Promise<void> {
     this.loading = true;
     try {
-      this.orderPage = await this.orderService.getMyOrders().toPromise();
+      this.orderPage = await this.orderService.getMyOrders(new Pagination()).toPromise();
       this.order = this.orderPage.docs[0];
     } catch (err) {
       this.errorMessage = err;
@@ -35,8 +36,8 @@ export class MyOrdersComponent implements OnInit {
     this.loading = false;
   }
 
-  onSelectOrder(id) {
-    this.order = this.orderPage.docs.find(o => o._id == id);
+  onSelectOrder(id): void {
+    this.order = this.orderPage.docs.find(o => o._id === id);
   }
 
 }

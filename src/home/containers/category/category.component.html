@@ -7,7 +7,7 @@
 </div>
 
 <ng-template #productDetailsModal let-modal>
-  <detail-modal [product]="product" [prodImageUrl]="prodImageUrl" [cartProduct]="product_list_cart"
+  <detail-modal [product]="product" [prodImageUrl]="prodImageUrl" [cartProduct]="productListCart"
     (dismiss)="modal.dismiss()" (cart)="onAddToCart($event)"></detail-modal>
 </ng-template>
 

@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Cart, Product_list_cart } from 'src/models/cart.model';
+import { Cart, ProductListCart } from 'src/models/cart.model';
 import { Pagination } from 'src/models/pagination.model';
 import { Product, ProductPage } from 'src/models/product.model';
 import { SubSubCategory } from 'src/models/sub-sub-category.model';
@@ -32,7 +32,7 @@ export class CategoryComponent implements OnInit {
   errorMessage = '';
 
   cart: Cart;
-  product_list_cart: Product_list_cart;
+  productListCart: ProductListCart;
   // categoryNav;
   // sub_category;
 
@@ -52,30 +52,33 @@ export class CategoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // tslint:disable-next-line: deprecation
     this.cartService.cart$.subscribe((data) => {
       this.cart = data;
     });
-    this.activeRoute.params.subscribe((params) => {
-      let slug = params['slug'];
 
-      if (this.slug && this.slug != slug) {
+    // tslint:disable-next-line: deprecation
+    this.activeRoute.params.subscribe((params) => {
+      const slug = params.slug;
+
+      if (this.slug && this.slug !== slug) {
         this.productList = [];
         this.subSubCategory = null;
-        this.getProductBySubCategory(slug, new Pagination);
+        this.getProductBySubCategory(slug, new Pagination());
       }
 
       if (slug) {
         this.slug = slug;
         this.mode = { type: 'all', slug };
         this.bannerUrl =
-          this.subCategoryService.imageLink + '/image-slug/' + this.slug; //TODO_FUTURE: this will load from category service
+          this.subCategoryService.imageLink + '/image-slug/' + this.slug; // TODO_FUTURE: this will load from category service
 
         this.getSubSubCategoryList(this.slug);
       }
     });
   }
 
-  async getSubSubCategoryList(slug: string) {
+  async getSubSubCategoryList(slug: string): Promise<void> {
     try {
       this.loading = true;
       const { docs } = await this.subSubCategoryService
@@ -88,7 +91,7 @@ export class CategoryComponent implements OnInit {
     }
   }
 
-  onSubSubCategoryClick(slug) {
+  onSubSubCategoryClick(slug): void {
     this.productList = [];
     switch (slug) {
       case 'all':
@@ -97,16 +100,16 @@ export class CategoryComponent implements OnInit {
         this.getProductBySubCategory(this.slug, new Pagination());
         break;
       default:
-        this.mode = { type: 'custom', slug: slug };
+        this.mode = { type: 'custom', slug };
         this.subSubCategory = this.subSubCategories.find(
-          (sc) => sc.slug == slug
+          (sc) => sc.slug === slug
         );
         this.getProductBySubSubCategory(slug, new Pagination());
         break;
     }
   }
 
-  async getProductBySubCategory(slug: string, pagi: Pagination) {
+  async getProductBySubCategory(slug: string, pagi: Pagination): Promise<void> {
     try {
       this.loading = true;
       this.productPage = await this.productService
@@ -114,7 +117,7 @@ export class CategoryComponent implements OnInit {
         .toPromise();
       this.productList.push(...this.productPage.docs);
 
-      //update banner image
+      // update banner image
       this.bannerUrl =
         this.subCategoryService.imageLink + '/image-slug/' + this.slug;
       // window.scroll(0, 0);
@@ -124,7 +127,7 @@ export class CategoryComponent implements OnInit {
     this.loading = false;
   }
 
-  async getProductBySubSubCategory(slug: string, pagi: Pagination) {
+  async getProductBySubSubCategory(slug: string, pagi: Pagination): Promise<void> {
     try {
       this.loading = true;
       this.productPage = await this.productService
@@ -132,7 +135,7 @@ export class CategoryComponent implements OnInit {
         .toPromise();
       this.productList.push(...this.productPage.docs);
 
-      //Update banner image
+      // Update banner image
       this.bannerUrl =
         this.subSubCategoryService.imageLink +
         '/image/' +
@@ -145,7 +148,7 @@ export class CategoryComponent implements OnInit {
     this.loading = false;
   }
 
-  handlePagination(event) {
+  handlePagination(event): void {
     switch (this.mode.type) {
       case 'all':
         this.getProductBySubCategory(this.slug, new Pagination(event));
@@ -156,25 +159,24 @@ export class CategoryComponent implements OnInit {
     }
   }
 
-  onScroll() {
+  onScroll(): void {
     if (!this.productPage) {
       this.getProductBySubCategory(this.slug, new Pagination());
     } else if (this.productPage.nextPage) {
       this.handlePagination(this.productPage.nextPage);
     }
   }
-  //----------------------------------------------deletable ---------------------------
 
-  onShortDetails(targetModal, product: Product) {
-    console.log(targetModal)
+  onShortDetails(targetModal, product: Product): void {
+    console.log(targetModal);
     this.product = product;
     if (
       this.cart &&
       this.cart.product_list &&
       this.cart.product_list.length > 0
     ) {
-      this.product_list_cart = this.cart.product_list.find(
-        (pl) => pl.product._id == product._id
+      this.productListCart = this.cart.product_list.find(
+        (pl) => pl.product._id === product._id
       );
     }
     this.modalService.open(targetModal, {
@@ -185,33 +187,34 @@ export class CategoryComponent implements OnInit {
     });
   }
 
-  async onAddToCart(event) {
+  async onAddToCart(event): Promise<void> {
     this.errorMessage = '';
     this.loading = true;
     try {
       const resp = await this.cartService.addToCart(event).toPromise();
-      console.log(resp);
-      this.cartService._cartSource.next(resp);
+      this.cartService.cartSource.next(resp);
     } catch (error) {
       this.stockRequestModal(event, error);
     }
     this.loading = false;
   }
 
-  stockRequestModal(event, error) {
+  stockRequestModal(event, error): void {
     const modalRef = this.modalService.open(ModalMessageComponent);
-    modalRef.componentInstance.message = { message: error.message, type: 'danger', buttons: [{ key: 'request', text: 'Request for stock', type: 'btn-info' }] };
+    const { message } = error;
+    const buttons = [{ key: 'request', text: 'Request for stock', type: 'btn-info' }];
+    modalRef.componentInstance.message = { message, type: 'danger', buttons };
     modalRef.componentInstance.btnEvent.subscribe(($e) => {
       console.log($e);
       console.log(event.productId);
-      //TODO: request for stock heres
+      // TODO: request for stock heres
       modalRef.close();
       const modalRef2 = this.modalService.open(ModalMessageComponent);
       modalRef2.componentInstance.message = { message: 'Your request has been successfully submitted', type: 'success', buttons: [] };
-    })
+    });
   }
 
-  onCartClick() {
+  onCartClick(): void {
     this.router.navigate(['/cart']);
   }
 

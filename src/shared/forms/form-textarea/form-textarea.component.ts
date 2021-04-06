@@ -3,6 +3,7 @@ import { AbstractControl } from '@angular/forms';
 import { LABEL_LIST } from '../constants/form-labels-list';
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'form-textarea',
   templateUrl: './form-textarea.component.html',
   styleUrls: ['./form-textarea.component.scss']
@@ -10,25 +11,26 @@ import { LABEL_LIST } from '../constants/form-labels-list';
 export class FormTextareaComponent implements OnInit, DoCheck {
   @Input() fieldId: string | null = null;
   @Input() control: AbstractControl | null = null;
-  @Input() row:number = 3;
-  @Input() col: boolean = true;
-  @Input() showLabel:boolean = true;
-  
+  @Input() row = 3;
+  @Input() col = true;
+  @Input() showLabel = true;
+
   label: string = null;
   validator;
   validationErrors: object = null;
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.label = LABEL_LIST[this.fieldId] ? LABEL_LIST[this.fieldId] : '';
   }
 
-  ngDoCheck() {
-    if (this.control['validator'])
+  ngDoCheck(): void {
+    if (this.control.validator) {
       this.validator = this.control.validator({} as AbstractControl);
-      
+    }
+
     this.validationErrors =
       this.control.touched && this.control.invalid
-        ? this.control['errors']
+        ? this.control.errors
         : null;
   }
 }

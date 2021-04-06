@@ -1,28 +1,27 @@
 export interface Order {
     _id: string;
-    product_list: Product_list_cart[];
-    poll: number;
+    orderNumber: string;
+    orderDate: string;
+    orderStatus: string;
+    items: ProductListCart[];
     sub_total: number;
     promo_discount: number;
     total_discount: number;
     total_tax: number;
-    vat_and_service: number;
     shipping_charge: number;
-    payable: number;
-    advance: number;
-    due: number;
+    total: number;
+
+    customer: User;
+    address: string;
+
+    paymentStatus: string;
+    paymentMethod: string;
+
     createdAt: Date;
     createdBy: User;
     updatedAt: Date;
     updatedBy: User;
-    customer: User;
 
-    manualOrder: boolean;
-    confirmed: boolean;
-    approved: boolean;
-    paid: boolean;
-    cancelled: boolean;
-    status: Stat[];
 }
 
 export interface OrderPage {
@@ -38,20 +37,20 @@ export interface OrderPage {
     totalPages: number;
 }
 
-export interface Product_list_cart {
+export interface ProductListCart {
     product: Product;
     quantity: number;
     rate: number;
     discounts: Discount[];
-    taxes: Tax[];
-    commission: number;
     amount: number;
 }
 
 interface Product {
-    _id: string,
-    name: string,
-    slug: string
+    _id: string;
+    barcode: string;
+    name: string;
+    slug: string;
+    size: string;
 }
 
 interface Discount {

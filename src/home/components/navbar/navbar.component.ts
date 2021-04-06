@@ -8,6 +8,7 @@ import { Pagination } from 'src/models/pagination.model';
 import { SubCategoryPage } from 'src/models/sub-category.model';
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
@@ -23,9 +24,10 @@ export class NavbarComponent implements OnInit {
     private subCategoryService: SubCategoryService,
     private cartService: CartService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
+    // tslint:disable-next-line: deprecation
     this.cartService.cart$.subscribe((data) => {
       this.cart = data;
     });
@@ -33,15 +35,15 @@ export class NavbarComponent implements OnInit {
     this.getSubCategoriesBySlug('organic-food', new Pagination(1, 100));
   }
 
-  async getSubCategoriesBySlug(slug: string, pagi: Pagination) {
+  async getSubCategoriesBySlug(slug: string, pagi: Pagination): Promise<void> {
     try {
       this.subCategoryPage = await this.subCategoryService
         .byCategorySlug(slug, pagi)
         .toPromise();
-    } catch (err) {}
+    } catch (err) { }
   }
 
-  onCartClick() {
+  onCartClick(): void {
     console.log('onCartClick');
     this.router.navigate(['/cart']);
   }

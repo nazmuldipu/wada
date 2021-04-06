@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { BaseFormComponent } from 'src/shared/forms/base-form/base-form.component';
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'category-form',
   templateUrl: './category-form.component.html',
   styleUrls: ['./category-form.component.scss'],
@@ -13,7 +14,7 @@ export class CategoryFormComponent extends BaseFormComponent {
     this.createForm();
   }
 
-  createForm() {
+  createForm(): void {
     this.form = this.fb.group({
       name: ['', Validators.required],
       priority: ['', Validators.required],
@@ -21,18 +22,7 @@ export class CategoryFormComponent extends BaseFormComponent {
     });
   }
 
-  // uploadFile(event) {
-  //   if (event.target.files.length > 0 && event.target.files.length < 5) {
-  //     const files = event.target.files;
-  //     this.form.patchValue({
-  //       image: files,
-  //     });
-  //   } else if (event.target.files.length > 4) {
-  //     this.err = 'Brand image limit is 4';
-  //   }
-  // }
-
-  onError(event) {
+  onError(event): void {
     this.err = event;
   }
 }

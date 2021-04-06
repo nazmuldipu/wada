@@ -1,0 +1,99 @@
+<div class="invoice border rounded-sm bg-white">
+    <div class="invoice-head text-center">
+        <h4>{{companyInfo.name}}</h4>
+        <p class="invoice-head-text">
+            {{companyInfo.address1}}
+            <br> {{companyInfo.address2}} <br>
+            Email: {{companyInfo.email}} <br>
+            Mobile: {{companyInfo.mobile}}
+        </p>
+        <div class="invoice-type"><span>{{type}} INVOICE</span></div>
+    </div>
+
+    <div class="invoice-info">
+        <div class="row">
+            <div class="col"><strong>Bill No.:</strong> {{order?.orderNumber}}</div>
+            <div class="col-auto"><strong>Order Date:</strong> {{order.createdAt | date:'short'}}</div>
+        </div>
+        <div class="row">
+            <div class="col-12"><strong> Name: </strong>{{order?.customer?.name}}</div>
+            <div class="col-12"><strong> Phone: </strong>{{order?.customer?.phone}}</div>
+            <div class="col-12"><strong>Address: </strong> {{order?.address}}</div>
+            <div class="col-12 mt-3 text-center">To Enjoy Special Discounts Please Registration from our Website</div>
+        </div>
+    </div>
+
+    <div class="invoice-products px-3">
+        <table class="table table-hover table-bordered mt-2 table-responsive-sm table-sm bg-white">
+            <thead>
+                <tr>
+                    <th>SL</th>
+                    <th>Item Description</th>
+                    <th>Size</th>
+                    <th class="text-right">Rate</th>
+                    <th class="text-center">Qty</th>
+                    <th class="text-right">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of order.items;let i = index;">
+                    <td>{{i+1}}</td>
+                    <td>{{item.product?.name}}</td>
+                    <td>{{item.product?.size}}</td>
+                    <td class="text-right">{{item.rate}}</td>
+                    <td class="text-center">{{item.quantity}}</td>
+                    <td class="text-right">{{item.amount}}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5" class="text-right border-0">Sub Total: </td>
+                    <td class="text-right border-0">{{order?.sub_total}}</td>
+                </tr>
+                <tr>
+                    <td colspan=" 5" class="text-right border-0">(-)Discount: </td>
+                    <td class="text-right border-0">{{order?.total_discount}}</td>
+                </tr>
+                <tr>
+                    <td colspan="5" class="text-right border-0">Your total savings: </td>
+                    <td class="text-right border-0">{{order?.total_discount}}</td>
+                </tr>
+                <tr>
+                    <td colspan="5" class="text-right border-0">VAT: </td>
+                    <td class="text-right border-0">{{order?.total_tax}}</td>
+                </tr>
+                <tr>
+                    <td colspan="5" class="text-right border-0">Delivery Charge: </td>
+                    <td class="text-right border-0">{{order?.shipping_charge}}</td>
+                </tr>
+                <tr>
+                    <th colspan="5" class="text-right border-0">Total Net payable Taka: </th>
+                    <th class="text-right border-0">{{order?.total}}</th>
+                </tr>
+            </tfoot>
+        </table>
+
+        <div class="pt-3">Authorized Signature</div>
+    </div>
+    <div class="invoice-footer text-center">
+        <div>Thank you for shopping with {{companyInfo.site}}</div>
+        <div>Please visit {{companyInfo.web}} for home delivery. Purchase of defected item must be exchanged by 24hour
+            with invoice. </div>
+
+        <div>For an queries, suggestions or complaints, please call: {{companyInfo.phones}}
+            Get in touch with
+            <a [href]="companyInfo.facebook" target="_blank">Facebook</a>,
+            <a [href]="companyInfo.instagram" target="_blank">Instagram</a>,
+            <a [href]="companyInfo.linkdin" target="_blank">Linkdin</a>,
+            <a [href]="companyInfo.youtube" target="_blank">Youtube</a>,
+            <a [href]="companyInfo.web" target="_blank">{{companyInfo.site}}</a>,
+        </div>
+    </div>
+    <!-- <div class="dashed"></div> -->
+    <div class="invoice-bottom">
+        <div class="row">
+            <div class="col ml-2">Committed | Betst Product in Least Time !</div>
+            <div class="col-auto mr-2">{{date | date:'short'}}</div>
+        </div>
+    </div>
+</div>

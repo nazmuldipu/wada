@@ -24,7 +24,7 @@ export class FreeDeliveryComponent implements OnInit {
     this.getProductFreeDelivery();
   }
 
-  async getProductFreeDelivery(page: number = 1, limit: number = 8, sort: string = 'priority', order: string = 'asc') {
+  async getProductFreeDelivery(page: number = 1, limit: number = 8, sort: string = 'priority', order: string = 'asc'): Promise<void> {
     this.loading = true;
     try {
       this.productPage = await this.productService.getByFreeDelivery(page, limit, sort, order).toPromise();
@@ -34,23 +34,23 @@ export class FreeDeliveryComponent implements OnInit {
     this.loading = false;
   }
 
-  onChangePage(page) {
+  onChangePage(page): void {
     this.getProductFreeDelivery(page.pageNumber, page.limit, page.sort, page.order);
   }
 
-  async onAddToCart(event) {
+  async onAddToCart(event): Promise<void> {
     this.errorMessage = '';
     this.loading = true;
     try {
       const resp = await this.cartService.addToCart(event).toPromise();
-      this.cartService._cartSource.next(resp);
+      this.cartService.cartSource.next(resp);
     } catch (error) {
       this.errorMessage = error;
     }
     this.loading = false;
   }
 
-  onCloseClick() {
+  onCloseClick(): void {
     this.errorMessage = '';
   }
 }

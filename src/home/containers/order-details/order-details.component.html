@@ -1,0 +1,10 @@
+<div class="container">
+    <div class="row" *ngIf="!order">
+        <div class="offset-md-3 col-md-6">
+            <app-address-form (create)="onCreate($event)"></app-address-form>
+        </div>
+    </div>
+    <div class="container my-4" *ngIf="order">
+        <app-order-details [order]="order"></app-order-details>
+    </div>
+</div>

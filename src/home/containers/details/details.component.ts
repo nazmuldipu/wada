@@ -37,7 +37,7 @@ export class DetailsComponent implements OnInit {
     private cartService: CartService,
     private activeRoute: ActivatedRoute
   ) {
-    this.id = activeRoute.snapshot.params['id'];
+    this.id = activeRoute.snapshot.params.id;
     // this.imageUrl = this.productService.imageLink + '/image/';
     // this.shopImageUrl = this.shopService.shopLink + '/image/';
   }
@@ -48,7 +48,7 @@ export class DetailsComponent implements OnInit {
     }
   }
 
-  async getProduct(id: string) {
+  async getProduct(id: string): Promise<void> {
     this.loading = true;
     try {
       this.product = await this.productService.get(id).toPromise();
@@ -92,36 +92,36 @@ export class DetailsComponent implements OnInit {
   //   this.loading = false;
   // }
 
-  onThumbImageClick(event) {
+  onThumbImageClick(event): void {
     this.current = event;
   }
 
-  setQuantity(num) {
+  setQuantity(num): void {
     if (this.stockQuantity > this.quantity) {
       this.quantity += num;
     }
-    if (this.quantity < 1) this.quantity = 1;
-    if (this.quantity > 10) this.quantity = 10;
+    if (this.quantity < 1) { this.quantity = 1; }
+    if (this.quantity > 10) { this.quantity = 10; }
   }
 
-  async addToCart() {
+  async addToCart(): Promise<void> {
     console.log('Add to cart');
     const value = { productId: this.product._id, quantity: this.quantity };
     this.loading = true;
     try {
       const resp = await this.cartService.addToCart(value).toPromise();
-      this.cartService._cartSource.next(resp);
+      this.cartService.cartSource.next(resp);
     } catch (error) {
       this.errorMessage = error;
     }
     this.loading = false;
   }
 
-  addToFavourite() {
+  addToFavourite(): void {
     console.log('addToFavourite');
   }
 
-  onRefresh() {
+  onRefresh(): void {
     console.log('onRefresh');
   }
 }

@@ -4,6 +4,7 @@ import { CartService } from 'src/service/cart.service';
 import { User } from 'src/models/user.model';
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'dash-navbar',
   templateUrl: './dash-navbar.component.html',
   styleUrls: ['./dash-navbar.component.scss']
@@ -18,13 +19,13 @@ export class DashNavbarComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  onSlide() {
+  onSlide(): void {
     this.mode = !this.mode;
     this.expand.emit(this.mode);
   }
 
-  onLogout() {
-    this.cartService._cartSource.next(null);
+  onLogout(): void {
+    this.cartService.cartSource.next(null);
     this.auth.logout();
   }
 }

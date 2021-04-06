@@ -1,6 +1,5 @@
-:host {
+.cart {
   display: block;
-  margin-top: 20px;
   background: #eee;
 }
 .ui-w-40 {
@@ -11,7 +10,7 @@
 .card {
   box-shadow: 0 1px 15px 1px rgba(52, 40, 104, 0.08);
 }
-.product-image{
+.product-image {
   width: 50px;
 }
 .ui-product-color {
@@ -25,7 +24,7 @@
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset;
   vertical-align: middle;
 }
-.cart-icon{
+.cart-icon {
   width: 50px;
 }
 

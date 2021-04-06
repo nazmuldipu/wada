@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container d-print-none">
   <div class="d-flex flex-row-reverse bd-highlight">
 
     <div ngbDropdown class="p-2" *ngIf="!authService.isAuthenticated()" placement="bottom-right">
@@ -16,9 +16,21 @@
         <login-form (create)="onLogin($event)" [err]="errorMessage"></login-form>
       </div>
     </div>
-    <div class="p-2" *ngIf="authService.isAuthenticated()" (click)="onLogout()">
-      <a class="link user" title="Register"><span>Logout</span></a>
+    <div class="dropdown p-2" *ngIf="authService.isAuthenticated()">
+      <a class="link user dropbtn" title="Register"><span>{{(userService.user$ | async).name || profile}}</span></a>
+      <div class="dropdown-content right-s" style="width: 180px">
+        <a routerLink="/dashboard" *ngIf="!authService.isUser()"><i class="fa fa-bars"></i> Dashboard</a>
+        <a routerLink="/" *ngIf="authService.isUser()"><i class="fa fa-user"></i> Profile</a>
+        <a routerLink="/orders" *ngIf="authService.isUser()"><i class="fa fa-file-text-o"></i> Orders </a>
+        <a routerLink="/cart" *ngIf="authService.isUser()"><i class="fa fa-shopping-cart"></i> Cart</a>
+        <a routerLink="/" *ngIf="authService.isUser()"><i class="fa fa-key"></i> Chage Password</a>
+        <a (click)="onLogout()" routerLink="/"><i class="fa fa-unlock-alt"></i> Logout</a>
+      </div>
     </div>
+
+    <!-- <div class="p-2" *ngIf="authService.isAuthenticated()" (click)="onLogout()">
+      <a class="link user" title="Register"><span>Logout</span></a>
+    </div> -->
     <div class="my-2 border-right"></div>
     <div class="p-2" *ngIf="authService.isAdmin()">
       <a class="link user" routerLink="/dashboard" title="Register"><span>Dashboard</span></a>

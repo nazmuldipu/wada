@@ -13,17 +13,19 @@ import { UtilService } from './util.service';
 export class UserService {
   url = 'api/users';
 
-  _userSource = new BehaviorSubject<User>({} as User);
-  user$ = this._userSource.asObservable();
+  userSource = new BehaviorSubject<User>({} as User);
+  user$ = this.userSource.asObservable();
 
-  constructor(private dSrc: RestDataService, private util: UtilService) {}
+  constructor(private dSrc: RestDataService, private util: UtilService) {
+    
+  }
 
   userRegistration(user: User): Observable<User> {
     return this.dSrc.sendRequest('POST', this.url, user, false, null);
   }
 
   getList(pagi: Pagination): Observable<UserPage> {
-    let sparam = this.util.paginationToHttpParam(pagi);
+    const sparam = this.util.paginationToHttpParam(pagi);
     return this.dSrc.sendRequest('GET', this.url, null, true, sparam);
   }
 

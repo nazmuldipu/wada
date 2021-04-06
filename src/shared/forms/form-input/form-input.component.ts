@@ -10,6 +10,7 @@ import { AbstractControl } from '@angular/forms';
 import { LABEL_LIST } from '../constants/form-labels-list';
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'form-input',
   templateUrl: './form-input.component.html',
   styleUrls: ['./form-input.component.scss'],
@@ -17,33 +18,35 @@ import { LABEL_LIST } from '../constants/form-labels-list';
 export class FormInputComponent implements OnInit, DoCheck {
   @Input() fieldId: string | null = null;
   @Input() control: AbstractControl | null = null;
-  @Input() type: string = 'text';
+  @Input() type = 'text';
   @Input() maxlength: number = null;
-  @Input() readonly: boolean = false;
-  @Input() showLabel: boolean = true;
-  @Input() col: boolean = true;
+  @Input() readonly = false;
+  @Input() showLabel = true;
+  @Input() col = true;
 
+  // tslint:disable-next-line: no-output-on-prefix
   @Output() onChange = new EventEmitter<any>();
 
   label: string = null;
   validator;
   validationErrors: object = null;
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.label = LABEL_LIST[this.fieldId] ? LABEL_LIST[this.fieldId] : '';
   }
 
-  ngDoCheck() {
-    if (this.control['validator'])
+  ngDoCheck(): void {
+    if (this.control.validator) {
       this.validator = this.control.validator({} as AbstractControl);
+    }
 
     this.validationErrors =
       this.control.touched && this.control.invalid
-        ? this.control['errors']
+        ? this.control.errors
         : null;
   }
 
-  onValueChange(event) {
+  onValueChange(event): void {
     this.onChange.emit(event);
   }
 }

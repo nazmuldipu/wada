@@ -17,48 +17,51 @@ export class CartComponent implements OnInit {
   errorMessage = '';
   thumbUrl;
 
-  constructor(private cartService: CartService, private productService: ProductService,
+  constructor(
+    private cartService: CartService,
+    private productService: ProductService,
     private orderService: OrderService) {
     this.thumbUrl = this.productService.imageLink + '/thumb/';
   }
 
   ngOnInit(): void {
     // this.cartService.getMyCart();
+    // tslint:disable-next-line: deprecation
     this.cartService.cart$.subscribe(data => {
       this.cart = data;
       this.total = 0;
       if (data && data.product_list) {
-        this.cart.product_list.forEach(pl => { this.total += pl.amount })
+        this.cart.product_list.forEach(pl => { this.total += pl.amount; });
       }
-    })
+    });
   }
 
 
-  async onAddToCart(event) {
+  async onAddToCart(event): Promise<void> {
     this.loading = true;
     try {
       const resp = await this.cartService.addToCart(event).toPromise();
-      this.cartService._cartSource.next(resp);
+      this.cartService.cartSource.next(resp);
     } catch (error) {
       this.errorMessage = error;
     }
     this.loading = false;
   }
 
-  setQuantity(product_id, num) {
-    const value = { "productId": product_id, "quantity": num };
+  setQuantity(productId, num): void {
+    const value = { productId, quantity: num };
     this.onAddToCart(value);
   }
 
-  onDelete(product_id) {
+  onDelete(productId): void {
     if (confirm('Are you sure to delete')) {
-      const count = this.cart.product_list.find(pl => pl.product._id == product_id).quantity;
-      const value = { "productId": product_id, "quantity": - count };
+      const count = this.cart.product_list.find(pl => pl.product._id === productId).quantity;
+      const value = { productId, quantity: - count };
       this.onAddToCart(value);
     }
   }
 
-  async onOrder() {
+  async onOrder(): Promise<void> {
     this.loading = true;
     try {
       const resp = await this.orderService.confirmOrder().toPromise();
