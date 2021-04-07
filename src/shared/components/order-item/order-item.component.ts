@@ -18,7 +18,6 @@ export class OrderItemComponent implements OnInit {
   }
 
   getStatusClass(status): string {
-    console.log(status);
     switch (status) {
       case 'Cancelled': return 'badge-danger';
       case 'Delivered': return 'badge-success';

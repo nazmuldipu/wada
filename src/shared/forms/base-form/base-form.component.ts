@@ -9,13 +9,14 @@ import {
 import { FormGroup } from '@angular/forms';
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'base-form',
   templateUrl: './base-form.component.html',
   styleUrls: ['./base-form.component.scss'],
 })
 export class BaseFormComponent implements OnChanges {
   @Input() item: any;
-  @Input() err: string = '';
+  @Input() err = '';
 
   @Output() create = new EventEmitter<any>();
   @Output() update = new EventEmitter<any>();
@@ -33,7 +34,7 @@ export class BaseFormComponent implements OnChanges {
     }
   }
 
-  submit() {
+  submit(): void {
     this.err = '';
     if (this.form.valid) {
       if (this.exists) {
@@ -45,12 +46,12 @@ export class BaseFormComponent implements OnChanges {
     }
   }
 
-  onDelete() {
+  onDelete(): void {
     this.delete.emit(this.item._id);
     this.clean();
   }
 
-  clean() {
+  clean(): void {
     this.exists = false;
     this.item = null;
     this.err = '';

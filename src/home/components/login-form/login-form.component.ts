@@ -4,18 +4,19 @@ import { BaseFormComponent } from 'src/shared/forms/base-form/base-form.componen
 import { PHONE_NUMBER_PATTERN } from 'src/shared/forms/constants/validation-pattern-list';
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.scss'],
 })
-export class LoginFormComponent extends BaseFormComponent{
-  
+export class LoginFormComponent extends BaseFormComponent {
+
   constructor(private fb: FormBuilder) {
     super();
     this.createForm();
   }
 
-  createForm() {
+  createForm(): void {
     this.form = this.fb.group({
       phone: [
         '',
@@ -27,5 +28,5 @@ export class LoginFormComponent extends BaseFormComponent{
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
-  
+
 }

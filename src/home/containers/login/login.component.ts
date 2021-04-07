@@ -8,27 +8,28 @@ import { CartService } from 'src/service/cart.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent{
+export class LoginComponent {
   loading = false;
-  constructor(private router: Router, public authService: AuthService, 
-    private activeRoute: ActivatedRoute, private cartService: CartService) { }
+  constructor(
+    private router: Router,
+    public authService: AuthService,
+    private activeRoute: ActivatedRoute,
+    private cartService: CartService) { }
 
-  async onLogin(value) {
-    console.log('On Login ', value);
-    this.loading = true;
-    this.authService.authenticate(value.phone, value.password).subscribe(data => {
-      if (data) {
-        this.loading = false;
-        localStorage.setItem('token', data.token);
-        let returnUrl =
-          this.activeRoute.snapshot.queryParamMap.get('returnUrl') ||
-          '/';
-        localStorage.setItem('returnUrl', returnUrl);
-        // this.cartService.getMyCart();
-        // let returnUrl = localStorage.getItem('returnUrl') || '/dashboard';
-        this.router.navigateByUrl(returnUrl);
-      }
-    });
+  async onLogin(value): Promise<void> {
+    try {
+      this.loading = true;
+      const resp = await this.authService.authenticate(value.phone, value.password).toPromise();
+      localStorage.setItem('token', resp.token);
+      this.loading = false;
+
+      const returnUrl =
+        this.activeRoute.snapshot.queryParamMap.get('returnUrl') ||
+        '/';
+      localStorage.setItem('returnUrl', returnUrl);
+      this.router.navigateByUrl(returnUrl);
+    } catch (err) {
+      console.log(err);
+    }
   }
-
 }

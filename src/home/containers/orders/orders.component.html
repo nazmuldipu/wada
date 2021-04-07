@@ -1,12 +1,19 @@
 <div class="container">
+    <div class="text-center my-4" *ngIf="orderPage?.docs?.length == 0">
+        <h3><i class="fa fa-frown-o" aria-hidden="true"></i> You don't have any order yet.</h3>
+    </div>
     <div class="row py-3">
         <div class="col-auto d-print-none">
             <div *ngFor="let order of orderPage?.docs" (click)="onDetails(order._id)">
                 <app-order-item [order]="order"></app-order-item>
             </div>
+
         </div>
         <div class="col" *ngIf="order">
             <app-order-details [order]="order"></app-order-details>
+            <div class="d-flex flex-row-reverse my-3" *ngIf="order.paymentStatus=='Due' && order.paymentMethod != 'cod'">
+                <button class="btn btn-sm btn-primary">Pay now</button>
+            </div>
         </div>
     </div>
 </div>

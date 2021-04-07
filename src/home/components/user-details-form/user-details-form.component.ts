@@ -1,50 +1,34 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { User } from 'src/models/user.model';
+import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { BaseFormComponent } from 'src/shared/forms/base-form/base-form.component';
+import { PHONE_NUMBER_PATTERN } from './../../../shared/forms/constants/validation-pattern-list';
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'user-details-form',
   templateUrl: './user-details-form.component.html',
   styleUrls: ['./user-details-form.component.scss']
 })
-export class UserDetailsFormComponent implements OnInit {
-  @Output() user = new EventEmitter<User>();
+export class UserDetailsFormComponent extends BaseFormComponent {
 
-  form: FormGroup;
-  errorMessage: string = '';
-  regSuccess = false;
-  loading = false;
-  showPassword = false;
-
-  constructor(private fb: FormBuilder) { }
-
-  ngOnInit(): void {
+  constructor(private fb: FormBuilder) {
+    super();
     this.createForm();
   }
 
-  createForm() {
+  createForm(): void {
     this.form = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.email]],
       phone: [
         '',
         [
           Validators.required,
-          Validators.pattern('^01[3-9][ ]?[0-9]{2}[ ]?[0-9]{3}[ ]?[0-9]{3}$'),
+          Validators.pattern(PHONE_NUMBER_PATTERN),
         ],
       ],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
-  }
-
-  submit() {
-    if (this.form.valid) {
-      this.errorMessage = '';
-      this.user.emit(this.form.value);
-      this.form.reset();    
-    } else {
-      this.errorMessage = 'Form data missing';
-    }
   }
 
 }

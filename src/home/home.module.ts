@@ -28,8 +28,8 @@ import { SpecialOffersComponent } from './containers/special-offers/special-offe
 import { HomeComponent } from './home.component';
 import { NewProductsComponent } from './containers/new-products/new-products.component';
 import { FrontSpecialOfferComponent } from './components/front-special-offer/front-special-offer.component';
-import { OrderDetailsComponent } from './containers/order-details/order-details.component';
 import { AddressFormComponent } from './components/address-form/address-form.component';
+import { OrderConfirmComponent } from './containers/order-confirm/order-confirm.component';
 
 export const ROUTES: Routes = [
   { path: 'comming', component: CommingSoonComponent },
@@ -43,7 +43,7 @@ export const ROUTES: Routes = [
       // { path: 'category/:slug', component: CategoryComponent },
       { path: 'cart', component: CartComponent, canActivate: [AuthGuardService] },
       { path: 'orders', component: OrdersComponent, canActivate: [AuthGuardService] },
-      { path: 'order-detail', component: OrderDetailsComponent},
+      { path: 'order-confirm', component: OrderConfirmComponent},
       { path: 'details/:id', component: DetailsComponent },
       { path: 'category/:slug', component: CategoryComponent },
       { path: 'free-delivery-products', component: FreeDeliveryComponent },
@@ -79,8 +79,8 @@ export const ROUTES: Routes = [
     FreeDeliveryComponent,
     NewProductsComponent,
     FrontSpecialOfferComponent,
-    OrderDetailsComponent,
-    AddressFormComponent
+    AddressFormComponent,
+    OrderConfirmComponent
   ],
   imports: [
     CommonModule,

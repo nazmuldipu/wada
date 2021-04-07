@@ -2,18 +2,18 @@ export interface Order {
     _id: string;
     orderNumber: string;
     orderDate: string;
-    orderStatus: string;
     items: ProductListCart[];
     sub_total: number;
-    promo_discount: number;
+    promotional_discount: number;
     total_discount: number;
     total_tax: number;
     shipping_charge: number;
     total: number;
 
-    customer: User;
+    customer: Customer;
     address: string;
 
+    orderStatus: string;
     paymentStatus: string;
     paymentMethod: string;
 
@@ -39,9 +39,11 @@ export interface OrderPage {
 
 export interface ProductListCart {
     product: Product;
+    warehouses: Warehouse[];
     quantity: number;
+    purchase_price: number;
     rate: number;
-    discounts: Discount[];
+    discount: number;
     amount: number;
 }
 
@@ -53,14 +55,11 @@ interface Product {
     size: string;
 }
 
-interface Discount {
-    discount_type: string;
-    amount: number;
-}
-
-interface Tax {
-    tax_type: string;
-    amount: number;
+interface Warehouse {
+    _id: string;
+    name: string;
+    slug: string;
+    quantity: number;
 }
 
 interface User {
@@ -68,7 +67,13 @@ interface User {
     phone: string;
 }
 
-interface Stat {
-    date: Date;
-    label: string;
+interface Customer {
+    _id: string;
+    name: string;
+    phone: string;
+    cus_add1: string;
+    cus_add2: string;
+    cus_city: string;
+    cus_country: string;
+    deliveryInstruction: string;
 }

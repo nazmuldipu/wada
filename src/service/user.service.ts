@@ -16,9 +16,7 @@ export class UserService {
   userSource = new BehaviorSubject<User>({} as User);
   user$ = this.userSource.asObservable();
 
-  constructor(private dSrc: RestDataService, private util: UtilService) {
-    
-  }
+  constructor(private dSrc: RestDataService, private util: UtilService) {}
 
   userRegistration(user: User): Observable<User> {
     return this.dSrc.sendRequest('POST', this.url, user, false, null);

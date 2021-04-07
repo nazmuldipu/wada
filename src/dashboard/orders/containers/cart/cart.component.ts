@@ -64,9 +64,9 @@ export class CartComponent implements OnInit {
   async onOrder(): Promise<void> {
     this.loading = true;
     try {
-      const resp = await this.orderService.confirmOrder().toPromise();
+      // const resp = await this.orderService.confirmOrder().toPromise();
       // this.cartService.getMyCart();
-      console.log(resp);
+      // console.log(resp);
     } catch (err) {
       this.errorMessage = err;
     }

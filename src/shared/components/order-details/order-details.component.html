@@ -7,7 +7,12 @@
             Email: {{companyInfo.email}} <br>
             Mobile: {{companyInfo.mobile}}
         </p>
-        <div class="invoice-type"><span>{{type}} INVOICE</span></div>
+        <div class="d-flex justify-content-between">
+            <div></div>
+            <div class="invoice-type"><span>{{type}} INVOICE</span></div>
+            <div><span class="badge p-2" [ngClass]="getStatusClass(order.orderStatus)">{{order?.orderStatus}}</span>
+            </div>
+        </div>
     </div>
 
     <div class="invoice-info">
@@ -47,27 +52,38 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="5" class="text-right border-0">Sub Total: </td>
+                    <td colspan="2" class="border-0"></td>
+                    <td colspan="3" class="text-right border-0">Sub Total: </td>
                     <td class="text-right border-0">{{order?.sub_total}}</td>
                 </tr>
                 <tr>
-                    <td colspan=" 5" class="text-right border-0">(-)Discount: </td>
+                    <td colspan="2" class="border-0"></td>
+                    <td colspan="3" class="text-right border-0">(-)Discount: </td>
                     <td class="text-right border-0">{{order?.total_discount}}</td>
                 </tr>
                 <tr>
-                    <td colspan="5" class="text-right border-0">Your total savings: </td>
+                    <td colspan="2" class="border-0"></td>
+                    <td colspan="3" class="text-right border-0">Your total savings: </td>
                     <td class="text-right border-0">{{order?.total_discount}}</td>
                 </tr>
                 <tr>
-                    <td colspan="5" class="text-right border-0">VAT: </td>
+                    <td colspan="2" rowspan="2" class="border-0">
+                        <span class="badge" [ngClass]="getPaymentStatusClass(order.paymentStatus)">
+                            <h4>{{order?.paymentStatus}}</h4>
+                        </span>
+                    </td>
+                    <td colspan="3" class="text-right border-0">VAT: </td>
                     <td class="text-right border-0">{{order?.total_tax}}</td>
                 </tr>
                 <tr>
-                    <td colspan="5" class="text-right border-0">Delivery Charge: </td>
+                    <td colspan="3" class="text-right border-0">Delivery Charge: </td>
                     <td class="text-right border-0">{{order?.shipping_charge}}</td>
                 </tr>
+                <!-- -->
                 <tr>
-                    <th colspan="5" class="text-right border-0">Total Net payable Taka: </th>
+                    <td colspan="2" class="border-0">Payment Method: <strong>{{order.paymentMethod}}</strong> </td>
+                    <!-- <td colspan="2" ></td> -->
+                    <th colspan="3" class="text-right border-0">Total Net payable Taka: </th>
                     <th class="text-right border-0">{{order?.total}}</th>
                 </tr>
             </tfoot>

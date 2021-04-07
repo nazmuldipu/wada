@@ -74,17 +74,17 @@ export class CartComponent implements OnInit {
     this.onAddToCart(value);
   }
 
-  async onConfirmOrder(): Promise<void> {
-    try {
-      this.loading = true;
-      const resp = await this.orderService.confirmOrder().toPromise();
-      await this.cartService.getMyCart();
-      this.order = resp;
-      this.loading = false;
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  // async onConfirmOrder(): Promise<void> {
+  //   try {
+  //     this.loading = true;
+  //     const resp = await this.orderService.confirmOrder().toPromise();
+  //     await this.cartService.getMyCart();
+  //     this.order = resp;
+  //     this.loading = false;
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
 
   // onDelete(productId) {
   //   if (confirm('Are you sure to delete')) {
@@ -96,16 +96,16 @@ export class CartComponent implements OnInit {
   //   }
   // }
 
-  async onOrder(): Promise<void> {
-    this.loading = true;
-    try {
-      const resp = await this.orderService.confirmOrder().toPromise();
-      // this.cartService.getMyCart();
-      console.log(resp);
-    } catch (err) {
-      this.errorMessage = err;
-    }
-    this.loading = false;
-  }
+  // async onOrder(): Promise<void> {
+  //   this.loading = true;
+  //   try {
+  //     const resp = await this.orderService.confirmOrder().toPromise();
+  //     // this.cartService.getMyCart();
+  //     console.log(resp);
+  //   } catch (err) {
+  //     this.errorMessage = err;
+  //   }
+  //   this.loading = false;
+  // }
 
 }

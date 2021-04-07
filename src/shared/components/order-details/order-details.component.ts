@@ -7,7 +7,7 @@ import { CompanyInfo } from 'src/shared/data/data';
   templateUrl: './order-details.component.html',
   styleUrls: ['./order-details.component.scss']
 })
-export class OrderDetailsComponent implements OnInit {
+export class OrderDetailsComponent {
   @Input() order: Order;
   @Input() type = 'Customer';
 
@@ -18,7 +18,26 @@ export class OrderDetailsComponent implements OnInit {
     this.date = new Date();
   }
 
-  ngOnInit(): void {
+  getStatusClass(status): string {
+    switch (status) {
+      case 'Cancelled': return 'badge-danger';
+      case 'Delivered': return 'badge-success';
+      case 'InTransit': return 'badge-primary';
+      case 'Paid': return 'badge-success';
+      case 'PickupAvailable': return 'badge-info';
+      case 'PaymentDue': return 'badge-dark';
+      case 'Processing': return 'badge-warning';
+      case 'Problem': return 'badge-danger';
+      case 'Returned': return 'badge-primary';
+    }
+  }
+
+  getPaymentStatusClass(status): string {
+    switch (status) {
+      case 'Cancelled': return 'badge-danger';
+      case 'Due': return 'badge-warning';
+      case 'Paid': return 'badge-primary';
+    }
   }
 
 }
