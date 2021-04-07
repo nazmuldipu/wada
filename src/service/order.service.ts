@@ -35,6 +35,11 @@ export class OrderService {
     return this.dSrc.sendRequest('PUT', this.url + `/${id}`, status, true, null);
   }
 
+  search(pagi: Pagination): Observable<OrderPage> {
+    const sparam = this.util.paginationToHttpParam(pagi);
+    return this.dSrc.sendRequest('GET', this.url + '/search', null, true, sparam);
+  }
+
   cancelOrer(id: string): Observable<Order> {
     return this.dSrc.sendRequest('DELETE', this.url + `/${id}`, null, true, null);
   }

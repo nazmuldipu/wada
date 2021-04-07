@@ -1,0 +1,33 @@
+<ul class="list-group mb-1">
+    <li class="list-group-item">
+        Please select a <strong> Order </strong> from list below
+    </li>
+    <li class="list-group-item p-2">
+        <form (ngSubmit)="searchOrder(pagi)">
+            <div class="form-group m-0">
+                <input class="form-control form-control-sm" placeholder="OrderNumber / Name / Phone"
+                    [(ngModel)]="pagi.param" name="search">
+            </div>
+        </form>
+    </li>
+
+    <!-- orders -->
+    <li class="list-group-item ordres" *ngFor="let order of orderPage?.docs" (click)="onSelectOrder(order)">
+        <div class="row">
+            <div class="col">
+                <div> Order # {{order.orderNumber}} </div>
+                <div class="badge badge-primary mx-1">{{order.paymentStatus}}</div>
+                <div class="badge badge-success mx-1">{{order.orderStatus}}</div>
+                <div class="badge badge-info mx-1">{{order.paymentMethod}}</div>
+            </div>
+            <div class="col-auto">
+                <div><small> {{order.createdAt | date:'short'}}</small></div>
+                <div>Total : {{order.total}}</div>
+                <!-- Status:  -->
+            </div>
+        </div>
+    </li>
+</ul>
+<pagination *ngIf="orderPage?.totalPages > 1" [page]="orderPage.page" [collectionSize]="orderPage.totalDocs"
+    [pageSize]="orderPage.limit" [short]="true" (pageChange)="refreshOrderData($event)">
+</pagination>

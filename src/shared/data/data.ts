@@ -145,8 +145,13 @@ export const SideNavbar = [
     roles: ['ADMIN', 'INVENTORY_ADMIN'],
     subnav: [
       {
+        name: 'Search',
+        icon: 'fa-search',
+        link: '/dashboard/orders/search',
+      },
+      {
         name: 'Orders',
-        icon: 'fa-archive',
+        icon: 'fa-file-text-o',
         link: '/dashboard/orders',
       },
     ],
