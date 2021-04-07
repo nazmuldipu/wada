@@ -28,7 +28,11 @@ export class OrderService {
 
   getOrderList(pagi: Pagination): Observable<OrderPage> {
     const sparam = this.util.paginationToHttpParam(pagi);
-    return this.dSrc.sendRequest('GET', this.url + '/my', null, true, sparam);
+    return this.dSrc.sendRequest('GET', this.url, null, true, sparam);
+  }
+
+  updateStatus(id, status): Observable<Order> {
+    return this.dSrc.sendRequest('PUT', this.url + `/${id}`, status, true, null);
   }
 
   cancelOrer(id: string): Observable<Order> {

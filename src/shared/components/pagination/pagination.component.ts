@@ -1,29 +1,30 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'pagination',
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.scss'],
 })
 export class PaginationComponent implements OnChanges {
-  @Input() short: boolean = false;
-  @Input() collectionSize: number = 1;
-  @Input() pageSize: number = 1;
-  @Input() page: number = 1;
+  @Input() short = false;
+  @Input() collectionSize = 1;
+  @Input() pageSize = 1;
+  @Input() page = 1;
   @Output() pageChange = new EventEmitter<number>();
 
   pageCount = 1;
-  constructor() {}
+  constructor() { }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.pageCount = Math.ceil(this.collectionSize / this.pageSize);
   }
 
-  onPaginate(page: number) {
+  onPaginate(page: number): void {
     this.pageChange.emit(page);
   }
 
-  counter(currentPage: number, totalPages: number) {
+  counter(currentPage: number, totalPages: number): number[] {
     let startPage = 1;
     let length = 10;
     if (totalPages < 10) {
@@ -37,6 +38,6 @@ export class PaginationComponent implements OnChanges {
         startPage = currentPage - 4;
       }
     }
-    return Array.from({ length: length }, (v, k) => k + startPage);
+    return Array.from({ length }, (v, k) => k + startPage);
   }
 }

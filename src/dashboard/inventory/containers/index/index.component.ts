@@ -20,14 +20,14 @@ export class IndexComponent {
 
   constructor(
     private service: InventoryService,
-  ) {}
+  ) { }
 
-  onWarehouseSelect(warehouse: Warehouse) {
+  onWarehouseSelect(warehouse: Warehouse): void {
     this.warehouse = warehouse;
     this.getInventoryByWarehouseId(warehouse._id, new Pagination());
   }
 
-  async getInventoryByWarehouseId(warehouseId, pagi: Pagination) {
+  async getInventoryByWarehouseId(warehouseId, pagi: Pagination): Promise<void> {
     this.loading = true;
     try {
       this.inventoryPage = await this.service
@@ -39,18 +39,18 @@ export class IndexComponent {
     this.loading = false;
   }
 
-  refreshInventoryData(wid, { page, limit, sort, order, search }) {
+  refreshInventoryData(wid, { page, limit, sort, order, search }): void {
     this.getInventoryByWarehouseId(
       wid,
       new Pagination(page, limit, sort, order, search)
     );
   }
 
-  onDetails(id) {
-    this.inventory = this.inventoryPage.docs.find((iv) => iv._id == id);
+  onDetails(id): void {
+    this.inventory = this.inventoryPage.docs.find((iv) => iv._id === id);
   }
 
-  onClose(value) {
+  onClose(value): void {
     switch (value) {
       case 'details':
         this.inventory = null;

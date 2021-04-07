@@ -9,6 +9,7 @@ import {
 import { PageInfo } from 'src/models/page-info.model';
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'ng-table',
   templateUrl: './ng-table.component.html',
   styleUrls: ['./ng-table.component.scss'],

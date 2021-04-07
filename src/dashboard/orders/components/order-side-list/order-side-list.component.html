@@ -1,0 +1,45 @@
+<ul class="list-group mb-1">
+    <li class="list-group-item">Please select a <strong> Order </strong> from list below
+        <a (click)="onShowFilter()">{{filter ? 'Hide':'Show'}} filter</a>        
+    </li>
+    <!-- filters -->
+    <li class="list-group-item p-1 px-2" *ngIf="filter">
+        <div class="form-row">
+            <div class="form-group col m-0">
+                <label for="orderStatus">Order Status</label>
+                <select class="form-control form-control-sm" id="orderStatus"
+                    (change)="onOrderStatusSelect($event.target.value)">
+                    <option value="">All</option>
+                    <option *ngFor="let ostat of orderStatusData" [value]="ostat.name">{{ostat.text}}</option>
+                </select>
+            </div>
+            <div class="form-group col m-0">
+                <label for="paymentMethods">Payment Methods</label>
+                <select class="form-control form-control-sm" id="paymentMethods"
+                    (change)="onPaymentMethodSelect($event.target.value)">
+                    <option value="">All</option>
+                    <option *ngFor="let pmethod of paymentMethodsData" [value]="pmethod.name">{{pmethod.text}}</option>
+                </select>
+            </div>
+        </div>
+    </li>
+    <!-- orders -->
+    <li class="list-group-item ordres" *ngFor="let order of orderPage?.docs" (click)="onSelectOrder(order)">
+        <div class="row">
+            <div class="col">
+                <div> Order # {{order.orderNumber}} </div>
+                <div class="badge badge-primary mx-1">{{order.paymentStatus}}</div>
+                <div class="badge badge-success mx-1">{{order.orderStatus}}</div>
+                <div class="badge badge-info mx-1">{{order.paymentMethod}}</div>
+            </div>
+            <div class="col-auto">
+                <div><small> {{order.createdAt | date:'short'}}</small></div>
+                <div>Total : {{order.total}}</div>
+                <!-- Status:  -->
+            </div>
+        </div>
+    </li>
+</ul>
+<pagination *ngIf="orderPage?.totalPages > 1" [page]="orderPage.page" [collectionSize]="orderPage.totalDocs"
+    [pageSize]="orderPage.limit" [short]="true" (pageChange)="refreshOrderData($event)">
+</pagination>

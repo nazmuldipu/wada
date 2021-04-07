@@ -142,17 +142,12 @@ export const SideNavbar = [
   {
     name: 'Orders',
     icon: 'fa-clone',
-    roles: [],
+    roles: ['ADMIN', 'INVENTORY_ADMIN'],
     subnav: [
-      {
-        name: 'Cart',
-        icon: 'fa-shopping-cart',
-        link: '/dashboard/orders/cart',
-      },
       {
         name: 'Orders',
         icon: 'fa-archive',
-        link: '/dashboard/orders/my-orders',
+        link: '/dashboard/orders',
       },
     ],
   },
@@ -187,8 +182,25 @@ export const CompanyInfo = {
   youtube: 'https://www.youtube.com/'
 };
 
+export const OrderStatus = [
+  { name: 'Cancelled', text: 'Cancelled' },
+  { name: 'Delivered', text: 'Delivered' },
+  { name: 'InTransit', text: 'InTransit' },
+  { name: 'PaymentDue', text: 'PaymentDue' },
+  { name: 'PickupAvailable', text: 'PickupAvailable' },
+  { name: 'Problem', text: 'Problem' },
+  { name: 'Processing', text: 'Processing' },
+  { name: 'Returned', text: 'Returned' }
+];
+
 export const PaymentMethods = [
   { name: 'cod', text: 'Cash On Delivery', img: 'assets/images/paymets/cashOnDelivery.png' },
   { name: 'bkash', text: 'BKash', img: 'assets/images/paymets/bkash.png' },
   { name: 'aamarpay', text: 'AamarPay', img: 'assets/images/paymets/aamarpay.png' },
+];
+
+export const PaymentStatus = [
+  { name: 'Cancelled', text: 'Cancelled' },
+  { name: 'Due', text: 'Due' },
+  { name: 'Paid', text: 'Paid' },
 ];

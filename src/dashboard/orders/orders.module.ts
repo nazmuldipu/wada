@@ -1,16 +1,15 @@
 import { NgModule } from '@angular/core';
-import { CartComponent } from './containers/cart/cart.component';
 import { Routes, RouterModule } from '@angular/router';
-import { MyOrdersComponent } from './containers/my-orders/my-orders.component';
 import { SharedModule } from 'src/shared/shared.module';
+import { IndexComponent } from './containers/index/index.component';
+import { OrderSideListComponent } from './components/order-side-list/order-side-list.component';
 
 export const ROUTES: Routes = [
-  { path: 'cart', component: CartComponent },
-  { path: 'my-orders', component: MyOrdersComponent },
+  { path: '', component: IndexComponent },
 ];
 
 @NgModule({
-  declarations: [CartComponent, MyOrdersComponent],
+  declarations: [IndexComponent, OrderSideListComponent],
   imports: [
     SharedModule, RouterModule.forChild(ROUTES)
   ]

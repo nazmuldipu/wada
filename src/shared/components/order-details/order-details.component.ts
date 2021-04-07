@@ -1,13 +1,15 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Order } from 'src/models/order.model';
 import { CompanyInfo } from 'src/shared/data/data';
 
 @Component({
   selector: 'app-order-details',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './order-details.component.html',
   styleUrls: ['./order-details.component.scss']
 })
 export class OrderDetailsComponent {
+  @Input() admin = false;
   @Input() order: Order;
   @Input() type = 'Customer';
 
@@ -38,6 +40,14 @@ export class OrderDetailsComponent {
       case 'Due': return 'badge-warning';
       case 'Paid': return 'badge-primary';
     }
+  }
+
+  getProfit(): number {
+    let profit = 0;
+    this.order.items.forEach(item => {
+      profit += (item.rate - item.purchase_price) * item.quantity;
+    });
+    return profit;
   }
 
 }

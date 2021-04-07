@@ -35,6 +35,8 @@
                     <th>SL</th>
                     <th>Item Description</th>
                     <th>Size</th>
+                    <th *ngIf="admin">Warehouse</th>
+                    <th *ngIf="admin">Pur. Price</th>
                     <th class="text-right">Rate</th>
                     <th class="text-center">Qty</th>
                     <th class="text-right">Total</th>
@@ -45,6 +47,12 @@
                     <td>{{i+1}}</td>
                     <td>{{item.product?.name}}</td>
                     <td>{{item.product?.size}}</td>
+                    <td *ngIf="admin">
+                        <span *ngFor="let wr of item.warehouses">{{wr.name}}[Q:{{wr.quantity}}]</span>
+                    </td>
+                    <td *ngIf="admin">
+                        {{item.purchase_price}}
+                    </td>
                     <td class="text-right">{{item.rate}}</td>
                     <td class="text-center">{{item.quantity}}</td>
                     <td class="text-right">{{item.amount}}</td>
@@ -53,16 +61,19 @@
             <tfoot>
                 <tr>
                     <td colspan="2" class="border-0"></td>
+                    <td *ngIf="admin" colspan="2" class="border-0"></td>
                     <td colspan="3" class="text-right border-0">Sub Total: </td>
                     <td class="text-right border-0">{{order?.sub_total}}</td>
                 </tr>
                 <tr>
                     <td colspan="2" class="border-0"></td>
+                    <td *ngIf="admin" colspan="2" class="border-0"></td>
                     <td colspan="3" class="text-right border-0">(-)Discount: </td>
                     <td class="text-right border-0">{{order?.total_discount}}</td>
                 </tr>
                 <tr>
                     <td colspan="2" class="border-0"></td>
+                    <td *ngIf="admin" colspan="2" class="border-0"></td>
                     <td colspan="3" class="text-right border-0">Your total savings: </td>
                     <td class="text-right border-0">{{order?.total_discount}}</td>
                 </tr>
@@ -72,17 +83,18 @@
                             <h4>{{order?.paymentStatus}}</h4>
                         </span>
                     </td>
+                    <td *ngIf="admin" colspan="2" class="border-0"></td>
                     <td colspan="3" class="text-right border-0">VAT: </td>
                     <td class="text-right border-0">{{order?.total_tax}}</td>
                 </tr>
                 <tr>
+                    <td *ngIf="admin" colspan="2" class="border-0"></td>
                     <td colspan="3" class="text-right border-0">Delivery Charge: </td>
                     <td class="text-right border-0">{{order?.shipping_charge}}</td>
                 </tr>
-                <!-- -->
                 <tr>
                     <td colspan="2" class="border-0">Payment Method: <strong>{{order.paymentMethod}}</strong> </td>
-                    <!-- <td colspan="2" ></td> -->
+                    <td *ngIf="admin" colspan="2" class="border-0"><strong> Profit : {{getProfit()}} </strong></td>
                     <th colspan="3" class="text-right border-0">Total Net payable Taka: </th>
                     <th class="text-right border-0">{{order?.total}}</th>
                 </tr>

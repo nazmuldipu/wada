@@ -1,0 +1,40 @@
+<div class="container-fluid component-head">
+    <h3>Orders</h3>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <app-order-side-list (pick)="onDetails($event)"></app-order-side-list>
+        </div>
+        <div class="col-md-9" *ngIf="order">
+            <app-order-details [order]="order" [admin]="true"></app-order-details>
+            <h5 class="mt-3">Update Order Status</h5>
+            <div class="form-row bg-white m-1 p-2 mb-5 border">
+                <div class="form-group col m-0">
+                    <label for="orderStatus">Order Status</label>
+                    <select class="form-control form-control-sm" id="orderStatus" [(ngModel)]="status.orderStatus">
+                        <option *ngFor="let ostat of orderStatusData" [value]="ostat.name">{{ostat.text}}</option>
+                    </select>
+                </div>
+                <div class="form-group col m-0">
+                    <label for="paymentMethods">Payment Methods</label>
+                    <select class="form-control form-control-sm" id="paymentMethods" [(ngModel)]="status.paymentMethod">
+                        <option *ngFor="let pmethod of paymentMethodsData" [value]="pmethod.name">{{pmethod.text}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group col m-0">
+                    <label for="paymentStatus">Payment Status</label>
+                    <select class="form-control form-control-sm" id="paymentMethod" [(ngModel)]="status.paymentStatus">
+                        <option *ngFor="let pmethod of paymentStatusData" [value]="pmethod.name">{{pmethod.text}}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-auto d-flex align-items-end">
+                    <button class="btn btn-sm btn-primary" (click)="onUpdateStatus()">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
