@@ -43,6 +43,11 @@ export const ROUTES: Routes = [
           import('./users/users.module').then((m) => m.UsersModule),
       },
       {
+        path: 'features',
+        loadChildren: () =>
+          import('./features/features.module').then((m) => m.FeaturesModule),
+      },
+      {
         path: 'inventory',
         loadChildren: () =>
           import('./inventory/inventory.module').then((m) => m.InventoryModule),
@@ -61,4 +66,4 @@ export const ROUTES: Routes = [
   ],
   imports: [CommonModule, SharedModule, RouterModule.forChild(ROUTES)],
 })
-export class DashboardModule {}
+export class DashboardModule { }

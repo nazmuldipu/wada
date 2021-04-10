@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ProductPage } from 'src/models/product.model';
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'product-table',
   templateUrl: './product-table.component.html',
   styleUrls: ['./product-table.component.scss'],
@@ -67,18 +68,18 @@ export class ProductTableComponent {
     search: '',
   };
 
-  buttonEvent(event) {
-    switch (event['key']) {
+  buttonEvent(event): void {
+    switch (event.key) {
       case 'edit':
-        this.edit.emit(event['id']);
+        this.edit.emit(event.id);
         break;
       case 'active':
-        this.active.emit(event['id']);
+        this.active.emit(event.id);
         break;
     }
   }
 
-  onRefresh(event) {
+  onRefresh(event): void {
     this.sortColumn = { ...event };
     this.refresh.emit({ sort: event.path, ...event });
   }

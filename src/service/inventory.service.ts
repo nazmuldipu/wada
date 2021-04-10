@@ -12,14 +12,14 @@ import { UtilService } from 'src/service/util.service';
 export class InventoryService {
   url = 'api/inventories';
 
-  constructor(private dSrc: RestDataService, private util: UtilService) {}
+  constructor(private dSrc: RestDataService, private util: UtilService) { }
 
   create(inventory: Inventory): Observable<Inventory> {
     return this.dSrc.sendRequest('POST', this.url, inventory, true, null);
   }
 
   byWarehouseId(wid: string, pagi: Pagination): Observable<InventoryPage> {
-    let sparam = this.util.paginationToHttpParam(pagi);
+    const sparam = this.util.paginationToHttpParam(pagi);
 
     return this.dSrc.sendRequest(
       'GET',
@@ -30,7 +30,7 @@ export class InventoryService {
     );
   }
 
-  
+
   transfer(inventory: Inventory): Observable<Inventory> {
     // const items = [];
     // for (let i = 0; i < event.items.length; i++) {
@@ -76,7 +76,7 @@ export class InventoryService {
     );
   }
 
-  approveTransferedInventories(inventoryId: string) {
+  approveTransferedInventories(inventoryId: string): Observable<Inventory> {
     return this.dSrc.sendRequest(
       'PUT',
       this.url + `/transfer/approve/${inventoryId}`,

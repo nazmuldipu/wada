@@ -3,7 +3,7 @@ export interface Offer {
   items: Feature[];
 }
 
-export interface Feature {
+interface Feature {
   slug: string;
   dialog: string;
   button_text: string;

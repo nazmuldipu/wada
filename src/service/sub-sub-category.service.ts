@@ -20,12 +20,12 @@ export class SubSubCategoryService {
   }
 
   create(subSubCategory: SubSubCategory): Observable<SubSubCategory> {
-    let fData = this.util.jsonToFromData(subSubCategory, ['images']);
+    const fData = this.util.jsonToFromData(subSubCategory, ['images']);
     return this.dSrc.sendRequest('POST', this.url, fData, true, null);
   }
 
   getList(pagi: Pagination): Observable<SubSubCategoryPage> {
-    let sparam = this.util.paginationToHttpParam(pagi);
+    const sparam = this.util.paginationToHttpParam(pagi);
     return this.dSrc.sendRequest('GET', this.url, null, true, sparam);
   }
 
@@ -34,7 +34,7 @@ export class SubSubCategoryService {
   }
 
   update(id, subSubCategory: SubSubCategory): Observable<SubSubCategory> {
-    let fData = this.util.jsonToFromData(subSubCategory, ['images']);
+    const fData = this.util.jsonToFromData(subSubCategory, ['images']);
     return this.dSrc.sendRequest('PUT', this.url + `/${id}`, fData, true, null);
   }
 
@@ -48,8 +48,8 @@ export class SubSubCategoryService {
     );
   }
 
-  byCategorySlug(slug: string, pagi: Pagination) {
-    let sparam = this.util.paginationToHttpParam(pagi);
+  byCategorySlug(slug: string, pagi: Pagination): Observable<SubSubCategoryPage> {
+    const sparam = this.util.paginationToHttpParam(pagi);
     return this.dSrc.sendRequest(
       'GET',
       this.url + `/category/${slug}`,
@@ -59,8 +59,8 @@ export class SubSubCategoryService {
     );
   }
 
-  bySubCategorySlug(slug: string, pagi: Pagination) {
-    let sparam = this.util.paginationToHttpParam(pagi);
+  bySubCategorySlug(slug: string, pagi: Pagination): Observable<SubSubCategoryPage> {
+    const sparam = this.util.paginationToHttpParam(pagi);
     return this.dSrc.sendRequest(
       'GET',
       this.url + `/subCategory/${slug}`,

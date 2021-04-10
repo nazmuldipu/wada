@@ -1,0 +1,17 @@
+<div class="container-fluid component-head">
+    <h3>Features</h3>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <app-feature-table [featurePage]="featurePage" [imageUrl]="imageUrl" (edit)="onEdit($event)"
+                (refresh)="refreshData($event)" (active)="onActive($event)"></app-feature-table>
+        </div>
+        <div class="col-md-4">
+            <div class=" border rounded bg-white">
+                <app-feature-form [item]="feature" [err]="errMsg" (create)="onCreate($event)"
+                    (update)="onUpdate($event)" (delete)="onDelete($event)"></app-feature-form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,35 +1,48 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { BrandPage } from 'src/models/brand.model';
+import { FeaturePage } from 'src/models/feature.model';
 
 @Component({
-  // tslint:disable-next-line: component-selector
-  selector: 'brands-table',
-  templateUrl: './brands-table.component.html',
-  styleUrls: ['./brands-table.component.scss'],
+  selector: 'app-feature-table',
+  templateUrl: './feature-table.component.html',
+  styleUrls: ['./feature-table.component.scss']
 })
-export class BrandsTableComponent {
-  @Input() brandPage: BrandPage;
+export class FeatureTableComponent {
+  @Input() featurePage: FeaturePage;
   @Input() imageUrl: string;
 
   @Output() edit = new EventEmitter<string>();
   @Output() refresh = new EventEmitter<any>();
-
-  tableName = 'Brand Table';
+  @Output() active = new EventEmitter<string>();
+  
+  tableName = 'Feature Table';
   columns = [
     {
       key: '_id',
       type: 'image',
-      content: (brand) => {
+      content: (feature) => {
         return {
           classname: 'table_image',
           text: 'Edit',
-          url: this.imageUrl + `${brand._id}`,
-          event: { key: 'img', id: brand._id },
+          url: this.imageUrl + `${feature._id}`,
+          event: { key: 'img', id: feature._id },
         };
       },
     },
     { path: 'name', label: 'Name', searchable: true },
     { path: 'priority', label: 'Priority' },
+    { path: 'active', label: 'Active' },
+    {
+      key: '_id',
+      type: 'button',
+      content: (product) => {
+        return {
+          classname: 'edit_link',
+          text: product?.active ? 'Deactivate' : 'Activate',
+          link: `#`,
+          event: { key: 'active', id: product._id },
+        };
+      },
+    },
     {
       key: '_id',
       type: 'button',
@@ -56,6 +69,9 @@ export class BrandsTableComponent {
     switch (event.key) {
       case 'edit':
         this.edit.emit(event.id);
+        break;
+      case 'active':
+        this.active.emit(event.id);
         break;
     }
   }

@@ -17,12 +17,14 @@ import { ToastService } from './toast.service';
 import { UserService } from './user.service';
 import { UtilService } from './util.service';
 import { WarehouseService } from './warehouse.service';
+import { FeaturesService } from './features.service';
 
 @NgModule({
   providers: [
     AuthService,
     BrandService,
     CategoryService,
+    FeaturesService,
     RestDataService,
     StockService,
     SubCategoryService,
@@ -40,4 +42,4 @@ import { WarehouseService } from './warehouse.service';
     ToastService,
   ],
 })
-export class ServiceModule {}
+export class ServiceModule { }

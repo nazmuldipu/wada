@@ -18,12 +18,12 @@ export class BrandService {
   }
 
   create(brand: Brand): Observable<Brand> {
-    let fData = this.util.jsonToFromData(brand, ['image']);
+    const fData = this.util.jsonToFromData(brand, ['image']);
     return this.dSrc.sendRequest('POST', this.url, fData, true, null);
   }
 
   getList(pagi: Pagination): Observable<BrandPage> {
-    let sparam = this.util.paginationToHttpParam(pagi);
+    const sparam = this.util.paginationToHttpParam(pagi);
     return this.dSrc.sendRequest('GET', this.url, null, true, sparam);
   }
 
@@ -32,8 +32,7 @@ export class BrandService {
   }
 
   update(id, brand: Brand): Observable<Brand> {
-    console.log(brand);
-    let fData = this.util.jsonToFromData(brand, ['image']);
+    const fData = this.util.jsonToFromData(brand, ['image']);
     return this.dSrc.sendRequest('PUT', this.url + `/${id}`, fData, true, null);
   }
 

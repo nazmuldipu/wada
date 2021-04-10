@@ -32,7 +32,7 @@ export class ProductsComponent implements OnInit {
     this.getList(new Pagination());
   }
 
-  async getList(pagi: Pagination) {
+  async getList(pagi: Pagination): Promise<void> {
     try {
       this.loading = true;
       this.productPage = await this.service.getList(pagi).toPromise();
@@ -41,21 +41,21 @@ export class ProductsComponent implements OnInit {
       this.errorMessage = error.message;
     }
   }
-  refreshData({ page, limit, sort, order, search }) {
+  refreshData({ page, limit, sort, order, search }): void {
     this.getList(new Pagination(page, limit, sort, order, search));
   }
 
-  onEdit(event) {
+  onEdit(event): void {
     console.log('onEdit', event);
   }
 
-  async onToogleActive(id) {
+  async onToogleActive(id): Promise<void> {
     try {
       this.loading = true;
       const resp = await this.service.toggleActive(id).toPromise();
-      const index = this.productPage.docs.findIndex((p) => p._id == id);
+      const index = this.productPage.docs.findIndex((p) => p._id === id);
       this.productPage.docs.splice(index, 1, resp);
       this.loading = false;
-    } catch (err) {}
+    } catch (err) { }
   }
 }

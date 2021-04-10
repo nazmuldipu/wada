@@ -56,7 +56,7 @@ export const SideNavbar = [
     ],
   },
   {
-    name: 'Product',
+    name: 'Products',
     icon: 'fa-tag',
     roles: ['ADMIN', 'SHOP'],
     subnav: [
@@ -96,6 +96,19 @@ export const SideNavbar = [
       //   link: '/dashboard/products/free-delivery',
       // },
     ],
+  },
+  {
+    name: 'Features',
+    icon: 'fa-cubes',
+    roles: ['ADMIN'],
+    subnav: [
+      {
+        name: 'List',
+        icon: 'fa-list',
+        roles: ['ADMIN'],
+        link: '/dashboard/features',
+      },
+    ]
   },
   {
     name: 'Inventory',

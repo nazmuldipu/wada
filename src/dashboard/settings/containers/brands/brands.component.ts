@@ -24,7 +24,7 @@ export class BrandsComponent implements OnInit {
     this.getList(new Pagination());
   }
 
-  async getList(pagi: Pagination) {
+  async getList(pagi: Pagination): Promise<void> {
     try {
       this.loading = true;
       this.brandPage = await this.service.getList(pagi).toPromise();
@@ -34,17 +34,16 @@ export class BrandsComponent implements OnInit {
     }
   }
 
-  refreshData({ page, limit, sort, order, search }) {
+  refreshData({ page, limit, sort, order, search }): void {
     this.getList(new Pagination(page, limit, sort, order, search));
   }
 
-  onEdit(event) {
-    const value = this.brandPage.docs.find((b) => b._id == event);
+  onEdit(event): void {
+    const value = this.brandPage.docs.find((b) => b._id === event);
     this.brand = { ...value };
   }
 
-  async onCreate(brand: Brand) {
-    console.log('onCreate', brand);
+  async onCreate(brand: Brand): Promise<void> {
     try {
       this.loading = true;
       const resp = await this.service.create(brand).toPromise();
@@ -55,8 +54,7 @@ export class BrandsComponent implements OnInit {
     }
   }
 
-  async onUpdate(brand: Brand) {
-    console.log('onUpdate ', brand);
+  async onUpdate(brand: Brand): Promise<void> {
     try {
       this.loading = true;
       const resp = await this.service.update(this.brand._id, brand).toPromise();
@@ -67,7 +65,7 @@ export class BrandsComponent implements OnInit {
     }
   }
 
-  async onDelete(id) {
+  async onDelete(id): Promise<void> {
     if (confirm('Are you sure to delete')) {
       try {
         this.loading = true;
@@ -84,7 +82,7 @@ export class BrandsComponent implements OnInit {
     }
   }
 
-  clear() {
+  clear(): void {
     this.brand = null;
     this.errorMessage = '';
     this.loading = false;

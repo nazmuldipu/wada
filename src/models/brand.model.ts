@@ -4,7 +4,7 @@ export interface Brand {
   slug: string;
   priority: number;
   createdAt: Date;
-  image_urls: String[];
+  image_urls: string[];
 }
 
 export interface BrandPage {
