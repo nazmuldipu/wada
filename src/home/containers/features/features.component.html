@@ -1,1 +1,45 @@
-<p>features works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-12 p-0" *ngIf="slugId">
+            <img class="banner-image" [src]="bannerUrl + slugId">
+        </div>
+    </div>
+</div>
+
+<ng-template #productDetailsModal let-modal>
+    <detail-modal [product]="product" [prodImageUrl]="prodImageUrl" [cartProduct]="productListCart"
+        (dismiss)="modal.dismiss()" (cart)="onAddToCart($event)"></detail-modal>
+</ng-template>
+
+
+<div class="cart-item" (click)="onCartClick()">
+    <div class="itemCount">
+        <img class="cart-icon" src="assets/images/svgs/cart2.svg" alt="" />
+        <span class="cart-count">{{cart?.product_list?.length}} ITEMS</span>
+    </div>
+    <div class="cart-amount">৳ {{cart?.total}}</div>
+</div>
+
+<div class="container">
+    <div class="alert alert-warning alert-dismissible fade show" role="alert" *ngIf="errMsg.length > 1">
+        {{errMsg}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="onCloseClick()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <infinite-scroll (scrolled)="onScroll()">
+                <div class="row clearfix m-0">
+                    <div class="col-12 text-center" *ngIf="productList?.length == 0">
+                        <i class="fa fa-frown-o"></i> Sorry no product found
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-6 p-0" *ngFor="let product of productList">
+                        <product2 [product]="product" [thumbUrl]="prodThumbUrl" (cart)="onAddToCart($event)"
+                            (shortDetails)="onShortDetails(productDetailsModal, $event)"></product2>
+                    </div>
+                </div>
+            </infinite-scroll>
+        </div>
+    </div>
+</div>

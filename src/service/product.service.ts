@@ -37,67 +37,32 @@ export class ProductService {
   }
 
   delete(id): Observable<Product> {
-    return this.dSrc.sendRequest(
-      'DELETE',
-      this.url + `/${id}`,
-      null,
-      true,
-      null
-    );
+    return this.dSrc.sendRequest('DELETE', this.url + `/${id}`, null, true, null);
   }
 
   toggleActive(id): Observable<any> {
-    return this.dSrc.sendRequest(
-      'PATCH',
-      this.url + `/activate/${id}`,
-      null,
-      true,
-      null
-    );
+    return this.dSrc.sendRequest('PATCH', this.url + `/activate/${id}`, null, true, null);
   }
 
-  byCategorySlug(slug: string, pagi: Pagination) {
-    let sparam = this.util.paginationToHttpParam(pagi);
-    return this.dSrc.sendRequest(
-      'GET',
-      this.url + `/category/${slug}`,
-      null,
-      false,
-      sparam
-    );
+  byCategorySlug(slug: string, pagi: Pagination): Observable<ProductPage> {
+    let sparam = this.util.paginationToHttpParam(pagi); return this.dSrc.sendRequest('GET', this.url + `/category/${slug}`, null, false, sparam);
   }
 
-  bySubCategorySlug(slug: string, pagi: Pagination) {
-    let sparam = this.util.paginationToHttpParam(pagi);
-    return this.dSrc.sendRequest(
-      'GET',
-      this.url + `/subCategory/${slug}`,
-      null,
-      false,
-      sparam
-    );
+  bySubCategorySlug(slug: string, pagi: Pagination): Observable<ProductPage> {
+    let sparam = this.util.paginationToHttpParam(pagi); return this.dSrc.sendRequest('GET', this.url + `/subCategory/${slug}`, null, false, sparam);
   }
 
-  bySubSubCategorySlug(slug: string, pagi: Pagination) {
-    let sparam = this.util.paginationToHttpParam(pagi);
-    return this.dSrc.sendRequest(
-      'GET',
-      this.url + `/subSubCategory/${slug}`,
-      null,
-      false,
-      sparam
-    );
+  bySubSubCategorySlug(slug: string, pagi: Pagination): Observable<ProductPage> {
+    let sparam = this.util.paginationToHttpParam(pagi); return this.dSrc.sendRequest('GET', this.url + `/subSubCategory/${slug}`, null, false, sparam);
   }
 
-  byBrand(slug: string, pagi: Pagination) {
+  byBrand(slug: string, pagi: Pagination): Observable<ProductPage> {
+    let sparam = this.util.paginationToHttpParam(pagi); return this.dSrc.sendRequest('GET', this.url + `/brand/${slug}`, null, false, sparam);
+  }
+
+  byFeature(slug: string, pagi: Pagination): Observable<ProductPage> {
     let sparam = this.util.paginationToHttpParam(pagi);
-    return this.dSrc.sendRequest(
-      'GET',
-      this.url + `/brand/${slug}`,
-      null,
-      true,
-      sparam
-    );
+    return this.dSrc.sendRequest('GET', this.url + `/feature/${slug}`, null, false, sparam);
   }
 
   //----------------------------------------DELETE ---------------------------------------------------

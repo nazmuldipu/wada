@@ -218,7 +218,7 @@ export class CategoryComponent implements OnInit {
     this.router.navigate(['/cart']);
   }
 
-  // onCloseClick() {
-  //   this.errorMessage = '';
-  // }
+  onCloseClick() {
+    this.errorMessage = '';
+  }
 }
