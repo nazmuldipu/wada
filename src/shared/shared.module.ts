@@ -30,11 +30,13 @@ import { InfiniteScrollComponent } from './components/infinite-scroll/infinite-s
 import { ModalMessageComponent } from './components/modal-message/modal-message.component';
 import { OrderItemComponent } from './components/order-item/order-item.component';
 import { OrderDetailsComponent } from './components/order-details/order-details.component';
+import { ProductTableComponent } from './components/product-table/product-table.component';
 
 @NgModule({
   declarations: [
     OfferBoxComponent,
     Product2Component,
+    ProductTableComponent,
     LoadingComponent,
     ToastsComponent,
     PaginationComponent,
@@ -88,6 +90,7 @@ import { OrderDetailsComponent } from './components/order-details/order-details.
     OrderDetailsComponent,
     PaginationComponent,
     Product2Component,
+    ProductTableComponent,
     ProductRelatedComponent,
     ReactiveFormsModule,
     RouterModule,

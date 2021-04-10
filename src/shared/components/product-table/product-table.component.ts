@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnChanges, SimpleChanges } from '@angular/core';
 import { ProductPage } from 'src/models/product.model';
 
 @Component({
@@ -7,9 +7,10 @@ import { ProductPage } from 'src/models/product.model';
   templateUrl: './product-table.component.html',
   styleUrls: ['./product-table.component.scss'],
 })
-export class ProductTableComponent {
+export class ProductTableComponent implements OnChanges {
   @Input() productPage: ProductPage;
   @Input() thumbUrl: string;
+  @Input() small = false;
 
   @Output() edit = new EventEmitter<string>();
   @Output() active = new EventEmitter<string>();
@@ -67,6 +68,40 @@ export class ProductTableComponent {
     page: 1,
     search: '',
   };
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.small) {
+      this.columns = [
+        {
+          key: '_id',
+          type: 'image',
+          content: (product) => {
+            return {
+              classname: 'table_image',
+              url: this.thumbUrl + `${product._id}`,
+              event: { key: 'img', id: product._id },
+            };
+          },
+        },
+        { path: 'name', label: 'Name', searchable: true },
+        { path: 'priority', label: 'Priority' },
+        { path: 'active', label: 'Active' },
+        {
+          key: '_id',
+          type: 'button',
+          content: (product) => {
+            return {
+              classname: 'edit_link',
+              text: 'Add',
+              link: `#`,
+              event: { key: 'edit', id: product._id },
+            };
+          },
+        },
+      ];
+    }
+  }
+
 
   buttonEvent(event): void {
     switch (event.key) {

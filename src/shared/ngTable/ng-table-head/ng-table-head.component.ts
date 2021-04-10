@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   EventEmitter,
   Input,
@@ -8,7 +9,9 @@ import {
 } from '@angular/core';
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: '[NgTableHeader]',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './ng-table-head.component.html',
   styleUrls: ['./ng-table-head.component.scss'],
 })
@@ -17,6 +20,7 @@ export class NgTableHeadComponent implements OnChanges {
   @Input() columns;
   @Input() sortColumn;
 
+  // tslint:disable-next-line: no-output-on-prefix
   @Output() onSort = new EventEmitter<any>();
 
   searchableArray = [];
@@ -24,6 +28,7 @@ export class NgTableHeadComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.columns && this.columns != null) {
+      this.searchableArray = [];
       this.columns.forEach((element) => {
         if (element.searchable) {
           this.searchableArray.push({
@@ -35,27 +40,27 @@ export class NgTableHeadComponent implements OnChanges {
     }
   }
 
-  getSearchPlaceHolderText() {
+  getSearchPlaceHolderText(): string {
     let text = '';
     for (let i = 0; i < this.searchableArray.length; i++) {
       text += this.searchableArray[i].label;
-      if (i != this.searchableArray.length - 1) {
+      if (i !== this.searchableArray.length - 1) {
         text += '/';
       }
     }
     return text;
   }
 
-  onSearchSubmit() {
+  onSearchSubmit(): void {
     if (this.searchQuery.length > 2) {
-      this.sortColumn['search'] = this.searchQuery;
+      this.sortColumn.search = this.searchQuery;
     } else {
-      this.sortColumn['search'] = '';
+      this.sortColumn.search = '';
     }
     this.onSort.emit(this.sortColumn);
   }
 
-  raiseSort(path) {
+  raiseSort(path): void {
     const sortColumn = { ...this.sortColumn };
     if (sortColumn.path === path) {
       sortColumn.order = sortColumn.order === 'asc' ? 'desc' : 'asc';
@@ -66,9 +71,9 @@ export class NgTableHeadComponent implements OnChanges {
     this.onSort.emit(sortColumn);
   }
 
-  renderSortIcon(column) {
-    if (column.path != this.sortColumn.path) return null;
-    if (this.sortColumn.order === 'asc') return `fa-sort-asc`;
+  renderSortIcon(column): string {
+    if (column.path !== this.sortColumn.path) { return null; }
+    if (this.sortColumn.order === 'asc') { return `fa-sort-asc`; }
     return `fa-sort-desc`;
   }
 }

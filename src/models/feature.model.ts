@@ -5,7 +5,7 @@ export interface Feature {
     priority: number;
     createdAt: Date;
     products: Product[];
-    image_urls: String[];
+    image_urls: string[];
 }
 
 export interface FeaturePage {

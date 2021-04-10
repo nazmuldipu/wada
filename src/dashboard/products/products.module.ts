@@ -4,7 +4,7 @@ import { SharedModule } from 'src/shared/shared.module';
 
 import { ProductDetailsFormComponent } from './components/product-details-form/product-details-form.component';
 import { ProductFormComponent } from './components/product-form/product-form.component';
-import { ProductTableComponent } from './components/product-table/product-table.component';
+// import { ProductTableComponent } from '../../shared/components/product-table/product-table.component';
 import { WarehouseAssignFormComponent } from './components/warehouse-assign-form/warehouse-assign-form.component';
 import { WarehouseDetailsComponent } from './components/warehouse-details/warehouse-details.component';
 import { WarehouseFormComponent } from './components/warehouse-form/warehouse-form.component';
@@ -28,7 +28,7 @@ export const ROUTES: Routes = [
     ProductDetailsFormComponent,
     ProductFormComponent,
     NewProductsComponent,
-    ProductTableComponent,
+    // ProductTableComponent,
     WarehouseComponent,
     WarehouseFormComponent,
     WarehouseTableComponent,
@@ -37,4 +37,4 @@ export const ROUTES: Routes = [
   ],
   imports: [SharedModule, RouterModule.forChild(ROUTES)],
 })
-export class ProductsModule {}
+export class ProductsModule { }

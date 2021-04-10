@@ -1,0 +1,52 @@
+<div class="container-fluid component-head">
+    <h3>Features</h3>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8" *ngIf="!feature">
+            <app-feature-table [featurePage]="featurePage" [imageUrl]="imageUrl" (edit)="onEdit($event)"
+                (refresh)="refreshData($event)"></app-feature-table>
+        </div>
+        <ng-container *ngIf="feature">
+            <div class="col-md-6 bg-white">
+                <product-table [productPage]="productPage" [thumbUrl]="thumbUrl" [small]="true"
+                    (edit)="onAddProduct($event)" (refresh)="refreshProductData($event)">
+                </product-table>
+            </div>
+            <div class="col-md-6">
+                <table class="table table-hover table-bordered table-responsive-sm bg-white">
+                    <thead>
+                        <tr>
+                            <td class="form-head" colspan="4">
+                                <div class="d-flex justify-content-between">
+                                    <div>{{feature?.name}} product list</div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <th>Name</th>
+                            <th>Size</th>
+                            <th class="text-right">Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let product of feature.products">
+                            <td><img _ngcontent-smn-c121="" class="table_image" [src]="thumbUrl + product._id">
+                            </td>
+                            <td>{{product.name}}</td>
+                            <td>{{product.size}}</td>
+                            <td class="text-right"><button class="btn btn-sm btn-danger"
+                                    (click)="onRemoveProduct(product._id)"><i class="fa fa-trash-o"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+            </div>
+            <div class="col-12 d-flex flex-row-reverse">
+                <button class="btn btn-sm btn-danger" (click)="onClose()">Close</button>
+            </div>
+        </ng-container>
+    </div>
+</div>

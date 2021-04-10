@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
-            <app-feature-table [featurePage]="featurePage" [imageUrl]="imageUrl" (edit)="onEdit($event)"
+            <app-feature-table [featurePage]="featurePage" [imageUrl]="imageUrl" [canActivate]="true" (edit)="onEdit($event)"
                 (refresh)="refreshData($event)" (active)="onActive($event)"></app-feature-table>
         </div>
         <div class="col-md-4">

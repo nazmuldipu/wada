@@ -108,6 +108,12 @@ export const SideNavbar = [
         roles: ['ADMIN'],
         link: '/dashboard/features',
       },
+      {
+        name: 'Products',
+        icon: 'fa-object-group',
+        roles: ['ADMIN'],
+        link: '/dashboard/features/products',
+      },
     ]
   },
   {
