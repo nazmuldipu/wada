@@ -26,6 +26,7 @@ export class SubSubCategoryFormComponent extends BaseFormComponent implements On
 
   ngOnChanges(changes: SimpleChanges): void {
     super.ngOnChanges(changes);
+    console.log(this.item);
     if (changes.item && this.item) {
       this.onCategory(this.item.category._id);
     }
@@ -52,7 +53,9 @@ export class SubSubCategoryFormComponent extends BaseFormComponent implements On
 
   onSubCategory(id): void {
     this.subCategory = this.subCategories.find((sc) => sc._id === id);
-    this.form.patchValue({ subCategoryId: this.subCategory._id });
+    console.log(this.subCategory);
+    if (this.subCategory)
+      this.form.patchValue({ subCategoryId: this.subCategory._id });
   }
 
   onError(event): void {
