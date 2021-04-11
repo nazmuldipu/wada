@@ -10,16 +10,16 @@ export class DashboardComponent implements OnInit {
   sideNavExpand = true;
   user;
 
-  constructor(public userService: UserService) {}
+  constructor(public userService: UserService) { }
 
   ngOnInit(): void {
     this.userService.user$.subscribe((data) => {
       this.user = data;
-      if (Object.keys(data).length === 0) this.getUserProfile();
+      if (Object.keys(data).length === 0) { this.getUserProfile(); }
     });
   }
 
-  async getUserProfile() {
+  async getUserProfile(): Promise<void> {
     console.log('Load profile from dashboard');
     try {
       const user = await this.userService.getUserProfile().toPromise();
@@ -29,7 +29,7 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  onSidenavExpand(event) {
+  onSidenavExpand(event): void {
     this.sideNavExpand = event;
   }
 }

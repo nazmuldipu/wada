@@ -11,7 +11,7 @@
   position: relative !important;
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
   .banner-full-outer {
     display: block;
     margin-left: auto;
@@ -24,6 +24,11 @@ picture,
 picture source {
   display: block;
   font-size: 0;
+}
+
+.carousel-item-image {
+  height: 100%;
+  object-fit: cover;
 }
 
 .banner-full-inner,
@@ -41,10 +46,9 @@ picture source {
   height: 100%;
 }
 
-
 #delivery-options-display {
   background-color: #fff;
-  font-family: 'museosans';
+  font-family: "museosans";
 }
 
 .delivery-icon {

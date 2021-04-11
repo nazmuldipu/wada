@@ -1,4 +1,8 @@
-<home-hero [isAuthenticated]="authService.isAuthenticated()"></home-hero>
-<categories></categories>
-<front-special-offer></front-special-offer>
+<home-hero *ngIf="hero" [hero]="hero" [isAuthenticated]="authService.isAuthenticated()" [imageUrl]="imageUrl" >
+</home-hero>
+<!-- <categories></categories> -->
+<app-feature-banner *ngIf="multibuy" [feature]="multibuy" [headline]="'Exclusive Multibuy'" [imageUrl]="imageUrl"></app-feature-banner>
+<app-feature-banner *ngIf="special" [feature]="special" [headline]="'Special Offer'" [imageUrl]="imageUrl"></app-feature-banner>
+<app-featured-offers *ngIf="featured.length" [featured]="featured" [imageUrl]="imageUrl"></app-featured-offers>
+<!-- <front-special-offer></front-special-offer> -->
 <!-- <offers></offers> -->

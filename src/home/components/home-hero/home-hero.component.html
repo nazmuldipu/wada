@@ -8,22 +8,24 @@
 </div> -->
 
 <section class="home-hero">
-    <div class="position-relative">
-      <div>
-        <picture>
-          <img class="img-fluid" src="assets/images/banners/home.png">
-        </picture>
-        <div class="banner-full-inner">
-          <div class="content-width">
-            <div class="container d-flex justify-content-start align-items-end h-100 py-3">
-              <div
-                class="px-3 d-flex justify-content-between justify-content-md-start align-items-center flex-row mx-auto mb-0 md-0">
-                <a class="btn btn-sm btn-success auto-pointer-events mr-3 px-4">Shop Now</a>
-                <a *ngIf="!isAuthenticated" class="btn btn-sm btn-secondary auto-pointer-events px-4" routerLink="/login">Sign
-                  In</a>
-              </div>
+  <div class="position-relative">
+    <div class="banner-full-outer">
+      <picture>
+        <img class="img-fluid carousel-item-image" [src]="imageUrl + hero?._id">
+      </picture>
+      <div class="banner-full-inner">
+        <div class="content-width">
+          <div class="container d-flex justify-content-start align-items-end h-100 py-3">
+            <div
+              class="px-3 d-flex justify-content-between justify-content-md-start align-items-center flex-row mx-auto mb-0 md-0">
+              <a class="btn btn-sm btn-success auto-pointer-events mr-3 px-4"
+                [routerLink]="'/features/'+hero?.slug">Shop Now</a>
+              <a *ngIf="!isAuthenticated" class="btn btn-sm btn-secondary auto-pointer-events px-4"
+                routerLink="/login">Sign
+                In</a>
             </div>
           </div>
+        </div>
       </div>
     </div>
   </div>

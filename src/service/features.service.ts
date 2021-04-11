@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { RestDataService } from './rest-data.service';
 import { UtilService } from './util.service';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Pagination } from 'src/models/pagination.model';
 import { Feature, FeaturePage } from 'src/models/feature.model';
 
@@ -11,6 +11,9 @@ import { Feature, FeaturePage } from 'src/models/feature.model';
 export class FeaturesService {
   url = 'api/features';
   imageLink: string;
+
+  featuresSource = new BehaviorSubject<Feature[]>([]);
+  features$ = this.featuresSource.asObservable();
 
   constructor(private dSrc: RestDataService, private util: UtilService) {
     this.imageLink = this.dSrc.baseUrl + this.url;
@@ -24,11 +27,11 @@ export class FeaturesService {
 
   getList(pagi: Pagination): Observable<FeaturePage> {
     const sparam = this.util.paginationToHttpParam(pagi);
-    return this.dSrc.sendRequest('GET', this.url, null, false, sparam);
+    return this.dSrc.sendRequest('GET', this.url, null, true, sparam);
   }
 
   get(id): Observable<Feature> {
-    return this.dSrc.sendRequest('GET', this.url + `/${id}`, null, false, null);
+    return this.dSrc.sendRequest('GET', this.url + `/${id}`, null, true, null);
   }
 
   update(id, feature: Feature): Observable<Feature> {
@@ -50,6 +53,11 @@ export class FeaturesService {
 
   remove(id, productId): Observable<Feature> {
     return this.dSrc.sendRequest('PATCH', this.url + `/remove/${id}`, { productId }, true, null);
+  }
+
+  activeFeatures(pagi: Pagination): Observable<FeaturePage> {
+    const sparam = this.util.paginationToHttpParam(pagi);
+    return this.dSrc.sendRequest('GET', this.url + `/active/`, null, false, sparam);
   }
 
 }
