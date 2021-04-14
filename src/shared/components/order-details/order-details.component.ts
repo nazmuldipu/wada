@@ -28,6 +28,7 @@ export class OrderDetailsComponent {
       case 'Paid': return 'badge-success';
       case 'PickupAvailable': return 'badge-info';
       case 'PaymentDue': return 'badge-dark';
+      case 'PaymentFailed': return 'badge-danger';
       case 'Processing': return 'badge-warning';
       case 'Problem': return 'badge-danger';
       case 'Returned': return 'badge-primary';
@@ -37,6 +38,7 @@ export class OrderDetailsComponent {
   getPaymentStatusClass(status): string {
     switch (status) {
       case 'Cancelled': return 'badge-danger';
+      case 'Failed': return 'badge-danger';
       case 'Due': return 'badge-warning';
       case 'Paid': return 'badge-primary';
     }

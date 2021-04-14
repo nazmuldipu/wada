@@ -29,6 +29,9 @@ import { OrderConfirmComponent } from './containers/order-confirm/order-confirm.
 import { FeaturesComponent } from './containers/features/features.component';
 import { FeatureBannerComponent } from './components/feature-banner/feature-banner.component';
 import { FeaturedOffersComponent } from './components/featured-offers/featured-offers.component';
+import { PaySuccessComponent } from './containers/pay-success/pay-success.component';
+import { PayCanceledComponent } from './containers/pay-canceled/pay-canceled.component';
+import { PayFailComponent } from './containers/pay-fail/pay-fail.component';
 
 export const ROUTES: Routes = [
   { path: 'comming', component: CommingSoonComponent },
@@ -44,6 +47,9 @@ export const ROUTES: Routes = [
       { path: 'details/:id', component: DetailsComponent },
       { path: 'category/:slug', component: CategoryComponent },
       { path: 'features/:slug', component: FeaturesComponent },
+      { path: 'pay-success', component: PaySuccessComponent },
+      { path: 'pay-cancel', component: PayCanceledComponent },
+      { path: 'pay-fail', component: PayFailComponent },
       { path: '', component: IndexComponent },
     ],
   },
@@ -73,7 +79,10 @@ export const ROUTES: Routes = [
     OrderConfirmComponent,
     FeaturesComponent,
     FeatureBannerComponent,
-    FeaturedOffersComponent
+    FeaturedOffersComponent,
+    PaySuccessComponent,
+    PayCanceledComponent,
+    PayFailComponent
   ],
   imports: [
     CommonModule,

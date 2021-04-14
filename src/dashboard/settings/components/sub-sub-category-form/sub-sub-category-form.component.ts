@@ -26,7 +26,6 @@ export class SubSubCategoryFormComponent extends BaseFormComponent implements On
 
   ngOnChanges(changes: SimpleChanges): void {
     super.ngOnChanges(changes);
-    console.log(this.item);
     if (changes.item && this.item) {
       this.onCategory(this.item.category._id);
     }

@@ -11,8 +11,9 @@
         </div>
         <div class="col" *ngIf="order">
             <app-order-details [order]="order"></app-order-details>
-            <div class="d-flex flex-row-reverse my-3" *ngIf="order.paymentStatus=='Due' && order.paymentMethod != 'cod'">
-                <button class="btn btn-sm btn-primary">Pay now</button>
+            <div class="d-flex flex-row-reverse my-3"
+                *ngIf="order.paymentStatus !=='Paid' && order.paymentMethod !== 'cod'">
+                <button class="btn btn-sm btn-primary" (click)="wPaynow(order._id)">I want to Pay now</button>
             </div>
         </div>
     </div>

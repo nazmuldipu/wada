@@ -22,7 +22,8 @@
 
 picture,
 picture source {
-  display: block;
+  display: flex !important;
+  justify-content: center;
   font-size: 0;
 }
 

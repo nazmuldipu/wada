@@ -7,8 +7,9 @@
 
     <div class="container my-4" *ngIf="order">
         <app-order-details [order]="order"></app-order-details>
-        <div class="d-flex flex-row-reverse my-3" *ngIf="order.paymentStatus=='Due'">
-            <button class="btn btn-sm btn-primary">Pay now</button>
+        <div class="d-flex flex-row-reverse my-3"
+            *ngIf="order.paymentStatus !=='Paid' && order.paymentMethod !== 'cod'">
+            <button class="btn btn-sm btn-primary" (click)="wPaynow(order._id)">Pay now</button>
         </div>
     </div>
 </div>

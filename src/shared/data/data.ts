@@ -219,9 +219,9 @@ export const OrderStatus = [
 
 export const PaymentMethods = [
   { name: 'cod', text: 'Cash On Delivery', img: 'assets/images/paymets/cashOnDelivery.png' },
-  { name: 'bkash', text: 'BKash', img: 'assets/images/paymets/bkash.png' },
   { name: 'aamarpay', text: 'AamarPay', img: 'assets/images/paymets/aamarpay.png' },
 ];
+// { name: 'bkash', text: 'BKash', img: 'assets/images/paymets/bkash.png' },
 
 export const PaymentStatus = [
   { name: 'Cancelled', text: 'Cancelled' },

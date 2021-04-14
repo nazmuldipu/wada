@@ -12,7 +12,9 @@ export class OrdersComponent implements OnInit {
   currentRate = 8;
   orderPage: OrderPage;
   order: Order;
-  errorMessage = '';
+
+  loading = false;
+  errMsg = '';
 
   constructor(private service: OrderService) { }
 
@@ -24,16 +26,34 @@ export class OrdersComponent implements OnInit {
     try {
       this.orderPage = await this.service.getMyOrders(pagi).toPromise();
     } catch (err) {
-      this.errorMessage = err;
+      this.errMsg = err;
     }
   }
 
   async onDetails(id): Promise<void> {
     try {
       this.order = await this.service.getOrder(id).toPromise();
+      this.order._id = id;
     } catch (err) {
       console.log(err);
     }
     console.log(id);
   }
+
+  async wPaynow(id): Promise<void> {
+    try {
+      this.loading = true;
+      const resp = await this.service.paynow(id).toPromise();
+      if (resp.payment_url)
+        window.location.href = resp.payment_url;
+      else {
+        this.errMsg = resp;
+        console.log(resp);
+      }
+      this.loading = false;
+    } catch (err) {
+
+    }
+  }
+
 }

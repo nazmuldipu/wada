@@ -44,4 +44,9 @@ export class OrderService {
     return this.dSrc.sendRequest('DELETE', this.url + `/${id}`, null, true, null);
   }
 
+
+  paynow(id: string): Observable<any> {
+    return this.dSrc.sendRequest('GET', `api/payment/paynow/${id}`, null, true, null);
+  }
+
 }
