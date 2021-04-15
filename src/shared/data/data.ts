@@ -191,6 +191,14 @@ export const InventoryTypes = [
   { _id: 'damage', name: 'Damage' },
 ];
 
+export const FeaturesPriorities = [
+  { _id: 0, name: 'Navbar' },
+  { _id: 1, name: 'Main Banner' },
+  { _id: 2, name: 'EXCLUSIVE MULTIBUY' },
+  { _id: 3, name: 'SPECIAL OFFER' },
+  { _id: 4, name: 'FEATURED OFFERS' },
+];
+
 export const CompanyInfo = {
   name: 'Wada Bangladesh Limited',
   address1: '32/1, Mipur Road, Khan Plaze (3rd Floor), Science Lab',

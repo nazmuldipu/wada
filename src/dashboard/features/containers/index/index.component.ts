@@ -21,7 +21,7 @@ export class IndexComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getList(new Pagination());
+    this.getList(new Pagination(1, 8, 'priority'));
   }
 
   async getList(pagi: Pagination): Promise<void> {
@@ -32,10 +32,6 @@ export class IndexComponent implements OnInit {
     } catch (err) {
       this.errMsg = err.message;
     }
-  }
-
-  refreshData({ page, limit, sort, order, search }): void {
-    this.getList(new Pagination(page, limit, sort, order, search));
   }
 
   onEdit(event): void {

@@ -4,6 +4,7 @@ export interface Feature {
     slug: string;
     priority: number;
     createdAt: Date;
+    active: boolean;
     products: Product[];
     image_urls: string[];
 }

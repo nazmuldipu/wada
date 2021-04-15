@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { FeaturesPriorities } from 'src/shared/data/data';
 import { BaseFormComponent } from 'src/shared/forms/base-form/base-form.component';
 
 @Component({
@@ -8,6 +9,8 @@ import { BaseFormComponent } from 'src/shared/forms/base-form/base-form.componen
   styleUrls: ['./feature-form.component.scss']
 })
 export class FeatureFormComponent extends BaseFormComponent {
+
+  priorities = FeaturesPriorities;
 
   constructor(private fb: FormBuilder) {
     super();

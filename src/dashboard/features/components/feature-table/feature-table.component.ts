@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, Output, OnChanges, SimpleChanges } from '@angular/core';
 import { FeaturePage } from 'src/models/feature.model';
+import { Pagination } from 'src/models/pagination.model';
+import { FeaturesPriorities } from 'src/shared/data/data';
 
 @Component({
   selector: 'app-feature-table',
@@ -15,6 +17,7 @@ export class FeatureTableComponent implements OnChanges {
   @Output() refresh = new EventEmitter<any>();
   @Output() active = new EventEmitter<string>();
 
+  featuresPriorities = FeaturesPriorities;
   tableName = 'Feature Table';
   columns = [
     {
@@ -48,7 +51,7 @@ export class FeatureTableComponent implements OnChanges {
   ];
 
   sortColumn = {
-    path: 'name',
+    path: 'priority',
     order: 'asc',
     limit: 8,
     page: 1,
@@ -73,6 +76,15 @@ export class FeatureTableComponent implements OnChanges {
       });
       this.pushCol = 1;
     }
+    if (this.featurePage && this.featurePage.docs.length) {
+      const pvalue = {};
+      this.featuresPriorities.forEach(p => pvalue[p._id] = p.name);
+      
+      const value = this.featurePage.docs.map(({ priority, ...rest }) => {
+        return { priority: pvalue[priority], ...rest };
+      });
+      this.featurePage.docs = value
+    }
   }
 
   buttonEvent(event): void {
@@ -88,6 +100,6 @@ export class FeatureTableComponent implements OnChanges {
 
   onRefresh(event): void {
     this.sortColumn = { ...event };
-    this.refresh.emit({ sort: event.path, ...event });
+    this.refresh.emit(new Pagination(event.page, event.limit, event.path, event.order, event.search));
   }
 }
