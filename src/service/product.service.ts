@@ -28,7 +28,7 @@ export class ProductService {
   }
 
   get(id): Observable<Product> {
-    return this.dSrc.sendRequest('GET', this.url + `/${id}`, null, true, null);
+    return this.dSrc.sendRequest('GET', this.url + `/${id}`, null, false, null);
   }
 
   update(id, product: Product): Observable<Product> {

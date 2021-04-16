@@ -2,7 +2,15 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb bg-dark text-white">
             <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Library</li>
+            <!-- <li class="breadcrumb-item active">
+                <a routerLink="/">{{product?.category?.name}}</a>
+            </li> -->
+            <li class="breadcrumb-item active">
+                <a [routerLink]="'/category/'+product?.subCategory?.slug">{{product?.subCategory?.name}}</a>
+            </li>
+            <li class="breadcrumb-item active" *ngIf="product?.subSubCategory">
+                <a [routerLink]="'/category/'+product?.subSubCategory?.slug">{{product?.subSubCategory?.name}}</a>
+            </li>
         </ol>
     </nav>
 
@@ -18,7 +26,7 @@
                             </div>
                             <div class="product-detail-gallery-control" *ngIf="imageUrls.length > 0">
                                 <ng-image-slider #nav [images]="imageUrls" [infinite]="false" [autoSlide]="1"
-                                    [imagePopup]="false" [imageSize]="{width: '25%', height: 80}"
+                                    [imagePopup]="false" [imageSize]="{width: '65px', height: '70px'}"
                                     (imageClick)="onThumbImageClick($event)" slideImage="1"></ng-image-slider>
                             </div>
                         </div>
@@ -83,11 +91,11 @@
                     </div> -->
                 </div>
             </div>
-            <product-related></product-related>
+            <!-- <product-related></product-related> -->
         </div>
-        <div class="col-md-3 col-12">
+        <!-- <div class="col-md-3 col-12">
             <side-adv></side-adv>
             <best-sellers></best-sellers>
-        </div>
+        </div> -->
     </div>
 </div>

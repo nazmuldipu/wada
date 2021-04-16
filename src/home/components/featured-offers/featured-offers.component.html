@@ -1,11 +1,11 @@
 <div class="container my-3">
     <div class="row">
         <div class="col-12">
-            <div class="title-line my-5">
+            <div class="title-line">
                 <span>Featured Offers</span>
             </div>
         </div>
-        <div class="col-6 mb-4" *ngFor="let feature of featured">
+        <div class="col-md-6 p-0 px-md-3 mb-4" *ngFor="let feature of featured">
             <offer-box [feature]="feature" [imageUrl]="imageUrl"></offer-box>
         </div>
     </div>

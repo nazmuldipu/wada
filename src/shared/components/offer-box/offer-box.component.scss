@@ -1,6 +1,9 @@
 img {
   width: 100%;
-  border-radius: 4px 4px 0 0;
+  vertical-align: middle;
+  border-style: none;
+  object-fit: cover;
+  min-height: 200px;
 }
 
 .offer-content {
@@ -9,14 +12,31 @@ img {
 }
 
 .offer-button {
-  font-family: 'museosans';
+  font-family: "museosans";
   padding: 9px 20px;
   font-size: 15px;
   font-weight: 400;
 }
 
 .offer-dialog {
-  font-family: 'museosans';
+  font-family: "museosans";
   font-size: 20px;
   font-weight: 500;
+}
+
+@media (max-width: 767px) {
+  img {
+    max-width: 100%;
+    width: auto;
+  }
+
+  .offer-content {
+    padding: 5px;
+  }
+  .offer-dialog {
+    font-size: 14px;
+  }
+  .offer-button {
+    padding: 0 5px;
+  }
 }

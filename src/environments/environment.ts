@@ -5,10 +5,16 @@
 export const environment = {
   production: false,
   
-  PROTOCOL: 'http',
   PORT: ':2087',
+
+
+  PROTOCOL: 'http',
   SERVER: 'localhost',
+
+  // PROTOCOL: 'https',
+  // SERVER: 'api.wada.com.bd',
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file

@@ -11,7 +11,7 @@ import { UtilService } from './util.service';
 export class StockService {
   url = 'api/stocks';
 
-  constructor(private dSrc: RestDataService, private util: UtilService) {}
+  constructor(private dSrc: RestDataService, private util: UtilService) { }
 
   byProductId(pid: string, pagi: Pagination): Observable<Stock[]> {
     let sparam = this.util.paginationToHttpParam(pagi);
@@ -19,7 +19,7 @@ export class StockService {
       'GET',
       this.url + `/product/${pid}`,
       null,
-      true,
+      false,
       sparam
     );
   }

@@ -7,24 +7,24 @@
         </a>
       </div>
     </div>
-    <div class="col pt-2">
+    <div class="col">
       <form class="search-box form-inline mt-2 mt-md-0">
         <input class="form-control " type="text" placeholder="Search" aria-label="Search">
         <button class="btn my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
       </form>
     </div>
-    <div class="col-auto pt-2">
+    <!-- <div class="col-auto pt-2">
       <div class="form-inline mt-2 mt-md-0">
         <input type="text" class="form-control" id="reserveDelivery" placeholder="Reserve your delivery">
         <div class="input-group-append">
           <div class="input-group-text"><img class="search-icon" src="assets/images/svgs/van.svg" alt="" /></div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <div class="col-auto pt-2">
       <div class="cart form-inline mt-2 mt-md-0" (click)="onCartClick()">
-        <label class="form-control">৳{{cart?.total}}</label>
+        <label class="form-control" style="min-width: 100px; margin: 0;">৳{{cart?.total}}</label>
         <div class="input-group-append">
           <div class="input-group-text"><img class="search-icon" src="assets/images/svgs/cart.svg" alt="" /> &nbsp;
             <span class="cart-count">{{cart?.product_list?.length}}</span>
@@ -36,29 +36,29 @@
 </div>
 <div class="mt-3 border-bottom"></div>
 
-<nav class="navbar navbar-expand-lg border-bottom">
+<nav class="navbar navbar-light navbar-expand-lg border-bottom">
   <div class="container">
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07"
-      aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler bg-light" type="button" data-toggle="collapse" data-target="#wadaNavbar"
+      aria-controls="wadaNavbar" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleCollapse()">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarsExample07">
+    <div class="collapse navbar-collapse" [class.show]="show" id="wadaNavbar">
 
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active" ngbDropdown>
           <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown1" role="button">
             Menu
           </a>
-          <div ngbDropdownMenu aria-labelledby="navbarDropdown1" class="dropdown-menu">
+          <div ngbDropdownMenu aria-labelledby="navbarDropdown1" class="dropdown-menu" (click)="toggleCollapse()">
             <a *ngFor="let cat of subCategoryPage?.docs" ngbDropdownItem [routerLink]="'/category/'+cat.slug"
-              (click)="$event.preventDefault()">{{cat.name}}</a>
+              (click)="$event.preventDefault()"> {{cat.name}}</a>
           </div>
         </li>
-        <li class="nav-item" *ngFor="let feature of features">
+        <li class="nav-item" *ngFor="let feature of features" (click)="toggleCollapse()">
           <a class="nav-link" [routerLink]="'/features/'+feature.slug">{{feature.name}}</a>
-        </li>       
+        </li>
 
       </ul>
 

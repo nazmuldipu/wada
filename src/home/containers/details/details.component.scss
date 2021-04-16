@@ -23,7 +23,8 @@ a {
   padding: 30px;
   &-gallery {
     &-image {
-      height: 400px;
+      // height: 400px;
+      display: block;
     }
     &-control {
       padding: 15px 0;
@@ -85,7 +86,7 @@ a {
   }
   &-rate {
     margin-bottom: 15px;
-    background-image: url(/assets/dummy/theme/rating-stars.png);
+    background-image: url(/assets/images/rating-stars.png);
     background-position: 0 -100px;
     background-repeat: repeat-x;
     height: 14px;
@@ -97,7 +98,7 @@ a {
   &-rating {
     height: 14px;
     background-repeat: repeat-x;
-    background-image: url(/assets/dummy/theme/rating-stars.png);
+    background-image: url(/assets/images/rating-stars.png);
     background-position: 0 0;
   }
   &-price {

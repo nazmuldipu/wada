@@ -45,7 +45,6 @@ td.form-head,
   // background-color: $divider-color;
   background-color: #f8f9fa !important;
 
-
   &-link {
     text-decoration: none;
     cursor: pointer;
@@ -140,6 +139,7 @@ a:focus {
   align-items: center;
   justify-content: center;
   text-transform: uppercase;
+  margin: 40px 0;
 }
 
 .title-line:after,
@@ -149,6 +149,19 @@ a:focus {
   height: 2px;
   background: red;
   margin: 0 10px;
+}
+
+@media (max-width: 767px) {
+  .title-line {
+    margin: 10px 0;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  .title-line:after,
+  .title-line:before {
+    content: "";
+    width: 40px;    
+  }
 }
 
 .edit_link {

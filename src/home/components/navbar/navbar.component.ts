@@ -35,7 +35,11 @@ export class NavbarComponent implements OnInit {
       this.cart = data;
     });
 
-    this.getSubCategoriesBySlug('organic-food', new Pagination(1, 100));
+    this.getSubCategoriesBySlug('organic-food', new Pagination(1, 100, 'priority'));
+  }
+
+  toggleCollapse() {
+    this.show = !this.show;
   }
 
   async getSubCategoriesBySlug(slug: string, pagi: Pagination): Promise<void> {

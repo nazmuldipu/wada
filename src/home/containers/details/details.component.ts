@@ -7,6 +7,7 @@ import { ProductService } from 'src/service/product.service';
 import { ProductDetails } from 'src/models/product-details.model';
 import { Stock } from 'src/models/stock.model';
 import { Product } from 'src/models/product.model';
+import { Pagination } from 'src/models/pagination.model';
 
 @Component({
   selector: 'app-details',
@@ -37,15 +38,21 @@ export class DetailsComponent implements OnInit {
     private cartService: CartService,
     private activeRoute: ActivatedRoute
   ) {
-    this.id = activeRoute.snapshot.params.id;
+    // this.id = activeRoute.snapshot.params.id;
     // this.imageUrl = this.productService.imageLink + '/image/';
     // this.shopImageUrl = this.shopService.shopLink + '/image/';
   }
 
   ngOnInit(): void {
-    if (this.id) {
-      this.getProduct(this.id);
-    }
+    this.activeRoute.params.subscribe((params) => {
+      this.id = params.id;
+      if (this.id) {
+        this.getProduct(this.id);
+      }
+    })
+    // if (this.id) {
+    //   this.getProduct(this.id);
+    // }
   }
 
   async getProduct(id: string): Promise<void> {
@@ -53,7 +60,8 @@ export class DetailsComponent implements OnInit {
     try {
       this.product = await this.productService.get(id).toPromise();
       // this.getProductDetails(id);
-      // this.getProductStock(id);
+      this.getProductStock(id);
+
       this.imageUrls = [];
       for (let i = 0; i < this.product.image_count; i++) {
         const url = this.productService.imageLink + '/image/' + id + '/' + i;
@@ -77,20 +85,18 @@ export class DetailsComponent implements OnInit {
   //   this.loading = false;
   // }
 
-  // async getProductStock(product_id) {
-  //   this.loading = true;
-  //   try {
-  //     this.productStocks = await this.productStockService
-  //       .getProductStockByProductId(product_id)
-  //       .toPromise();
-  //     for (let stock of this.productStocks) {
-  //       this.stockQuantity += stock.quantity;
-  //     }
-  //   } catch (error) {
-  //     this.errorMessage = error;
-  //   }
-  //   this.loading = false;
-  // }
+  async getProductStock(product_id) {
+    this.loading = true;
+    try {
+      const resp = await this.productStockService.byProductId(product_id, new Pagination(1, 100)).toPromise();
+      resp.forEach(st => {
+        this.stockQuantity += st.quantity;
+      })
+    } catch (error) {
+      this.errorMessage = error.message;
+    }
+    this.loading = false;
+  }
 
   onThumbImageClick(event): void {
     this.current = event;

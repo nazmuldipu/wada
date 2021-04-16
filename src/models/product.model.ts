@@ -12,8 +12,8 @@ export interface Product {
   price: number;
   mrp: number;
   category: SubObject;
-  sub_category: SubObject;
-  sub_sub_category: SubObject;
+  subCategory: SubObject;
+  subSubCategory: SubObject;
   brand: SubObject;
   priority: number;
   active: boolean;

@@ -11,20 +11,20 @@
   background: #ffd300;
   box-shadow: 0 0 16px -1px rgb(0 0 0 / 75%);
   transition: 0.1s ease-in-out;
-  
-  .cart-icon{
+
+  .cart-icon {
     display: block;
     width: 24px;
     margin: auto;
     padding: 3px;
   }
-  .cart-count{
+  .cart-count {
     padding-top: 5px;
     display: block;
     text-align: center;
     font-size: 14px;
   }
-  .cart-amount{
+  .cart-amount {
     margin-top: 4px;
     background-color: #c3161c;
     text-align: center;
@@ -116,4 +116,14 @@
 }
 .dropdown-item {
   line-height: 1.25;
+}
+@media (max-width: 767px) {
+  .form-inline .form-control {
+    display: inline-block !important;
+    width: auto !important;
+  }
+
+  .form-inline button{
+    display: none;
+  }
 }
