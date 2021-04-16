@@ -198,9 +198,10 @@ input:hover {
   padding: 30px 15px;
 }
 
-.payment-method a {
+.payment-method img {
   margin: 0 3px;
   display: inline-block;
+  width: 15%;
   transition: all 0.5s ease-out 0s;
   -webkit-transition: all 0.5s ease-out 0s;
 }
