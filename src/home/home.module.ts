@@ -33,6 +33,8 @@ import { PaySuccessComponent } from './containers/pay-success/pay-success.compon
 import { PayCanceledComponent } from './containers/pay-canceled/pay-canceled.component';
 import { PayFailComponent } from './containers/pay-fail/pay-fail.component';
 import { TermsComponent } from './containers/terms/terms.component';
+import { PrivacyComponent } from './containers/privacy/privacy.component';
+import { ReturnComponent } from './containers/return/return.component';
 
 export const ROUTES: Routes = [
   { path: 'comming', component: CommingSoonComponent },
@@ -43,6 +45,8 @@ export const ROUTES: Routes = [
     component: HomeComponent,
     children: [
       { path: 'terms', component: TermsComponent},
+      { path: 'privacy', component: PrivacyComponent},
+      { path: 'return', component: ReturnComponent},
       { path: 'cart', component: CartComponent, canActivate: [AuthGuardService] },
       { path: 'orders', component: OrdersComponent, canActivate: [AuthGuardService] },
       { path: 'order-confirm', component: OrderConfirmComponent },
@@ -85,7 +89,9 @@ export const ROUTES: Routes = [
     PaySuccessComponent,
     PayCanceledComponent,
     PayFailComponent,
-    TermsComponent
+    TermsComponent,
+    PrivacyComponent,
+    ReturnComponent
   ],
   imports: [
     CommonModule,

@@ -1,3 +1,5 @@
+@import '../../../assets/theme.scss';
+
 a {
   cursor: pointer;
 }
@@ -5,7 +7,7 @@ a {
   a {
     color: white;
     &:hover {
-      color: #f40;
+      color: $primary-color;
     }
   }
   & + .breadcrumb-item::before {
@@ -109,7 +111,7 @@ a {
       font-weight: 700;
       margin: 0 5px;
       text-decoration: none;
-      color: #f40;
+      color: $primary-color;
     }
   }
   &-available {
@@ -137,7 +139,7 @@ a {
   &-current-color {
     text-transform: capitalize;
     margin-left: 10px;
-    color: #f40;
+    color: $primary-color;
   }
   &-filter {
     margin: 0;
@@ -191,7 +193,7 @@ a {
       .current-size {
         // text-transform: uppercase;
         margin-left: 10px;
-        color: #f40;
+        color: $primary-color;
       }
     }
     &-filter {
@@ -202,7 +204,7 @@ a {
         display: inline-block;
         margin: 0 1px 5px;
         &.active a {
-          border-color: #f40;
+          border-color: $primary-color;
         }
         a {
           border-radius: 4px;
@@ -395,7 +397,7 @@ a {
         border-radius: 4px 4px 0 0;
         transition: all 0.5s ease-out 0s;
         -webkit-transition: all 0.5s ease-out 0s;
-        background-color: #f40;
+        background-color: $primary-color;
       }
       &.active .item-toggle-tab-title::after {
         content: "";
