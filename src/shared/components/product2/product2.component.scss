@@ -1,3 +1,4 @@
+@import '/src/assets/theme.scss';
 :host {
   font-family: "museosans";
 }
@@ -12,7 +13,7 @@
   //   height: 100%;
   margin: 0 0 10px 10px;
   &:hover {
-    border: 1px solid #f40;
+    border: 1px solid $primary-color;
   }
   &-image img {
     cursor: pointer;
@@ -39,7 +40,7 @@
     &-price {
       text-align: center;
       ins {
-        color: #f40;
+        color: $primary-color;
         font-size: 28px;
         font-weight: 700;
         margin: 0 5px;
@@ -76,10 +77,10 @@
       text-align: center;
     }
     .cart {
-      color: #f40;
+      color: $primary-color;
       font-weight: 700;
       &:hover {
-        background-color: #f40;
+        background-color: $primary-color;
         color: white;
       }
     }
