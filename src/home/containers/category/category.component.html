@@ -29,11 +29,11 @@
           <span>Category</span>
         </div>
         <div class="sub-category">
-          <div class="sub-category-item my-2 ml-2" [class.active]="subSubCategory==null"
+          <div class="sub-category-item my-2 pl-2" [class.active]="subSubCategory==null"
             (click)="onSubSubCategoryClick('all')">
             All
           </div>
-          <div class="sub-category-item my-2 ml-2" [class.active]="subSubCategory?.slug==sc.slug"
+          <div class="sub-category-item my-2 pl-2" [class.active]="subSubCategory?.slug==sc.slug"
             *ngFor="let sc of subSubCategories" (click)="onSubSubCategoryClick(sc.slug)">
             {{sc.name}}
           </div>

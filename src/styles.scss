@@ -119,7 +119,7 @@ a:focus {
 }
 
 .dropdown-content a:hover {
-  background-color: #f40;
+  background-color: $primary-color;
   color: white;
 }
 
@@ -160,7 +160,7 @@ a:focus {
   .title-line:after,
   .title-line:before {
     content: "";
-    width: 40px;    
+    width: 40px;
   }
 }
 
@@ -176,5 +176,16 @@ a:focus {
     text-decoration: none;
     background-color: $secondary-text-color;
     color: $primary-color-text;
+  }
+}
+
+.btn-wada {
+  color: #fff;
+  background-color: $primary-color;
+  border-color: $primary-color;
+  &:hover {
+    color: #fff;
+    background-color: $primary-color-dark;
+    border-color: $primary-color;
   }
 }

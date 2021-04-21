@@ -18,10 +18,10 @@
         </div>
         <div class="product-detail-extralink">
             <div class="quantityEditor">
-                <button (click)="setQuantity(-1)" class="btn btn-info rounded-0 rounded-left"><i class="fa fa-minus"
+                <button (click)="setQuantity(-1)" class="btn btn-success rounded-0 rounded-left"><i class="fa fa-minus"
                         aria-hidden="true"></i></button>
                 <div class="QuantityTextContainer">{{cartProduct?.quantity > 0 ? cartProduct?.quantity : 0}}</div>
-                <button (click)="setQuantity(1)" class="btn btn-info rounded-0 rounded-right"><i class="fa fa-plus"
+                <button (click)="setQuantity(1)" class="btn btn-success rounded-0 rounded-right"><i class="fa fa-plus"
                         aria-hidden="true"></i></button>
             </div>
             <button class="btn ml-2 btn-dark addCartButton" (click)="addToCart()">Buy now</button>
@@ -32,5 +32,5 @@
     </div>
 </div>
 <div class="d-flex flex-row-reverse bd-highlight">
-    <button type="button" class="btn btn-secondary" (click)="onDismiss()">Close</button>
+    <button type="button" class="btn btn-danger" (click)="onDismiss()">Close</button>
 </div>

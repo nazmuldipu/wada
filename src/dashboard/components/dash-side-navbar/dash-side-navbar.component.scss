@@ -1,3 +1,5 @@
+@import '../../../assets/theme.scss';
+
 .sidebar {
     font-family: "Montserrat";
     padding: 0;
@@ -16,7 +18,7 @@
         text-decoration: none;
         color: #fff;
         .brand-name {
-          color: #ffc247 !important;
+          color: $primary-color !important;
         }
       }
     }
@@ -30,7 +32,7 @@
         &li {
           padding: 5px;
           &:hover {
-            color: #f40;
+            color: $primary-color;
             background-color: #2e3542;
           }
         }
@@ -58,10 +60,10 @@
           // background-color: #ffc247;
         }
         &.opened {
-          color: #f40;
+          color: $primary-color;
           background-color: #2e3542;
           i {
-            color: #f40;
+            color: $primary-color;
           }
         }
         &.has-sub-cat {
@@ -80,7 +82,7 @@
             text-align: center;
             line-height: 16px;
             color: #fff;
-            // background-color: #f40;
+            // background-color: $primary-color;
             // border-radius: 4px;
           }
         }

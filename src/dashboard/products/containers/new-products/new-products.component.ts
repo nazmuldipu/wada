@@ -148,7 +148,7 @@ export class NewProductsComponent implements OnInit {
           this.subSubCategoryPage.docs.splice(index, 1);
         }
       } catch (err) {
-        this.errorMessage = err;
+        this.errorMessage = err.message;
       }
       this.clear();
     }

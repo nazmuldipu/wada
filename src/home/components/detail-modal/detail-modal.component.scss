@@ -1,3 +1,5 @@
+@import '../../../assets/theme.scss';
+
 :host {
     padding: 20px;
   }
@@ -7,7 +9,7 @@
   
   .product-price {
     ins {
-      color: #f40;
+      color: $primary-color;
       font-size: 40px;
       font-weight: 700;
       margin: 0 5px;
@@ -60,7 +62,9 @@
       background: #fff;
     }
   }
-  
+  .desc{
+    text-align: justify;
+  }
   .product-detail-extralink {
     // border-bottom: 1px solid #e5e5e5;
     // border-top: 1px solid #e5e5e5;

@@ -1,5 +1,4 @@
-@import '../../../assets/theme.scss';
-
+@import "../../../assets/theme.scss";
 
 .footer {
   background: #fff none repeat scroll 0 0;
@@ -15,7 +14,7 @@
 }
 
 @media (max-width: 767px) {
-  .newsletter-form{
+  .newsletter-form {
     display: none;
   }
 }
@@ -72,7 +71,7 @@ input:hover {
 }
 
 .newsletter-form input[type="submit"] {
-  background: #f40;
+  background: $primary-color;
 }
 
 .newsletter-form input[type="submit"] {
@@ -118,7 +117,7 @@ input:hover {
   margin: 0 -2px;
 }
 
-.list-social>a {
+.list-social > a {
   border: 1px solid #e5e5e5;
   border-radius: 50%;
   color: #666;
@@ -132,9 +131,9 @@ input:hover {
   -webkit-transition: all 0.5s ease-out 0s;
 }
 
-.list-social>a:hover {
+.list-social > a:hover {
   color: white;
-  background-color: $primary-color;
+  background-color: $link-color;
 }
 
 .menu-footer-box ul li {
@@ -148,9 +147,9 @@ input:hover {
 }
 
 .contact-footer-box.footer-box p a:hover,
-.list-tag-footer>a:hover,
+.list-tag-footer > a:hover,
 .menu-footer-box ul li a:hover {
-  color: #f40;
+  color: $link-color;
 }
 
 .contact-footer-box.footer-box p {
@@ -178,11 +177,13 @@ input:hover {
 }
 
 .contact-footer-box.footer-box p.formule-phone::before {
-  background: rgba(0, 0, 0, 0) url(/assets/images/for2.png) no-repeat scroll left 4px;
+  background: rgba(0, 0, 0, 0) url(/assets/images/for2.png) no-repeat scroll
+    left 4px;
 }
 
 .contact-footer-box.footer-box p.formule-email::before {
-  background: rgba(0, 0, 0, 0) url(/assets/images/for3.png) no-repeat scroll left 4px;
+  background: rgba(0, 0, 0, 0) url(/assets/images/for3.png) no-repeat scroll
+    left 4px;
 }
 
 .contact-footer-box.footer-box p a {
@@ -191,17 +192,14 @@ input:hover {
 
 .payment-method {
   margin: 0;
-}
-
-.payment-method {
-  border-top: 1px solid #e5e5e5;
-  padding: 30px 15px;
+  // border-top: 1px solid #e5e5e5;
+  padding: 20px 10px;
 }
 
 .payment-method img {
   margin: 0 3px;
   display: inline-block;
-  width: 15%;
+  width: 14%;
   transition: all 0.5s ease-out 0s;
   -webkit-transition: all 0.5s ease-out 0s;
 }
@@ -289,7 +287,6 @@ input:hover {
   animation-iteration-count: 1;
 }
 
-
 .item-tag-footer {
   margin-bottom: 20px;
 }
@@ -309,7 +306,7 @@ input:hover {
   vertical-align: top;
 }
 
-.list-tag-footer>a {
+.list-tag-footer > a {
   color: #999;
   display: inline-block;
   margin-right: 10px;
@@ -317,7 +314,7 @@ input:hover {
   vertical-align: top;
 }
 
-.list-tag-footer>a::after {
+.list-tag-footer > a::after {
   background: #d8d8d8 none repeat scroll 0 0;
   content: "";
   height: 12px;
@@ -326,8 +323,6 @@ input:hover {
   top: 3px;
   width: 1px;
 }
-
-
 
 .footer-copyright {
   background: #333 none repeat scroll 0 0;

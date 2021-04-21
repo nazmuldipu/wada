@@ -32,13 +32,15 @@
                         </div>
                         <div class="product-detail-social">
                             <ul class="list-social-detail list-inline-block">
-                                <li><a class="soci-fa soc-tumblr"><i class="fa fa-tumblr" aria-hidden="true"></i></a>
-                                </li>
+                                <!-- <li><a class="soci-fa soc-tumblr"><i class="fa fa-tumblr" aria-hidden="true"></i></a>
+                                </li> -->
                                 <li><a class="soci-fa soc-facebook"><i class="fa fa-facebook"
                                             aria-hidden="true"></i></a></li>
-                                <li><a class="soci-fa soc-twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                <li><a class="soci-fa soc-instagram"><i class="fa fa-instagram"
+                                            aria-hidden="true"></i></a></li>
+                                <!-- <li><a class="soci-fa soc-twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
                                 </li>
-                                <li><a class="soci-fa soc-print"><i class="fa fa-print" aria-hidden="true"></i></a></li>
+                                <li><a class="soci-fa soc-print"><i class="fa fa-print" aria-hidden="true"></i></a></li> -->
                             </ul>
                         </div>
                     </div>
@@ -73,10 +75,10 @@
 
                             <div class="product-detail-extralink" *ngIf="stockQuantity > 0">
                                 <div class="quantityEditor">
-                                    <button (click)="setQuantity(-1)" class="btn btn-info rounded-0 rounded-left"><i
+                                    <button (click)="setQuantity(-1)" class="btn btn-success rounded-0 rounded-left"><i
                                             class="fa fa-minus" aria-hidden="true"></i></button>
                                     <div class="QuantityTextContainer">{{quantity}}</div>
-                                    <button (click)="setQuantity(1)" class="btn btn-info rounded-0 rounded-right"><i
+                                    <button (click)="setQuantity(1)" class="btn btn-success rounded-0 rounded-right"><i
                                             class="fa fa-plus" aria-hidden="true"></i></button>
                                 </div>
                                 <button class="btn ml-2 btn-dark addCartButton" (click)="addToCart()">Add to

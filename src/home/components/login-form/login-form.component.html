@@ -11,12 +11,12 @@
     <form-password [fieldId]="'password'" [control]="form.get('password')"></form-password>
 
     <small>
-        <a routerLink="/password-reset">Lost your password?</a>
+        <a routerLink="/password-reset" class="w-link">Lost your password?</a>
     </small>
 
     <!-- Buttons -->
     <span (mouseenter)="mouseoverShifting = true" (mouseleave)="mouseoverShifting = false">
-        <button type="submit" class="btn btn-block btn-sm btn-primary" [disabled]="!form.valid">Sign in</button>
+        <button type="submit" class="btn btn-block btn-sm btn-wada" [disabled]="!form.valid">Sign in</button>
     </span>
 
     <!-- Form validation error list -->
