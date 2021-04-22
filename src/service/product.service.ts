@@ -14,7 +14,7 @@ export class ProductService {
   imageLink: string;
 
   constructor(private dSrc: RestDataService, private util: UtilService) {
-    this.imageLink = this.dSrc.baseUrl + this.url;
+    this.imageLink = this.dSrc.baseUrl + 'images/' + this.url;
   }
 
   create(product: Product): Observable<Product> {
