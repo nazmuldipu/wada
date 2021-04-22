@@ -31,6 +31,7 @@ import { ModalMessageComponent } from './components/modal-message/modal-message.
 import { OrderItemComponent } from './components/order-item/order-item.component';
 import { OrderDetailsComponent } from './components/order-details/order-details.component';
 import { ProductTableComponent } from './components/product-table/product-table.component';
+import { ChangePasswordFormComponent } from './components/change-password-form/change-password-form.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { ProductTableComponent } from './components/product-table/product-table.
     ModalMessageComponent,
     OrderItemComponent,
     OrderDetailsComponent,
+    ChangePasswordFormComponent,
   ],
   imports: [
     CommonModule,
@@ -73,6 +75,7 @@ import { ProductTableComponent } from './components/product-table/product-table.
     AlertMessagesComponent,
     BestSellersComponent,
     CommonModule,
+    ChangePasswordFormComponent,
     FormFileComponent,
     FormInputComponent,
     FormObjectLabelComponent,

@@ -32,8 +32,8 @@ export class FormValidatorComponent implements OnChanges {
               : keyError == 'pattern'
               ? PATTERN_MESSAGE
               : keyError == 'maxlength'
-              ? 'Max Length error'
-              : 'Unknown') +
+              ? ' : Max Length error'
+              :  keyError == 'minlength' ? ' : Min Length error': 'Unknown') +
             '; ';
         });
       }

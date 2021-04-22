@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="row">
+        <!-- <div class="col-12" *ngIf="!showForm && user"> -->
+        <div class="offset-md-3 col-md-6 bg-white my-3 pb-3" *ngIf="!showForm && user">
+            <div class="title">
+                Your Profile
+            </div>
+            <div class="profile">
+                <label class="d-none d-sm-block col-form-label col-form-label-sm p-0"> Name</label>
+                <label class="form-control form-control-sm">{{user?.name}}</label>
+                <label class="d-none d-sm-block col-form-label col-form-label-sm p-0"> Phone number</label>
+                <label class="form-control form-control-sm">{{user?.phone}}</label>
+                <label class="d-none d-sm-block col-form-label col-form-label-sm p-0"> Email</label>
+                <label class="form-control form-control-sm">{{user?.email}}</label>
+                <label class="d-none d-sm-block col-form-label col-form-label-sm p-0"> Address line 1</label>
+                <label class="form-control form-control-sm">{{user?.cus_add1}}</label>
+                <label class="d-none d-sm-block col-form-label col-form-label-sm p-0"> Address line 2</label>
+                <label class="form-control form-control-sm">{{user?.cus_add2}}</label>
+                <label class="d-none d-sm-block col-form-label col-form-label-sm p-0"> City</label>
+                <label class="form-control form-control-sm">{{user?.cus_city}}</label>
+                <label class="d-none d-sm-block col-form-label col-form-label-sm p-0"> Country</label>
+                <label class="form-control form-control-sm">{{user?.cus_country}}</label>
+                <label class="d-none d-sm-block col-form-label col-form-label-sm p-0"> Delivery instruction</label>
+                <label class="form-control form-control-sm">{{user?.deliveryInstruction}}</label>
+            </div>
+            <div class="d-flex flex-row-reverse">
+                <button class="btn btn-sm btn-warning" (click)="showForm = true">Edit</button>
+            </div>
+        </div>
+        <div class="offset-md-3 col-md-6 bg-white my-3 pb-3" *ngIf="showForm && user">
+            <div class="title">
+                Edit Profile
+            </div>
+            <user-profile-form [item]="user" (update)="onUpdate($event)" (close)="onClose()"></user-profile-form>
+        </div>
+    </div>
+</div>

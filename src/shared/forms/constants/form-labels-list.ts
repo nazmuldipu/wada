@@ -16,6 +16,8 @@ export const LABEL_LIST: object = {
   longitude: 'Longitude',
   mrp: 'Retail Price',
   name: 'Name',
+  newPassword: 'New Password',
+  oldPassword: 'Old Password',
   password: 'Password',
   paymentMethod: 'Payment Method',
   phone: 'Phone number',

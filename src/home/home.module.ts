@@ -35,6 +35,9 @@ import { PayFailComponent } from './containers/pay-fail/pay-fail.component';
 import { TermsComponent } from './containers/terms/terms.component';
 import { PrivacyComponent } from './containers/privacy/privacy.component';
 import { ReturnComponent } from './containers/return/return.component';
+import { ProfileComponent } from './containers/profile/profile.component';
+import { ChangePasswordComponent } from './containers/change-password/change-password.component';
+import { UserProfileFormComponent } from './components/user-profile-form/user-profile-form.component';
 
 export const ROUTES: Routes = [
   { path: 'comming', component: CommingSoonComponent },
@@ -44,9 +47,11 @@ export const ROUTES: Routes = [
     path: '',
     component: HomeComponent,
     children: [
-      { path: 'terms', component: TermsComponent},
-      { path: 'privacy', component: PrivacyComponent},
-      { path: 'return', component: ReturnComponent},
+      { path: 'profile', component: ProfileComponent },
+      { path: 'change-password', component: ChangePasswordComponent },
+      { path: 'terms', component: TermsComponent },
+      { path: 'privacy', component: PrivacyComponent },
+      { path: 'return', component: ReturnComponent },
       { path: 'cart', component: CartComponent, canActivate: [AuthGuardService] },
       { path: 'orders', component: OrdersComponent, canActivate: [AuthGuardService] },
       { path: 'order-confirm', component: OrderConfirmComponent },
@@ -91,7 +96,10 @@ export const ROUTES: Routes = [
     PayFailComponent,
     TermsComponent,
     PrivacyComponent,
-    ReturnComponent
+    ReturnComponent,
+    ProfileComponent,
+    ChangePasswordComponent,
+    UserProfileFormComponent
   ],
   imports: [
     CommonModule,

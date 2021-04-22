@@ -16,7 +16,7 @@ export class UserService {
   userSource = new BehaviorSubject<User>({} as User);
   user$ = this.userSource.asObservable();
 
-  constructor(private dSrc: RestDataService, private util: UtilService) {}
+  constructor(private dSrc: RestDataService, private util: UtilService) { }
 
   userRegistration(user: User): Observable<User> {
     return this.dSrc.sendRequest('POST', this.url, user, false, null);
@@ -31,6 +31,10 @@ export class UserService {
     return this.dSrc.sendRequest('PUT', this.url + `/${id}`, user, true, null);
   }
 
+  updateProfile(user: User): Observable<User> {
+    return this.dSrc.sendRequest('PUT', this.url + `/update`, user, true, null);
+  }
+
   getAll(): Observable<User[]> {
     return this.dSrc.sendRequest('GET', this.url, null, true, null);
   }
@@ -41,13 +45,7 @@ export class UserService {
 
   search(param: string): Observable<User[]> {
     const paramUrl = new HttpParams().set('param', param);
-    return this.dSrc.sendRequest(
-      'GET',
-      this.url + '/search',
-      null,
-      false,
-      paramUrl
-    );
+    return this.dSrc.sendRequest('GET', this.url + '/search', null, false, paramUrl);
   }
 
   getUserProfile(): Observable<User> {
@@ -56,22 +54,10 @@ export class UserService {
 
   resetPassword(id, password: string): Observable<any> {
     const value = { password };
-    return this.dSrc.sendRequest(
-      'PATCH',
-      this.url + `/change-password/${id}`,
-      value,
-      true,
-      null
-    );
+    return this.dSrc.sendRequest('PATCH', this.url + `/change-password/${id}`, value, true, null);
   }
 
   changePassword(value): Observable<any> {
-    return this.dSrc.sendRequest(
-      'PATCH',
-      this.url + `/changePassword`,
-      value,
-      true,
-      null
-    );
+    return this.dSrc.sendRequest('PATCH', this.url + `/changePassword`, value, true, null);
   }
 }
