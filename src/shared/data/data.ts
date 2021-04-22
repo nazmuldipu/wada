@@ -3,26 +3,8 @@ export const SideNavbar = [
     name: 'Dashboard',
     icon: 'fa-tachometer',
     roles: ['ADMIN', 'SHOP', 'USER'],
-    subnav: [
-      {
-        name: 'Analytics',
-        icon: 'fa-pie-chart',
-        roles: ['USER'],
-        link: '/dashboard',
-      },
-      {
-        name: 'Visits',
-        icon: 'fa-line-chart',
-        roles: ['SHOP'],
-        link: '/dashboard',
-      },
-      {
-        name: 'Widgets',
-        icon: 'fa-windows',
-        roles: ['ADMIN'],
-        link: '/dashboard',
-      },
-    ],
+    link: '/dashboard',
+    subnav: [],
   },
   {
     name: 'Settings',

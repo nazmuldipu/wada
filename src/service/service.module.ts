@@ -18,6 +18,7 @@ import { UserService } from './user.service';
 import { UtilService } from './util.service';
 import { WarehouseService } from './warehouse.service';
 import { FeaturesService } from './features.service';
+import { ReportService } from './report.service';
 
 @NgModule({
   providers: [
@@ -32,6 +33,7 @@ import { FeaturesService } from './features.service';
     UserService,
     UtilService,
     WarehouseService,
+    ReportService,
 
     AuthGuardService,
     CartService,
