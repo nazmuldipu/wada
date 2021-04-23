@@ -1,6 +1,7 @@
 .cart {
   display: block;
   background: #eee;
+  min-height: calc(100vh - 485px);
 }
 .ui-w-40 {
   width: 40px !important;

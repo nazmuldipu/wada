@@ -209,7 +209,7 @@ export const OrderStatus = [
 
 export const PaymentMethods = [
   { name: 'cod', text: 'Cash On Delivery', img: 'assets/images/paymets/cashOnDelivery.png' },
-  { name: 'aamarpay', text: 'AamarPay', img: 'assets/images/paymets/aamarpay.png' },
+  { name: 'aamarpay', text: 'Pay Online', img: 'assets/images/paymets/online.png' },
 ];
 // { name: 'bkash', text: 'BKash', img: 'assets/images/paymets/bkash.png' },
 

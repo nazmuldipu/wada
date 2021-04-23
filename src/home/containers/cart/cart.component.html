@@ -1,6 +1,6 @@
-<div class="container text-center my-4" *ngIf="cart?.product_list?.length == 0">
+<!-- <div class="container text-center my-4" *ngIf="cart?.product_list?.length == 0">
     <h3><i class="fa fa-frown-o" aria-hidden="true"></i> Your cart is empty.</h3>
-</div>
+</div> -->
 <div class="cart">
     <div class="container pt-4" *ngIf="!order && cart?.product_list?.length > 0">
         <div class="row">
@@ -95,11 +95,9 @@
         </div>
     </div>
 
-
-
     <div class="container text-center py-5" *ngIf="!cart?.product_list || cart?.product_list?.length == 0">
         <h3><i class="fa fa-frown-o" aria-hidden="true"></i> Your cart is empty</h3>
     </div>
 
 </div>
-<fotter></fotter>
+<!-- <fotter></fotter> -->

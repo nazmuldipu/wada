@@ -19,11 +19,11 @@ export class AddressFormComponent extends BaseFormComponent {
 
   createForm(): void {
     this.form = this.fb.group({
-      cus_add1: ['Bhuigor, Fatullah', Validators.required],
-      cus_add2: ['Narayanganj 1401'],
-      cus_city: ['Dhaka', Validators.required],
+      cus_add1: ['', Validators.required],
+      cus_add2: [''],
+      cus_city: ['', Validators.required],
       cus_country: ['Bangladesh', Validators.required],
-      deliveryInstruction: ['onece you are in bhuigor, call me.'],
+      deliveryInstruction: [''],
       paymentMethod: ['', Validators.required],
     });
   }

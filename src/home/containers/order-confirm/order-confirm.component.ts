@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Order } from 'src/models/order.model';
+import { User } from 'src/models/user.model';
 import { CartService } from 'src/service/cart.service';
 import { OrderService } from 'src/service/order.service';
+import { UserService } from 'src/service/user.service';
 
 @Component({
   selector: 'app-order-confirm',
@@ -9,13 +11,25 @@ import { OrderService } from 'src/service/order.service';
   styleUrls: ['./order-confirm.component.scss']
 })
 export class OrderConfirmComponent implements OnInit {
+  user: User;
   order: Order;
   loading = false;
   errMsg = '';
 
-  constructor(private orderService: OrderService, private cartService: CartService) { }
+  constructor(private orderService: OrderService, private cartService: CartService, private userService: UserService) { }
 
   ngOnInit(): void {
+    this.getProfile();
+  }
+
+  async getProfile(): Promise<void> {
+    try {
+      const resp = await this.userService.getUserProfile().toPromise();
+      this.user = resp;
+      console.log(this.user);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   async onCreate(event): Promise<void> {
