@@ -1,0 +1,15 @@
+<div class="prod-card">
+    <a [routerLink]="'/details/'+product._id" target="_blank">
+        <div class="prod-card-image">
+            <img [src]="thumbUrl + product._id" alt="">
+        </div>
+        <div class="prod-card-info">
+            <div class="prod-card-info-title">{{product.name}}</div>
+            <div class="prod-card-info-size">{{product.size}}</div>
+            <div class="prod-card-info-price">৳{{product.price}}</div>
+        </div>
+        <div class="prod-card-dicount" *ngIf="product.mrp > 0 && (product.mrp - product.price) > 0">
+            {{math.round(100*(product.mrp - product.price)/product.mrp)}}% Off
+        </div>
+    </a>
+</div>

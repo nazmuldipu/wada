@@ -32,6 +32,8 @@ import { OrderItemComponent } from './components/order-item/order-item.component
 import { OrderDetailsComponent } from './components/order-details/order-details.component';
 import { ProductTableComponent } from './components/product-table/product-table.component';
 import { ChangePasswordFormComponent } from './components/change-password-form/change-password-form.component';
+import { PopularProductsComponent } from './components/popular-products/popular-products.component';
+import { ProductBoxComponent } from './components/product-box/product-box.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +65,8 @@ import { ChangePasswordFormComponent } from './components/change-password-form/c
     OrderItemComponent,
     OrderDetailsComponent,
     ChangePasswordFormComponent,
+    PopularProductsComponent,
+    ProductBoxComponent,
   ],
   imports: [
     CommonModule,
@@ -92,6 +96,7 @@ import { ChangePasswordFormComponent } from './components/change-password-form/c
     OrderItemComponent,
     OrderDetailsComponent,
     PaginationComponent,
+    PopularProductsComponent,
     Product2Component,
     ProductTableComponent,
     ProductRelatedComponent,
