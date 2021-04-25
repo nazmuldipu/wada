@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { BaseFormComponent } from 'src/shared/forms/base-form/base-form.component';
 
@@ -7,12 +7,17 @@ import { BaseFormComponent } from 'src/shared/forms/base-form/base-form.componen
   templateUrl: './user-profile-form.component.html',
   styleUrls: ['./user-profile-form.component.scss']
 })
-export class UserProfileFormComponent extends BaseFormComponent {
+export class UserProfileFormComponent extends BaseFormComponent implements OnChanges {
   @Output() close = new EventEmitter();
-  
+
   constructor(private fb: FormBuilder) {
     super();
     this.createForm();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    super.ngOnChanges(changes);
+    this.form.patchValue({ cus_country: 'Bangladesh' });
   }
 
   createForm(): void {
@@ -28,7 +33,7 @@ export class UserProfileFormComponent extends BaseFormComponent {
     });
   }
 
-  onClose(){
+  onClose() {
     this.form.reset();
     this.close.emit();
   }

@@ -26,7 +26,6 @@ export class OrderConfirmComponent implements OnInit {
     try {
       const resp = await this.userService.getUserProfile().toPromise();
       this.user = resp;
-      console.log(this.user);
     } catch (err) {
       console.log(err);
     }

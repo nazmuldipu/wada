@@ -8,6 +8,7 @@ import { ProductDetails } from 'src/models/product-details.model';
 import { Stock } from 'src/models/stock.model';
 import { Product } from 'src/models/product.model';
 import { Pagination } from 'src/models/pagination.model';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-details',
@@ -19,9 +20,6 @@ export class DetailsComponent implements OnInit {
   current = 0;
 
   product: Product;
-  // productDetails: ProductDetails;
-  // productStocks: Stock[] = [];
-  // inStock = false;
 
   loading = false;
   imageUrls = [];
@@ -33,14 +31,11 @@ export class DetailsComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private productDetailsService: ProductDetailsService,
     private productStockService: StockService,
     private cartService: CartService,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    private title: Title
   ) {
-    // this.id = activeRoute.snapshot.params.id;
-    // this.imageUrl = this.productService.imageLink + '/image/';
-    // this.shopImageUrl = this.shopService.shopLink + '/image/';
   }
 
   ngOnInit(): void {
@@ -50,15 +45,13 @@ export class DetailsComponent implements OnInit {
         this.getProduct(this.id);
       }
     })
-    // if (this.id) {
-    //   this.getProduct(this.id);
-    // }
   }
 
   async getProduct(id: string): Promise<void> {
     this.loading = true;
     try {
       this.product = await this.productService.get(id).toPromise();
+      this.title.setTitle(this.product.name + ' ' + this.product.size + ' Details'); 
       // this.getProductDetails(id);
       this.getProductStock(id);
 
@@ -72,18 +65,6 @@ export class DetailsComponent implements OnInit {
     }
     this.loading = false;
   }
-
-  // async getProductDetails(product_id) {
-  //   this.loading = true;
-  //   try {
-  //     this.productDetails = await this.productDetailsService
-  //       .getProductDetailsByProductId(product_id)
-  //       .toPromise();
-  //   } catch (error) {
-  //     this.errorMessage = error;
-  //   }
-  //   this.loading = false;
-  // }
 
   async getProductStock(product_id) {
     this.loading = true;
