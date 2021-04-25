@@ -2,7 +2,7 @@
     <h3>Users</h3>
 </div>
 
-<div class="container">
+<div class="container-fluid">
     <loading *ngIf="loading"></loading>
     <div class="alert alert-success alert-dismissible show" role="alert" *ngIf="message.length > 0">
         <strong>Success! </strong> {{ message }}
@@ -19,7 +19,7 @@
 
     <div class="row" *ngIf="!loading">
         <div class="col-md-7 col-12">
-            <user-list [userPage]="userPage" (edit)="onEdit($event)" (refresh)="refreshData($event)"></user-list>
+            <user-list [userPage]="userPage" (edit)="onEdit($event)" (refresh)="refreshData($event)" (active)="onActive($event)"></user-list>
         </div>
 
         <div class="col-md-5 col-12">

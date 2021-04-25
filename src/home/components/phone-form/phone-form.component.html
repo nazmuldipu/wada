@@ -1,0 +1,22 @@
+<h4 class="text-center text-primary py-2"><strong>Validate Phonenumber</strong></h4>
+
+<ng-container *ngIf="err.length>0">
+    <p class="px-4 text-center text-danger">{{err}}</p>
+</ng-container>
+
+<form class="px-4 pb-3" [formGroup]="form" (ngSubmit)="submit()">
+    <!-- Form elements -->
+    <form-input [fieldId]="'phone'" [control]="form.get('phone')" [maxlength]="11"></form-input>
+
+    <!-- Buttons -->
+    <div class="d-flex flex-row-reverse">
+        <span (mouseenter)="mouseoverShifting = true" (mouseleave)="mouseoverShifting = false">
+            <button type="submit" class="btn btn-sm btn-wada" [disabled]="!form.valid">Send</button>
+        </span>
+    </div>
+
+    <!-- Form validation error list -->
+    <div *ngIf="mouseoverShifting" class="text-danger">
+        <form-validator [form]="form"></form-validator>
+    </div>
+</form>

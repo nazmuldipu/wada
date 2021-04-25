@@ -16,7 +16,7 @@ export class ListComponent implements OnInit {
   message = '';
   errorMessage = '';
 
-  constructor(private service: UserService) {}
+  constructor(private service: UserService) { }
 
   ngOnInit(): void {
     this.getUserList(new Pagination());
@@ -65,6 +65,20 @@ export class ListComponent implements OnInit {
       this.errorMessage = err;
     }
     this.loading = false;
+  }
+
+  async onActive(uid) {
+    console.log('onActive' + event);
+    try {
+      this.loading = true;
+      const resp = await this.service.toggleActive(uid).toPromise();
+      const index = this.userPage.docs.findIndex((u) => u._id === uid);
+      this.userPage.docs.splice(index, 1, resp);
+      this.loading = false;
+
+    } catch (err) {
+
+    }
   }
 
   onClose() {

@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
     try {
       this.loading = true;
       await this.userService.userRegistration(event).toPromise();
-      this.router.navigate(['/']);
+      this.router.navigate(['/activate-user', event.phone]);
       this.loading = false;
     } catch (err) {
       console.log(err);

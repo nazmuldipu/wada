@@ -1,0 +1,71 @@
+<div class="container-fluid component-head">
+    <h3>Requests</h3>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col bg-white" *ngIf="requestPage?.docs.length > 0; else noData">
+            <request-table [requestPage]="requestPage" (refresh)="getList($event)" (edit)="onSelect($event)">
+            </request-table>
+        </div>
+        <ng-template #noData>
+            <div class="col-12 text-center pt-3">
+                <h4><i class="fa fa-thumbs-o-up"></i> No rquest found</h4>
+            </div>
+        </ng-template>
+        <div class="col-auto " *ngIf="request">
+            <table class="table table-hover table-bordered mt-2 text-secondary table-responsive-sm table-sm bg-white">
+                <thead>
+                    <tr>
+                        <td colspan="2" class="form-head">Feature Details</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Date</th>
+                        <td>{{request.createdAt | date : 'dd/MM/yyyy'}}</td>
+                    </tr>
+                    <tr>
+                        <th>Name</th>
+                        <td>{{request.product.name}}</td>
+                    </tr>
+                    <tr>
+                        <th>Size</th>
+                        <td>{{request.product.size}}</td>
+                    </tr>
+                    <tr>
+                        <th>Requested by</th>
+                        <td>{{request.createdBy.name}}</td>
+                    </tr>
+                    <tr>
+                        <th>Requested phone</th>
+                        <td>{{request.createdBy.phone}}</td>
+                    </tr>
+                    <tr>
+                        <th>Status</th>
+                        <td>{{request.requestStatus}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="pt-2">
+                                <strong>Update status</strong>
+                            </div>
+                            <div class="btn-group pb-2" role="group" aria-label="status buttons">
+                                <button type="button" class="btn btn-sm btn-light" (click)="updateStatus(request._id, 'Ignored')">Ignored</button>
+                                <button type="button" class="btn btn-sm btn-light" (click)="updateStatus(request._id, 'Processing')">Processing</button>
+                                <button type="button" class="btn btn-sm btn-light" (click)="updateStatus(request._id, 'Done')">Done</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="d-flex flex-row-reverse my-2">
+                                <button class="btn btn-sm btn-danger mx-1" (click)="request = null">Close</button>
+                                <button class="btn btn-sm btn-danger mx-1" (click)="onDelete(request._id)">Delete</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

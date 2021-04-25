@@ -38,6 +38,11 @@ import { ReturnComponent } from './containers/return/return.component';
 import { ProfileComponent } from './containers/profile/profile.component';
 import { ChangePasswordComponent } from './containers/change-password/change-password.component';
 import { UserProfileFormComponent } from './components/user-profile-form/user-profile-form.component';
+import { PasswordResetComponent } from './containers/password-reset/password-reset.component';
+import { ActivateUserComponent } from './containers/activate-user/activate-user.component';
+import { PhoneFormComponent } from './components/phone-form/phone-form.component';
+import { OtpResetPasswordFormComponent } from './components/otp-reset-password-form/otp-reset-password-form.component';
+import { OptFormComponent } from './components/opt-form/opt-form.component';
 
 export const ROUTES: Routes = [
   { path: 'comming', component: CommingSoonComponent },
@@ -49,6 +54,9 @@ export const ROUTES: Routes = [
     children: [
       { path: 'profile', component: ProfileComponent },
       { path: 'change-password', component: ChangePasswordComponent },
+      { path: 'password-reset', component: PasswordResetComponent },
+      { path: 'activate-user', component: ActivateUserComponent },
+      { path: 'activate-user/:phone', component: ActivateUserComponent },
       { path: 'terms', component: TermsComponent },
       { path: 'privacy', component: PrivacyComponent },
       { path: 'return', component: ReturnComponent },
@@ -99,7 +107,12 @@ export const ROUTES: Routes = [
     ReturnComponent,
     ProfileComponent,
     ChangePasswordComponent,
-    UserProfileFormComponent
+    UserProfileFormComponent,
+    PasswordResetComponent,
+    ActivateUserComponent,
+    PhoneFormComponent,
+    OtpResetPasswordFormComponent,
+    OptFormComponent
   ],
   imports: [
     CommonModule,

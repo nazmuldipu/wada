@@ -16,6 +16,8 @@ import { ReceiveComponent } from './containers/receive/receive.component';
 import { StocksComponent } from './containers/stocks/stocks.component';
 import { TransferComponent } from './containers/transfer/transfer.component';
 import { WarehouseSideListComponent } from './components/warehouse-side-list/warehouse-side-list.component';
+import { RequestsComponent } from './containers/requests/requests.component';
+import { RequestTableComponent } from './components/request-table/request-table.component';
 
 export const ROUTES: Routes = [
   { path: 'add', component: AddComponent },
@@ -24,6 +26,7 @@ export const ROUTES: Routes = [
   { path: 'transfer', component: TransferComponent },
   { path: 'receive', component: ReceiveComponent },
   { path: 'convert', component: ConvertComponent },
+  { path: 'requests', component: RequestsComponent },
   { path: '', component: IndexComponent },
 ];
 
@@ -42,6 +45,8 @@ export const ROUTES: Routes = [
     InventoryTransferFormComponent,
     StockListComponent,
     WarehouseSideListComponent,
+    RequestsComponent,
+    RequestTableComponent,
   ],
   imports: [SharedModule, RouterModule.forChild(ROUTES)],
 })

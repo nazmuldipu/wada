@@ -6,6 +6,7 @@ export interface User {
   password: string;
   role: string;
   createdAt: Date;
+  active: boolean;
 }
 
 export interface UserPage {

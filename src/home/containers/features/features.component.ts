@@ -8,6 +8,7 @@ import { Product, ProductPage } from 'src/models/product.model';
 import { CartService } from 'src/service/cart.service';
 import { FeaturesService } from 'src/service/features.service';
 import { ProductService } from 'src/service/product.service';
+import { RequestService } from 'src/service/request.service';
 import { ModalMessageComponent } from 'src/shared/components/modal-message/modal-message.component';
 
 @Component({
@@ -36,6 +37,7 @@ export class FeaturesComponent implements OnInit {
     private cartService: CartService,
     private modalService: NgbModal,
     private activeRoute: ActivatedRoute,
+    private requestService: RequestService,
     private router: Router) {
     this.bannerUrl = this.featuresService.imageLink + '/image/';
     this.prodImageUrl = this.productService.imageLink + '/image/';
@@ -133,6 +135,7 @@ export class FeaturesComponent implements OnInit {
     modalRef.componentInstance.btnEvent.subscribe(($e) => {
       console.log($e);
       console.log(event.productId);
+      this.requestService.create({ productId: event.productId }).toPromise();
       // TODO: request for stock heres
       modalRef.close();
       const modalRef2 = this.modalService.open(ModalMessageComponent);

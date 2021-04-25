@@ -1,0 +1,23 @@
+<h4 class="text-center text-primary py-2"><strong>Activate Account</strong></h4>
+
+<ng-container *ngIf="err.length>0">
+    <p class="px-4 text-center text-danger">{{err}}</p>
+</ng-container>
+
+<form class="px-4 pb-3" [formGroup]="form" (ngSubmit)="submit()">
+    <small>An otp sent to your mobile phone please provide your OTP and new password to the form below</small>
+    <!-- Form elements -->
+    <form-input [fieldId]="'otp'" [control]="form.get('otp')" [maxlength]="6"></form-input>
+    
+    <!-- Buttons -->
+    <div class="d-flex flex-row-reverse">
+        <span (mouseenter)="mouseoverShifting = true" (mouseleave)="mouseoverShifting = false">
+            <button type="submit" class="btn btn-sm btn-wada" [disabled]="!form.valid">Send</button>
+        </span>
+    </div>
+
+    <!-- Form validation error list -->
+    <div *ngIf="mouseoverShifting" class="text-danger">
+        <form-validator [form]="form"></form-validator>
+    </div>
+</form>

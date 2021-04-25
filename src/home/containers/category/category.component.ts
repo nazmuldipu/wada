@@ -7,6 +7,7 @@ import { Product, ProductPage } from 'src/models/product.model';
 import { SubSubCategory } from 'src/models/sub-sub-category.model';
 import { CartService } from 'src/service/cart.service';
 import { ProductService } from 'src/service/product.service';
+import { RequestService } from 'src/service/request.service';
 import { SubCategoryService } from 'src/service/sub-cateogry.service';
 import { SubSubCategoryService } from 'src/service/sub-sub-category.service';
 import { ModalMessageComponent } from 'src/shared/components/modal-message/modal-message.component';
@@ -44,6 +45,7 @@ export class CategoryComponent implements OnInit {
     private activeRoute: ActivatedRoute,
     private cartService: CartService,
     private modalService: NgbModal,
+    private requestService: RequestService,
     private router: Router
   ) {
     this.prodImageUrl = this.productService.imageLink + '/image/';
@@ -207,6 +209,7 @@ export class CategoryComponent implements OnInit {
     modalRef.componentInstance.btnEvent.subscribe(($e) => {
       console.log($e);
       console.log(event.productId);
+      this.requestService.create({ productId: event.productId }).toPromise();
       // TODO: request for stock heres
       modalRef.close();
       const modalRef2 = this.modalService.open(ModalMessageComponent);

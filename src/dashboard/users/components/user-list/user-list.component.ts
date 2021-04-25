@@ -10,6 +10,7 @@ export class UserListComponent {
   @Input() userPage: UserPage;
 
   @Output() edit = new EventEmitter<string>();
+  @Output() active = new EventEmitter<string>();
   @Output() refresh = new EventEmitter<string>();
 
   tableName = 'User Table';
@@ -18,6 +19,19 @@ export class UserListComponent {
     { path: 'phone', label: 'Phone' },
     { path: 'email', label: 'Email' },
     { path: 'role', label: 'Role' },
+    { path: 'active', label: 'Active' },
+    {
+      key: '_id',
+      type: 'button',
+      content: (user) => {
+        return {
+          classname: 'edit_link',
+          text: user?.active ? 'Deactivate' : 'Activate',
+          link: `#`,
+          event: { key: 'active', id: user._id },
+        };
+      },
+    },
     {
       key: '_id',
       type: 'button',
@@ -44,6 +58,9 @@ export class UserListComponent {
     switch (event['key']) {
       case 'edit':
         this.edit.emit(event['id']);
+        break;
+      case 'active':
+        this.active.emit(event.id);
         break;
     }
   }

@@ -120,11 +120,8 @@ export const SideNavbar = [
       //   icon: 'fa-chrome',
       //   link: '/dashboard/inventory/convert',
       // },
-      {
-        name: 'Stocks',
-        icon: 'fa-bar-chart',
-        link: '/dashboard/inventory/stocks',
-      },
+      { name: 'Stocks', icon: 'fa-bar-chart', link: '/dashboard/inventory/stocks', },
+      { name: 'Requests', icon: 'fa-battery-quarter', link: '/dashboard/inventory/requests', },
     ],
   },
   {

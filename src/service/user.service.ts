@@ -60,4 +60,19 @@ export class UserService {
   changePassword(value): Observable<any> {
     return this.dSrc.sendRequest('PATCH', this.url + `/changePassword`, value, true, null);
   }
+
+  toggleActive(id): Observable<any> {
+    return this.dSrc.sendRequest('PATCH', this.url + `/activate/${id}`, null, true, null);
+  }
+  otpActivate(body): Observable<any> {
+    return this.dSrc.sendRequest('PATCH', this.url + `/otpActivate`, body, false, null);
+  }
+
+  sendOTP(phone): Observable<any> {
+    return this.dSrc.sendRequest('PATCH', this.url + `/sendOTP/${phone}`, null, false, null);
+  }
+
+  resetOTPPassword(body): Observable<any> {
+    return this.dSrc.sendRequest('PATCH', this.url + `/password-reset`, body, false, null);
+  }
 }

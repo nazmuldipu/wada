@@ -74,7 +74,6 @@ export class IndexComponent implements OnInit {
       } catch (err) {
         this.errMsg = err.message;
       }
-      this.clear();
     }
   }
 

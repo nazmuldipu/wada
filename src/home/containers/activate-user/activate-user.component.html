@@ -1,0 +1,13 @@
+<div class="container">
+    <div class="row">
+        <div class="offset-md-3 col-md-6 bg-white my-4" *ngIf="!phone">
+            <phone-form [err]="errMsg" (create)="onSendOTP($event)"></phone-form>
+        </div>
+        <div class="offset-md-3 col-md-6 bg-white my-4" *ngIf="phone">
+            <ng-container *ngIf="msg.length>0">
+                <p class="px-4 text-center text-danger">{{msg}}</p>
+            </ng-container>
+            <opt-form [err]="errMsg" (create)="onOTPActivate($event)"></opt-form>
+        </div>
+    </div>
+</div>

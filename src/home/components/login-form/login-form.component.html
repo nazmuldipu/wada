@@ -10,15 +10,14 @@
     <form-input [fieldId]="'phone'" [control]="form.get('phone')"></form-input>
     <form-password [fieldId]="'password'" [control]="form.get('password')"></form-password>
 
-    <small>
-        <a routerLink="/password-reset" class="w-link">Lost your password?</a>
-    </small>
-
+    <small> <a routerLink="/password-reset" class="w-link">Lost your password?</a> </small>
+    
     <!-- Buttons -->
     <span (mouseenter)="mouseoverShifting = true" (mouseleave)="mouseoverShifting = false">
         <button type="submit" class="btn btn-block btn-sm btn-wada" [disabled]="!form.valid">Sign in</button>
     </span>
-
+    
+    <small> <a routerLink="/activate-user" class="w-link">Activate your account.</a> </small>
     <!-- Form validation error list -->
     <div *ngIf="mouseoverShifting" class="text-danger">
         <form-validator [form]="form"></form-validator>
