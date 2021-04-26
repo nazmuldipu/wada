@@ -1,4 +1,4 @@
-<div class="container pt-4">
+<div class="container pt-4 px-0">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb bg-dark text-white">
             <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
@@ -59,7 +59,7 @@
 
                             <div class="product-detail-price">
                                 <ins><span>৳ {{product?.price}}</span></ins>
-                                <del *ngIf="product.mrp>0"><span>৳ {{product?.mrp}}</span></del>
+                                <del *ngIf="product?.mrp>0"><span>৳ {{product?.mrp}}</span></del>
                             </div>
 
                             <div class="product-detail-available">

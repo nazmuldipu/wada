@@ -13,9 +13,10 @@
     <div class="register-title">Create an account</div>
     <div class="register-dialog">It's easy and quick to create an online account</div>
     <div class="container my-4">
-        <div class="offset-md-3 col-md-6">
-            <user-details-form (create)="onUserReg($event)" [err]="errorMessage"></user-details-form>
-            
+        <div class="row">
+            <div class="offset-md-3 col-md-6">
+                <user-details-form (create)="onUserReg($event)" [err]="errorMessage"></user-details-form>
+            </div>
         </div>
     </div>
 </div>

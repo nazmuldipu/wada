@@ -1,4 +1,4 @@
-@import '/src/assets/theme.scss';
+@import "/src/assets/theme.scss";
 :host {
   font-family: "museosans";
 }
@@ -15,11 +15,16 @@
   &:hover {
     border: 1px solid $primary-color;
   }
-  &-image img {
+  &-image {
     cursor: pointer;
     padding: 0;
     width: 100%;
-    height: 215px;
+    height: 220px;
+    & img {
+      width: 100%;
+      height: auto;
+      max-height: 100%;
+    }
   }
   &-info {
     cursor: pointer;
@@ -91,6 +96,20 @@
       &:hover {
         background-color: #28a745;
         color: white;
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .detail-card {
+    margin: 0 5px 10px;
+    &-image {
+      height: 215px;
+      & img {
+        width: 100%;
+        height: auto;
+        max-height: 100%;
       }
     }
   }

@@ -11,6 +11,49 @@
 .card {
   box-shadow: 0 1px 15px 1px rgba(52, 40, 104, 0.08);
 }
+@media (max-width: 767px) {
+  .card-body {
+    padding: 10px;
+  }
+}
+
+.col-details {
+  text-align: center;
+  padding: 10px 15px;
+  min-width: 400px;
+}
+.col-price{
+  text-align: right;
+  padding: 10px;
+  vertical-align: middle;
+  min-width: 100px;
+}
+.col-quantity{
+  text-align: center;
+  vertical-align: middle;  
+  padding: 10px 15px;
+  min-width: 150px;
+}
+.quantity-amount{
+  padding: 2px 10px;
+}
+@media (max-width: 767px) {
+  .col-details {
+    min-width: 130px;
+  }
+  .col-price{
+    padding: 2px;
+    min-width: 40px;
+  }
+  .col-quantity{
+    padding: 0;
+    min-width: 80px;
+  }
+  .quantity-amount{
+    padding: 2px;
+  }
+}
+
 .product-image {
   width: 50px;
 }
@@ -45,30 +88,3 @@
     }
   }
 }
-// .product {
-//   border-bottom: 1px solid #e5e5e5;
-//   color: #757575;
-//   font-weight: 300;
-//   padding: 10px 0;
-//   &-image {
-//     height: 100px;
-//     width: 100px;
-//     margin-right: 10px;
-//   }
-//   &-name {
-//     font-size: 16px;
-//     font-weight: 600;
-//     color: black;
-//   }
-//   &-quantity {
-//     color: $primary-color;
-//     & i {
-//       cursor: pointer;
-//       //   color: black;
-//     }
-//   }
-//   &-amount {
-//     color: black;
-//     font-weight: 500;
-//   }
-// }

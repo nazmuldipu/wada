@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { CartService } from 'src/service/cart.service';
-import { ProductDetailsService } from 'src/service/product-details.service';
-import { StockService } from 'src/service/stock.service';
-import { ProductService } from 'src/service/product.service';
-import { ProductDetails } from 'src/models/product-details.model';
-import { Stock } from 'src/models/stock.model';
-import { Product } from 'src/models/product.model';
-import { Pagination } from 'src/models/pagination.model';
 import { Title } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
+import { Pagination } from 'src/models/pagination.model';
+import { Product } from 'src/models/product.model';
+import { CartService } from 'src/service/cart.service';
+import { ProductService } from 'src/service/product.service';
+import { StockService } from 'src/service/stock.service';
 
 @Component({
   selector: 'app-details',

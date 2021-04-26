@@ -39,6 +39,7 @@ export class ProfileComponent implements OnInit {
     }
     this.loading = false;
   }
+  
   onClose(){
     this.showForm = false;
   }

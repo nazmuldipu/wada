@@ -16,6 +16,13 @@
   justify-content: center;
 }
 
+@media (max-width: 767px) {
+  .banner-image {
+    height: auto;
+    margin: 5px auto;
+  }
+}
+
 .cart-item {
   position: fixed;
   top: calc(110px + 30%);
@@ -46,5 +53,24 @@
     background-color: #c3161c;
     text-align: center;
     color: #ffd300;
+  }
+}
+
+@media (max-width: 767px) {
+  .cart-item {
+    top: 30%;
+    width: 50px;
+    height: auto;
+    .cart-icon {
+      width: 20px;
+      padding: 2px;
+    }
+    .cart-count {
+      padding-top: 3px;
+      font-size: 13px;
+    }
+    .cart-amount {
+      margin-top: 2px;      
+    }
   }
 }

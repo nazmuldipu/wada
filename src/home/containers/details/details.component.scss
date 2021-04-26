@@ -1,4 +1,4 @@
-@import '../../../assets/theme.scss';
+@import "../../../assets/theme.scss";
 
 a {
   cursor: pointer;
@@ -406,6 +406,15 @@ a {
   }
 }
 
+@media (max-width: 767px) {
+  .product-detail {
+    padding: 10px;
+    &-social {
+      margin: 5px 0;
+      padding: 0;
+    }
+  }
+}
 .shop-box {
   // border: 1px solid;
   cursor: pointer;
