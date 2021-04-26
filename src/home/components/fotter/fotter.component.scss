@@ -165,25 +165,28 @@ input:hover {
 
 .contact-footer-box.footer-box p::before {
   content: "";
-  height: 40px;
+  height: 25px;
+  width: 25px;
   left: 0;
   position: absolute;
   top: 0;
-  width: 40px;
 }
 
 .contact-footer-box.footer-box p.formule-address::before {
   background: rgba(0, 0, 0, 0) url(/assets/images/for1.png) no-repeat scroll 0 0;
+  background-size: auto 100%;
 }
 
 .contact-footer-box.footer-box p.formule-phone::before {
   background: rgba(0, 0, 0, 0) url(/assets/images/for2.png) no-repeat scroll
     left 4px;
+  background-size: 80% 80%;
 }
 
 .contact-footer-box.footer-box p.formule-email::before {
   background: rgba(0, 0, 0, 0) url(/assets/images/for3.png) no-repeat scroll
     left 4px;
+  background-size: 100% auto;
 }
 
 .contact-footer-box.footer-box p a {
