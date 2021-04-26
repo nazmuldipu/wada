@@ -1,153 +1,154 @@
-@import '../../../assets/theme.scss';
+@import "../../../assets/theme.scss";
 
 :host {
-    padding: 20px;
-  }
-  .img-fluid {
-    max-height: 400px;
-  }
-  
-  .product-price {
-    ins {
-      color: $primary-color;
-      font-size: 40px;
-      font-weight: 700;
-      margin: 0 5px;
-      text-decoration: none;
-    }
-    del {
-      color: #999;
-      font-size: 20px;
-      padding: 0 5px;
-      position: relative;
-      text-decoration: none;
-      &::after {
-        background: #999 none repeat scroll 0 0;
-        content: "";
-        height: 1px;
-        left: 0;
-        position: absolute;
-        top: 15px;
-        width: 100%;
-      }
-    }
-  }
-  .p-off {
-    float: right;
-    position: relative;
+  padding: 0 20px 20PX;
+  overflow-y: auto;
+}
+
+.img-fluid {
+  max-height: 400px;
+}
+@media (max-width: 767px) {}
+.product-price {
+  ins {
+    color: $primary-color;
+    font-size: 40px;
     font-weight: 700;
-    color: #fff;
+    margin: 0 5px;
+    text-decoration: none;
+  }
+  del {
+    color: #999;
     font-size: 20px;
-    padding: 0 12px 0 15px;
-    background: #ee4054;
-    height: 34px;
-    z-index: 2;
-    &::before {
-      content: "";
-      position: absolute;
-      left: -13px;
-      top: 0;
-      border-top: 17px solid transparent;
-      border-bottom: 17px solid transparent;
-      border-right: 13px solid #ee4054;
-    }
+    padding: 0 5px;
+    position: relative;
+    text-decoration: none;
     &::after {
+      background: #999 none repeat scroll 0 0;
       content: "";
-      position: absolute;
+      height: 1px;
       left: 0;
+      position: absolute;
       top: 15px;
-      padding: 3px;
-      -webkit-border-radius: 4px;
-      border-radius: 4px;
-      background: #fff;
-    }
-  }
-  .desc{
-    text-align: justify;
-  }
-  .product-detail-extralink {
-    // border-bottom: 1px solid #e5e5e5;
-    // border-top: 1px solid #e5e5e5;
-    margin: 30px 0;
-    // padding: 30px 0;
-    overflow: auto;
-    div {
-      display: inline-block;
-      vertical-align: top;
-    }
-    .quantityEditor {
-      float: left;
-      overflow: hidden;
-      display: flex;
-      width: 40%;
-      -webkit-border-radius: 4px;
-      -moz-border-radius: 4px;
-      border-radius: 4px;
-      border: 1px solid #cdcdcd;
-    }
-    .QuantityTextContainer {
-      flex: 1;
-      height: 40px;
-      padding: 5px;
-      font-size: 22px;
-      font-weight: 500;
-      text-align: center;
-    }
-    
-    .detail-qty {
-      margin-right: 6px;
-      background: #fff;
-      max-width: 120px;
-      padding: 9px 20px;
-      position: relative;
       width: 100%;
-      border-radius: 4px;
-      .qty-val {
-        min-width: 70px;
-        text-align: center;
-        font-size: 20px;
-      }
-      .qty-left {
-        left: 0;
-      }
-      .qty-right {
-        right: 0;
-      }
-      a {
-        color: #333;
-        font-size: 18px;
-        position: absolute;
-        right: 12px;
-        &.qty-down {
-          bottom: 0;
-        }
-      }
     }
-    .product-extra-link2 {
-      margin: 0 -3px;
-      a {
-        background: #fff none repeat scroll 0 0;
-        border: 1px solid #e5e5e5;
-        color: #333;
-        border-radius: 4px;
-        display: inline-block;
-        height: 40px;
-        line-height: 40px;
-        position: relative;
-        text-align: center;
-        vertical-align: top;
-        width: 40px;
-        margin: 0 3px;
-        transition: all 0.5s ease-out 0s;
-        -webkit-transition: all 0.5s ease-out 0s;
-      }
-      .addcart-link {
-        background: #333 none repeat scroll 0 0;
-        border: medium none;
-        color: #fff;
-        padding: 0 20px;
-        width: auto;
+  }
+}
+.p-off {
+  float: right;
+  position: relative;
+  font-weight: 700;
+  color: #fff;
+  font-size: 20px;
+  padding: 0 12px 0 15px;
+  background: #ee4054;
+  height: 34px;
+  z-index: 2;
+  &::before {
+    content: "";
+    position: absolute;
+    left: -13px;
+    top: 0;
+    border-top: 17px solid transparent;
+    border-bottom: 17px solid transparent;
+    border-right: 13px solid #ee4054;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 15px;
+    padding: 3px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    background: #fff;
+  }
+}
+.desc {
+  text-align: justify;
+}
+.product-detail-extralink {
+  // border-bottom: 1px solid #e5e5e5;
+  // border-top: 1px solid #e5e5e5;
+  margin: 30px 0;
+  // padding: 30px 0;
+  overflow: auto;
+  div {
+    display: inline-block;
+    vertical-align: top;
+  }
+  .quantityEditor {
+    float: left;
+    overflow: hidden;
+    display: flex;
+    width: 40%;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    border: 1px solid #cdcdcd;
+  }
+  .QuantityTextContainer {
+    flex: 1;
+    height: 40px;
+    padding: 5px;
+    font-size: 22px;
+    font-weight: 500;
+    text-align: center;
+  }
+
+  .detail-qty {
+    margin-right: 6px;
+    background: #fff;
+    max-width: 120px;
+    padding: 9px 20px;
+    position: relative;
+    width: 100%;
+    border-radius: 4px;
+    .qty-val {
+      min-width: 70px;
+      text-align: center;
+      font-size: 20px;
+    }
+    .qty-left {
+      left: 0;
+    }
+    .qty-right {
+      right: 0;
+    }
+    a {
+      color: #333;
+      font-size: 18px;
+      position: absolute;
+      right: 12px;
+      &.qty-down {
+        bottom: 0;
       }
     }
   }
-  
+  .product-extra-link2 {
+    margin: 0 -3px;
+    a {
+      background: #fff none repeat scroll 0 0;
+      border: 1px solid #e5e5e5;
+      color: #333;
+      border-radius: 4px;
+      display: inline-block;
+      height: 40px;
+      line-height: 40px;
+      position: relative;
+      text-align: center;
+      vertical-align: top;
+      width: 40px;
+      margin: 0 3px;
+      transition: all 0.5s ease-out 0s;
+      -webkit-transition: all 0.5s ease-out 0s;
+    }
+    .addcart-link {
+      background: #333 none repeat scroll 0 0;
+      border: medium none;
+      color: #fff;
+      padding: 0 20px;
+      width: auto;
+    }
+  }
+}
