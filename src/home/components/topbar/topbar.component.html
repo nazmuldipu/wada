@@ -23,7 +23,7 @@
         <a routerLink="/profile" *ngIf="authService.isUser()"><i class="fa fa-user"></i> Profile</a>
         <a routerLink="/orders" *ngIf="authService.isUser()"><i class="fa fa-file-text-o"></i> Orders </a>
         <a routerLink="/cart" *ngIf="authService.isUser()"><i class="fa fa-shopping-cart"></i> Cart</a>
-        <a routerLink="/change-password" *ngIf="authService.isUser()"><i class="fa fa-key"></i> Chage Password</a>
+        <a routerLink="/change-password" *ngIf="authService.isUser()"><i class="fa fa-key"></i> Change Password</a>
         <a (click)="onLogout()" routerLink="/"><i class="fa fa-unlock-alt"></i> Logout</a>
       </div>
     </div>
