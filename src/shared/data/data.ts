@@ -130,6 +130,7 @@ export const SideNavbar = [
     roles: ['ADMIN'],
     subnav: [
       { name: 'List', icon: 'fa-list', link: '/dashboard/users' },
+      { name: 'Profile', icon: 'fa-user', link: '/dashboard/users/profile' },
       {
         name: 'Reset password',
         icon: 'fa-key',

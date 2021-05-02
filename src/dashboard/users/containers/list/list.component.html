@@ -19,7 +19,8 @@
 
     <div class="row" *ngIf="!loading">
         <div class="col-md-7 col-12">
-            <user-list [userPage]="userPage" (edit)="onEdit($event)" (refresh)="refreshData($event)" (active)="onActive($event)"></user-list>
+            <user-list [userPage]="userPage" [isAdmin]="true" (edit)="onEdit($event)" (refresh)="refreshData($event)"
+                (active)="onActive($event)"></user-list>
         </div>
 
         <div class="col-md-5 col-12">

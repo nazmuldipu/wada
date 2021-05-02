@@ -10,7 +10,6 @@ import { SharedModule } from '../shared/shared.module';
 import { AppComponent } from './app.component';
 
 export const ROUTES: Routes = [
-  // { path: 'test', component: TestComponent },
   {
     path: 'dashboard',
     loadChildren: () =>
@@ -20,6 +19,7 @@ export const ROUTES: Routes = [
     path: '',
     loadChildren: () => import('../home/home.module').then((m) => m.HomeModule),
   },
+  { path: '**', redirectTo: '/404' }
 ];
 
 @NgModule({

@@ -34,6 +34,10 @@ export class UserService {
   updateProfile(user: User): Observable<User> {
     return this.dSrc.sendRequest('PUT', this.url + `/update`, user, true, null);
   }
+  
+  updateProfileByAdmin(id, user: User): Observable<User> {
+    return this.dSrc.sendRequest('PUT', this.url + `/updateProfile/${id}`, user, true, null);
+  }
 
   getAll(): Observable<User[]> {
     return this.dSrc.sendRequest('GET', this.url, null, true, null);

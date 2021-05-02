@@ -17,7 +17,11 @@ export class UserProfileFormComponent extends BaseFormComponent implements OnCha
 
   ngOnChanges(changes: SimpleChanges): void {
     super.ngOnChanges(changes);
-    this.form.patchValue({ cus_country: 'Bangladesh' });
+    this.form.patchValue({
+      email: this.item.email ? this.item.email : '',
+      cus_add2: this.item.cus_add2 ? this.item.cus_add2 : '',
+      cus_country: 'Bangladesh'
+    });
   }
 
   createForm(): void {

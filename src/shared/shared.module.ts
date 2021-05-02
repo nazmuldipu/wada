@@ -34,6 +34,7 @@ import { ProductTableComponent } from './components/product-table/product-table.
 import { ChangePasswordFormComponent } from './components/change-password-form/change-password-form.component';
 import { PopularProductsComponent } from './components/popular-products/popular-products.component';
 import { ProductBoxComponent } from './components/product-box/product-box.component';
+import { UserProfileFormComponent } from './components/user-profile-form/user-profile-form.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { ProductBoxComponent } from './components/product-box/product-box.compon
     ChangePasswordFormComponent,
     PopularProductsComponent,
     ProductBoxComponent,
+    UserProfileFormComponent,
   ],
   imports: [
     CommonModule,
@@ -104,6 +106,7 @@ import { ProductBoxComponent } from './components/product-box/product-box.compon
     RouterModule,
     SideAdvComponent,
     ToastsComponent,
+    UserProfileFormComponent
   ],
 })
 export class SharedModule { }

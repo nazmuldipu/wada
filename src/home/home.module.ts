@@ -37,17 +37,18 @@ import { PrivacyComponent } from './containers/privacy/privacy.component';
 import { ReturnComponent } from './containers/return/return.component';
 import { ProfileComponent } from './containers/profile/profile.component';
 import { ChangePasswordComponent } from './containers/change-password/change-password.component';
-import { UserProfileFormComponent } from './components/user-profile-form/user-profile-form.component';
 import { PasswordResetComponent } from './containers/password-reset/password-reset.component';
 import { ActivateUserComponent } from './containers/activate-user/activate-user.component';
 import { PhoneFormComponent } from './components/phone-form/phone-form.component';
 import { OtpResetPasswordFormComponent } from './components/otp-reset-password-form/otp-reset-password-form.component';
 import { OptFormComponent } from './components/opt-form/opt-form.component';
+import { NotFoundComponent } from './containers/not-found/not-found.component';
 
 export const ROUTES: Routes = [
   { path: 'comming', component: CommingSoonComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: '404', component: NotFoundComponent },
   {
     path: '',
     component: HomeComponent,
@@ -107,12 +108,12 @@ export const ROUTES: Routes = [
     ReturnComponent,
     ProfileComponent,
     ChangePasswordComponent,
-    UserProfileFormComponent,
     PasswordResetComponent,
     ActivateUserComponent,
     PhoneFormComponent,
     OtpResetPasswordFormComponent,
-    OptFormComponent
+    OptFormComponent,
+    NotFoundComponent
   ],
   imports: [
     CommonModule,

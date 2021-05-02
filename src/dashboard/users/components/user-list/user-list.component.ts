@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnChanges, SimpleChanges } from '@angular/core';
 import { UserPage } from 'src/models/user.model';
 
 @Component({
@@ -6,33 +6,35 @@ import { UserPage } from 'src/models/user.model';
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.scss'],
 })
-export class UserListComponent {
+export class UserListComponent implements OnChanges {
+
   @Input() userPage: UserPage;
+  @Input() isAdmin = false;
 
   @Output() edit = new EventEmitter<string>();
   @Output() active = new EventEmitter<string>();
   @Output() refresh = new EventEmitter<string>();
 
   tableName = 'User Table';
-  columns = [
+  columns: any[] = [
     { path: 'name', label: 'Name' },
     { path: 'phone', label: 'Phone' },
     { path: 'email', label: 'Email' },
     { path: 'role', label: 'Role' },
-    { path: 'active', label: 'Active' },
-    {
-      key: '_id',
-      type: 'button',
-      content: (user) => {
-        return {
-          classname: 'edit_link',
-          text: user?.active ? 'Deactivate' : 'Activate',
-          link: `#`,
-          event: { key: 'active', id: user._id },
-        };
-      },
-    },
-    {
+  ];
+
+  sortColumn = {
+    path: 'name',
+    order: 'asc',
+    limit: 8,
+    page: 1,
+    search: '',
+  };
+
+  constructor() { }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    const editBtn = {
       key: '_id',
       type: 'button',
       content: (brand) => {
@@ -43,16 +45,28 @@ export class UserListComponent {
           event: { key: 'edit', id: brand._id },
         };
       },
-    },
-  ];
+    };
 
-  sortColumn = {
-    path: 'name',
-    order: 'asc',
-    limit: 8,
-    page: 1,
-    search: '',
-  };
+    if (this.isAdmin) {
+      const actBtn = [
+        { path: 'active', label: 'Active' },
+        {
+          key: '_id',
+          type: 'button',
+          content: (user) => {
+            return {
+              classname: 'edit_link',
+              text: user?.active ? 'Deactivate' : 'Activate',
+              link: `#`,
+              event: { key: 'active', id: user._id },
+            };
+          },
+        },]
+      this.columns = [...this.columns, ...actBtn, editBtn]
+    } else {
+      this.columns = [...this.columns, editBtn]
+    }
+  }
 
   buttonEvent(event) {
     switch (event['key']) {
@@ -69,4 +83,6 @@ export class UserListComponent {
     this.sortColumn = { ...event };
     this.refresh.emit({ sort: event.path, ...event });
   }
+
+
 }
