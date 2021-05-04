@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./delivery.component.scss']
 })
 export class DeliveryComponent implements OnInit {
+  label = "Delivery Report";
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  getItemByDateRange(event) {
+    console.log(event);
   }
 
 }

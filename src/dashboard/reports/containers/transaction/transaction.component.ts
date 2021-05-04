@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./transaction.component.scss']
 })
 export class TransactionComponent implements OnInit {
+  label = "Transaction Report";
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  getItemByDateRange(event) {
+    console.log(event);
+  }
 }

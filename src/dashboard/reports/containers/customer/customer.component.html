@@ -1,1 +1,29 @@
-<p>customer works!</p>
+<report-head [label]="label" (dateRange)="getItemByDateRange($event)"></report-head>
+
+<div class="container">
+    <loading *ngIf="loading"></loading>
+    <div class="alert alert-success alert-dismissible show" role="alert" *ngIf="message.length > 0">
+        <strong>Success! </strong> {{ message }}
+        <button type="button" class="close" (click)="onClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="alert alert-danger alert-dismissible show" role="alert" *ngIf="errMsg.length > 0">
+        <strong>Failed! </strong> {{ errMsg }}
+        <button type="button" class="close" (click)="onClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="row">
+        <div class="col-md-7 col-12 bg-white" *ngIf="!loading && !user">
+            <user-list [userPage]="userPage" (edit)="onEdit($event)" (refresh)="refreshData($event)"></user-list>
+        </div>
+        <div class="col-md-12 py-3 bg-white" *ngIf="user && !loading && orderPage?.docs.length > 0">
+            <order-table [orderPage]="orderPage" [name]="user.name"></order-table>
+            <div class="d-flex flex-row-reverse d-print-none">
+                <button class="btn btn-sm btn-danger" (click)="onClose()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

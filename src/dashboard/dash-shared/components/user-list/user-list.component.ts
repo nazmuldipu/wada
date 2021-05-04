@@ -7,7 +7,6 @@ import { UserPage } from 'src/models/user.model';
   styleUrls: ['./user-list.component.scss'],
 })
 export class UserListComponent implements OnChanges {
-
   @Input() userPage: UserPage;
   @Input() isAdmin = false;
 
@@ -17,8 +16,8 @@ export class UserListComponent implements OnChanges {
 
   tableName = 'User Table';
   columns: any[] = [
-    { path: 'name', label: 'Name' },
-    { path: 'phone', label: 'Phone' },
+    { path: 'name', label: 'Name', searchable: true },
+    { path: 'phone', label: 'Phone', searchable: true },
     { path: 'email', label: 'Email' },
     { path: 'role', label: 'Role' },
   ];
@@ -40,7 +39,7 @@ export class UserListComponent implements OnChanges {
       content: (brand) => {
         return {
           classname: 'edit_link',
-          text: 'Edit',
+          text: 'Select',
           link: `#`,
           event: { key: 'edit', id: brand._id },
         };

@@ -8,6 +8,7 @@ import { AuthGuardService } from 'src/service/auth-guard.service';
 import { ServiceModule } from '../service/service.module';
 import { SharedModule } from '../shared/shared.module';
 import { AppComponent } from './app.component';
+import { Daterangepicker } from 'ng2-daterangepicker';
 
 export const ROUTES: Routes = [
   {
@@ -31,6 +32,7 @@ export const ROUTES: Routes = [
     HttpClientModule,
     SharedModule,
     ServiceModule,
+    Daterangepicker,
     SidebarModule.forRoot(),
     RouterModule.forRoot(ROUTES, { relativeLinkResolution: 'legacy' }),
   ],

@@ -1,12 +1,28 @@
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { Pagination } from 'src/models/pagination.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UtilService {
-  constructor() {}
+  constructor() { }
+
+  convertJsDateToNgbDate(date: Date): NgbDate {
+    return new NgbDate(date.getFullYear(), date.getMonth() + 1, date.getDate());
+  }
+
+  getDateStringLocal(date: Date): string {
+    const month = date.getMonth() + 1;
+    return (
+      (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) +
+      '/' +
+      (month < 10 ? '0' + month : month) +
+      '/' +
+      date.getFullYear()
+    );
+  }
 
   jsonToFromData(object, fileKeys: string[]): FormData {
     //Change json to FormData
