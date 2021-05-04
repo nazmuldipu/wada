@@ -13,6 +13,10 @@ export class OrderService {
 
   constructor(private dSrc: RestDataService, private util: UtilService) { }
 
+  create(order): Observable<Order> {
+    return this.dSrc.sendRequest('POST', this.url, order, true, null);
+  }
+
   confirmOrder(address): Observable<Order> {
     return this.dSrc.sendRequest('PATCH', this.url, address, true, null);
   }

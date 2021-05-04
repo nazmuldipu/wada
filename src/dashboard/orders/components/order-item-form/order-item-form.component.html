@@ -1,0 +1,69 @@
+<!-- <ng-template #rt let-r="result" let-t="term">
+    <ngb-highlight [result]="getProductName(r)" [term]="t"></ngb-highlight>
+</ng-template> -->
+
+<div [formGroup]="parent">
+    <div formArrayName="items">
+
+        <div class="form-row">
+            <div class="col-auto"><label class="form-control form-control-sm border-0"><strong> # </strong></label>
+            </div>
+            <div class="col">
+                <label class="form-control form-control-sm border-0"><strong>Product </strong></label>
+            </div>
+            <div class="col-1">
+                <label class="form-control form-control-sm border-0"><strong>Max</strong></label>
+            </div>
+            <div class="col-2">
+                <label class="form-control form-control-sm border-0"><strong>Quantity</strong></label>
+            </div>
+            <div class="col-1">
+                <label class="form-control form-control-sm border-0"><strong> Price</strong></label>
+            </div>
+            <div class="col-auto">
+                <label class="form-control form-control-sm border-0">&nbsp;</label>
+
+            </div>
+        </div>
+
+        <div *ngFor="let item of parent['controls'].items['controls']; let i = index">
+            <div [formGroupName]="i">
+                <div class="form-row">
+                    <div class="col-auto"><label class="form-control form-control-sm">{{i+1}} </label> </div>
+                    <div class="col">
+                        <input id="supplierId" type="text" class="form-control form-control-sm"
+                            formControlName="product" [ngbTypeahead]="searchProduct" [editable]='false'
+                            [resultFormatter]="productFormatter" [inputFormatter]="productFormatter"
+                            placeholder="Product name / barcode" (selectItem)="checkStock(i, $event)" />
+                    </div>
+                    <div class="col-1">
+                        <label class="form-control form-control-sm">{{parent.value.items[i].max_quantity}}</label>
+                    </div>
+                    <div class="col-2">
+                        <input type="number" class="form-control form-control-sm" formControlName="quantity"
+                            id="quantity" placeholder="Quantity {{ i + 1 }}" (change)="updateTotal()" />
+                    </div>
+
+                    <div class="col-1">
+                        <label class="form-control form-control-sm text-right">{{ parent.value.items[i].product?.price?
+                            parent.value.items[i].product?.price * parent.value.items[i].quantity : 0}}</label>
+                    </div>
+                    <div class="col-auto">
+                        <button class="btn btn-sm btn-danger" (click)="onRemoveItem(i)"><i
+                                class="fa fa-trash-o"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col"><strong></strong></div>
+            <div class="col-auto"><strong> Total</strong></div>
+            <div class="col-1 text-right">
+                <label class="form-control form-control-sm text-right"><strong> {{total}}</strong></label>
+            </div>
+            <div class="col-auto">
+                &nbsp; &nbsp; &nbsp; &nbsp;
+            </div>
+        </div>
+    </div>
+</div>

@@ -20,6 +20,7 @@ export class UserProfileFormComponent extends BaseFormComponent implements OnCha
     this.form.patchValue({
       email: this.item.email ? this.item.email : '',
       cus_add2: this.item.cus_add2 ? this.item.cus_add2 : '',
+      deliveryInstruction: this.item.deliveryInstruction ? this.item.deliveryInstruction : '',
       cus_country: 'Bangladesh'
     });
   }

@@ -63,7 +63,6 @@ export class OrderSideListComponent implements OnInit {
     const join = this.paymentMethodParam && this.orderStatusParam ? '&' : '';
     this.pagi.param = (this.paymentMethodParam ? this.paymentMethodParam : '')
       + join + (this.orderStatusParam ? this.orderStatusParam : '');
-    console.log(this.pagi.param);
     this.getOrders(this.pagi);
   }
 

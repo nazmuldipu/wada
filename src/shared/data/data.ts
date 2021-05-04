@@ -144,6 +144,11 @@ export const SideNavbar = [
     roles: ['ADMIN', 'INVENTORY_ADMIN'],
     subnav: [
       {
+        name: 'Add',
+        icon: 'fa-plus',
+        link: '/dashboard/orders/add',
+      },
+      {
         name: 'Search',
         icon: 'fa-search',
         link: '/dashboard/orders/search',
@@ -181,10 +186,10 @@ export const FeaturesPriorities = [
 
 export const CompanyInfo = {
   name: 'Wada Bangladesh Limited',
-  address1: '32/1, Mipur Road, Khan Plaze (3rd Floor), Science Lab',
-  address2: 'Dhanmondi, Dhaka-1205',
+  address1: 'Suite# 13, Level# 4, Sahera Tropical Center',
+  address2: '218, Elephant Road, Dhaka-1205',
   email: 'support@wada.com.bd',
-  mobile: '+88 01730 785675',
+  mobile: '+88 01730785675-9',
   site: 'Wada.com.bd',
   web: 'www.wada.com.bd',
   phones: '01730785675-9',

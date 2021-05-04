@@ -26,6 +26,7 @@ export class ProfileComponent implements OnInit {
     this.loading = true;
     try {
       this.userPage = await this.service.getList(pagi).toPromise();
+      this.onClose();
     } catch (error) {
       this.errMsg = error;
     }
@@ -56,7 +57,7 @@ export class ProfileComponent implements OnInit {
       if (index > 0) {
         this.userPage.docs.splice(index, 1, resp);
       }
-      this.user = null;
+      this.onClose();
     } catch (err) {
       this.errMsg = err.message;
     }
@@ -67,6 +68,7 @@ export class ProfileComponent implements OnInit {
     this.message = '';
     this.errMsg = '';
     this.loading = false;
+    this.user = null;
   }
 
 }

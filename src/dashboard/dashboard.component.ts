@@ -20,7 +20,6 @@ export class DashboardComponent implements OnInit {
   }
 
   async getUserProfile(): Promise<void> {
-    console.log('Load profile from dashboard');
     try {
       const user = await this.userService.getUserProfile().toPromise();
       this.userService.userSource.next(user);

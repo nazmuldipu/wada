@@ -1,6 +1,7 @@
 export const LABEL_LIST: object = {
   address: 'Address',
   barcode: 'Barcode',
+  customer: 'Customer',
   cus_add1: 'Address line 1',
   cus_add2: 'Address line 2 (optional)',
   cus_city: 'City',

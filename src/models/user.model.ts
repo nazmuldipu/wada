@@ -4,6 +4,11 @@ export interface User {
   phone: string;
   email: string;
   password: string;
+  cus_add1: string;
+  cus_add2: string;
+  cus_city: string;
+  cus_country: string;
+  deliveryInstruction: string;
   role: string;
   createdAt: Date;
   active: boolean;

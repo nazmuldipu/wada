@@ -1,0 +1,24 @@
+<div class="container-fluid component-head">
+    <h3>Create Order</h3>
+</div>
+<div class="container">
+    <loading *ngIf="loading"></loading>
+    <div class="alert alert-success alert-dismissible show" role="alert" *ngIf="message.length > 0">
+        <strong>Success! </strong> {{ message }}
+        <button type="button" class="close" (click)="onClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="alert alert-danger alert-dismissible show" role="alert" *ngIf="errMsg.length > 0">
+        <strong>Failed! </strong> {{ errMsg }}
+        <button type="button" class="close" (click)="onClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="row">
+        <div class="col-12 mb-5">
+            <order-form (create)="onCreateOrder($event)"></order-form>
+        </div>
+    </div>
+</div>

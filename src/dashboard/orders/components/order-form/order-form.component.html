@@ -1,0 +1,60 @@
+<div class="border bg-white">
+    <div class="navbar navbar-light bg-light">
+        <div class="form-head">
+            {{exists?'Update': 'New'}} Order
+        </div>
+        <a type="button" class="btn btn-primary btn-sm" routerLink="/dashboard/orders">
+            <i class="fa fa-list"></i> Order List
+        </a>
+    </div>
+
+    <ng-template #userProfileModal let-modal>
+        <div style="min-height: 400px;">
+            <nav class="navbar navbar-light bg-light border border-bottom-0">
+                <a class="navbar-brand">Update profile of <strong>{{user?.name}}</strong></a>
+            </nav>
+            <div class=" border rounded bg-white p-3">
+                <user-profile-form [item]="user" (update)="onUpdateProfile(user._id, $event)" (close)="modal.dismiss()">
+                </user-profile-form>
+            </div>
+        </div>
+    </ng-template>
+
+    <form [formGroup]="form" class="p-3" (ngSubmit)="submit()" (mouseleave)="mouseoverShifting = false">
+        <!-- Search Customer -->
+        <div class="col-md-6">
+            <label for="customer" class="d-none d-sm-block col-form-label col-form-label-sm p-0">Customer*</label>
+            <input id="customer" type="text" class="form-control form-control-sm" [ngbTypeahead]="searchUser"
+                formControlName="customer" [resultFormatter]="userFormatter" [inputFormatter]="userFormatter"
+                [editable]='false' placeholder="Customer name / phone"
+                (selectItem)="onSelectCustomer($event, userProfileModal)" />
+            <small class="form-text text-danger"
+                *ngIf="form.controls.customer.errors && form.controls.customer.touched">Customer
+                Required</small>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 my-3">
+                <!-- <inventory-item-form [parent]="form" (removeItem)="onRemoveOrderItem($event)"></inventory-item-form> -->
+                <order-item-form [parent]="form" (removeItem)="onRemoveOrderItem($event)"></order-item-form>
+                <button class="btn btn-sm btn-info" type="button" (click)="pushOrderItem()">
+                    <i class="fa fa-plus"></i> Add Item
+                </button>
+            </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="d-flex flex-row-reverse bd-highlight">
+            <span (mouseenter)="mouseoverShifting = true">
+                <button type="submit" class="btn btn-sm btn-light mx-1" [disabled]="!form.valid">{{exists ?
+                    'Update':'Save'}}</button>
+            </span>
+            <button type="button" class="btn btn-sm btn-light mx-1" (click)="clean()">Clear</button>
+        </div>
+
+        <!-- Form validation error list -->
+        <div *ngIf="mouseoverShifting" class="text-danger">
+            <form-validator [form]="form"></form-validator>
+        </div>
+    </form>
+</div>
