@@ -37,21 +37,10 @@ export const ROUTES: Routes = [
         loadChildren: () =>
           import('./products/products.module').then((m) => m.ProductsModule),
       },
-      {
-        path: 'users',
-        loadChildren: () =>
-          import('./users/users.module').then((m) => m.UsersModule),
-      },
-      {
-        path: 'features',
-        loadChildren: () =>
-          import('./features/features.module').then((m) => m.FeaturesModule),
-      },
-      {
-        path: 'inventory',
-        loadChildren: () =>
-          import('./inventory/inventory.module').then((m) => m.InventoryModule),
-      },
+      { path: 'users', loadChildren: () => import('./users/users.module').then((m) => m.UsersModule), },
+      { path: 'features', loadChildren: () => import('./features/features.module').then((m) => m.FeaturesModule), },
+      { path: 'reports', loadChildren: () => import('./reports/reports.module').then((m) => m.ReportsModule) },
+      { path: 'inventory', loadChildren: () => import('./inventory/inventory.module').then((m) => m.InventoryModule), },
     ],
   },
 ];

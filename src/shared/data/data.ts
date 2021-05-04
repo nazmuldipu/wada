@@ -141,7 +141,7 @@ export const SideNavbar = [
   {
     name: 'Orders',
     icon: 'fa-clone',
-    roles: ['ADMIN', 'INVENTORY_ADMIN'],
+    roles: ['ADMIN'],
     subnav: [
       {
         name: 'Add',
@@ -158,6 +158,18 @@ export const SideNavbar = [
         icon: 'fa-file-text-o',
         link: '/dashboard/orders',
       },
+    ],
+  },
+  {
+    name: 'Report',
+    icon: 'fa-file-text-o',
+    roles: ['ADMIN'],
+    subnav: [
+      { name: 'customer', icon: 'fa-user', link: '/dashboard/reports/customer', },
+      { name: 'Sales', icon: 'fa-balance-scale', link: '/dashboard/reports/sales', },
+      { name: 'Delivery', icon: 'fa-truck', link: '/dashboard/reports/delivery', },
+      { name: 'Transaction', icon: 'fa-money', link: '/dashboard/reports/transaction', },
+
     ],
   },
   {
