@@ -1,6 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Meta } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { SidebarModule } from 'ng-sidebar';
 import { AuthGuardService } from 'src/service/auth-guard.service';
@@ -36,7 +36,7 @@ export const ROUTES: Routes = [
     SidebarModule.forRoot(),
     RouterModule.forRoot(ROUTES, { relativeLinkResolution: 'legacy', initialNavigation: 'enabled' }),
   ],
-  providers: [],
+  providers: [Meta],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

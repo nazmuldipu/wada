@@ -50,7 +50,7 @@ export class CategoryComponent implements OnInit {
   ) {
     this.prodImageUrl = this.productService.imageLink + '/image/';
     this.prodThumbUrl = this.productService.imageLink + '/thumb/';
-    window.scroll(0, 0);
+    // window.scroll(0, 0);
   }
 
   ngOnInit(): void {
@@ -143,7 +143,7 @@ export class CategoryComponent implements OnInit {
         '/image/' +
         this.subSubCategory._id +
         '/0';
-      window.scroll(100, 0);
+      // window.scroll(100, 0);
     } catch (error) {
       this.errorMessage = error;
     }

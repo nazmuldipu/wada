@@ -53,7 +53,7 @@ export class FeaturesComponent implements OnInit {
       const slug = params.slug;
 
       if (this.slug && this.slug !== slug) {
-        window.scroll(0, 0);
+        // window.scroll(0, 0);
         this.productList = [];
       }
 

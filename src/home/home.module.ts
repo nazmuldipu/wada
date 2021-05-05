@@ -50,7 +50,7 @@ export const ROUTES: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: '404', component: NotFoundComponent },
   {
-    path: '',
+    path: 'en',
     component: HomeComponent,
     children: [
       { path: 'profile', component: ProfileComponent },
@@ -73,6 +73,7 @@ export const ROUTES: Routes = [
       { path: '', component: IndexComponent },
     ],
   },
+  { path: '**', redirectTo: 'en' }
 ];
 
 @NgModule({

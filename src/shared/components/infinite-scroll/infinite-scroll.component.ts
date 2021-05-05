@@ -24,7 +24,7 @@ export class InfiniteScrollComponent implements AfterViewInit, OnDestroy {
 
   private observer: IntersectionObserver;
 
-  constructor(private host: ElementRef) {}
+  constructor(private host: ElementRef) { }
 
   get element() {
     return this.host.nativeElement;
@@ -48,11 +48,12 @@ export class InfiniteScrollComponent implements AfterViewInit, OnDestroy {
   }
 
   private isHostScrollable() {
-    const style = window.getComputedStyle(this.element);
+    // const style = window.getComputedStyle(this.element);
 
-    return (
-      style.getPropertyValue('overflow') === 'auto' ||
-      style.getPropertyValue('overflow-y') === 'scroll'
-    );
+    // return (
+    //   style.getPropertyValue('overflow') === 'auto' ||
+    //   style.getPropertyValue('overflow-y') === 'scroll'
+    // );
+    return 0;
   }
 }

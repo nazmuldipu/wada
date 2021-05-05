@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Pagination } from 'src/models/pagination.model';
 import { Product } from 'src/models/product.model';
@@ -31,7 +31,7 @@ export class DetailsComponent implements OnInit {
     private productStockService: StockService,
     private cartService: CartService,
     private activeRoute: ActivatedRoute,
-    private title: Title
+    private title: Title, private metaService: Meta
   ) {
   }
 
@@ -48,7 +48,6 @@ export class DetailsComponent implements OnInit {
     this.loading = true;
     try {
       this.product = await this.productService.get(id).toPromise();
-      this.title.setTitle(this.product.name + ' ' + this.product.size + ' Details'); 
       // this.getProductDetails(id);
       this.getProductStock(id);
 
@@ -57,6 +56,17 @@ export class DetailsComponent implements OnInit {
         const url = this.productService.imageLink + '/image/' + id + '/' + i;
         this.imageUrls.push({ image: url, thumbImage: url });
       }
+
+      const title = this.product.name + ' ' + this.product.size + ' Details';
+      this.title.setTitle(title);
+      this.metaService.updateTag({ name: 'description', content: this.product.description }, "name='description'");
+      this.metaService.updateTag({ name: 'twitter:title', content: title }, "name='twitter:title'");
+      this.metaService.updateTag({ name: 'twitter:description', content: this.product.description }, "name='twitter:description'");
+      this.metaService.updateTag({ name: 'twitter:image', content: this.imageUrls[0]?.image }, "name='twitter:image'");
+      this.metaService.updateTag({ property: 'og:title', content: title }, "property='og:title'");
+      this.metaService.updateTag({ property: 'og:description', content: title }, "property='og:description'");
+      this.metaService.updateTag({ property: 'og:image', content: this.imageUrls[0]?.image }, "property='og:image'");
+
     } catch (error) {
       this.errorMessage = error;
     }
