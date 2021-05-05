@@ -28,13 +28,13 @@ export const ROUTES: Routes = [
     AppComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     HttpClientModule,
     SharedModule,
     ServiceModule,
     Daterangepicker,
     SidebarModule.forRoot(),
-    RouterModule.forRoot(ROUTES, { relativeLinkResolution: 'legacy' }),
+    RouterModule.forRoot(ROUTES, { relativeLinkResolution: 'legacy', initialNavigation: 'enabled' }),
   ],
   providers: [],
   bootstrap: [AppComponent]
