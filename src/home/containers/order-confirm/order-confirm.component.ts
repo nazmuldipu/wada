@@ -48,8 +48,9 @@ export class OrderConfirmComponent implements OnInit {
     try {
       this.loading = true;
       const resp = await this.orderService.paynow(id).toPromise();
-      if (resp.payment_url)
-        window.location.href = resp.payment_url;
+      if (resp.payment_url){
+        // window.location.href = resp.payment_url;
+      }
       else {
         this.errMsg = resp;
         console.log(resp);

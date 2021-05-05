@@ -109,7 +109,7 @@ export class ReportHeadComponent implements OnInit {
   }
 
   onPrint() {
-    window.print();
+   // window.print();
   }
 
 }

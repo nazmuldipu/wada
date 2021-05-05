@@ -91,7 +91,7 @@
         </button>
       </div>
 
-      <infinite-scroll (scrolled)="onScroll()">
+      <!-- <infinite-scroll (scrolled)="onScroll()"> -->
         <div class="row clearfix m-0">
           <div class="col-12 text-center" *ngIf="productList?.length == 0">
             <i class="fa fa-frown-o"></i> Sorry no product found
@@ -101,7 +101,10 @@
               (shortDetails)="onShortDetails(productDetailsModal, $event)"></product2>
           </div>
         </div>
-      </infinite-scroll>
+        <div class="d-flex justify-content-center" *ngIf="this.productPage?.nextPage">
+          <button class="btn btn-sm btn-danger" (click)="onScroll()">Loadmore</button>
+        </div>
+      <!-- </infinite-scroll> -->
       <loading *ngIf="loading"></loading>
     </div>
   </div>

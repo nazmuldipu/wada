@@ -77,6 +77,7 @@ export class CategoryComponent implements OnInit {
 
         this.getSubSubCategoryList(this.slug);
       }
+      this.onScroll();
     });
   }
 

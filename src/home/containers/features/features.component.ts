@@ -65,6 +65,7 @@ export class FeaturesComponent implements OnInit {
         })
 
         this.getProductBySubCategory(this.slug, new Pagination());
+        this.onScroll();
       }
     })
   }

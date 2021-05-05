@@ -25,9 +25,17 @@
                                 <img class="img-fluid mx-auto" [src]="imageUrls[current]?.image" alt="">
                             </div>
                             <div class="product-detail-gallery-control" *ngIf="imageUrls.length > 0">
-                                <ng-image-slider #nav [images]="imageUrls" [infinite]="false" [autoSlide]="1"
+                                <div class="row">
+                                    <div class="col-3 p-0" *ngFor="let ulr of imageUrls; let i = index">
+                                        <img class="border" [class.border-primary]="i==current"
+                                            [src]="imageUrls[i]?.image" alt=""
+                                            style="width: 100%; height: auto; cursor: pointer;"
+                                            (click)="onThumbImageClick(i)">
+                                    </div>
+                                </div>
+                                <!-- <ng-image-slider #nav [images]="imageUrls" [infinite]="false" [autoSlide]="1"
                                     [imagePopup]="false" [imageSize]="{width: '65px', height: '70px'}"
-                                    (imageClick)="onThumbImageClick($event)" slideImage="1"></ng-image-slider>
+                                    (imageClick)="onThumbImageClick($event)" slideImage="1"></ng-image-slider> -->
                             </div>
                         </div>
                         <div class="product-detail-social">

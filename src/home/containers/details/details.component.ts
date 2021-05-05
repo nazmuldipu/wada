@@ -99,8 +99,7 @@ export class DetailsComponent implements OnInit {
   }
 
   async addToCart(): Promise<void> {
-    console.log('Add to cart');
-    const value = { productId: this.product._id, quantity: this.quantity };
+    const value = { productId: this.id, quantity: this.quantity };
     this.loading = true;
     try {
       const resp = await this.cartService.addToCart(value).toPromise();
