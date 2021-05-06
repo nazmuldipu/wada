@@ -25,5 +25,8 @@
                 <button class="btn btn-sm btn-danger" (click)="onClose()">Close</button>
             </div>
         </div>
+        <div class="col-12 py-3 text-center" *ngIf="!loading && orderPage?.docs.length == 0">
+            <h3> <i class="fa fa-frown-o"></i> No record found </h3>
+        </div>
     </div>
 </div>

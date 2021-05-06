@@ -1,1 +1,26 @@
 <report-head [label]="label" (dateRange)="getItemByDateRange($event)"></report-head>
+
+<div class="container">
+    <loading *ngIf="loading"></loading>
+    <div class="alert alert-success alert-dismissible show" role="alert" *ngIf="message.length > 0">
+        <strong>Success! </strong> {{ message }}
+        <button type="button" class="close" (click)="onClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="alert alert-danger alert-dismissible show" role="alert" *ngIf="errMsg.length > 0">
+        <strong>Failed! </strong> {{ errMsg }}
+        <button type="button" class="close" (click)="onClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 py-3 bg-white" *ngIf="!loading && orderPage?.docs.length > 0">
+            <order-table [orderPage]="orderPage" [name]="'Sales'"></order-table>
+        </div>
+        <div class="col-12 py-3 text-center" *ngIf="!loading && orderPage?.docs.length == 0">
+            <h3> <i class="fa fa-frown-o"></i> No record found </h3>
+        </div>
+    </div>
+</div>

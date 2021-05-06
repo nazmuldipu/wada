@@ -22,4 +22,19 @@ export class ReportService {
     return this.dSrc.sendRequest('GET', this.url + `/customer/${uid}`, null, true, sparam);
   }
 
+  sales(start, end): Observable<OrderPage> {
+    let sparam = new HttpParams().set('start', start).set('end', end);
+    return this.dSrc.sendRequest('GET', this.url + `/sales`, null, true, sparam);
+  }
+
+  delivery(start, end): Observable<OrderPage> {
+    let sparam = new HttpParams().set('start', start).set('end', end);
+    return this.dSrc.sendRequest('GET', this.url + `/delivery`, null, true, sparam);
+  }
+
+  transaction(start, end): Observable<OrderPage> {
+    let sparam = new HttpParams().set('start', start).set('end', end);
+    return this.dSrc.sendRequest('GET', this.url + `/transaction`, null, true, sparam);
+  }
+
 }
